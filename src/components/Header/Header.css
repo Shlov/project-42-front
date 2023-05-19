@@ -1,0 +1,26 @@
+.header {
+  background-color: #FDF7F2;
+  padding: 31px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header img {
+  margin-right: 160px;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+}
+
+.header__user {
+  display: flex;
+}
+
+@media (max-width: 991px) {
+  .header__user img {
+    margin: 0 0 0 38px;
+  }
+}

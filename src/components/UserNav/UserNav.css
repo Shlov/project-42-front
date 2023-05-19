@@ -1,0 +1,15 @@
+.user-nav {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.user-nav img {
+  width: 28px;
+  height: 28px;
+  margin-right: 12px !important;
+}
+
+.user-nav__name {
+  color: #FFC107;
+}

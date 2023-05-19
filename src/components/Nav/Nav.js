@@ -1,6 +1,35 @@
-// Потрібно реалізувати блок навігації з наступними маршрутами: 
-//   - /news - публічний-необмежений, переадресує на сторінку NewsPage, 
-//   - /notices - публічний-необмежений, переадресує на сторінку NoticesPage
-//   - /friends - публічний-необмежений, переадресує на сторінку OurFriendsPage
+import React from "react";
+import { Link } from "react-router-dom";
+import './Nav.css';
 
-// На планшетній і мобільній версіях компонент потрібно відобразити в бургер-меню
+const Nav = ({ setActiveBridge, desktop }) => {
+  const handleCloseMenu = () => {
+    if(!desktop) {
+      setActiveBridge(false)
+    }
+  }
+  const links = [
+    {
+      text: 'News',
+      link: '/news'
+    },
+    {
+      text: 'Find pet',
+      link: '/notices'
+    },
+    {
+      text: 'Our friends',
+      link: '/friends'
+    }
+  ]
+
+  return (
+    <div className="links">
+      {links.map((link, i) =>
+        <Link key={i} to={link.link} className="nav" onClick={handleCloseMenu}>{link.text}</Link>
+      )}
+    </div>
+  )
+}
+
+export default Nav;
