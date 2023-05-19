@@ -57,4 +57,7 @@ export const PawCss = styled(Paw)`
 fill: currentColor;
 margin-left: 8px;
 
+&:hover {
+fill: var(--cl-yellow);
+}
 `;
