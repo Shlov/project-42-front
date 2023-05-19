@@ -7,7 +7,7 @@
 //  Після реєстрації користувач повинен бути переадресований на сторінку UserPage з одночасним відкриттям модального вікна-вітання ModalCongrats. Якщо з бекенда було отримано помилку реєстрації - користувачу необхідно вивести  відповідну інформацію і вигляді нотіфікації
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
-import { userSignup } from 'redux/auth/authService';
+import { userSignup } from 'Redux/auth/authService';
 import { string, object, ref } from 'yup';
 
 const yupRegValidation = object().shape({
