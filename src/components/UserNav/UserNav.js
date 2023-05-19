@@ -1,19 +1,14 @@
-import { Link } from 'react-router-dom'
+
 import UserIcon from '../../images/icons/user-1.svg'
-import './UserNav.css'
-
-// Компонент рендерить блок навігації з маршрутами:
-//   - /user - приватний, переадресує на сторінку UserPage
-
-// На мобільній версії компонент потрібно відобразити в бургер меню
+import {UserNavContainer, UserNavImage, UserNavName} from './UserNav.styled'
 
 const UserNav = () => {
   return (
-    <Link to="/user" className='user-nav'>
-      <img src={UserIcon} alt="" />
-      <span className='user-nav__name'>Anna</span>
-    </Link>
-  )
-}
+    <UserNavContainer to="/user">
+      <UserNavImage src={UserIcon} alt="" />
+      <UserNavName>Anna</UserNavName>
+    </UserNavContainer>
+  );
+};
 
 export default UserNav;

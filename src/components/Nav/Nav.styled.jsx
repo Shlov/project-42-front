@@ -5,6 +5,11 @@
 //   display: flex;
 // `;
 
+// export const NavLinkContainer = styled.div`
+//   display: flex;
+//   flex-grow: 1;
+// `;
+
 // export const NavLink = styled(Link)`
 //   color: #111;
 //   text-decoration: none;
