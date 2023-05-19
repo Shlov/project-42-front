@@ -1,1 +1,1 @@
-{"version":3,"file":"static/js/829.64e0e174.chunk.js","mappings":"4IAOA,UANiB,WACf,OACE,gCAEH,C","sources":["pages/MainPage.js"],"sourcesContent":["\nconst MainPage = () => {\n  return (\n    <h2>Main</h2>\n  );\n};\n\nexport default MainPage;"],"names":[],"sourceRoot":""}
+{"version":3,"file":"static/js/829.64e0e174.chunk.js","mappings":"4IAOA,UANiB,WACf,OACE,wBAAI,QAEP,C","sources":["pages/MainPage.js"],"sourcesContent":["\nconst MainPage = () => {\n  return (\n    <h2>Main</h2>\n  );\n};\n\nexport default MainPage;"],"names":[],"sourceRoot":""}
