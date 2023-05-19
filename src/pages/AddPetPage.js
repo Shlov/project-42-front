@@ -1,7 +1,12 @@
+// Компонент рендериться на маршрут /add-pet
+
+import AddPetForm from 'components/AddPetForm/AddPetForm';
 
 const AddPetPage = () => {
   return (
-    <h2>AddPet</h2>
+    <div>
+      <AddPetForm />
+    </div>
   );
 };
 
