@@ -3,21 +3,22 @@ import Logo from '../Logo/Logo';
 import UserNav from '../UserNav/UserNav';
 import AuthNav from '../AuthNav/AuthNav';
 import CloseIcon from '../../images/icons/cross-small.svg'
-import './BurgerMenu.css';
+import {MobileMenuContainer, MobileMenuHeader, MobileMenuHeaderUser, CloseIconImg} from './BurgerMenu.styled';
 
 const BurgerMenu = ({ tablet, mobile, active, setActiveBridge, isConnect }) => {
   return (
-    <div className={'mobile-menu ' + (active ? 'active' : '')}>
-      <div className='mobile-menu__header'>
+    <MobileMenuContainer className={`mobile-menu ${active ? 'active' : ''}`}>
+      <MobileMenuHeader>
         <Logo />
-        <img src={CloseIcon} alt="" onClick={() => setActiveBridge(false)} />
-      </div>
-      <div className='mobile-menu__header-user'>
+        <CloseIconImg src={CloseIcon} alt="" onClick={() => setActiveBridge(false)} />
+      </MobileMenuHeader>
+      <MobileMenuHeaderUser>
         {mobile && isConnect ? <UserNav /> : <AuthNav />}
-      </div>
+      </MobileMenuHeaderUser>
       <Nav setActiveBridge={setActiveBridge} />
-    </div>
-  )
-}
+    </MobileMenuContainer>
+  );
+};
+
 
 export default BurgerMenu;

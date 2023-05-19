@@ -15,7 +15,7 @@
   color: #FFC107;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 768px) {
   .links a {
     display: block;
     text-align: center;

@@ -5,7 +5,7 @@ import UserNav from '../UserNav/UserNav';
 import BurgerMenu from '../BurgerMenu/BurgerMenu'
 import AuthNav from "../AuthNav/AuthNav";
 import MenuBurger from '../../images/icons/menu-hamburger.svg';
-import './Header.css';
+import {HeaderContainer, HeaderNav, HeaderUser, MenuBurgerImg, UserIconImg} from './Header.styled'
 
 const Header = ({ desktop, tablet, mobile, isConnect }) => {
   const [activeBurger, setActiveBridge] = useState(false)
@@ -16,17 +16,17 @@ const Header = ({ desktop, tablet, mobile, isConnect }) => {
 
   return (
     <>
-      <header className="header">
-        <div className="header__nav">
-          <Logo />
+      <HeaderContainer>
+        <Logo />
+        <HeaderNav>       
           {desktop ? <Nav /> : null}
-        </div>
-        <div className="header__user">
+        </HeaderNav>
+        <HeaderUser>
           {!mobile && isConnect ? <UserNav /> : null}
           {!mobile && !isConnect ? <AuthNav /> : null}
-          {!desktop ? <img src={MenuBurger} alt="burger" onClick={handleOpenBurger} /> : null}
-        </div>
-      </header>
+          {!desktop ? <MenuBurgerImg src={MenuBurger} alt="burger" onClick={handleOpenBurger} /> : null}
+        </HeaderUser>
+      </HeaderContainer>
       {activeBurger ? <BurgerMenu active={activeBurger} setActiveBridge={setActiveBridge} mobile={mobile} tablet={tablet} isConnect={isConnect} /> : null}
     </>
   )
