@@ -1,7 +1,11 @@
+import { LogForm } from 'components/AuthFormLogin/AuthFormLogin';
 
 const LoginPage = () => {
   return (
-    <h2>Login</h2>
+    <div>
+      <h2>Login</h2>
+      <LogForm />
+    </div>
   );
 };
 
