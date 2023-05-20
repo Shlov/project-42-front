@@ -80,7 +80,7 @@ const AddPetForm = () => {
     name: '',
     date: '',
     breed: '',
-    avatar: null,
+    avatar: '',
     sex: '',
     location: '',
     price: '',

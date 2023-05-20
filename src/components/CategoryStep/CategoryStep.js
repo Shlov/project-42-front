@@ -3,6 +3,7 @@ const CategoryStep = ({ onNext }) => (
   <>
     {/* Radio buttons for selecting a category */}
     <div>
+      <p>Choose option</p>
       <label>
         <Field type="radio" name="category" value="your-pet" checked />
         {/* Initial selection is "your pet" */}

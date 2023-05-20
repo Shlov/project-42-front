@@ -3,6 +3,7 @@ const PersonalDetailsStep = ({ onBack, onNext }) => {
   const { values } = useFormikContext();
   return (
     <>
+      <p>Personal details</p>
       {/* Field "title" is only for the "sell" and "lost" categories */}
       {['sell', 'lost-found'].includes(values.category) && (
         <div>

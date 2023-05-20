@@ -1,9 +1,11 @@
+import ImageInput from 'components/ImageInput/ImageInput';
 import { Field, ErrorMessage, useFormikContext } from 'formik';
 const MoreInfoStep = ({ onBack }) => {
   const { values } = useFormikContext(); // useFormikContext is used to access the values and setFieldValue properties from the Formik context
   console.log(values);
   return (
     <>
+      <p>More info</p>
       {/*     {/* Fields "sex" and "location" are only for the "sell" and "lost" categories */}
       {['sell', 'lost-found'].includes(values.category) && (
         <>
@@ -65,7 +67,7 @@ const MoreInfoStep = ({ onBack }) => {
       <div>
         <label>
           Add photo
-          <Field type="file" name="avatar" />
+          <Field name="avatar" component={ImageInput} />
         </label>
         <ErrorMessage name="avatar" component="div" className="error-message" />
       </div>
@@ -73,11 +75,12 @@ const MoreInfoStep = ({ onBack }) => {
       <div>
         <label>
           Comments
-          <textarea
+          <Field
             name="comments"
             rows="5"
             placeholder="Type breed"
-          ></textarea>
+            component="textarea"
+          ></Field>
         </label>
         <ErrorMessage
           name="comments"
