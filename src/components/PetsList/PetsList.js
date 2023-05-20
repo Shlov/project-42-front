@@ -1,23 +1,33 @@
 import { PetsItem } from 'components/PetsItem/PetsItem';
-const pets = [
+import { List } from './PetsList.styled';
+const myPets = [
   {
     image: '',
     id: 'dfkjhkfs5555',
-    name: 'JOOSE',
+    name: 'Max',
+    breed: 'britain',
     birthday: '12.12.22',
     comments: 'good cat',
+  },
+  {
+    image: '',
+    id: 'dfkjhkfs5555',
+    name: 'Jack',
+    breed: 'hasky',
+    birthday: '12.12.21',
+    comments: 'good dog',
   },
 ];
 export const PetsList = () => {
   return (
     <>
-      <ul>
-        {pets.map(pet => (
+      <List>
+        {myPets.map(pet => (
           <li key={pet.id}>
             <PetsItem item={pet} />
           </li>
         ))}
-      </ul>
+      </List>
     </>
   );
 };
