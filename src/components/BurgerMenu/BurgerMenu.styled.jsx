@@ -39,6 +39,9 @@ export const MobileMenuHeaderUser = styled.div`
 
 export const CloseIconImg = styled.img`
   cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 `;
 
 export const BurgerNav = styled.div`
