@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/project-42-front/static/css/main.e3ba9a09.css",
-    "main.js": "/project-42-front/static/js/main.7545d1e8.js",
+    "main.css": "/project-42-front/static/css/main.c37b1e88.css",
+    "main.js": "/project-42-front/static/js/main.0da1fc87.js",
     "static/js/829.64e0e174.chunk.js": "/project-42-front/static/js/829.64e0e174.chunk.js",
-    "static/js/254.2b628cad.chunk.js": "/project-42-front/static/js/254.2b628cad.chunk.js",
+    "static/js/51.b4d5805d.chunk.js": "/project-42-front/static/js/51.b4d5805d.chunk.js",
     "static/js/588.64e9f7f4.chunk.js": "/project-42-front/static/js/588.64e9f7f4.chunk.js",
     "static/js/50.20990512.chunk.js": "/project-42-front/static/js/50.20990512.chunk.js",
     "static/js/75.e2b3267c.chunk.js": "/project-42-front/static/js/75.e2b3267c.chunk.js",
@@ -12,6 +12,7 @@
     "static/js/283.7d222ce1.chunk.js": "/project-42-front/static/js/283.7d222ce1.chunk.js",
     "static/media/inter-all-400-normal.woff": "/project-42-front/static/media/inter-all-400-normal.8c804432e8c67741aac0.woff",
     "static/media/manrope-all-400-normal.woff": "/project-42-front/static/media/manrope-all-400-normal.29812aea39915b828ff1.woff",
+    "static/media/logo.svg": "/project-42-front/static/media/logo.6e2f51eeb062dc6472f5e4aa1de019f4.svg",
     "static/media/inter-latin-ext-400-normal.woff2": "/project-42-front/static/media/inter-latin-ext-400-normal.3a7a76525d98d25962eb.woff2",
     "static/media/inter-latin-400-normal.woff2": "/project-42-front/static/media/inter-latin-400-normal.be7cb18dc7caf47cf7e9.woff2",
     "static/media/manrope-latin-400-normal.woff2": "/project-42-front/static/media/manrope-latin-400-normal.2cfae0fb4662deefa552.woff2",
@@ -24,12 +25,16 @@
     "static/media/manrope-greek-400-normal.woff2": "/project-42-front/static/media/manrope-greek-400-normal.d9fa2c702d76a9760e1b.woff2",
     "static/media/manrope-vietnamese-400-normal.woff2": "/project-42-front/static/media/manrope-vietnamese-400-normal.4bb1be8af765fce74e9b.woff2",
     "static/media/inter-vietnamese-400-normal.woff2": "/project-42-front/static/media/inter-vietnamese-400-normal.789afb71d327988e2fc8.woff2",
+    "static/media/pawprint 1.svg": "/project-42-front/static/media/pawprint 1.e806d3b71fb5891df5a17ca0c73eeac1.svg",
     "static/media/manrope-cyrillic-ext-400-normal.woff2": "/project-42-front/static/media/manrope-cyrillic-ext-400-normal.a26a46564e052e1282fa.woff2",
     "index.html": "/project-42-front/index.html",
-    "main.e3ba9a09.css.map": "/project-42-front/static/css/main.e3ba9a09.css.map",
-    "main.7545d1e8.js.map": "/project-42-front/static/js/main.7545d1e8.js.map",
+    "static/media/user-1.svg": "/project-42-front/static/media/user-1.6b7eb9debcb5e574165c6528f1508b8a.svg",
+    "static/media/cross-small.svg": "/project-42-front/static/media/cross-small.8da70af0e6f5ef55f05592dc1412e003.svg",
+    "static/media/menu-hamburger.svg": "/project-42-front/static/media/menu-hamburger.e5ce08a82de7546bfde31ea978aefa46.svg",
+    "main.c37b1e88.css.map": "/project-42-front/static/css/main.c37b1e88.css.map",
+    "main.0da1fc87.js.map": "/project-42-front/static/js/main.0da1fc87.js.map",
     "829.64e0e174.chunk.js.map": "/project-42-front/static/js/829.64e0e174.chunk.js.map",
-    "254.2b628cad.chunk.js.map": "/project-42-front/static/js/254.2b628cad.chunk.js.map",
+    "51.b4d5805d.chunk.js.map": "/project-42-front/static/js/51.b4d5805d.chunk.js.map",
     "588.64e9f7f4.chunk.js.map": "/project-42-front/static/js/588.64e9f7f4.chunk.js.map",
     "50.20990512.chunk.js.map": "/project-42-front/static/js/50.20990512.chunk.js.map",
     "75.e2b3267c.chunk.js.map": "/project-42-front/static/js/75.e2b3267c.chunk.js.map",
@@ -38,7 +43,7 @@
     "283.7d222ce1.chunk.js.map": "/project-42-front/static/js/283.7d222ce1.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e3ba9a09.css",
-    "static/js/main.7545d1e8.js"
+    "static/css/main.c37b1e88.css",
+    "static/js/main.0da1fc87.js"
   ]
 }
