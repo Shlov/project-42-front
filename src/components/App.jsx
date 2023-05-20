@@ -59,7 +59,7 @@ export const App = () => {
             <Route path="/notices" element={<NoticesPage/>}/>
             <Route path="/add-pet" element={<AddPetPage/>}/>
             <Route path="/news" element={<NewsPage/>}/>
-            <Route path="/friends " element={<OurFriendsPage/>}/>
+            <Route path="/friends" element={<OurFriendsPage/>}/>
 
             {/* <Route path="/user" element={
               <PrivateRoute redirectTo="/login" component={<UserPage/>}/>
