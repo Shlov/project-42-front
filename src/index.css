@@ -29,7 +29,7 @@ code {
   --cl-background: #FEF9F9;
   --cl-gray: #888888;
   --cl-almost-white: #FFFFFF;
-  
+
   --gr-blue: linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%);
   --gr-accent: linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%);
 
@@ -40,4 +40,8 @@ code {
 
   /* animat */
   --animat: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.container {
+  padding: 0 16px;
 }
