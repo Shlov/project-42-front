@@ -41,7 +41,7 @@ export const App = () => {
     dispatch(setDesktop(width > 992))
     dispatch(setTablet(width > 768 && width < 991))
     dispatch(setMobile(width < 768))
-  }, [width])
+  }, [width, dispatch]);
 
 
   return (
