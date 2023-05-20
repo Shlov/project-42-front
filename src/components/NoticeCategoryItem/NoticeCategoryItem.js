@@ -9,3 +9,29 @@
 
 // Компонент рендерить кнопку для видалення оголошення, якщо дане оголошення створене цим користувачем. 
 // Клік по кнопці відкриває модальне вікно  ModalApproveAction
+
+import { FavoriteBtn } from "./NoticeCategoryItem.styled"
+
+export const NoticeCategoryItem = () => {
+
+  return(
+    <>
+      <div>
+        <div>
+          {/* <img/> */}
+          <p>In good hands</p>
+          <ul>
+            <li>Lviv</li>
+            <li>1 year</li>
+            <li>female</li>
+          </ul>
+          <FavoriteBtn>©</FavoriteBtn>
+        </div>
+        <div>
+          <h3>Cute dog looking for a home</h3>
+          <button>Learn more</button>
+        </div>
+      </div>
+    </>
+  )
+}
