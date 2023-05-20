@@ -28,15 +28,15 @@ import { useEffect } from 'react';
 import {ReactComponent as ArrowLeft} from "../../images/icons/arrow-left.svg"
 import { Button, Modal, Overlay, TrashSlyled } from './ModalApproveAction.styled';
 
-export const ModalAprooveAction = ({ childrens, onChange, onClose }) => {
+export const ModalAprooveAction = ({ children, onChange, onClose }) => {
   //   const [isOpenModal, setIsOpenModal] = useState(false);
   //   пропс onClose це функція toggleModal, яку потрібно передати компоненту ModalAprooveAction
   //   const toggleModal = () => {
   //     setIsOpenModal(isOpen => !isOpen);
   //   };
 
-  const [...args] = childrens;
-  //   console.log(args);
+  const [...args] = children;
+    console.log(args);
 
   const onBackdropClose = event => {
     if (event.target === event.currentTarget) {
@@ -90,7 +90,7 @@ export const ModalAprooveAction = ({ childrens, onChange, onClose }) => {
                 <use href="../../images/icons/icons.svg#arrow-left"></use>
               </svg> */}
               Yes
-              {childrens.length > 1? <TrashSlyled/> : <ArrowLeft/>}
+              {children.length > 1? <TrashSlyled/> : <ArrowLeft/>}
             </Button>
           </div>
         </Modal>
@@ -102,7 +102,7 @@ export const ModalAprooveAction = ({ childrens, onChange, onClose }) => {
 ModalAprooveAction.propTypes = {
   onClose: PropTypes.func,
   onChange: PropTypes.func,
-  question: PropTypes.string,
+//   question: PropTypes.string,
   //   onClose: PropTypes.func.isRequired,
   //   onChange: PropTypes.func.isRequired,
   //   question: PropTypes.string.isRequired,
