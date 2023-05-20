@@ -12,33 +12,33 @@ import {
   Btn,
 } from './PetsItem.styled';
 
-export const PetsItem = ({item}) => {
-
-  const handleDeletePet = () => {
-    
-  }
+export const PetsItem = ({ item }) => {
+  const handleDeletePet = () => {};
   return (
     <Card>
-      <div><Photo src={item.image} alt={item.name} width="240" height="240" />
-      <Btn type="button" onClick={handleDeletePet}>
-        <Icon>
-          <use href={icons + '#trash'} />
-        </Icon>
-      </Btn></div>
-      
-<div><Label>
-        Name: <Text>{item.name}</Text>
-      </Label>
-      <Label>
-        Date of birth: <Text>{item.birthday}</Text>
-      </Label>
-      <Label>
-        Breed: <Text>{item.breed}</Text>
-      </Label>
-      <LastLabel>
-        Comments: &nbsp;<Text>{item.comments}</Text>
-      </LastLabel></div>
-      
+      <div>
+        <Photo src={item.image} alt={item.name} width="240" height="240" />
+        <Btn type="button" onClick={handleDeletePet}>
+          <Icon>
+            <use href={icons + '#trash'} />
+          </Icon>
+        </Btn>
+      </div>
+
+      <div>
+        <Label>
+          Name: <Text>{item.name}</Text>
+        </Label>
+        <Label>
+          Date of birth: <Text>{item.birthday}</Text>
+        </Label>
+        <Label>
+          Breed: <Text>{item.breed}</Text>
+        </Label>
+        <LastLabel>
+          Comments: &nbsp;<Text>{item.comments}</Text>
+        </LastLabel>
+      </div>
     </Card>
   );
 };

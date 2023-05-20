@@ -39,7 +39,7 @@ export const Label = styled.p`
   letter-spacing: 0.04em;
 
   @media screen and (min-width: 768px) {
-   margin-bottom: 16px;
+    margin-bottom: 16px;
   }
 `;
 
@@ -76,7 +76,7 @@ export const Btn = styled.button`
 
   @media screen and (min-width: 768px) {
     top: 20px;
-  right: 20px ;
+    right: 20px;
   }
 `;
 
@@ -90,6 +90,6 @@ export const Icon = styled.svg`
 
   @media screen and (min-width: 768px) {
     top: 0;
-  right: 0;
+    right: 0;
   }
 `;
