@@ -41,29 +41,20 @@ const validationSchema = object().shape({
       'File size must not exceed 3MB',
       value => value.size <= 3 * 1024 * 1024
     ),
-  //   sex: string().when('category', {
-  //     is: val => ['sell', 'lost-found', 'for-free'].includes(val),
-  //     then: string()
-  //       .oneOf(['male', 'female'], 'Please select either "male" or "female"')
-  //       .required('Sex is required'),
-  //   }),
-  //   location: mixed().when('category', {
-  //     is: val => ['sell', 'lost-found', 'for-free'].includes(val),
-  //     then: string()
-  //       .required('Location is required')
-  //       .matches(
-  //         /^[a-zA-Z\s,]+$/,
-  //         'Invalid location format. Please use city names only.'
-  //       ),
-  //     otherwise: mixed().notRequired(),
-  //   }),
-  //   price: number().when('category', {
-  //     is: 'sell',
-  //     then: number()
-  //       .required('Price is required')
-  //       .positive('Price must be greater than 0'),
-  //     otherwise: number().notRequired(),
-  //   }),
+  sex: string()
+    .oneOf(['male', 'female'], 'Please select either "male" or "female"')
+    .required('Sex is required'),
+
+  location: string()
+    .required('Location is required')
+    .matches(
+      /^[a-zA-Z\s,]+$/,
+      'Invalid location format. Please use city names only.'
+    ),
+  price: number()
+    .required('Price is required')
+    .min(0, 'Price must be a positive number')
+    .integer('Price must be an integer'),
   comments: string()
     .min(8, 'Comments must be at least 8 characters')
     .max(120, 'Comments must be at most 120 characters'),

@@ -2,7 +2,6 @@ import ImageInput from 'components/ImageInput/ImageInput';
 import { Field, ErrorMessage, useFormikContext } from 'formik';
 const MoreInfoStep = ({ onBack }) => {
   const { values } = useFormikContext(); // useFormikContext is used to access the values and setFieldValue properties from the Formik context
-  console.log(values);
   return (
     <>
       <p>More info</p>
