@@ -1,10 +1,11 @@
 import LogoIcon from '../../images/icons/logo.svg';
 import { Link } from 'react-router-dom';
+import { LogoImg } from './Logo.styled';
 
 const Logo = () => {
   return (
     <Link to="/">
-      <img src={LogoIcon} alt="YOUR PET LOGO" />
+      <LogoImg src={LogoIcon} alt="YOUR PET LOGO" />
     </Link>
   );
 };

@@ -20,6 +20,10 @@ export const HeaderUser = styled.div`
 
 export const MenuBurgerImg = styled.img`
   margin-right: 160px;
+
+  @media screen and (min-width: 767px) {
+    margin-left: 24px;
+  }
 `;
 
 export const UserIconImg = styled.img`

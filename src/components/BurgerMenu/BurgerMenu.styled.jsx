@@ -19,6 +19,11 @@ export const MobileMenuHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 110px;
+
+   @media (min-width: 768px) {
+    padding: 20px 30px;
+    margin-bottom: 0;
+  }
 `;
 
 export const MobileMenuHeaderUser = styled.div`
@@ -26,8 +31,18 @@ export const MobileMenuHeaderUser = styled.div`
   justify-content: center;
   position: relative;
   top: -100px;
+ 
+  @media (min-width: 768px) {
+    top: 0;
+  }
 `;
 
 export const CloseIconImg = styled.img`
   cursor: pointer;
 `;
+
+export const BurgerNav = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`

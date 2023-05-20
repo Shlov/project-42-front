@@ -2,9 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { lazy, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { setDesktop, setTablet, setMobile } from '../Redux/main/main-slice'
-// import { setConnect } from "../Redux/auth/auth-slice";
 import { SharedLayout } from './SharedLayout/SharedLayout';
-import Header from "./Header/Header";
 
 
 import '../index.css'
@@ -49,9 +47,9 @@ export const App = () => {
   return (
     <>
       <div className="container">
-        <Header desktop={desktop} tablet={tablet} mobile={mobile} isConnect={isConnect} />
+        {/* <Header desktop={desktop} tablet={tablet} mobile={mobile} isConnect={isConnect} /> */}
         <Routes>
-          <Route path="/" element={<SharedLayout/>}>
+          <Route path="/" element={<SharedLayout desktop={desktop} tablet={tablet} mobile={mobile} isConnect={isConnect}/>}>
             {/* <Route index element={<MainPage />}/> */}
 
             <Route path="/main" element={<MainPage/>}/>

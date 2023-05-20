@@ -3,7 +3,7 @@ import Logo from '../Logo/Logo';
 import UserNav from '../UserNav/UserNav';
 import AuthNav from '../AuthNav/AuthNav';
 import CloseIcon from '../../images/icons/cross-small.svg'
-import {MobileMenuContainer, MobileMenuHeader, MobileMenuHeaderUser, CloseIconImg} from './BurgerMenu.styled';
+import {MobileMenuContainer, MobileMenuHeader, MobileMenuHeaderUser, CloseIconImg, BurgerNav} from './BurgerMenu.styled';
 
 const BurgerMenu = ({ tablet, mobile, active, setActiveBridge, isConnect }) => {
   return (
@@ -13,12 +13,13 @@ const BurgerMenu = ({ tablet, mobile, active, setActiveBridge, isConnect }) => {
         <CloseIconImg src={CloseIcon} alt="" onClick={() => setActiveBridge(false)} />
       </MobileMenuHeader>
       <MobileMenuHeaderUser>
-        {mobile && isConnect ? <UserNav /> : <AuthNav />}
+        {mobile ? (isConnect ? <UserNav /> : <AuthNav />) : null}
       </MobileMenuHeaderUser>
-      <Nav setActiveBridge={setActiveBridge} />
+      <BurgerNav>
+        <Nav setActiveBridge={setActiveBridge} />
+      </BurgerNav>
     </MobileMenuContainer>
   );
 };
-
 
 export default BurgerMenu;

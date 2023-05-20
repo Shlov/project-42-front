@@ -1,12 +1,11 @@
-// Компонент рендериться на маршрут "/" . Містить в собі Header та обгортає вкладені маршрути з їх відповідними сторінками
-
 import { Outlet } from "react-router-dom";
+import Header from "../Header/Header";
 
+export const SharedLayout = ({ desktop, tablet, mobile, isConnect }) => {
 
-export const SharedLayout = () => {
-  
   return (
     <>
+      <Header desktop={desktop} tablet={tablet} mobile={mobile} isConnect={isConnect} />
       <Outlet />
     </>
   );
