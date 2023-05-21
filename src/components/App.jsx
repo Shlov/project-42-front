@@ -47,7 +47,6 @@ export const App = () => {
   return (
     <>
       <div className="container">
-        {/* <Header desktop={desktop} tablet={tablet} mobile={mobile} isConnect={isConnect} /> */}
         <Routes>
           <Route path="/" element={<SharedLayout desktop={desktop} tablet={tablet} mobile={mobile} isConnect={isConnect}/>}>
             {/* <Route index element={<MainPage />}/> */}

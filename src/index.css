@@ -81,6 +81,7 @@ code {
 
   --shadow-default: 3px 8px 14px rgba(136, 198, 253, 0.19);
   --shadow-hover: 7px 13px 14px rgba(116, 177, 232, 0.24);
+  --shadow-nav: 7px 5px 5px rgba(0, 0, 255, .2);
 
   /* size */
 
