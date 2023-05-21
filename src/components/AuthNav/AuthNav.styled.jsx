@@ -31,6 +31,7 @@ export const ButtonLogin = styled.button`
   background: none;
   background-color: current-color;
   border: 2px solid var(--cl-yellow);
+  box-shadow: 7px 5px 5px rgba(0, 0, 255, .2);
 }
 
 `;
@@ -53,7 +54,9 @@ export const ButtonRegister = styled.button`
   color: var(--cl-background);
   background: none;
   background-color: var(--cl-yellow);
+  box-shadow: 7px 5px 5px rgba(0, 0, 255, .2);
 }
+
 `;
 
 export const PawCss = styled(Paw)`
