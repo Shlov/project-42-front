@@ -1,17 +1,18 @@
 import {
-    FriendsSection,
-    Title,
-    FriendsList,
-    Card,
-    CardTitle,
-    CardWrap,
-    CardImg,
-    CardList,
-    CardItem,
-    CardLabel,
-    CardAdress,
-    TitleUrl
-} from './OurFriendsPage.styled'
+  FriendsSection,
+  Title,
+  FriendsList,
+  Card,
+  CardTitle,
+  CardWrap,
+  CardImg,
+  CardList,
+  CardItem,
+  CardLabel,
+  TitleUrl
+} from './OurFriendsPage.styled';
+
+
 
 const FriendCard = ({ title, logo, time, address, email, phone, onlineStoreUrl }) => (
   <Card>
@@ -29,7 +30,13 @@ const FriendCard = ({ title, logo, time, address, email, phone, onlineStoreUrl }
         <CardItem>
           <CardLabel>Address:</CardLabel>
           <br />
-          <CardAdress>{address}</CardAdress >
+          <a
+            href={`https://maps.google.com/?q=${address}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {address}
+          </a>
         </CardItem>
         <CardItem>
           <CardLabel>Email:</CardLabel>

@@ -106,14 +106,10 @@ export const CardLabel = styled.span`
     font-weight: 600;
 `;
 
-export const CardAdress = styled.address`
-    text-decoration: none;
-    font-style: unset;
-    &:hover {
-    text-decoration: underline;
-    }
-`;
-
 export const TitleUrl = styled.a`
   text-decoration: none;
 `;
+
+export const TimePicker = styled.div`
+position: relative;
+`
