@@ -10,9 +10,8 @@
 // Компонент рендерить кнопку для видалення оголошення, якщо дане оголошення створене цим користувачем. 
 // Клік по кнопці відкриває модальне вікно  ModalApproveAction
 
-import { Card, FavoriteBtn, CategoryTag, ImageWrapper, Image, TagItem, TagList, HeartIcon, MoreBtn } from "./NoticeCategoryItem.styled";
-import favoriteIcon from '../../images/icons.svg';
-// import { color } from "@cloudinary/transformation-builder-sdk/qualifiers/background";
+import { Card, FavoriteBtn, CategoryTag, ImageWrapper, DescriptionWrapper, Title, Image, TagItem, TagList, MoreBtn, SvgIcon } from "./NoticeCategoryItem.styled";
+import icon from '../../images/icons.svg';
 
 export const NoticeCategoryItem = () => {
 
@@ -20,24 +19,39 @@ export const NoticeCategoryItem = () => {
     <>
       <Card>
         <ImageWrapper>
-          <Image/>
+          <Image alt="pet" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSgGi3YJI2iukoOZ3_fbYCyoiR4dYO8fIyIu_qpphSUf8GRAmFN"/>
           <CategoryTag>In good hands</CategoryTag>
           <TagList>
-            <TagItem>Lviv</TagItem>
-            <TagItem>1 year</TagItem>
-            <TagItem>female</TagItem>
+            <TagItem>
+              <SvgIcon height="20" width="20">
+                <use href={icon + "#location"}/>
+              </SvgIcon>
+              <p>Lviv</p>
+            </TagItem>
+            <TagItem>
+              <SvgIcon height="20" width="20">
+                <use href={icon + "#clock"}/>
+              </SvgIcon>
+              <p>1 year</p>
+            </TagItem>
+            <TagItem>
+              <SvgIcon height="20" width="20">
+                <use href={icon + "#male"}/>
+              </SvgIcon>
+              <p>female</p>
+            </TagItem>
           </TagList>
           <FavoriteBtn>
-            <HeartIcon height="20" width="20"/>
+            <SvgIcon height="20" width="20" style={{fill: ""}}>
+              <use href={icon + "#heart"}/>
+            </SvgIcon>
           </FavoriteBtn>
         </ImageWrapper>
-        <svg height="20" width="20" style={{color: "red"}}>
-          <use href={favoriteIcon + "#heart"}/>
-        </svg>
-        <div>
-          <h3>Cute dog looking for a home</h3>
+
+        <DescriptionWrapper>
+          <Title>Cute fox looking for a home</Title>
           <MoreBtn>Learn more</MoreBtn>
-        </div>
+        </DescriptionWrapper>
       </Card>
     </>
   )

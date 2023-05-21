@@ -9,7 +9,26 @@ export const Card = styled.div`
   background: var(--cl-almost-white);
   box-shadow: var(--shadow-default);
   border-radius: 0px 0px 40px 40px;
+`
 
+export const ImageWrapper = styled.div`
+  position: relative;
+`
+
+export const DescriptionWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 168px;
+  padding: 20px 20px 26px 20px;
+`
+
+export const Title = styled.h3`
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 33px;
+  margin-bottom: auto;
 `
 
 export const FavoriteBtn =styled.button`
@@ -46,6 +65,8 @@ export const MoreBtn = styled.button`
   padding: 8px 28px;
   border: 2px solid var(--cl-blue-link);
   border-radius: 40px;
+  width: 248px;
+  height: 38px;
 
   font-weight: 600;
   font-size: 16px;
@@ -79,6 +100,19 @@ export const HeartIcon = styled(FavoriteIcon)`
   /* fill: red; */
 
 `
+export const SvgIcon = styled.svg`
+  /* color: red; */
+  display: block;
+  /* stroke: red; */
+  stroke: var(--cl-blue-link);
+  stroke-width:1.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  /* fill: currentColor; */
+  fill: var(--cl-blue-light);
+  
+
+`
 
 export const CategoryTag = styled.p`
   height: 32px;
@@ -96,10 +130,7 @@ export const CategoryTag = styled.p`
   text-align: center;
 `
 
-export const ImageWrapper = styled.div`
-  /* position: absolute; */
-  position: relative;
-`
+
 
 export const Image = styled.img`
   width: 280px;
@@ -111,8 +142,9 @@ export const TagList = styled.ul`
   display: flex;
   justify-content: space-between;
 
-  left: 12px;
-  top: 248px;
+  left: 8px;
+  right: 8px;
+  bottom: 12px;
 `
 
 export const TagItem = styled.li`
@@ -120,9 +152,13 @@ export const TagItem = styled.li`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  gap: 4px;
   padding: 2px 4px;
-  /* width: 80px; */
+  width: 80px;
   height: 28px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
 
   background-color: var(--cl-blue-light);
   border-radius: 16px;
