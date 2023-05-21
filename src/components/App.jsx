@@ -9,14 +9,14 @@ import '../index.css'
 // import { PrivateRoute } from './PrivateRoute';
 // import { RestrictedRoute } from './RestrictedRoute';
 
-const MainPage = lazy(() => import('../pages/MainPage'));
-const NoticesPage = lazy(() => import('../pages/NoticesPage'));
-const LoginPage = lazy(() => import('../pages/LoginPage'));
-const RegisterPage = lazy(() => import('../pages/RegisterPage'));
-const UserPage = lazy(() => import('../pages/UserPage'));
-const AddPetPage = lazy(() => import('../pages/AddPetPage'));
-const NewsPage = lazy(() => import('../pages/NewsPage'));
-const OurFriendsPage = lazy(() => import('../pages/OurFriendsPage'));
+const Main = lazy(() => import('../pages/Main'));
+const Notices = lazy(() => import('../pages/Notices'));
+const Login = lazy(() => import('../pages/Login'));
+const Register = lazy(() => import('../pages/Register'));
+const User = lazy(() => import('../pages/User'));
+const AddPet = lazy(() => import('../pages/AddPet'));
+const News = lazy(() => import('../pages/News'));
+const OurFriends = lazy(() => import('../pages/OurFriends'));
 
 
 export const App = () => {
@@ -47,19 +47,18 @@ export const App = () => {
   return (
     <>
       <div className="container">
-        {/* <Header desktop={desktop} tablet={tablet} mobile={mobile} isConnect={isConnect} /> */}
         <Routes>
           <Route path="/" element={<SharedLayout desktop={desktop} tablet={tablet} mobile={mobile} isConnect={isConnect}/>}>
             {/* <Route index element={<MainPage />}/> */}
 
-            <Route path="/main" element={<MainPage/>}/>
-            <Route path="/user" element={<UserPage/>}/>
-            <Route path="/login" element={<LoginPage/>}/>
-            <Route path="/register" element={<RegisterPage/>}/>
-            <Route path="/notices" element={<NoticesPage/>}/>
-            <Route path="/add-pet" element={<AddPetPage/>}/>
-            <Route path="/news" element={<NewsPage/>}/>
-            <Route path="/friends" element={<OurFriendsPage/>}/>
+            <Route path="/main" element={<Main/>}/>
+            <Route path="/user" element={<User/>}/>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/register" element={<Register/>}/>
+            <Route path="/notices" element={<Notices/>}/>
+            <Route path="/add-pet" element={<AddPet/>}/>
+            <Route path="/news" element={<News/>}/>
+            <Route path="/friends" element={<OurFriends/>}/>
 
             {/* <Route path="/user" element={
               <PrivateRoute redirectTo="/login" component={<UserPage/>}/>
