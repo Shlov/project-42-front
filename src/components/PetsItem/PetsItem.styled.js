@@ -14,6 +14,10 @@ export const Card = styled.div`
     display: flex;
     padding: 20px;
   }
+  @media screen and (min-width: 1268px) {
+    width: 821px;
+    display: flex;
+  }
 `;
 export const Photo = styled.img`
   display: block;
@@ -27,10 +31,45 @@ export const Photo = styled.img`
     width: 128px;
     height: 128px;
     margin-right: 20px;
+    margin-bottom: 0;
+  }
+  @media screen and (min-width: 1268px) {
+    width: 161px;
+    height: 161px;
+    margin-right: 32px;
   }
 `;
 
+export const Description = styled.div`
+max-width: 280px;
+
+@media screen and (min-width: 768px) {
+    max-width: 515px;
+  }
+
+  @media screen and (min-width: 1268px) {
+    max-width: 580px;
+  }
+`
+
 export const Label = styled.p`
+  margin: 0;
+  margin-bottom: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.36;
+  letter-spacing: 0.04em;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 16px;
+  }
+  @media screen and (min-width: 1268px) {
+    margin-bottom: 12px;
+    font-size: 16px;
+    line-height: 1.38;
+  }
+`;
+export const Breed = styled.p`
   margin: 0;
   margin-bottom: 12px;
   font-weight: 700;
@@ -49,7 +88,18 @@ export const LastLabel = styled.p`
   font-size: 14px;
   line-height: 1.36;
   letter-spacing: 0.04em;
-  /* width: 242px; */
+
+
+  
+  @media screen and (min-width: 768px) {
+    line-height: 1.57;
+
+  }
+  @media screen and (min-width: 1268px) {
+    font-size: 16px;
+    line-height: 1.38;
+
+  }
 `;
 
 export const Text = styled.span`
@@ -60,16 +110,29 @@ export const Text = styled.span`
   letter-spacing: 0.04em;
   width: 240px;
 `;
+export const LastText = styled.span`
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.36;
+  letter-spacing: 0.04em;
+  width: 240px;
+  align-items: center;
 
-export const Description = styled.div`
-  display: block;
-  max-width: 280px;
+  @media screen and (min-width: 768px) {
+    line-height: 1.57;
+  }
+  @media screen and (min-width: 1268px) {
+    font-size: 16px;
+  }
 `;
 
 export const Btn = styled.button`
   position: absolute;
   top: 272px;
   right: 16px;
+  width: 24px;
+  height: 24px;
   border: none;
   background-color: var(--cl-almost-white);
   cursor: pointer;

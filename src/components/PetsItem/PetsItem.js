@@ -10,6 +10,7 @@ import {
   Text,
   Icon,
   Btn,
+  Breed, Description, LastText
 } from './PetsItem.styled';
 
 export const PetsItem = ({ item }) => {
@@ -17,7 +18,7 @@ export const PetsItem = ({ item }) => {
   return (
     <Card>
       <div>
-        <Photo src={item.image} alt={item.name} width="240" height="240" />
+        <Photo src={item.photo} alt={item.name} width="240" height="240" />
         <Btn type="button" onClick={handleDeletePet}>
           <Icon>
             <use href={icons + '#trash'} />
@@ -25,31 +26,31 @@ export const PetsItem = ({ item }) => {
         </Btn>
       </div>
 
-      <div>
+      <Description>
         <Label>
           Name: <Text>{item.name}</Text>
         </Label>
         <Label>
-          Date of birth: <Text>{item.birthday}</Text>
+          Date of birth: <Text>{item.birthDate}</Text>
         </Label>
-        <Label>
+        <Breed>
           Breed: <Text>{item.breed}</Text>
-        </Label>
+        </Breed>
         <LastLabel>
-          Comments: &nbsp;<Text>{item.comments}</Text>
+          Comments: &nbsp;<LastText>{item.comments}</LastText>
         </LastLabel>
-      </div>
+      </Description>
     </Card>
   );
 };
 
 PetsItem.propTypes = {
   item: PropTypes.shape({
-    // id: PropTypes.string.isRequired,
-    // photo: PropTypes.string.isRequired,
-    // name: PropTypes.string.isRequired,
-    // birthday: PropTypes.string.isRequired,
-    // breed: PropTypes.string.isRequired,
-    // comments: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    photo: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    birthDate: PropTypes.string.isRequired,
+    breed: PropTypes.string.isRequired,
+    comments: PropTypes.string.isRequired,
   }),
 };
