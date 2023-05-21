@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { ReactComponent as Trash } from '../../images/icons/trash-2.svg';
 
 export const ModalContent = styled.div`
   display: flex;
@@ -65,6 +64,9 @@ export const Button = styled.button`
   }
 `;
 
-export const TrashSlyled = styled(Trash)`
+export const Trash = styled.svg`
+  width: 24px;
+  height: 24px;
   stroke: currentColor;
+  fill: transparent;
 `;

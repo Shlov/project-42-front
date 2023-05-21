@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { ReactComponent as Arrow } from '../../images/icons/arrow-left.svg';
 
 export const ModalContent = styled.div`
   display: flex;
@@ -8,7 +7,7 @@ export const ModalContent = styled.div`
   align-items: center;
   padding-top: 108px;
   padding-bottom: 108px;
-  
+
   font-style: normal;
   letter-spacing: 0.04em;
   color: var(--cl-black);
@@ -58,6 +57,9 @@ export const Button = styled.button`
   }
 `;
 
-export const ArrowSlyled = styled(Arrow)`
+export const Arrow = styled.svg`
+  width: 24px;
+  height: 24px;
   stroke: currentColor;
+  fill: transparent;
 `;
