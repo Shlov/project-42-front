@@ -1,3 +1,4 @@
+import { NoticeCategoryItem } from "components/NoticeCategoryItem/NoticeCategoryItem";
 import { NoticesPage } from "components/NoticesPage/NoticesPage";
 
 const Notices = () => {
@@ -5,6 +6,7 @@ const Notices = () => {
     <>
       <h2>Notices</h2>
       <NoticesPage/>
+      <NoticeCategoryItem/>
     </>
   );
 };
