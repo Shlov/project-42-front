@@ -9,12 +9,15 @@ import {
     CardList,
     CardItem,
     CardLabel,
-    CardAdress
+    CardAdress,
+    TitleUrl
 } from './OurFriendsPage.styled'
 
-const FriendCard = ({ title, logo, time, address, email, phone }) => (
+const FriendCard = ({ title, logo, time, address, email, phone, onlineStoreUrl }) => (
   <Card>
-    <CardTitle>{title}</CardTitle>
+    <TitleUrl href={onlineStoreUrl} target="_blank" rel="noopener noreferrer">
+      <CardTitle>{title}</CardTitle>
+      </TitleUrl>
     <CardWrap>
       <CardImg src={logo} alt={`${title} logo`} />
       <CardList>
@@ -54,6 +57,7 @@ const FriendsPage = () => {
       address: 'Promuslova Street, 56',
       email: 'lkplev@gmail.com',
       phone: '(032) 293-30-41',
+      onlineStoreUrl: 'https://lkplev.com',
     },
     {
       id: 2,
@@ -63,6 +67,7 @@ const FriendsPage = () => {
       address: 'Grigorenka Street, 25',
       email: 'barbos@gmail.com',
       phone: '066 488 0480',
+      onlineStoreUrl: 'https://uk-ua.facebook.com/NGO.Barbos/',
     },
     {
       id: 3,
@@ -72,6 +77,7 @@ const FriendsPage = () => {
       address: 'website only',
       email: 'whiskas@gmail.com',
       phone: '0-800-500-155',
+      onlineStoreUrl: 'https://www.whiskas.ua',
     },
     {
       id: 4,
@@ -81,6 +87,7 @@ const FriendsPage = () => {
       address: 'Chota Rystaveli Street, 44',
       email: 'hello@happypaw.ua',
       phone: '+380 44 290-03-29',
+      onlineStoreUrl: 'https://happypaw.ua/ua',
     },
     {
       id: 5,
@@ -90,6 +97,7 @@ const FriendsPage = () => {
       address: 'website only',
       email: 'pithelp.ukr@gmail.com',
       phone: 'email only',
+      onlineStoreUrl: 'https://pethelp.com.ua',
     },
     {
       id: 6,
@@ -99,6 +107,7 @@ const FriendsPage = () => {
       address: 'Fedorivka, Kyiv Oblast',
       email: 'dogcat.sirius@gmail.com',
       phone: '+38 093 193 40 69',
+      onlineStoreUrl: 'https://dogcat.com.ua',
     },
     {
       id: 7,
@@ -108,6 +117,7 @@ const FriendsPage = () => {
       address: 'website only',
       email: 'info@ua.nestle.com',
       phone: '1-800-778-7462',
+      onlineStoreUrl: 'https://www.purina.ua',
     },
     {
       id: 8,
@@ -117,6 +127,7 @@ const FriendsPage = () => {
       address: 'Sholom-Aleikhema St, 11',
       email: 'info@josera.ua',
       phone: '0800 409 060',
+      onlineStoreUrl: 'https://josera.ua',
     },
     {
       id: 9,
@@ -126,6 +137,7 @@ const FriendsPage = () => {
       address: 'Dryhetiv Street, 77',
       email: 'lico@gmail.com',
       phone: '+38 097 509 8005',
+      onlineStoreUrl: 'https://lico.vet',
     },
   ];
 
@@ -142,6 +154,7 @@ const FriendsPage = () => {
             address={friend.address}
             email={friend.email}
             phone={friend.phone}
+            onlineStoreUrl={friend.onlineStoreUrl}
           />
         ))}
       </FriendsList>

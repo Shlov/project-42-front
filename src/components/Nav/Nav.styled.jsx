@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import '../../index.css';
 
 export const NavLinks = styled.div`
   .nav {
-  color: #111;
+  color: var(--cl-black);
   text-decoration: none;
   font-family: 'Manrope';
   font-size: 20px;
@@ -16,16 +15,18 @@ export const NavLinks = styled.div`
 }
 
 .nav:hover {
-  color: #FFC107;
+  color: var(--cl-yellow);
 }
 
-max-width: 768px {
+@media (max-width: 991px) {
+  margin-top: 100px;
+
   a {
-  display: block;
-  text-align: center;
-  font-weight: 500;
-  font-size: 48px;
-  margin-bottom: 60px;
-  margin-right: 0 !important;
-}
+    display: block;
+    text-align: center;
+    font-weight: 500;
+    font-size: 48px;
+    margin-bottom: 30px;
+    margin-right: 0 !important;
+  }
 `;

@@ -18,7 +18,7 @@ const Header = ({ desktop, tablet, mobile, isConnect }) => {
     <>
       <HeaderContainer>
         <Logo />
-        <HeaderNav>       
+        <HeaderNav>
           {desktop ? <Nav /> : null}
         </HeaderNav>
         <HeaderUser>
@@ -27,7 +27,7 @@ const Header = ({ desktop, tablet, mobile, isConnect }) => {
           {!desktop ? <MenuBurgerImg src={MenuBurger} alt="burger" onClick={handleOpenBurger} /> : null}
         </HeaderUser>
       </HeaderContainer>
-      {activeBurger ? <BurgerMenu active={activeBurger} setActiveBridge={setActiveBridge} mobile={mobile} tablet={tablet} isConnect={isConnect} /> : null}
+      {!desktop ? <BurgerMenu active={activeBurger} setActiveBridge={setActiveBridge} mobile={mobile} tablet={tablet} isConnect={isConnect} /> : null}
     </>
   )
 }
