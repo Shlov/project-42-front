@@ -9,8 +9,7 @@
 // Всі поля форми обов'язкові до заповнення
 // Після успішного створення картки, користувача необхідно переадресувата на сторінку UserPage або на сторінку NoticesPage (в залженості від обраної користувачем категорії). Якщо з бекенда було отримано помилку при створенні картки - користувачу необхідно вивести відповідну інформацію у вигляді нотіфікації
 
-import { useState, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import { Formik, Form } from 'formik';
 import { object, string, mixed, number } from 'yup';
 import CategoryStep from 'components/CategoryStep/CategoryStep';
@@ -61,9 +60,6 @@ const validationSchema = object().shape({
 });
 
 const AddPetForm = () => {
-  //   const location = useLocation();
-  //   const locRef = useRef(location.state?.from ?? '/main'); // for Back button
-
   const [step, setStep] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState('your-pet');
 

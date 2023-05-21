@@ -1,5 +1,11 @@
 import { Field, ErrorMessage } from 'formik';
+import { useState, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
+import BackLink from './../BackLink/BackLink';
+
 const CategoryStep = ({ onNext, onSelectCategory }) => {
+  const location = useLocation();
+  const locRef = useRef(location.state?.from ?? '/main'); // for Back button
   const handleCategoryChange = event => {
     const selectedCategory = event.target.value;
     onSelectCategory(selectedCategory);
@@ -54,7 +60,7 @@ const CategoryStep = ({ onNext, onSelectCategory }) => {
         />
         {/* Validation error message for the category field */}
       </div>
-      <button type="button">Cancel</button>
+      <BackLink to={locRef.current}>Cancel</BackLink>
       {/* Cancel button, must be changed to BackLink */}
       <button type="button" onClick={onNext}>
         {/* Proceed to the next step */}
