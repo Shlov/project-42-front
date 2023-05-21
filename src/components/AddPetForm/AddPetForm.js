@@ -66,8 +66,7 @@ const AddPetForm = () => {
 
   const [step, setStep] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState('');
-
-  const initialValues = {
+  const [formValues, setFormValues] = useState({
     category: selectedCategory,
     name: '',
     date: '',
@@ -77,7 +76,8 @@ const AddPetForm = () => {
     location: '',
     price: '',
     comments: '',
-  };
+  });
+  const steps = ['Choose Option', 'Personal Details', 'More Info'];
 
   const stepTitles = {
     1: 'Add pet',
@@ -151,8 +151,13 @@ const AddPetForm = () => {
   return (
     <>
       <h2>{dynamicTitle}</h2>
+      <ul>
+        {steps.map((name, index) => (
+          <li key={index}>{name}</li>
+        ))}
+      </ul>
       <Formik
-        initialValues={initialValues}
+        initialValues={formValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >

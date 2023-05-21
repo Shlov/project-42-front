@@ -9,7 +9,6 @@ const CategoryStep = ({ onNext, onSelectCategory }) => {
     <>
       {/* Radio buttons for selecting a category */}
       <div>
-        <p>Choose option</p>
         <label>
           <Field
             type="radio"

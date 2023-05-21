@@ -3,7 +3,6 @@ import { Field, ErrorMessage } from 'formik';
 const MoreInfoStep = ({ onBack, selectedCategory }) => {
   return (
     <>
-      <p>More info</p>
       {/*     {/* Fields "sex" and "location" are only for the "sell" and "lost" categories */}
       {['sell', 'lost-found'].includes(selectedCategory) && (
         <>
