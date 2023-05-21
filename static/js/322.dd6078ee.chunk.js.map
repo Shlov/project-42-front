@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/322.dd6078ee.chunk.js","mappings":"4IAQA,UANiB,WACf,OACE,wBAAI,QAEP,C","sources":["pages/NewsPage.js"],"sourcesContent":["// NewsPage (додаткове завдання)\n\nconst NewsPage = () => {\n  return (\n    <h2>News</h2>\n  );\n};\n\nexport default NewsPage;"],"names":[],"sourceRoot":""}

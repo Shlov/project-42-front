@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/75.e2b3267c.chunk.js","mappings":"0IAOA,UANiB,WACf,OACE,wBAAI,QAEP,C","sources":["pages/UserPage.js"],"sourcesContent":["\nconst UserPage = () => {\n  return (\n    <h2>User</h2>\n  );\n};\n\nexport default UserPage;"],"names":[],"sourceRoot":""}
