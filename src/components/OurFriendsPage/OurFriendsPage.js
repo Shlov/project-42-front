@@ -1,18 +1,16 @@
 import {
-  FriendsSection,
-  Title,
-  FriendsList,
-  Card,
-  CardTitle,
-  CardWrap,
-  CardImg,
-  CardList,
-  CardItem,
-  CardLabel,
-  TitleUrl
-} from './OurFriendsPage.styled';
-
-
+    FriendsSection,
+    Title,
+    FriendsList,
+    Card,
+    CardTitle,
+    CardWrap,
+    CardImg,
+    CardList,
+    CardItem,
+    CardLabel,
+    TitleUrl
+} from './OurFriendsPage.styled'
 
 const FriendCard = ({ title, logo, time, address, email, phone, onlineStoreUrl }) => (
   <Card>
