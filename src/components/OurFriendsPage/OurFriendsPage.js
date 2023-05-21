@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
     FriendsSection,
     Title,
@@ -9,47 +10,68 @@ import {
     CardList,
     CardItem,
     CardLabel,
-    TitleUrl
+    CardAdress,
+    CardTimeModal,
+    ModalDay,
 } from './OurFriendsPage.styled'
 
-const FriendCard = ({ title, logo, time, address, email, phone, onlineStoreUrl }) => (
-  <Card>
-    <TitleUrl href={onlineStoreUrl} target="_blank" rel="noopener noreferrer">
+const FriendCard = ({ title, logo, time, address, email, phone, times }) => {
+  const [activeTime, setActiveTime] = useState(false)
+
+  const handleActiveTime = () => {
+    if(!activeTime) {
+      setActiveTime(true)
+    } else {
+      setActiveTime(false)
+    }
+  }
+
+  return (
+    <Card>
       <CardTitle>{title}</CardTitle>
-      </TitleUrl>
-    <CardWrap>
-      <CardImg src={logo} alt={`${title} logo`} />
-      <CardList>
-        <CardItem>
-          <CardLabel>Time:</CardLabel>
-          <br />
-          {time}
-        </CardItem>
-        <CardItem>
-          <CardLabel>Address:</CardLabel>
-          <br />
-          <a
-            href={`https://maps.google.com/?q=${address}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {address}
-          </a>
-        </CardItem>
-        <CardItem>
-          <CardLabel>Email:</CardLabel>
-          <br />
-          <a href={`mailto:${email}`}>{email}</a>
-        </CardItem>
-        <CardItem>
-          <CardLabel>Phone:</CardLabel>
-          <br />
-          <a href={`tel:${phone}`}>{phone}</a>
-        </CardItem>
-      </CardList>
-    </CardWrap>
-  </Card>
-);
+      <CardWrap>
+        <CardImg src={logo} alt={`${title} logo`} />
+        <CardList>
+          <CardItem>
+            <CardLabel>Time:</CardLabel>
+            <br />
+            <div className='time' onClick={handleActiveTime}>{time}</div>
+            {activeTime ?
+              <CardTimeModal>
+                {times.map((item, i) =>
+                  <div key={i} className='card-time-wrapper'>
+                    <div>
+                      <ModalDay>{item.day}</ModalDay>
+                    </div>
+                    <div>
+                      <span>{item.time}</span>
+                    </div>
+                  </div>
+                )}
+              </CardTimeModal>
+              : null
+            }
+          </CardItem>
+          <CardItem>
+            <CardLabel>Address:</CardLabel>
+            <br />
+            <CardAdress>{address}</CardAdress >
+          </CardItem>
+          <CardItem>
+            <CardLabel>Email:</CardLabel>
+            <br />
+            <a href={`mailto:${email}`}>{email}</a>
+          </CardItem>
+          <CardItem>
+            <CardLabel>Phone:</CardLabel>
+            <br />
+            <a href={`tel:${phone}`}>{phone}</a>
+          </CardItem>
+        </CardList>
+      </CardWrap>
+    </Card>
+  )
+};
 
 
 const FriendsPage = () => {
@@ -62,7 +84,36 @@ const FriendsPage = () => {
       address: 'Promuslova Street, 56',
       email: 'lkplev@gmail.com',
       phone: '(032) 293-30-41',
-      onlineStoreUrl: 'https://lkplev.com',
+      times: [
+        {
+          day: 'MN',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'TU',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'WE',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'TH',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'FR',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'SA',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'SU',
+          time: '8:00-19:00'
+        },
+      ]
     },
     {
       id: 2,
@@ -72,7 +123,36 @@ const FriendsPage = () => {
       address: 'Grigorenka Street, 25',
       email: 'barbos@gmail.com',
       phone: '066 488 0480',
-      onlineStoreUrl: 'https://uk-ua.facebook.com/NGO.Barbos/',
+      times: [
+        {
+          day: 'MN',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'TU',
+          time: '8:00-20:00'
+        },
+        {
+          day: 'WE',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'TH',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'FR',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'SA',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'SU',
+          time: '8:00-19:00'
+        },
+      ]
     },
     {
       id: 3,
@@ -82,7 +162,36 @@ const FriendsPage = () => {
       address: 'website only',
       email: 'whiskas@gmail.com',
       phone: '0-800-500-155',
-      onlineStoreUrl: 'https://www.whiskas.ua',
+      times: [
+        {
+          day: 'MN',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'TU',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'WE',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'TH',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'FR',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'SA',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'SU',
+          time: '8:00-19:00'
+        },
+      ]
     },
     {
       id: 4,
@@ -92,7 +201,36 @@ const FriendsPage = () => {
       address: 'Chota Rystaveli Street, 44',
       email: 'hello@happypaw.ua',
       phone: '+380 44 290-03-29',
-      onlineStoreUrl: 'https://happypaw.ua/ua',
+      times: [
+        {
+          day: 'MN',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'TU',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'WE',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'TH',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'FR',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'SA',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'SU',
+          time: '8:00-19:00'
+        },
+      ]
     },
     {
       id: 5,
@@ -102,7 +240,36 @@ const FriendsPage = () => {
       address: 'website only',
       email: 'pithelp.ukr@gmail.com',
       phone: 'email only',
-      onlineStoreUrl: 'https://pethelp.com.ua',
+      times: [
+        {
+          day: 'MN',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'TU',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'WE',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'TH',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'FR',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'SA',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'SU',
+          time: '8:00-19:00'
+        },
+      ]
     },
     {
       id: 6,
@@ -112,7 +279,36 @@ const FriendsPage = () => {
       address: 'Fedorivka, Kyiv Oblast',
       email: 'dogcat.sirius@gmail.com',
       phone: '+38 093 193 40 69',
-      onlineStoreUrl: 'https://dogcat.com.ua',
+      times: [
+        {
+          day: 'MN',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'TU',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'WE',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'TH',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'FR',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'SA',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'SU',
+          time: '8:00-19:00'
+        },
+      ]
     },
     {
       id: 7,
@@ -122,7 +318,36 @@ const FriendsPage = () => {
       address: 'website only',
       email: 'info@ua.nestle.com',
       phone: '1-800-778-7462',
-      onlineStoreUrl: 'https://www.purina.ua',
+      times: [
+        {
+          day: 'MN',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'TU',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'WE',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'TH',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'FR',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'SA',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'SU',
+          time: '8:00-19:00'
+        },
+      ]
     },
     {
       id: 8,
@@ -132,7 +357,36 @@ const FriendsPage = () => {
       address: 'Sholom-Aleikhema St, 11',
       email: 'info@josera.ua',
       phone: '0800 409 060',
-      onlineStoreUrl: 'https://josera.ua',
+      times: [
+        {
+          day: 'MN',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'TU',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'WE',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'TH',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'FR',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'SA',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'SU',
+          time: '8:00-19:00'
+        },
+      ]
     },
     {
       id: 9,
@@ -142,7 +396,36 @@ const FriendsPage = () => {
       address: 'Dryhetiv Street, 77',
       email: 'lico@gmail.com',
       phone: '+38 097 509 8005',
-      onlineStoreUrl: 'https://lico.vet',
+      times: [
+        {
+          day: 'MN',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'TU',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'WE',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'TH',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'FR',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'SA',
+          time: '8:00-19:00'
+        },
+        {
+          day: 'SU',
+          time: '8:00-19:00'
+        },
+      ]
     },
   ];
 
@@ -159,7 +442,7 @@ const FriendsPage = () => {
             address={friend.address}
             email={friend.email}
             phone={friend.phone}
-            onlineStoreUrl={friend.onlineStoreUrl}
+            times={friend.times}
           />
         ))}
       </FriendsList>
