@@ -62,10 +62,17 @@ const MoreInfoStep = ({ onBack, selectedCategory }) => {
       )}
 
       <div>
-        <label>
-          Add photo
-          <Field name="avatar" component={ImageInput} />
-        </label>
+        {selectedCategory === 'your-pet' ? (
+          <label>
+            Add photo
+            <Field name="avatar" component={ImageInput} />
+          </label>
+        ) : (
+          <label>
+            Load the pet’s image:
+            <Field name="avatar" component={ImageInput} />
+          </label>
+        )}
         <ErrorMessage name="avatar" component="div" className="error-message" />
       </div>
       {/* Field "comments" for additional comments */}

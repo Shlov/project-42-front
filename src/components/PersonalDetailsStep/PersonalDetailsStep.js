@@ -15,7 +15,7 @@ const PersonalDetailsStep = ({ onBack, onNext, selectedCategory }) => {
       {/* Input field for capturing the name of the pet */}
       <div>
         <label>
-          Name pet
+          Pet’s name
           <Field type="text" name="name" placeholder="Type name pet" />
         </label>
         <ErrorMessage name="name" component="div" className="error-message" />

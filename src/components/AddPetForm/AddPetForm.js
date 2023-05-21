@@ -65,7 +65,8 @@ const AddPetForm = () => {
   //   const locRef = useRef(location.state?.from ?? '/main'); // for Back button
 
   const [step, setStep] = useState(1);
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('your-pet');
+
   const [formValues, setFormValues] = useState({
     category: selectedCategory,
     name: '',
@@ -100,7 +101,9 @@ const AddPetForm = () => {
     setSelectedCategory(category);
   };
 
-  const currentTitle = stepTitles[step] || '';
+  const currentTitle =
+    typeof stepTitles[step] === 'string' ? stepTitles[step] : ''; // code checks if stepTitles[step] is a string, and if it is, assigns it to currentTitle.  Otherwise, it assigns an empty string.
+
   const dynamicTitle =
     step > 1
       ? stepTitles[step][selectedCategory] || currentTitle
