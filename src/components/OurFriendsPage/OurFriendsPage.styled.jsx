@@ -55,7 +55,7 @@ export const CardTitle = styled.h2`
     font-size: 20px;
     text-align: center;
     line-height: 27px;
-    color: #54adff;
+    color: var(--cl-blue-link);
     margin-bottom: 16px;
   `;
 
@@ -112,4 +112,8 @@ export const CardAdress = styled.address`
     &:hover {
     text-decoration: underline;
     }
+`;
+
+export const TitleUrl = styled.a`
+  text-decoration: none;
 `;
