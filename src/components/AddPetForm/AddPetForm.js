@@ -63,7 +63,7 @@ const AddPetForm = () => {
   const [step, setStep] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState('your-pet');
 
-  const [formValues, setFormValues] = useState({
+  const [formValues] = useState({
     category: selectedCategory,
     name: '',
     date: '',
