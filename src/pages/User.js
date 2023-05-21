@@ -1,8 +1,12 @@
+import { UserPage } from "components/UserPage/UserPage";
 
-const UserPage = () => {
+const User = () => {
   return (
-    <h2>User</h2>
+    <>
+      <h2>User</h2>
+      <UserPage/>
+    </>
   );
 };
 
-export default UserPage;
+export default User;
