@@ -4,11 +4,57 @@
 
 body {
   margin: 0;
-  font-family: 'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-color: var(--cl-background);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  background-image: url(./images/bg/bg@1x_sm.png);
+}
+
+@media (min-device-pixel-ratio: 2),
+  (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  body {
+    background-image: url(./images/bg/bg@2x_sm.png);
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    background-image: url(./images/bg/bg@1x_md.png);
+  }
+}
+
+@media (min-width: 768px) and (min-device-pixel-ratio: 2),
+  (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2),
+  (min-width: 768px) and (min-resolution: 192dpi),
+  (min-width: 768px) and (min-resolution: 2dppx) {
+  body {
+    background-image: url(./images/bg/bg@2x_md.png);
+  }
+}
+
+@media (min-width: 1280px) {
+  body {
+    background-image: url(./images/bg/bg@1x_lg.png);
+  }
+}
+
+@media (min-width: 1280px) and (min-device-pixel-ratio: 2),
+  (min-width: 1280px) and (-webkit-min-device-pixel-ratio: 2),
+  (min-width: 1280px) and (min-resolution: 192dpi),
+  (min-width: 1280px) and (min-resolution: 2dppx) {
+  body {
+    background-image: url(./images/bg/bg@2x_lg.png);
+  }
 }
 
 code {
@@ -18,15 +64,15 @@ code {
 
 :root {
   /* colors */
-  --cl-white: #FDF7F2;
-  --cl-yellow: #FFC107;
-  --cl-red: 	#F43F5E;
-  --cl-green: 	#00C3AD;
-  --cl-blue-link: 	#54ADFF;
-  --cl-blue-light: 	#CCE4FB;
-  --cl-accent: #FF8356;
+  --cl-white: #fdf7f2;
+  --cl-yellow: #ffc107;
+  --cl-red: #f43f5e;
+  --cl-green: #00c3ad;
+  --cl-blue-link: #54adff;
+  --cl-blue-light: #cce4fb;
+  --cl-accent: #ff8356;
   --cl-black: #111111;
-  --cl-background: #FEF9F9;
+  --cl-background: #fef9f9;
   --cl-gray: #888888;
   --cl-almost-white: #FFFFFF;
 
