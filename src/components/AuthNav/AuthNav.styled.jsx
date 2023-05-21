@@ -4,6 +4,10 @@ import { ReactComponent as Paw } from '../../images/icons/pawprint 1.svg';
 export const AuthNavCss = styled.div`
   display: flex;
   gap: 20px;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
 `;
 
 export const ButtonLogin = styled.button`
@@ -27,13 +31,17 @@ export const ButtonLogin = styled.button`
   cursor: pointer;
 
   &:hover {
-  color: var(--cl-yellow);
-  background: none;
-  background-color: current-color;
-  border: 2px solid var(--cl-yellow);
-  box-shadow: 7px 5px 5px rgba(0, 0, 255, .2);
-}
+    color: var(--cl-yellow);
+    background: none;
+    background-color: current-color;
+    border: 2px solid var(--cl-yellow);
+    box-shadow: var(--shadow-nav);
+  }
 
+  @media (max-width: 768px) {
+    margin: 0 0 10px;
+    height: 40px;
+  }
 `;
 
 export const ButtonRegister = styled.button`
@@ -51,12 +59,15 @@ export const ButtonRegister = styled.button`
   cursor: pointer;
 
   &:hover {
-  color: var(--cl-background);
-  background: none;
-  background-color: var(--cl-yellow);
-  box-shadow: var(--shadow-nav);
-}
+    color: var(--cl-background);
+    background: none;
+    background-color: var(--cl-yellow);
+    box-shadow: var(--shadow-nav);
+  }
 
+  @media (max-width: 768px) {
+    height: 40px;
+  }
 `;
 
 export const PawCss = styled(Paw)`

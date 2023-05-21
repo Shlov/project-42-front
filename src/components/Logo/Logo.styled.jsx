@@ -8,5 +8,4 @@ export const LogoImg = styled.img`
     width: 162px;
     height: 28px;
   }
-
 `;

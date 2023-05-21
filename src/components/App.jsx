@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { lazy, useEffect, useState } from 'react';
+import { lazy, useEffect, useState, Suspense } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { setDesktop, setTablet, setMobile } from '../Redux/main/main-slice'
 import { SharedLayout } from './SharedLayout/SharedLayout';
@@ -47,6 +47,7 @@ export const App = () => {
   return (
     <>
       <div className="container">
+        <Suspense>
         <Routes>
           <Route path="/" element={<SharedLayout desktop={desktop} tablet={tablet} mobile={mobile} isConnect={isConnect}/>}>
             {/* <Route index element={<MainPage />}/> */}
@@ -68,20 +69,11 @@ export const App = () => {
             }/> */}
 
           </Route>
-        </Routes>
-        <div
-          style={{
-            height: '100vh',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            fontSize: 40,
-            color: '#010101'
-          }}
-        >
-          Your pet....
-        </div>
+          </Routes>
+          </Suspense>
       </div>
     </>
   );
 };
+
+
