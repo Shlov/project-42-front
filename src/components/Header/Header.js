@@ -5,7 +5,7 @@ import UserNav from '../UserNav/UserNav';
 import BurgerMenu from '../BurgerMenu/BurgerMenu'
 import AuthNav from "../AuthNav/AuthNav";
 import MenuBurger from '../../images/icons/menu-hamburger.svg';
-import {HeaderContainer, HeaderNav, HeaderUser, MenuBurgerImg } from './Header.styled'
+import {HeaderContainer, HeaderNav, HeaderUser, MenuBurgerImg} from './Header.styled'
 
 const Header = ({ desktop, tablet, mobile, isConnect }) => {
   const [activeBurger, setActiveBridge] = useState(false)
