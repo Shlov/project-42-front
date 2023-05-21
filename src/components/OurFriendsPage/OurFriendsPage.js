@@ -26,7 +26,7 @@ const FriendCard = ({ title, logo, time, address, email, phone }) => (
         <CardItem>
           <CardLabel>Address:</CardLabel>
           <br />
-          <CardAdress >{address}</CardAdress >
+          <CardAdress>{address}</CardAdress >
         </CardItem>
         <CardItem>
           <CardLabel>Email:</CardLabel>
@@ -49,7 +49,7 @@ const FriendsPage = () => {
     {
       id: 1,
       title: 'ЛКП "ЛЕВ"',
-      logo: require('../../images/friendslogo/lev.png'),
+      logo: require('../../images/friendslogo/lkplev.png'),
       time: '8:00-19:00',
       address: 'Promuslova Street, 56',
       email: 'lkplev@gmail.com',
@@ -71,7 +71,7 @@ const FriendsPage = () => {
       time: 'day and night',
       address: 'website only',
       email: 'whiskas@gmail.com',
-      phone: '0–800–500–155',
+      phone: '0-800-500-155',
     },
     {
       id: 4,

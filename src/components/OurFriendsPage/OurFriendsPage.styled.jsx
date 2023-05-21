@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const FriendsSection = styled.div`
-  max-width: 1280px;
+
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -21,25 +21,23 @@ export const FriendsList = styled.ul`
   flex-direction: column;
   gap: 20px;
   justify-content: center;
+  padding: 16px 12px;
 
   @media (min-width: 768px) {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 32px;
   } 
+
+  @media (min-width: 769px) and (max-width: 1280px) {
+  }
 `;
 
 export const Card = styled.li`
-  width: 256px;
-  height: 207px;
   padding: 16px 12px;
   background: #ffffff;
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 40px;
-
-  .a {
-    text-decoration: none;
-  }
 
    @media (min-width: 768px) {
     width: 312px;
@@ -62,13 +60,25 @@ export const CardTitle = styled.h2`
   `;
 
 export const CardWrap = styled.div`
+    width: 256px;
+    height: 207px;
     display: flex;
     gap: 16px;
+
+  @media (min-width: 768px) {
+    width: 312px;
+    height: 243px;
+  }
+
+  @media (min-width: 1280px) {
+    width: 371px;
+    height: 255px;
+  }
   `;
 
 export const CardImg = styled.img`
     width: 100px;
-    height: 100px;
+    height: 68px;
 `;
 
 export const CardList = styled.ul`
@@ -82,7 +92,10 @@ export const CardItem = styled.li`
     font-size: 12px;
     line-height: 16px;
     color: #111111;
-
+  a{
+    text-decoration: none;
+    color: inherit;
+  }
     &:hover {
       cursor: pointer;
       color: #54adff;
@@ -94,6 +107,7 @@ export const CardLabel = styled.span`
 `;
 
 export const CardAdress = styled.address`
+    text-decoration: none;
     font-style: unset;
     &:hover {
     text-decoration: underline;
