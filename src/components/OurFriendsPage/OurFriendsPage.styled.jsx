@@ -122,7 +122,7 @@ export const CardAdress = styled.address`
 export const CardTimeModal = styled.div`
     border-radius: 20px;
     background: rgb(255, 255, 255);
-    box-shadow: -1px 0px 8px rgba(136, 198, 253, 0.19);
+    box-shadow: var(--shadow-default);
     padding: 19px;
     position: absolute;
     z-index: 10;
