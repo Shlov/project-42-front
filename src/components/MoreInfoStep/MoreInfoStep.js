@@ -1,12 +1,11 @@
 import ImageInput from 'components/ImageInput/ImageInput';
-import { Field, ErrorMessage, useFormikContext } from 'formik';
-const MoreInfoStep = ({ onBack }) => {
-  const { values } = useFormikContext(); // useFormikContext is used to access the values and setFieldValue properties from the Formik context
+import { Field, ErrorMessage } from 'formik';
+const MoreInfoStep = ({ onBack, selectedCategory }) => {
   return (
     <>
       <p>More info</p>
       {/*     {/* Fields "sex" and "location" are only for the "sell" and "lost" categories */}
-      {['sell', 'lost-found'].includes(values.category) && (
+      {['sell', 'lost-found'].includes(selectedCategory) && (
         <>
           <div>
             <p>The sex</p>
@@ -44,7 +43,7 @@ const MoreInfoStep = ({ onBack }) => {
       )}
 
       {/* Field "price" is only for the "sell" category */}
-      {values.category === 'sell' && (
+      {selectedCategory === 'sell' && (
         <div>
           <label>
             Price

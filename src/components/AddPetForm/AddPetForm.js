@@ -65,9 +65,10 @@ const AddPetForm = () => {
   //   const locRef = useRef(location.state?.from ?? '/main'); // for Back button
 
   const [step, setStep] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   const initialValues = {
-    category: '',
+    category: selectedCategory,
     name: '',
     date: '',
     breed: '',
@@ -77,6 +78,33 @@ const AddPetForm = () => {
     price: '',
     comments: '',
   };
+
+  const stepTitles = {
+    1: 'Add pet',
+    2: {
+      'your-pet': 'Add my pet',
+      sell: 'Add pet for sell',
+      'lost-found': 'Add lost or found pet',
+      'for-free': 'Add pet for adoption',
+    },
+    3: {
+      'your-pet': 'Add my pet',
+      sell: 'Add pet for sell',
+      'lost-found': 'Add lost or found pet',
+      'for-free': 'Add pet for adoption',
+    },
+  };
+
+  // Function to handle category selection
+  const handleCategorySelect = category => {
+    setSelectedCategory(category);
+  };
+
+  const currentTitle = stepTitles[step] || '';
+  const dynamicTitle =
+    step > 1
+      ? stepTitles[step][selectedCategory] || currentTitle
+      : currentTitle;
 
   const handleNext = () => {
     setStep(prevStep => prevStep + 1);
@@ -88,30 +116,49 @@ const AddPetForm = () => {
 
   const handleSubmit = values => {
     // Handle form submission
-    console.log(values);
+    alert(JSON.stringify(values, null, 2));
   };
 
   const renderStepContent = step => {
     switch (step) {
       case 1:
-        return <CategoryStep onNext={handleNext} />;
+        return (
+          <CategoryStep
+            onNext={handleNext}
+            onSelectCategory={handleCategorySelect}
+          />
+        );
       case 2:
-        return <PersonalDetailsStep onBack={handleBack} onNext={handleNext} />;
+        return (
+          <PersonalDetailsStep
+            onBack={handleBack}
+            onNext={handleNext}
+            selectedCategory={selectedCategory}
+          />
+        );
       case 3:
-        return <MoreInfoStep onBack={handleBack} />;
+        return (
+          <MoreInfoStep
+            onBack={handleBack}
+            selectedCategory={selectedCategory}
+          />
+        );
       default:
         return null;
     }
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={handleSubmit}
-    >
-      <Form>{renderStepContent(step)}</Form>
-    </Formik>
+    <>
+      <h2>{dynamicTitle}</h2>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        <Form>{renderStepContent(step)}</Form>
+      </Formik>
+    </>
   );
 };
 

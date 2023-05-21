@@ -1,11 +1,10 @@
-import { Field, ErrorMessage, useFormikContext } from 'formik';
-const PersonalDetailsStep = ({ onBack, onNext }) => {
-  const { values } = useFormikContext();
+import { Field, ErrorMessage } from 'formik';
+const PersonalDetailsStep = ({ onBack, onNext, selectedCategory }) => {
   return (
     <>
       <p>Personal details</p>
       {/* Field "title" is only for the "sell" and "lost" categories */}
-      {['sell', 'lost-found'].includes(values.category) && (
+      {['sell', 'lost-found'].includes(selectedCategory) && (
         <div>
           <label>
             Title of add
