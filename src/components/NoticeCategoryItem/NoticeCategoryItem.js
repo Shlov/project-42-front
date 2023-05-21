@@ -10,28 +10,49 @@
 // Компонент рендерить кнопку для видалення оголошення, якщо дане оголошення створене цим користувачем. 
 // Клік по кнопці відкриває модальне вікно  ModalApproveAction
 
-import { FavoriteBtn } from "./NoticeCategoryItem.styled"
+import { Card, FavoriteBtn, CategoryTag, ImageWrapper, DescriptionWrapper, Title, Image, TagItem, TagList, MoreBtn, SvgIcon } from "./NoticeCategoryItem.styled";
+import icon from '../../images/icons.svg';
 
 export const NoticeCategoryItem = () => {
 
   return(
     <>
-      <div>
-        <div>
-          {/* <img/> */}
-          <p>In good hands</p>
-          <ul>
-            <li>Lviv</li>
-            <li>1 year</li>
-            <li>female</li>
-          </ul>
-          <FavoriteBtn>©</FavoriteBtn>
-        </div>
-        <div>
-          <h3>Cute dog looking for a home</h3>
-          <button>Learn more</button>
-        </div>
-      </div>
+      <Card>
+        <ImageWrapper>
+          <Image alt="pet" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSgGi3YJI2iukoOZ3_fbYCyoiR4dYO8fIyIu_qpphSUf8GRAmFN"/>
+          <CategoryTag>In good hands</CategoryTag>
+          <TagList>
+            <TagItem>
+              <SvgIcon height="20" width="20">
+                <use href={icon + "#location"}/>
+              </SvgIcon>
+              <p>Lviv</p>
+            </TagItem>
+            <TagItem>
+              <SvgIcon height="20" width="20">
+                <use href={icon + "#clock"}/>
+              </SvgIcon>
+              <p>1 year</p>
+            </TagItem>
+            <TagItem>
+              <SvgIcon height="20" width="20">
+                <use href={icon + "#male"}/>
+              </SvgIcon>
+              <p>female</p>
+            </TagItem>
+          </TagList>
+          <FavoriteBtn>
+            <SvgIcon height="20" width="20" style={{fill: ""}}>
+              <use href={icon + "#heart"}/>
+            </SvgIcon>
+          </FavoriteBtn>
+        </ImageWrapper>
+
+        <DescriptionWrapper>
+          <Title>Cute fox looking for a home</Title>
+          <MoreBtn>Learn more</MoreBtn>
+        </DescriptionWrapper>
+      </Card>
     </>
   )
 }
