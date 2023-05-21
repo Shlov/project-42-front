@@ -1,8 +1,7 @@
-// OurFriendsPage (додаткове завдання)
-
+import FriedCard from '../components/OurFriendsPage/OurFriendsPage'
 const OurFriendsPage = () => {
   return (
-    <h2>OurFriends</h2>
+    <FriedCard/>
   );
 };
 
