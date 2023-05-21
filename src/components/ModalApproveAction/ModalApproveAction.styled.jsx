@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { ReactComponent as CloseIcon } from '../../images/icons/cross-small.svg';
 
 export const Overlay = styled.div`
   position: fixed;
@@ -36,10 +35,12 @@ export const Button = styled.button`
   cursor: pointer;
 `;
 
-export const CloseISlyled = styled(CloseIcon)`
-  stroke: currentColor;
+export const CloseIcon = styled.svg`
+ width: 24px;
+  height: 24px;
+   stroke: var(--cl-blue-link);
   
-  transition: transform var(--animat), box-shadow var(--animat);
+  transition: transform var(--animat);
   &:hover {
     transform: scale(1.2);
     

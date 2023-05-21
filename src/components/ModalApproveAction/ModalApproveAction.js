@@ -5,16 +5,13 @@
 
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
-// import { ReactComponent as CloseIcon } from '../../images/icons/cross-small.svg';
-import { Button, Modal, Overlay } from './ModalApproveAction.styled';
-import { CloseISlyled } from './ModalApproveAction.styled';
+import { Button, CloseIcon, Modal, Overlay } from './ModalApproveAction.styled';
+import icons from 'images/icons.svg';
 
 export const ModalAprooveAction = ({ children, onClose }) => {
-
-//   пропс onClose це функція toggleModal, 
-//   яку потрібно передати компоненту ModalAprooveAction
-//   toggleModal - змінює стейт isOpen
-
+  //   пропс onClose це функція toggleModal,
+  //   яку потрібно передати компоненту ModalAprooveAction
+  //   toggleModal - змінює стейт isOpen
 
   const onBackdropClose = event => {
     if (event.target === event.currentTarget) {
@@ -41,7 +38,9 @@ export const ModalAprooveAction = ({ children, onClose }) => {
       <Overlay onClick={onBackdropClose}>
         <Modal>
           <Button type="button" apia-label="close" onClick={onClose}>
-            <CloseISlyled />
+            <CloseIcon>
+              <use href={icons + '#cross-small'} />
+            </CloseIcon>
           </Button>
           <div>{children}</div>
         </Modal>
@@ -54,64 +53,3 @@ ModalAprooveAction.propTypes = {
   onClose: PropTypes.func.isRequired,
   children: PropTypes.node,
 };
-
-// Добавити в Арр для тестування роботи вікна
-
-// import { ModalAprooveAction } from './ModalApproveAction/ModalApproveAction';
-
-// <ModalAprooveAction
-//childrens={[
-//  'Delete adverstiment?',
-//  'Are you sure you want to delete',
-//  '“Cute dog looking\n for a home”?',
-//  '\nYou can`t undo this action.',
-//]}
-// childrens={[
-//   'Already leaving'
-// ]}
-//></ModalAprooveAction>
-
-// const [...args] = children;
-// console.log(args);
-// {/* <>
-// // <Overlay onClick={onBackdropClose}>
-// //   <Modal>
-// //     <div>
-// //       <div>
-// //         <button onClick={onClose}>X</button>
-// //       </div>{' '}
-// //       <div>
-// //         <h2>{args[0]}</h2>
-// //         <div>
-// //           <p>{args[1]} </p>
-// //           <p>
-// //             <strong>{args[2]}</strong>
-// //           </p>
-// //           <p>{args[3]}</p>
-// //         </div>
-// //       </div>
-// //       <button type="button" aria-label="cansel action" onClick={onClose}>
-// //         Cancel
-// //       </button>
-// //       <Button
-// //         type="button"
-// //         aria-label="approval action"
-// //         onClick={onChange}
-// //       >
-// //         {' '}
-
-// //         {/* <svg width="24" height="24">
-// //           <use href="../../images/icons/icons.svg#arrow-left"></use>
-// //         </svg>
-// або
-// <svg width="24" height="24">
-// <use href={sprite + "#cross-small"}></use>
-// </svg>
-// */}
-//         Yes
-//         {children.length > 1? <TrashSlyled/> : <ArrowLeft/>}
-//       </Button>
-//     </div>
-//   </Modal>
-// </Overlay>
-// </> */}
