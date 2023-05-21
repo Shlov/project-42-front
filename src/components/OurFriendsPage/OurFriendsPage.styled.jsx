@@ -35,8 +35,8 @@ export const FriendsList = styled.ul`
 
 export const Card = styled.li`
   padding: 16px 12px;
-  background: #ffffff;
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  background: var(--cl-almost-white);
+  box-shadow: var(--shadow-default);
   border-radius: 40px;
 
    @media (min-width: 768px) {
@@ -91,14 +91,14 @@ export const CardItem = styled.li`
     list-style: none;
     font-size: 12px;
     line-height: 16px;
-    color: #111111;
+    color: var(--cl-black);
   a{
     text-decoration: none;
     color: inherit;
   }
     &:hover {
       cursor: pointer;
-      color: #54adff;
+      color: var(--cl-blue-link);
     }
   `;
 
