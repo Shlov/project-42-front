@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-
+import icons from 'images/icons.svg';
 import { AuthNavCss, ButtonLogin, PawCss, ButtonRegister } from './AuthNav.styled';
 
 const AuthNav = ({ setActiveBridge, desktop }) => {
@@ -15,7 +15,7 @@ const AuthNav = ({ setActiveBridge, desktop }) => {
         <AuthNavCss>
             <Link to={"/login"} onClick={handleCloseMenu}>
             <ButtonLogin>
-                Log IN <PawCss width="21" height="24" />
+                Log IN <PawCss><use href={icons + '#pawprint'} /></PawCss>
                 </ButtonLogin>
             </Link>
             <Link  to={"/register"} onClick={handleCloseMenu}>
