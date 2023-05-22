@@ -5,29 +5,43 @@ export const ModalContent = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-  padding-top: 108px;
-  padding-bottom: 108px;
+  padding: 77px 0 60px;
 
   font-style: normal;
   letter-spacing: 0.04em;
   color: var(--cl-black);
+
+  @media (min-width: 768px) {
+    padding: 108px 0 108px;
+  }
 `;
 
 export const TitleModal = styled.h4`
-  font-size: 36px;
-  line-height: 49px;
+  font-size: 24px;
+  line-height: 33px;
   font-weight: 500;
 
-  padding: 0;
-  margin-top: 0px;
-  margin-bottom: 48px;
+  padding-bottom: 48px;
+
+  @media (min-width: 768px) {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 49px;
+    padding-bottom: 48px;
+  }
 `;
 
 export const ButtonWrap = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 17px;
+  gap: 5px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: 17px;
+  }
 `;
 
 export const Button = styled.button`
@@ -38,24 +52,31 @@ export const Button = styled.button`
   gap: 8px;
 
   padding: 0;
-  width: 129px;
-  height: 40px;
-  
+
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+
   letter-spacing: 0.04em;
   font-weight: 700;
 
   border: 2px solid var(--cl-blue-link);
   border-radius: 40px;
   color: var(--cl-blue-link);
-  background-color: var(--cl-background);
+  background-color: var(--cl-white);
+  width: 256px;
+  height: 40px;
+  @media (min-width: 768px) {
+    width: 129px;
+  }
 
-  transition: background-color var(--animat), color var(--animat),
-    border-color var(--animat);
+  transition: background-color var(--animat), color var(--animat);
 
-  &:hover {
+  &:hover,
+  &:active,
+  &:focus {
     background-color: var(--cl-blue-link);
-    color: var(--cl-background);
-    border-color: var(--cl-background);
+    color: var(--cl-white);
   }
 `;
 

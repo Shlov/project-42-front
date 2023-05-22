@@ -10,12 +10,15 @@
 // Компонент рендерить кнопку для видалення оголошення, якщо дане оголошення створене цим користувачем. 
 // Клік по кнопці відкриває модальне вікно  ModalApproveAction
 
+
 import { Card, FavoriteBtn, DeleteBtn, CategoryTag, ImageWrapper, DescriptionWrapper, Title, Image, TagItem, TagList, MoreBtn, SvgIcon, HeartIcon } from "./NoticeCategoryItem.styled";
+
 import icon from '../../images/icons.svg';
 
 export const NoticeCategoryItem = ({onTrashModal}) => {
 
   const active = false
+
 
   return(
     <>

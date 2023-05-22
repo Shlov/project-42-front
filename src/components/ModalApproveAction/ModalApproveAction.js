@@ -5,13 +5,15 @@
 
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
-import { Button, CloseIcon, Modal, Overlay } from './ModalApproveAction.styled';
+import { Button, CloseIcon, Content, Modal, Overlay } from './ModalApproveAction.styled';
 import icons from 'images/icons.svg';
 
-export const ModalAprooveAction = ({ children, onClose }) => {
+export const ModalApproveAction = ({ children, onClose, height}) => {
   //   пропс onClose це функція toggleModal,
-  //   яку потрібно передати компоненту ModalAprooveAction
+  //   яку потрібно передати компоненту ModalApproveAction
   //   toggleModal - змінює стейт isOpen
+console.log(typeof height)
+console.log(height)
 
   const onBackdropClose = event => {
     if (event.target === event.currentTarget) {
@@ -36,20 +38,21 @@ export const ModalAprooveAction = ({ children, onClose }) => {
   return (
     <>
       <Overlay onClick={onBackdropClose}>
-        <Modal>
+        <Modal size={height}>
           <Button type="button" apia-label="close" onClick={onClose}>
             <CloseIcon>
               <use href={icons + '#cross-small'} />
             </CloseIcon>
           </Button>
-          <div>{children}</div>
+          <Content>{children}</Content>
         </Modal>
       </Overlay>
     </>
   );
 };
 
-ModalAprooveAction.propTypes = {
+ModalApproveAction.propTypes = {
   onClose: PropTypes.func.isRequired,
   children: PropTypes.node,
+  size: PropTypes.string,
 };

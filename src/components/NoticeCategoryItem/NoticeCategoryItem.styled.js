@@ -59,6 +59,7 @@ export const FavoriteBtn =styled.button`
     color: var(--cl-blue-light);
     fill:  red;
 
+
   }
 `
 
@@ -97,8 +98,10 @@ export const DeleteBtn =styled.button`
     color: var(--cl-blue-light);
     fill:  red;
 
+
   }
 `
+
 
 export const MoreBtn = styled.button`
   display: flex;
