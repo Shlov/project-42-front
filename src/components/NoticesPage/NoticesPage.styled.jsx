@@ -28,6 +28,8 @@ export const DescrModal = styled.p`
   font-size: 16px;
   line-height: 22px;
   text-align: center;
+
+  margin-bottom: 48px;
 `;
 
 export const ButtonWrap = styled.div`

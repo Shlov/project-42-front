@@ -36,9 +36,11 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   gap: 8px;
+
   padding: 0;
   width: 129px;
   height: 40px;
+  
   letter-spacing: 0.04em;
   font-weight: 700;
 
