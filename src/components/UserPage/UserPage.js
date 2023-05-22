@@ -10,12 +10,20 @@ import {
   ButtonWrap,
   ModalContent,
   TitleModal,
+  BtnLogout,
 } from './UserPage.styled';
+
+import { useDispatch } from 'react-redux';
+import { logOut } from 'Redux/auth/operation';
+
+import LogoutIcon from '../../images/icons/logout.svg';
 import icons from 'images/icons.svg';
+
 
 export const UserPage = () => {
   //   toggleModal, яку потрібно передати компоненту ModalAprooveActionб для закриття вікна
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const dispatch = useDispatch();
 
   const toggleModal = () => {
     setIsOpenModal(isOpen => !isOpen);
@@ -23,6 +31,7 @@ export const UserPage = () => {
 
   const handleAction = () => {
     console.log('Передаємо екшн');
+    dispatch(logOut());
   };
 
   return (
@@ -45,13 +54,15 @@ export const UserPage = () => {
           </ModalContent>
         </ModalAprooveAction>
       )}
-      <button
+      <BtnLogout
         type="button"
-        style={{ marginBottom: '200px', backgroundColor: '#CDDC39' }}
-        onClick={toggleModal}
-      >
-        Temporary Open Modal
-      </button>
+        // style={{ marginBottom: '200px', backgroundColor: '#CDDC39' }}
+        onClick={toggleModal}>
+      <img src={LogoutIcon} alt='Button logout'/>LogOut
+      </BtnLogout>
     </>
   );
 };
+
+
+

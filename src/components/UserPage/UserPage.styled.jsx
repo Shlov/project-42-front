@@ -65,3 +65,17 @@ export const Arrow = styled.svg`
   stroke: currentColor;
   fill: transparent;
 `;
+
+export const BtnLogout = styled.button`
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  width: 98px;
+  height: 30px;
+  font-weight: 500;
+  font-family: 'Manrope';
+  font-size: 16px;
+  border: none;
+  background-color: transparent;
+`;
