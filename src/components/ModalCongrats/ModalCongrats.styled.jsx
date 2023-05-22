@@ -9,14 +9,14 @@ export const ModalContent = styled.div`
   padding-bottom: 60px;
 
   font-style: normal;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.04em;
   color: var(--cl-black);
 `;
 
 export const TitleModal = styled.h4`
-  font-weight: 700;
-  font-size: 28px;
-  line-height: 38px;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 49px;
 
   padding: 0;
   margin-top: 0px;
@@ -25,18 +25,11 @@ export const TitleModal = styled.h4`
 
 export const DescrModal = styled.p`
   font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
+  font-size: 24px;
+  line-height: 33px;
   text-align: center;
 
   margin-bottom: 48px;
-`;
-
-export const ButtonWrap = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 17px;
 `;
 
 export const Button = styled.button`
@@ -44,12 +37,14 @@ export const Button = styled.button`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   padding: 0;
-  width: 129px;
+  width: 248px;
   height: 40px;
   letter-spacing: 0.04em;
   font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
 
   border: 2px solid var(--cl-blue-link);
   border-radius: 40px;
@@ -66,9 +61,8 @@ export const Button = styled.button`
   }
 `;
 
-export const Trash = styled.svg`
+export const PawPrint = styled.svg`
   width: 24px;
   height: 24px;
-  stroke: currentColor;
-  fill: transparent;
+  fill: currentColor;
 `;
