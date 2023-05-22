@@ -1,14 +1,76 @@
-import { Field, ErrorMessage } from 'formik';
+import { Field, ErrorMessage, useFormikContext } from 'formik';
+import { useState, useEffect, useCallback } from 'react';
+
 const PersonalDetailsStep = ({ onBack, onNext, selectedCategory }) => {
+  const { values, setTouched } = useFormikContext();
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  // Function to validate form fields. useCallback is used to memoize the validateFields function
+  const validateFields = useCallback(() => {
+    let formErrors = {};
+
+    // Validate title field if category is 'sell', 'lost-found' or 'for-free'
+    if (selectedCategory !== 'your-pet') {
+      if (!values.title) {
+        console.log('I am here');
+        formErrors.title = 'Title is required';
+      }
+    }
+
+    // Validate name field
+    if (!values.name) {
+      formErrors.name = 'Name is required';
+    }
+
+    // Validate date field
+    if (!values.date) {
+      formErrors.date = 'Date of birth is required';
+    }
+
+    // Validate breed field
+    if (!values.breed) {
+      formErrors.breed = 'Breed is required';
+    }
+
+    return formErrors;
+  }, [selectedCategory, values]);
+
+  // Handle next button click
+  const handleNextClick = () => {
+    setTouched({
+      title: true,
+      name: true,
+      date: true,
+      breed: true,
+    });
+
+    const formErrors = validateFields();
+
+    if (Object.keys(formErrors).length === 0) {
+      onNext();
+    }
+  };
+
+  // Update disabled state based on form field validation
+  useEffect(() => {
+    const formErrors = validateFields();
+    setIsDisabled(Object.keys(formErrors).length > 0);
+  }, [values, selectedCategory, validateFields]); //  When any of these values change, the effect will run again to update the disabled state
+
   return (
     <>
       {/* Field "title" is only for the "sell" and "lost" categories */}
-      {['sell', 'lost-found'].includes(selectedCategory) && (
+      {selectedCategory !== 'your-pet' && (
         <div>
           <label>
             Title of add
-            <Field type="text" name="title" placeholder="Type name pet" />
+            <Field type="text" name="title" placeholder="Type title" />
           </label>
+          <ErrorMessage
+            name="title"
+            component="div"
+            className="error-message"
+          />
         </div>
       )}
 
@@ -41,7 +103,7 @@ const PersonalDetailsStep = ({ onBack, onNext, selectedCategory }) => {
         Back
       </button>
       {/* Button to navigate to the next step */}
-      <button type="button" onClick={onNext}>
+      <button type="button" onClick={handleNextClick} disabled={isDisabled}>
         Next
       </button>
     </>

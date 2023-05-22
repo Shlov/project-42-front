@@ -18,6 +18,7 @@ import MoreInfoStep from 'components/MoreInfoStep/MoreInfoStep';
 
 //   Validation schema using Yup
 const validationSchema = object().shape({
+  category: string().oneOf(['your-pet', 'sell', 'lost-found', 'for-free']),
   name: string()
     .required('Name is required')
     .min(2, 'Name must be at least 2 characters')
@@ -25,13 +26,13 @@ const validationSchema = object().shape({
   date: string()
     .required('Date is required')
     .matches(
-      /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/(19|20)\d{2}$/,
-      'Date must be in the format MM/DD/YYYY'
+      /^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$/,
+      'Date must be in the format DD.MM.YYYY'
     ),
   breed: string()
-    .required('Breed is required')
     .min(2, 'Breed must be at least 2 characters')
-    .max(16, 'Breed must be at most 16 characters'),
+    .max(16, 'Breed must be at most 16 characters')
+    .required('Breed is required'),
   avatar: mixed()
     .required('File is required')
     //the test method from Yup to define a custom validation rule for the avatar field. The test checks if the value exists  (a file is selected) and if its size is less than or equal to 3MB (3 * 1024 * 1024 bytes). If the test fails, it will display the error message "File size must not exceed 3MB".
@@ -40,9 +41,12 @@ const validationSchema = object().shape({
       'File size must not exceed 3MB',
       value => value.size <= 3 * 1024 * 1024
     ),
-  sex: string()
-    .oneOf(['male', 'female'], 'Please select either "male" or "female"')
-    .required('Sex is required'),
+  sex: string().when('category', {
+    is: value => ['sell', 'lost-found', 'for-free'].includes(value),
+    then: string()
+      .required('Sex is required')
+      .oneOf(['male', 'female'], 'Please select either "male" or "female"'),
+  }),
 
   location: string()
     .required('Location is required')
@@ -56,14 +60,23 @@ const validationSchema = object().shape({
     .integer('Price must be an integer'),
   comments: string()
     .min(8, 'Comments must be at least 8 characters')
-    .max(120, 'Comments must be at most 120 characters'),
+    .max(120, 'Comments must be at most 120 characters')
+    .required(),
+
+  title: string().when('category', {
+    is: value => ['sell', 'lost-found', 'for-free'].includes(value),
+    then: string()
+      .required('Title is required')
+      .min(2, 'Title must be at least 2 characters')
+      .max(16, 'Title must be at most 16 characters'),
+  }),
 });
 
 const AddPetForm = () => {
   const [step, setStep] = useState(1);
-  const [selectedCategory, setSelectedCategory] = useState('your-pet');
+  const [selectedCategory, setSelectedCategory] = useState('');
 
-  const [formValues] = useState({
+  const [formValues, setFormValues] = useState({
     category: selectedCategory,
     name: '',
     date: '',
@@ -73,8 +86,11 @@ const AddPetForm = () => {
     location: '',
     price: '',
     comments: '',
+    title: '',
   });
   const steps = ['Choose Option', 'Personal Details', 'More Info'];
+
+  console.log(formValues);
 
   const stepTitles = {
     1: 'Add pet',
@@ -95,6 +111,10 @@ const AddPetForm = () => {
   // Function to handle category selection
   const handleCategorySelect = category => {
     setSelectedCategory(category);
+    setFormValues(prevFormValues => ({
+      ...prevFormValues,
+      category: category,
+    }));
   };
 
   const currentTitle =
@@ -114,8 +134,20 @@ const AddPetForm = () => {
   };
 
   const handleSubmit = values => {
-    // Handle form submission
-    alert(JSON.stringify(values, null, 2));
+    console.log(values);
+    // const formData = new FormData();
+    // // Append text data to the FormData object
+    // formData.append('category', values.category);
+    // formData.append('name', values.name);
+    // formData.append('date', values.date);
+    // formData.append('breed', values.breed);
+    // formData.append('sex', values.sex);
+    // formData.append('location', values.location);
+    // formData.append('price', values.price);
+    // formData.append('comments', values.comments);
+    // // Append file data to the FormData object
+    // formData.append('avatar', values.avatar);
+    // console.log('formData', formData);
   };
 
   const renderStepContent = step => {
@@ -125,6 +157,7 @@ const AddPetForm = () => {
           <CategoryStep
             onNext={handleNext}
             onSelectCategory={handleCategorySelect}
+            selectedCategory={selectedCategory}
           />
         );
       case 2:
