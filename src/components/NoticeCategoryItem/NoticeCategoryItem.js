@@ -10,10 +10,12 @@
 // Компонент рендерить кнопку для видалення оголошення, якщо дане оголошення створене цим користувачем. 
 // Клік по кнопці відкриває модальне вікно  ModalApproveAction
 
-import { Card, FavoriteBtn, CategoryTag, ImageWrapper, DescriptionWrapper, Title, Image, TagItem, TagList, MoreBtn, SvgIcon } from "./NoticeCategoryItem.styled";
+import { Card, FavoriteBtn, CategoryTag, ImageWrapper, DescriptionWrapper, Title, Image, TagItem, TagList, MoreBtn, SvgIcon, HeartIcon } from "./NoticeCategoryItem.styled";
 import icon from '../../images/icons.svg';
 
 export const NoticeCategoryItem = () => {
+
+  const active = false
 
   return(
     <>
@@ -41,16 +43,16 @@ export const NoticeCategoryItem = () => {
               <p>female</p>
             </TagItem>
           </TagList>
-          <FavoriteBtn>
-            <SvgIcon height="20" width="20" style={{fill: ""}}>
+          <FavoriteBtn onClick={()=> console.log('add to favorite')}>
+            <HeartIcon height="20" width="20" isActive={active} style={{fill: ""}}>
               <use href={icon + "#heart"}/>
-            </SvgIcon>
+            </HeartIcon>
           </FavoriteBtn>
         </ImageWrapper>
 
         <DescriptionWrapper>
           <Title>Cute fox looking for a home</Title>
-          <MoreBtn>Learn more</MoreBtn>
+          <MoreBtn onClick={()=> console.log('learn more')}>Learn more</MoreBtn>
         </DescriptionWrapper>
       </Card>
     </>

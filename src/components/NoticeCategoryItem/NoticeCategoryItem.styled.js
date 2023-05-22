@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 
-import { ReactComponent as FavoriteIcon } from '../../images/icons/heart.svg';
-// import favoriteIcon from '../../images/icons.svg';
 
 export const Card = styled.div`
-  width: 280px;
+    width: 280px;
+  @media (min-width:768px) and (max-width:1279px) {
+    width: 336px;
+  }
   height: 456px;
   background: var(--cl-almost-white);
   box-shadow: var(--shadow-default);
   border-radius: 0px 0px 40px 40px;
+
+  user-select: none;
 `
 
 export const ImageWrapper = styled.div`
@@ -27,7 +30,7 @@ export const DescriptionWrapper = styled.div`
 export const Title = styled.h3`
   font-weight: 700;
   font-size: 24px;
-  line-height: 33px;
+  line-height: calc(33 / 24);
   margin-bottom: auto;
 `
 
@@ -53,8 +56,20 @@ export const FavoriteBtn =styled.button`
     color: var(--cl-blue-light);
   }
   :active {
-    
+    color: var(--cl-blue-light);
+    fill:  red;
+
   }
+`
+
+export const HeartIcon = styled.svg`
+  display: block;
+  fill: ${props => (props.isActive ? 'var(--cl-blue-link)' : 'var(--cl-blue-light)' )} ;
+  stroke:   ${props => (props.isActive ? 'var(--cl-blue-light)' : 'var(--cl-blue-link)' )};
+  stroke-width:1.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+
 `
 
 export const MoreBtn = styled.button`
@@ -70,8 +85,8 @@ export const MoreBtn = styled.button`
 
   font-weight: 600;
   font-size: 16px;
-  line-height: 22px;
-  /* identical to box height */
+  line-height: calc(22 / 16);
+
   cursor: pointer;
 
   display: flex;
@@ -81,36 +96,22 @@ export const MoreBtn = styled.button`
   color: var(--cl-blue-link);
 
   :hover {
-    
+    background-color: var(--cl-blue-link);
+    color: var(--cl-blue-light);
   }
   :active {
     
   }
 `
 
-export const HeartIcon = styled(FavoriteIcon)`
-  /* color: red; */
-  display: block;
-  /* stroke: red; */
-  stroke: currentColor;
-  stroke-width:1.5;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  /* fill: currentColor; */
-  /* fill: red; */
-
-`
 export const SvgIcon = styled.svg`
-  /* color: red; */
+
   display: block;
-  /* stroke: red; */
+  fill: var(--cl-blue-light);
   stroke: var(--cl-blue-link);
   stroke-width:1.5;
   stroke-linecap:round;
   stroke-linejoin:round;
-  /* fill: currentColor; */
-  fill: var(--cl-blue-light);
-  
 
 `
 
@@ -124,16 +125,17 @@ export const CategoryTag = styled.p`
 
   font-weight: 500;
   font-size: 14px;
-  line-height: 19px;
+  line-height: calc(19 / 14);
   display: flex;
   align-items: center;
   text-align: center;
 `
 
-
-
 export const Image = styled.img`
   width: 280px;
+  @media (min-width:768px) and (max-width:1279px) {
+    width: 336px;
+  }
   height: 288px;
 `
 
@@ -158,8 +160,7 @@ export const TagItem = styled.li`
   height: 28px;
   font-weight: 600;
   font-size: 12px;
-  line-height: 16px;
-
+  line-height: calc(16 / 12);
   background-color: var(--cl-blue-light);
   border-radius: 16px;
 `
