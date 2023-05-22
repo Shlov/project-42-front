@@ -7,7 +7,7 @@
 //   - елемент навігації Add pet - переадресовує авторизованого користувача на сторінку AddPetPage
 // Під час першого входу на сторінку користувача повинно переадресовувати на маршрут /notices/sell та рендеритися список оголошень з продажу
 
-import { ModalAprooveAction } from 'components/ModalApproveAction/ModalApproveAction';
+import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
 import { useState } from 'react';
 import {
   Button,
@@ -21,7 +21,7 @@ import icons from 'images/icons.svg';
 import { NoticeCategoryList } from 'components/NoticesCategoriesList/NoticesCategoriesList';
 
 export const NoticesPage = () => {
-  //   toggleModal, яку потрібно передати компоненту ModalAprooveActionб для закриття вікна
+  //   toggleModal, яку потрібно передати компоненту ModalApproveAction для закриття вікна
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const toggleModal = () => {
@@ -36,9 +36,9 @@ export const NoticesPage = () => {
     <>
       <NoticeCategoryList onTrashModal={toggleModal}/>
       {isOpenModal && (
-        <ModalAprooveAction onClose={toggleModal}>
+        <ModalApproveAction onClose={toggleModal} height="389px">
           <ModalContent>
-            <TitleModal>Delete adverstiment?</TitleModal>
+            <TitleModal>Delete advertisement?</TitleModal>
             <DescrModal>
               Are you sure you want to delete{' '}
               <strong>
@@ -60,7 +60,7 @@ export const NoticesPage = () => {
               </Button>
             </ButtonWrap>
           </ModalContent>
-        </ModalAprooveAction>
+        </ModalApproveAction>
       )}
     </>
   );

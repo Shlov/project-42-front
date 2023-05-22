@@ -59,6 +59,7 @@ export const FavoriteBtn =styled.button`
     color: var(--cl-blue-light);
     fill:  red;
 
+
   }
 `
 
@@ -97,7 +98,18 @@ export const DeleteBtn =styled.button`
     color: var(--cl-blue-light);
     fill:  red;
 
+
   }
+`
+
+export const HeartIcon = styled.svg`
+  display: block;
+  fill: ${props => (props.isActive ? 'var(--cl-blue-link)' : 'var(--cl-blue-light)' )} ;
+  stroke:   ${props => (props.isActive ? 'var(--cl-blue-light)' : 'var(--cl-blue-link)' )};
+  stroke-width:1.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+
 `
 
 export const MoreBtn = styled.button`

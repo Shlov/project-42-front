@@ -14,13 +14,18 @@ export const ModalContent = styled.div`
 `;
 
 export const TitleModal = styled.h4`
-  font-weight: 700;
-  font-size: 28px;
-  line-height: 38px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 33px;
 
-  padding: 0;
-  margin-top: 0px;
+  padding-bottom: 14px;
+
+  @media (min-width: 768px) {
+    font-weight: 700;
+    font-size: 28px;
+  line-height: 38px;
   margin-bottom: 40px;
+  }
 `;
 
 export const DescrModal = styled.p`
@@ -34,35 +39,50 @@ export const DescrModal = styled.p`
 
 export const ButtonWrap = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 17px;
+  gap: 5px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: 17px;
+  }
 `;
 
 export const Button = styled.button`
-  display: flex;
+display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 8px;
+
   padding: 0;
-  width: 129px;
-  height: 40px;
+
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+
   letter-spacing: 0.04em;
   font-weight: 700;
 
   border: 2px solid var(--cl-blue-link);
   border-radius: 40px;
   color: var(--cl-blue-link);
-  background-color: var(--cl-background);
+  background-color: var(--cl-white);
+  width: 256px;
+  height: 40px;
+  @media (min-width: 768px) {
+    width: 129px;
+  }
 
-  transition: background-color var(--animat), color var(--animat),
-    border-color var(--animat);
+  transition: background-color var(--animat), color var(--animat);
 
-  &:hover {
+  &:hover,
+  &:active,
+  &:focus {
     background-color: var(--cl-blue-link);
-    color: var(--cl-background);
-    border-color: var(--cl-background);
+    color: var(--cl-white);
   }
 `;
 
