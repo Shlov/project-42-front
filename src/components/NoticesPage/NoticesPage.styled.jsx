@@ -9,32 +9,43 @@ export const ModalContent = styled.div`
   padding-bottom: 60px;
 
   font-style: normal;
-  letter-spacing: -0.01em;
+
   color: var(--cl-black);
 `;
 
 export const TitleModal = styled.h4`
-  font-weight: 500;
+  width: 240px;
+  
   font-size: 24px;
   line-height: 33px;
+  text-align: center;
+  letter-spacing: 0.04em;
 
   padding-bottom: 14px;
 
   @media (min-width: 768px) {
-    font-weight: 700;
+    width: 317px;
     font-size: 28px;
-  line-height: 38px;
-  margin-bottom: 40px;
+    line-height: 38px;
+    padding-bottom: 40px;
   }
 `;
 
-export const DescrModal = styled.p`
+export const DescrModal = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
   text-align: center;
 
   margin-bottom: 48px;
+`;
+
+export const Text = styled.p`
+  width: 240px;
+
+  @media (min-width: 768px) {
+    width: 390px;
+  }
 `;
 
 export const ButtonWrap = styled.div`
@@ -51,7 +62,7 @@ export const ButtonWrap = styled.div`
 `;
 
 export const Button = styled.button`
-display: flex;
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
