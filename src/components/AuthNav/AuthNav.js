@@ -1,18 +1,28 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import { AuthNavCss, ButtonLogin, PawCss, ButtonRegister } from './AuthNav.styled';
 
-const AuthNav = () => {
-const navigate = useNavigate();
+const AuthNav = ({ setActiveBridge, desktop }) => {
+    
+    const handleCloseMenu = () => {
+    if(!desktop) {
+      setActiveBridge(false)
+    }
+  }
 
     return (
         <AuthNavCss>
-            <ButtonLogin onClick={() => navigate('/login')}>
+            <Link to={"/login"} onClick={handleCloseMenu}>
+            <ButtonLogin>
                 Log IN <PawCss width="21" height="24" />
-            </ButtonLogin>
-            <ButtonRegister onClick={() => navigate('/register')}>Registration</ButtonRegister>
+                </ButtonLogin>
+            </Link>
+            <Link  to={"/register"} onClick={handleCloseMenu}>
+                <ButtonRegister>Registration</ButtonRegister>
+           </Link>
         </AuthNavCss>
+        
 );
 };
 
