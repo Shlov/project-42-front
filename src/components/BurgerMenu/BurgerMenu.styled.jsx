@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export const MobileMenuContainer = styled.div`
-  background-color: #fff;
+  background-color: var(--cl-background);
   height: 100vh;
   width: 100%;
-  position: fixed;
+  position: absolute;
+  z-index: 100;
   top: -100%;
   transition: all 0.3s;
 

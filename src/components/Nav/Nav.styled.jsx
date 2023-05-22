@@ -14,10 +14,20 @@ export const NavLinks = styled.div`
   color: var(--cl-black);
   text-decoration: none;
   font-family: 'Manrope';
-  font-size: 20px;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 44px;
   transition: all .2s;
   margin-right: 40px;
+
+  @media (min-width: 991px){
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 27px;
 }
+}
+
+
 
 .nav:last-child {
   margin: 0;

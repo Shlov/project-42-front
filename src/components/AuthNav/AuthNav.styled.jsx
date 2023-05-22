@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { ReactComponent as Paw } from '../../images/icons/pawprint 1.svg';
-
 export const AuthNavCss = styled.div`
   display: flex;
   gap: 20px;
@@ -51,8 +50,11 @@ export const ButtonRegister = styled.button`
   font-weight: 600;
   font-size: 16px;
   line-height: 22px;
+  width: 165px;
+  height: 40px;
+  padding: 8px 20px;
   color: var(--cl-yellow);
-  min-width: 165px;
+  width: 165px;
   background-color: var(--cl-background);
   border: 2px solid var(--cl-yellow);
   border-radius: 40px;
@@ -66,9 +68,7 @@ export const ButtonRegister = styled.button`
     box-shadow: var(--shadow-nav);
   }
 
-  @media (max-width: 767px) {
-    height: 40px;
-  }
+
 `;
 
 export const PawCss = styled(Paw)`
