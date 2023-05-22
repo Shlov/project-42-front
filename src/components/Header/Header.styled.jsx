@@ -15,11 +15,9 @@ export const HeaderNav = styled.div`
 
 export const HeaderUser = styled.div`
   display: flex;
-  // margin-left: 270px;
 `;
 
 export const MenuBurgerImg = styled.img`
-  // margin-right: 160px;
 
   @media screen and (min-width: 767px) {
     margin-left: 24px;

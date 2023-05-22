@@ -126,7 +126,7 @@ const FriendsPage = () => {
       times: [
         {
           day: 'MN',
-          time: '8:00-19:00'
+          time: '8:00-20:00'
         },
         {
           day: 'TU',
@@ -134,23 +134,23 @@ const FriendsPage = () => {
         },
         {
           day: 'WE',
-          time: '8:00-19:00'
+          time: '8:00-20:00'
         },
         {
           day: 'TH',
-          time: '8:00-19:00'
+          time: '8:00-20:00'
         },
         {
           day: 'FR',
-          time: '8:00-19:00'
+          time: '8:00-20:00'
         },
         {
           day: 'SA',
-          time: '8:00-19:00'
+          time: '8:00-20:00'
         },
         {
           day: 'SU',
-          time: '8:00-19:00'
+          time: '8:00-20:00'
         },
       ]
     },
@@ -165,31 +165,31 @@ const FriendsPage = () => {
       times: [
         {
           day: 'MN',
-          time: '8:00-19:00'
+          time: 'day and night'
         },
         {
           day: 'TU',
-          time: '8:00-19:00'
+          time: 'day and night'
         },
         {
           day: 'WE',
-          time: '8:00-19:00'
+          time: 'day and night'
         },
         {
           day: 'TH',
-          time: '8:00-19:00'
+          time: 'day and night'
         },
         {
           day: 'FR',
-          time: '8:00-19:00'
+          time: 'day and night'
         },
         {
           day: 'SA',
-          time: '8:00-19:00'
+          time: 'day and night'
         },
         {
           day: 'SU',
-          time: '8:00-19:00'
+          time: 'day and night'
         },
       ]
     },
@@ -204,31 +204,31 @@ const FriendsPage = () => {
       times: [
         {
           day: 'MN',
-          time: '8:00-19:00'
+          time: '9:00-19:00'
         },
         {
           day: 'TU',
-          time: '8:00-19:00'
+          time: '9:00-19:00'
         },
         {
           day: 'WE',
-          time: '8:00-19:00'
+          time: '9:00-19:00'
         },
         {
           day: 'TH',
-          time: '8:00-19:00'
+          time: '9:00-19:00'
         },
         {
           day: 'FR',
-          time: '8:00-19:00'
+          time: '9:00-19:00'
         },
         {
           day: 'SA',
-          time: '8:00-19:00'
+          time: '9:00-19:00'
         },
         {
           day: 'SU',
-          time: '8:00-19:00'
+          time: '9:00-19:00'
         },
       ]
     },
@@ -243,31 +243,31 @@ const FriendsPage = () => {
       times: [
         {
           day: 'MN',
-          time: '8:00-19:00'
+          time: 'day and night'
         },
         {
           day: 'TU',
-          time: '8:00-19:00'
+          time: 'day and night'
         },
         {
           day: 'WE',
-          time: '8:00-19:00'
+          time: 'day and night'
         },
         {
           day: 'TH',
-          time: '8:00-19:00'
+          time: 'day and night'
         },
         {
           day: 'FR',
-          time: '8:00-19:00'
+          time: 'day and night'
         },
         {
           day: 'SA',
-          time: '8:00-19:00'
+          time: 'day and night'
         },
         {
           day: 'SU',
-          time: '8:00-19:00'
+          time: 'day and night'
         },
       ]
     },
@@ -282,31 +282,31 @@ const FriendsPage = () => {
       times: [
         {
           day: 'MN',
-          time: '8:00-19:00'
+          time: '11:00-16:00'
         },
         {
           day: 'TU',
-          time: '8:00-19:00'
+          time: '11:00-16:00'
         },
         {
           day: 'WE',
-          time: '8:00-19:00'
+          time: '11:00-16:00'
         },
         {
           day: 'TH',
-          time: '8:00-19:00'
+          time: '11:00-16:00'
         },
         {
           day: 'FR',
-          time: '8:00-19:00'
+          time: '11:00-16:00'
         },
         {
           day: 'SA',
-          time: '8:00-19:00'
+          time: '11:00-16:00'
         },
         {
           day: 'SU',
-          time: '8:00-19:00'
+          time: '11:00-16:00'
         },
       ]
     },
@@ -321,31 +321,31 @@ const FriendsPage = () => {
       times: [
         {
           day: 'MN',
-          time: '8:00-19:00'
+          time: 'day and night'
         },
         {
           day: 'TU',
-          time: '8:00-19:00'
+          time: 'day and night'
         },
         {
           day: 'WE',
-          time: '8:00-19:00'
+          time: 'day and night'
         },
         {
           day: 'TH',
-          time: '8:00-19:00'
+          time: 'day and night'
         },
         {
           day: 'FR',
-          time: '8:00-19:00'
+          time: 'day and night'
         },
         {
           day: 'SA',
-          time: '8:00-19:00'
+          time: 'day and night'
         },
         {
           day: 'SU',
-          time: '8:00-19:00'
+          time: 'day and night'
         },
       ]
     },
@@ -360,31 +360,31 @@ const FriendsPage = () => {
       times: [
         {
           day: 'MN',
-          time: '8:00-19:00'
+          time: '9:00-17:00'
         },
         {
           day: 'TU',
-          time: '8:00-19:00'
+          time: '9:00-17:00'
         },
         {
           day: 'WE',
-          time: '8:00-19:00'
+          time: '9:00-17:00'
         },
         {
           day: 'TH',
-          time: '8:00-19:00'
+          time: '9:00-17:00'
         },
         {
           day: 'FR',
-          time: '8:00-19:00'
+          time: '9:00-17:00'
         },
         {
           day: 'SA',
-          time: '8:00-19:00'
+          time: '9:00-17:00'
         },
         {
           day: 'SU',
-          time: '8:00-19:00'
+          time: '9:00-17:00'
         },
       ]
     },
@@ -399,31 +399,31 @@ const FriendsPage = () => {
       times: [
         {
           day: 'MN',
-          time: '8:00-19:00'
+          time: '9:00-20:00'
         },
         {
           day: 'TU',
-          time: '8:00-19:00'
+          time: '9:00-20:00'
         },
         {
           day: 'WE',
-          time: '8:00-19:00'
+          time: '9:00-20:00'
         },
         {
           day: 'TH',
-          time: '8:00-19:00'
+          time: '9:00-20:00'
         },
         {
           day: 'FR',
-          time: '8:00-19:00'
+          time: '9:00-20:00'
         },
         {
           day: 'SA',
-          time: '8:00-19:00'
+          time: '9:00-20:00'
         },
         {
           day: 'SU',
-          time: '8:00-19:00'
+          time: '9:00-20:00'
         },
       ]
     },

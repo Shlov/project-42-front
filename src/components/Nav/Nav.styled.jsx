@@ -1,5 +1,14 @@
 import styled from "styled-components";
 
+export const NavWrap = styled.div`
+margin-right: 160px;
+
+@media (max-width: 991px){
+  margin-right: 0;
+}
+
+`
+
 export const NavLinks = styled.div`
   .nav {
   color: var(--cl-black);
@@ -29,4 +38,5 @@ export const NavLinks = styled.div`
     margin-bottom: 30px;
     margin-right: 0 !important;
   }
+}
 `;

@@ -5,8 +5,9 @@ export const AuthNavCss = styled.div`
   display: flex;
   gap: 20px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     display: block;
+    margin-top: 40px;
   }
 `;
 
@@ -38,7 +39,7 @@ export const ButtonLogin = styled.button`
     box-shadow: var(--shadow-nav);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     margin: 0 0 10px;
     height: 40px;
   }
@@ -65,7 +66,7 @@ export const ButtonRegister = styled.button`
     box-shadow: var(--shadow-nav);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     height: 40px;
   }
 `;
