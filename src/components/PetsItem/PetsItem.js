@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
-// import { useState } from 'react';
+import { useState } from 'react';
 // import { useDispatch } from 'react-redux';
+import { ModalAprooveAction } from 'components/ModalApproveAction/ModalApproveAction';
+// import { deletePet } from 'Redux/pets/operations';
 import icons from '../../images/icons.svg';
 import {
   Card,
@@ -14,12 +16,24 @@ import {
 } from './PetsItem.styled';
 
 export const PetsItem = ({ item }) => {
-  const handleDeletePet = () => {};
+  // const dispatch = useDispatch()
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const toggleModal = () => {
+    setIsOpenModal(isOpen => !isOpen);
+  };
+
+  
+  // const handleDeletePet = () => {
+  //   dispatch(deletePet(item.id));
+
+  // };
   return (
     <Card>
+      {isOpenModal && <ModalAprooveAction onClose={toggleModal}/>}
       <div>
         <Photo src={item.photo} alt={item.name} width="240" height="240" />
-        <Btn type="button" onClick={handleDeletePet}>
+        <Btn type="button" onClick={toggleModal}>
           <Icon>
             <use href={icons + '#trash'} />
           </Icon>
@@ -39,7 +53,8 @@ export const PetsItem = ({ item }) => {
         <LastLabel>
           Comments: &nbsp;<LastText>{item.comments}</LastText>
         </LastLabel>
-      </Description>
+        </Description>
+      
     </Card>
   );
 };

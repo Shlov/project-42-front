@@ -5,6 +5,18 @@ import { PetsItem } from 'components/PetsItem/PetsItem';
 import { List } from './PetsList.styled';
 import { fetchPets } from 'Redux/pets/operations';
 
+// const pets = [
+//   {
+//     id: '1',
+//     photo: '',
+//     name: 'barsik',
+//     birthDate: '15.12.2011',
+//     breed: 'taks',
+//     comments: 'hfdhdfgdgfdgfdgfdgfdgfdgfgjggghjgj g jg hjgjhgjhgjh  jhgjgjhgjhg'
+
+//   }
+// ]
+
 export const PetsList = () => {
   const pets = useSelector(selectPets);
   const dispatch = useDispatch();
