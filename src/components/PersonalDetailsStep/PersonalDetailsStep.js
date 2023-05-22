@@ -1,7 +1,12 @@
 import { Field, ErrorMessage, useFormikContext } from 'formik';
 import { useState, useEffect, useCallback } from 'react';
 
-const PersonalDetailsStep = ({ onBack, onNext, selectedCategory }) => {
+const PersonalDetailsStep = ({
+  onBack,
+  onNext,
+  selectedCategory,
+  setFormValues,
+}) => {
   const { values, setTouched } = useFormikContext();
   const [isDisabled, setIsDisabled] = useState(true);
 
@@ -12,7 +17,6 @@ const PersonalDetailsStep = ({ onBack, onNext, selectedCategory }) => {
     // Validate title field if category is 'sell', 'lost-found' or 'for-free'
     if (selectedCategory !== 'your-pet') {
       if (!values.title) {
-        console.log('I am here');
         formErrors.title = 'Title is required';
       }
     }
@@ -47,6 +51,13 @@ const PersonalDetailsStep = ({ onBack, onNext, selectedCategory }) => {
     const formErrors = validateFields();
 
     if (Object.keys(formErrors).length === 0) {
+      setFormValues(prevState => ({
+        ...prevState,
+        title: values.title,
+        name: values.name,
+        date: values.date,
+        breed: values.breed,
+      }));
       onNext();
     }
   };

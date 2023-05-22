@@ -63,13 +63,9 @@ const validationSchema = object().shape({
     .max(120, 'Comments must be at most 120 characters')
     .required(),
 
-  title: string().when('category', {
-    is: value => ['sell', 'lost-found', 'for-free'].includes(value),
-    then: string()
-      .required('Title is required')
-      .min(2, 'Title must be at least 2 characters')
-      .max(16, 'Title must be at most 16 characters'),
-  }),
+  title: string()
+    .min(2, 'Title must be at least 2 characters')
+    .required('Title is required'),
 });
 
 const AddPetForm = () => {
@@ -166,6 +162,7 @@ const AddPetForm = () => {
             onBack={handleBack}
             onNext={handleNext}
             selectedCategory={selectedCategory}
+            setFormValues={setFormValues}
           />
         );
       case 3:
