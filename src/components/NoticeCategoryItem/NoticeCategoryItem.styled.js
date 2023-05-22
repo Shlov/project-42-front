@@ -72,6 +72,34 @@ export const HeartIcon = styled.svg`
 
 `
 
+export const DeleteBtn =styled.button`
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  border: none;
+  background-color: var(--cl-blue-light);
+  color: var(--cl-blue-link);
+  position: absolute;
+  right: 12px;
+  top: 68px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  fill:  var(--cl-blue-light);
+
+  :hover {
+    background-color: var(--cl-blue-link);
+    color: var(--cl-blue-light);
+  }
+  :active {
+    color: var(--cl-blue-light);
+    fill:  red;
+
+  }
+`
+
 export const MoreBtn = styled.button`
   display: flex;
   flex-direction: row;
