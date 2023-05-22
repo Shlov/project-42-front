@@ -2,6 +2,33 @@
 @import '../node_modules/@fontsource/manrope';
 @import '../node_modules/@fontsource/inter';
 
+:root {
+  /* colors */
+  --cl-white: #fdf7f2;
+  --cl-yellow: #ffc107;
+  --cl-red: #f43f5e;
+  --cl-green: #00c3ad;
+  --cl-blue-link: #54adff;
+  --cl-blue-light: #cce4fb;
+  --cl-accent: #ff8356;
+  --cl-black: #111111;
+  --cl-background: #fef9f9;
+  --cl-gray: #888888;
+  --cl-almost-white: #ffffff;
+
+  --gr-blue: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+  --gr-accent: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
+
+  --shadow-default: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  --shadow-hover: 7px 13px 14px rgba(116, 177, 232, 0.24);
+  --shadow-nav: 7px 5px 5px rgba(0, 0, 255, 0.2);
+
+  /* size */
+
+  /* animat */
+  --animat: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 body {
   margin: 0;
   font-family: 'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
@@ -9,7 +36,7 @@ body {
     'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  color: var(--cl-black);
   background-color: var(--cl-background);
   background-repeat: no-repeat;
   background-position: center;
@@ -62,33 +89,36 @@ code {
     monospace;
 }
 
-:root {
-  /* colors */
-  --cl-white: #fdf7f2;
-  --cl-yellow: #ffc107;
-  --cl-red: #f43f5e;
-  --cl-green: #00c3ad;
-  --cl-blue-link: #54adff;
-  --cl-blue-light: #cce4fb;
-  --cl-accent: #ff8356;
-  --cl-black: #111111;
-  --cl-background: #fef9f9;
-  --cl-gray: #888888;
-  --cl-almost-white: #FFFFFF;
-
-  --gr-blue: linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%);
-  --gr-accent: linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%);
-
-  --shadow-default: 3px 8px 14px rgba(136, 198, 253, 0.19);
-  --shadow-hover: 7px 13px 14px rgba(116, 177, 232, 0.24);
-  --shadow-nav: 7px 5px 5px rgba(0, 0, 255, .2);
-
-  /* size */
-
-  /* animat */
-  --animat: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 .container {
   padding: 0 16px;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+a {
+  text-decoration: none;
+  color: currentColor;
 }

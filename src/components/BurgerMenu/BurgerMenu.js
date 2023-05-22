@@ -7,7 +7,7 @@ import {MobileMenuContainer, MobileMenuHeader, MobileMenuHeaderUser, CloseIconIm
 
 const BurgerMenu = ({ tablet, mobile, active, setActiveBridge, isConnect }) => {
   return (
-    <MobileMenuContainer className={`mobile-menu ${active ? 'active' : ''}`}>
+    <MobileMenuContainer className='mobile-menu' style={{top: active ? '0px' : '-100%'}}>
       <MobileMenuHeader>
         <Logo />
         <CloseIconImg src={CloseIcon} alt="" onClick={() => setActiveBridge(false)} />

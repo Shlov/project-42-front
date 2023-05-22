@@ -27,7 +27,7 @@ export const FriendsList = styled.ul`
     flex-direction: row;
     flex-wrap: wrap;
     gap: 32px;
-  } 
+  }
 
   @media (min-width: 769px) and (max-width: 1280px) {
   }
@@ -92,13 +92,18 @@ export const CardItem = styled.li`
     font-size: 12px;
     line-height: 16px;
     color: var(--cl-black);
-  a{
-    text-decoration: none;
-    color: inherit;
-  }
-    &:hover {
-      cursor: pointer;
-      color: var(--cl-blue-link);
+    position: relative;
+
+    a{
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .time {
+      &:hover {
+        cursor: pointer;
+        color: var(--cl-blue-link);
+      }
     }
   `;
 
@@ -113,3 +118,39 @@ export const CardAdress = styled.address`
     text-decoration: underline;
     }
 `;
+
+export const CardTimeModal = styled.div`
+    border-radius: 20px;
+    background: rgb(255, 255, 255);
+    box-shadow: var(--shadow-default);
+    padding: 19px;
+    position: absolute;
+    z-index: 10;
+    width: 140px;
+
+    .card-time-wrapper {
+      display: flex;
+      justify-content: space-between;
+
+      div {
+        margin: 0 10px;
+        &:last-child {
+          margin: 0;
+        }
+      }
+    }
+
+    span {
+      font-size: 12px;
+      font-weight: 700;
+      margin: 0 10px 0 0;
+
+      &:last-child {
+        margin: 0
+      }
+    }
+`
+
+export const ModalDay = styled.span`
+color: var(--cl-blue-link);
+`

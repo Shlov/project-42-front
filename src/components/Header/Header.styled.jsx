@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
-  background-color: var(--cl-background);
   padding: 31px 16px;
   display: flex;
   justify-content: space-between;
@@ -15,11 +14,9 @@ export const HeaderNav = styled.div`
 
 export const HeaderUser = styled.div`
   display: flex;
-  margin-left: 270px;
 `;
 
 export const MenuBurgerImg = styled.img`
-  margin-right: 160px;
 
   @media screen and (min-width: 767px) {
     margin-left: 24px;
