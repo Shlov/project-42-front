@@ -19,7 +19,6 @@ export const NoticeCategoryItem = ({onTrashModal}) => {
 
   const active = false
 
-  const active = false
 
   return(
     <>
