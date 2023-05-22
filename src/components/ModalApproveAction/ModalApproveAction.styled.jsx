@@ -15,34 +15,52 @@ export const Overlay = styled.div`
 
 export const Modal = styled.div`
   position: relative;
-  width: 608px;
-  height: 354px;
-  background-color: var(--cl-background);
+  width: 280px;
+  height: ${props=> props.height};
+  
+  background-color: var(--cl-white);
   box-shadow: var(--shadow-default);
-  border-radius: 40px;
+  border-radius: 20px;
+
+  @media (min-width: 768px) {
+    width: 608px;
+    height: 354px;
+    border-radius: 40px;
+  }
 `;
+
+export const Content = styled.div`
+  height: 100%;
+`
 
 export const Button = styled.button`
   position: absolute;
-  top: 29px;
-  right: 29px;
+  top: 16px;
+  right: 16px;
 
   padding: 0;
-  background-color: var(--cl-background);
+  background-color: var(--cl-white);
   color: var(--cl-blue-link);
 
   border: none;
   cursor: pointer;
+
+  transition: transform var(--animat);
+
+  @media (min-width: 768px) {
+    top: 29px;
+    right: 29px;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    transform: scale(1.2);
+  }
 `;
 
 export const CloseIcon = styled.svg`
- width: 24px;
+  width: 24px;
   height: 24px;
-   stroke: var(--cl-blue-link);
-  
-  transition: transform var(--animat);
-  &:hover {
-    transform: scale(1.2);
-    
-  }
+  stroke: currentColor;
 `;

@@ -2,7 +2,7 @@
 // Компонент рендерить сторінку з компонентами UserData, Logout та PetsData.
 // Компоненти UserData та  Logout потрібно реалізувати в спільному контейнері."
 
-import { ModalAprooveAction } from 'components/ModalApproveAction/ModalApproveAction';
+import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
 import { useState } from 'react';
 import {
   Arrow,
@@ -21,7 +21,7 @@ import icons from 'images/icons.svg';
 import { ModalCongrats } from 'components/ModalCongrats/ModalCongrats';
 
 export const UserPage = () => {
-  //   toggleModal, яку потрібно передати компоненту ModalAprooveActionб для закриття вікна
+  //   toggleModal, яку потрібно передати компоненту ModalApproveAction для закриття вікна
   const [isOpenModal, setIsOpenModal] = useState(false);
   const dispatch = useDispatch();
 
@@ -37,7 +37,7 @@ export const UserPage = () => {
   return (
     <>
       {isOpenModal && (
-        <ModalAprooveAction onClose={toggleModal}>
+        <ModalApproveAction onClose={toggleModal} height="302px">
           <ModalContent>
             <TitleModal>Already leaving?</TitleModal>
             <ButtonWrap>
@@ -52,7 +52,7 @@ export const UserPage = () => {
               </Button>
             </ButtonWrap>
           </ModalContent>
-        </ModalAprooveAction>
+        </ModalApproveAction>
       )}
 
       <BtnLogout type="button" onClick={toggleModal}>
