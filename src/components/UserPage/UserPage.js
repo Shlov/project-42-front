@@ -18,7 +18,7 @@ import { logOut } from 'Redux/auth/operation';
 
 import LogoutIcon from '../../images/icons/logout.svg';
 import icons from 'images/icons.svg';
-
+import { ModalCongrats } from 'components/ModalCongrats/ModalCongrats';
 
 export const UserPage = () => {
   //   toggleModal, яку потрібно передати компоненту ModalAprooveActionб для закриття вікна
@@ -54,15 +54,13 @@ export const UserPage = () => {
           </ModalContent>
         </ModalAprooveAction>
       )}
-      <BtnLogout
-        type="button"
-        // style={{ marginBottom: '200px', backgroundColor: '#CDDC39' }}
-        onClick={toggleModal}>
-      <img src={LogoutIcon} alt='Button logout'/>LogOut
+
+      <BtnLogout type="button" onClick={toggleModal}>
+        <img src={LogoutIcon} alt="Button logout" />
+        LogOut
       </BtnLogout>
+
+      <ModalCongrats />
     </>
   );
 };
-
-
-
