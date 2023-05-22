@@ -9,14 +9,15 @@ export const Card = styled.div`
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
+    display: flex;
     width: 703px;
     height: 256px;
-    display: flex;
     padding: 20px;
   }
-  @media screen and (min-width: 1268px) {
+  @media  (min-width: 1280px) {
+   display: flex;
     width: 821px;
-    display: flex;
+    
   }
 `;
 export const Photo = styled.img`
@@ -33,7 +34,7 @@ export const Photo = styled.img`
     margin-right: 20px;
     margin-bottom: 0;
   }
-  @media screen and (min-width: 1268px) {
+  @media screen and (min-width: 1280px) {
     width: 161px;
     height: 161px;
     margin-right: 32px;
@@ -47,7 +48,7 @@ max-width: 280px;
     max-width: 515px;
   }
 
-  @media screen and (min-width: 1268px) {
+  @media screen and (min-width: 1280px) {
     max-width: 580px;
   }
 `
@@ -63,7 +64,7 @@ export const Label = styled.p`
   @media screen and (min-width: 768px) {
     margin-bottom: 16px;
   }
-  @media screen and (min-width: 1268px) {
+  @media screen and (min-width: 1280px) {
     margin-bottom: 12px;
     font-size: 16px;
     line-height: 1.38;
@@ -95,7 +96,7 @@ export const LastLabel = styled.p`
     line-height: 1.57;
 
   }
-  @media screen and (min-width: 1268px) {
+  @media screen and (min-width: 1280px) {
     font-size: 16px;
     line-height: 1.38;
 
@@ -122,7 +123,7 @@ export const LastText = styled.span`
   @media screen and (min-width: 768px) {
     line-height: 1.57;
   }
-  @media screen and (min-width: 1268px) {
+  @media screen and (min-width: 1280px) {
     font-size: 16px;
   }
 `;
