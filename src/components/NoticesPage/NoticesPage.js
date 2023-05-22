@@ -18,6 +18,7 @@ import {
   Trash,
 } from './NoticesPage.styled';
 import icons from 'images/icons.svg';
+import { NoticeCategoryList } from 'components/NoticesCategoriesList/NoticesCategoriesList';
 
 export const NoticesPage = () => {
   //   toggleModal, яку потрібно передати компоненту ModalApproveAction для закриття вікна
@@ -33,6 +34,7 @@ export const NoticesPage = () => {
 
   return (
     <>
+      <NoticeCategoryList onTrashModal={toggleModal}/>
       {isOpenModal && (
         <ModalApproveAction onClose={toggleModal} height="389px">
           <ModalContent>
@@ -60,13 +62,6 @@ export const NoticesPage = () => {
           </ModalContent>
         </ModalApproveAction>
       )}
-      <button
-        type="button"
-        style={{ marginBottom: '200px', backgroundColor: '#CDDC39' }}
-        onClick={toggleModal}
-      >
-        Temporary Open Modal
-      </button>
     </>
   );
 };
