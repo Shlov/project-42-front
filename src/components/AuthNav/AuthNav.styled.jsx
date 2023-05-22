@@ -7,6 +7,7 @@ export const AuthNavCss = styled.div`
 
   @media (max-width: 767px) {
     display: block;
+    margin-top: 40px;
   }
 `;
 
