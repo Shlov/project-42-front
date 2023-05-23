@@ -173,13 +173,6 @@ export const NoticesPage = () => {
           </ModalContent>
         </ModalApproveAction>
       )}
-      <button
-        type="button"
-        style={{ marginBottom: '200px', backgroundColor: '#CDDC39' }}
-        onClick={toggleModal}
-      >
-        Temporary Open Modal
-      </button>
       <Filters>
         <div>
           <NoticesCategoriesNav categoriesArr={categoriesArr} setCategoriesArr={setCategoriesArr} categories={categories} category={category} setCategory={setCategory} />
