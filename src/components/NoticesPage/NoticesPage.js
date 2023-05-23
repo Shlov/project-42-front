@@ -14,6 +14,7 @@ import {
   ButtonWrap,
   DescrModal,
   ModalContent,
+  Text,
   TitleModal,
   Trash,
 } from './NoticesPage.styled';
@@ -34,19 +35,15 @@ export const NoticesPage = () => {
 
   return (
     <>
-      <NoticeCategoryList onTrashModal={toggleModal}/>
+      <NoticeCategoryList onTrashModal={toggleModal} />
       {isOpenModal && (
         <ModalApproveAction onClose={toggleModal} height="389px">
           <ModalContent>
             <TitleModal>Delete advertisement?</TitleModal>
             <DescrModal>
-              Are you sure you want to delete{' '}
-              <strong>
-                “Cute dog looking
-                <br /> for a home”?
-              </strong>
-              <br />
-              You can`t undo this action.
+              <Text>Are you sure you want to delete &nbsp;
+              <strong>“Cute dog looking for a home”?&nbsp;</strong></Text>
+              <p>You can`t undo this action.</p>
             </DescrModal>
             <ButtonWrap>
               <Button type="button" aria-label="cancel" onClick={toggleModal}>
