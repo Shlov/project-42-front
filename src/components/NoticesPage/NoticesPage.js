@@ -19,7 +19,8 @@ import {
   ModalContent,
   TitleModal,
   Trash,
-  Filters
+  Filters,
+  Text
 } from './NoticesPage.styled';
 import icons from 'images/icons.svg';
 
@@ -151,13 +152,10 @@ export const NoticesPage = () => {
           <ModalContent>
             <TitleModal>Delete adverstiment?</TitleModal>
             <DescrModal>
-              Are you sure you want to delete{' '}
-              <strong>
-                “Cute dog looking
-                <br /> for a home”?
-              </strong>
-              <br />
-              You can`t undo this action.
+              <Text>Are you sure you want to delete &nbsp;
+                <strong>“Cute dog looking for a home”?&nbsp;</strong>
+              </Text>
+              <p>You can`t undo this action.</p>
             </DescrModal>
             <ButtonWrap>
               <Button type="button" aria-label="cancel" onClick={toggleModal}>
@@ -180,7 +178,7 @@ export const NoticesPage = () => {
         <FindFilter setAges={setAges} ages={ages} setGenders={setGenders} genders={genders} setOpenFilter={setOpenFilter} openFilter={openFilter} />
         <AddPetButton/>
       </Filters>
-      <NoticeCategoryList filteredItems={filteredItems} />
+      <NoticeCategoryList filteredItems={filteredItems} onTrashModal={toggleModal}/>
     </>
   );
 };
