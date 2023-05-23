@@ -7,9 +7,9 @@ export const Wrapper = styled.div`
   margin-right: auto;
   margin-top: 80px;
   width: 280px;
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  box-shadow: var(--shadow-default);
   border-radius: 40px;
-  background-color: #ffffff;
+  background-color: var(--cl-almost-white);
   padding: 40px 12px;
 
   @media screen and (min-width: 768px) {
@@ -53,7 +53,7 @@ export const Title = styled.h2`
   align-items: center;
   text-align: center;
   justify-content: center;
-  color: #111111;
+  color: var(--cl-black);
 
   @media screen and (min-width: 768px) {
     font-weight: 500;
@@ -71,7 +71,16 @@ export const Input = styled(Field)`
   font-size: 16px;
   padding: 12px 16px;
   width: 100%;
-  border: 1px solid #54adff;
+   border: 1px solid ${props => { 
+  if (props.error) {
+    return ('var(--cl-red)');
+  }else if (props.value && !props.error) {
+    return ('var(--cl-green)');
+  } else {
+    return ('var(--cl-blue-link)');
+  }
+  }
+ } ;
   border-radius: 40px;
   cursor: pointer;
   outline: none;
@@ -83,7 +92,7 @@ export const Error = styled(ErrorMessage)`
   left: 18px;
   font-size: 12px;
   font-weight: 400;
-  color: #f28d7c;
+  color: var(--cl-red);
 `;
 
 export const Label = styled.label`
@@ -114,7 +123,7 @@ export const Button = styled.button`
   cursor: pointer;
   background: #54adff;
   margin-bottom: 24px;
-  color: #ffffff;
+  color: var(--cl-almost-white);
 
   @media screen and (min-width: 768px) {
     margin-bottom: 16px;
@@ -126,7 +135,7 @@ export const Text = styled.p`
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0.04em;
-  color: #888888;
+  color: var(--cl-gray);
 `;
 
 export const Span = styled.span`
@@ -134,7 +143,7 @@ export const Span = styled.span`
 `;
 
 export const Link = styled(NavLink)`  
-  color: #54adff;
+  color: var(--cl-blue-link);
   line-height: 16px;
 `;
 
@@ -148,5 +157,72 @@ export const IconPas = styled.span`
 export const SVG = styled.svg`
   margin-left: 8px;
   fill: transparent;
-  stroke: #54adff;
+  stroke: var(--cl-blue-link);
 `;
+
+export const IconOkValidate = styled.span`
+${props => { 
+ if (props.value && !props.error) {
+   return (`position: absolute;
+    cursor: pointer;
+  top: 12px;
+  right: 45px;`);
+  } else {
+    return ('display: none;');
+  }
+  }
+  }`;
+ 
+  export const IconOkValidateMail = styled.span`
+${props => { 
+ if (props.value && !props.error) {
+   return (`position: absolute;
+    cursor: pointer;
+  top: 12px;
+  right: 15px;`);
+  } else {
+    return ('display: none;');
+  }
+  }
+  }`;
+ 
+    export const TextOkValidation = styled.div`
+${props => { 
+ if (props.value && !props.error) {
+   return (`  position: absolute;
+  top: 52px;
+  left: 18px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--cl-green);`);
+  } else {
+    return ('display: none;');
+  }
+  }
+  }`;
+
+      export const IconErrorValidateMail = styled.span`
+${props => { 
+ if (props.error) {
+   return (`position: absolute;
+  top: 12px;
+  right: 15px;
+  color: var(--cl-red);`);
+  } else {
+    return ('display: none;');
+  }
+  }
+  }`;
+
+        export const IconErrorValidate = styled.span`
+${props => { 
+ if (props.error) {
+   return (`position: absolute;
+  top: 12px;
+  right: 45px;
+  color: var(--cl-red);`);
+  } else {
+    return ('display: none;');
+  }
+  }
+  }`;

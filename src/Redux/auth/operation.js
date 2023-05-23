@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 // default Axios URL
-axios.defaults.baseURL = '';
+axios.defaults.baseURL = 'https://fourtwo-back.onrender.com';
 
 // Utility to add JWT
 const setAuthHeader = token => {
@@ -20,7 +20,7 @@ export const userReg = createAsyncThunk(
   'auth/reg',
   async (formData, thunkAPI) => {       
     try {
-      const response = await axios.post('/register', formData);
+      const response = await axios.post('/auth/register', formData);
       setAuthHeader(response.data.token);
       return response.data;
     } catch (e) {
@@ -32,9 +32,8 @@ export const userReg = createAsyncThunk(
 export const userLogin = createAsyncThunk(
   'auth/login',
   async (formData, thunkAPI) => {
-    console.log(formData)
     try {
-      const response = await axios.post('/login', formData);
+      const response = await axios.post('/auth/login', formData);
       setAuthHeader(response.data.token);
       return response.data;
     } catch (e) {
