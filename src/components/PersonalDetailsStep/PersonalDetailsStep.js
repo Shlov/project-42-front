@@ -34,6 +34,10 @@ const PersonalDetailsStep = ({
     // Validate breed field
     if (!values.breed) {
       formErrors.breed = 'Breed is required';
+    } else if (values.breed.length < 2) {
+      formErrors.breed = 'Breed must be at least 2 characters';
+    } else if (values.breed.length > 16) {
+      formErrors.breed = 'Breed must be at most 16 characters';
     }
 
     return formErrors;

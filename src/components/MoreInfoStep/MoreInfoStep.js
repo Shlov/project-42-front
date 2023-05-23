@@ -31,6 +31,10 @@ const MoreInfoStep = ({ onBack, selectedCategory, setFormValues }) => {
     // Validate breed field
     if (!values.comments) {
       formErrors.comments = 'Comments are required';
+    } else if (values.comments.length < 8) {
+      formErrors.comments = 'Comments must be at least 8 characters';
+    } else if (values.comments.length > 120) {
+      formErrors.comments = 'Comments must be at most 120 characters';
     }
     return formErrors;
   }, [selectedCategory, values]);
