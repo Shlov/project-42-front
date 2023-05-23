@@ -5,6 +5,12 @@ export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 auto;
+
+@media (min-width: 991px) {
+    width: 1280px;
+  }
+  
 `;
 
 export const HeaderNav = styled.div`
