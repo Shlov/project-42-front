@@ -11,7 +11,6 @@ export const Button = styled.button`
   font-weight: 700;
   width: 152px;
   height: 40px;
-  font-family: "Manrope", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;

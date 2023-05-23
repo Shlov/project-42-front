@@ -75,4 +75,9 @@ export const Filters = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (min-width: 991px) {
+    width: 1280px;
+    margin: 0 auto;
+  }
 `

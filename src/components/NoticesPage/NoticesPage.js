@@ -11,6 +11,7 @@ import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAc
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav'
 import { FindFilter } from 'components/NoticesFilters/NoticesFilters'
 import { NoticeCategoryList } from 'components/NoticesCategoriesList/NoticesCategoriesList';
+import AddPetButton from 'components/AddPetButton/AddPetButton'
 import {
   Button,
   ButtonWrap,
@@ -172,18 +173,12 @@ export const NoticesPage = () => {
           </ModalContent>
         </ModalApproveAction>
       )}
-      <button
-        type="button"
-        style={{ marginBottom: '200px', backgroundColor: '#CDDC39' }}
-        onClick={toggleModal}
-      >
-        Temporary Open Modal
-      </button>
       <Filters>
         <div>
           <NoticesCategoriesNav categoriesArr={categoriesArr} setCategoriesArr={setCategoriesArr} categories={categories} category={category} setCategory={setCategory} />
         </div>
         <FindFilter setAges={setAges} ages={ages} setGenders={setGenders} genders={genders} setOpenFilter={setOpenFilter} openFilter={openFilter} />
+        <AddPetButton/>
       </Filters>
       <NoticeCategoryList filteredItems={filteredItems} />
     </>
