@@ -20,7 +20,7 @@ export const Button = styled.button`
   border-radius: 40px;
   transition: background-color 250ms ease-in-out 0s, color 250ms ease-in-out 0s;
   cursor: pointer;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 
   &:hover {
     background: var(--gr-blue);
