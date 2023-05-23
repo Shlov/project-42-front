@@ -20,6 +20,7 @@ export const Button = styled.button`
   border-radius: 40px;
   transition: background-color 250ms ease-in-out 0s, color 250ms ease-in-out 0s;
   cursor: pointer;
+  margin-bottom: 20px;
 
   &:hover {
     background: var(--gr-blue);
@@ -48,8 +49,6 @@ export const FilterSelect = styled.div`
   border-radius: 20px;
   position: absolute;
   z-index: 100;
-  right: 16px;
-  top: 175px;
 `
 
 export const FilterSelectTitle = styled.h3`

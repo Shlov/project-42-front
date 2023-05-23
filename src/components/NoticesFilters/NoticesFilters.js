@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, FilterCSS, FilterSelect, FilterSelectTitle, FiltersButton, FiltersChevron, FiltersRound } from './NoticesFilter.styled'
+import { Button, FilterCSS, FilterSelect, FilterSelectTitle, FiltersButton, FiltersChevron, FiltersRound, FilterWrapper } from './NoticesFilter.styled'
 import icons from 'images/icons.svg';
 
 export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, openFilter }) => {
@@ -41,7 +41,7 @@ export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, 
   }
 
   return (
-    <>
+    <FilterWrapper>
       <Button onClick={handleOpenFilter}>
         Filter
         <FilterCSS width="21" height="24" />
@@ -82,6 +82,6 @@ export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, 
         </FilterSelect>
         : null
       }
-    </>
+    </FilterWrapper>
   )
 }
