@@ -73,6 +73,4 @@ export const ButtonRegister = styled.button`
 export const PawCss = styled.svg`
   fill: currentColor;
   margin-left: 8px;
-  width: 21px;
-  height: 24px;
 `;
