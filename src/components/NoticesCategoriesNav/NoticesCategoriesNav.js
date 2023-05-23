@@ -1,11 +1,21 @@
-// Компонент рендерить блок навіції з маршрутами:
-//   - /notices/sell -  відкриває на сторінці компонент NoticesCategoryList зі списком оголошеннь з продажу
-//   - /notices/lost-found - відкриває на сторінці компонент NoticesCategoryList зі списком оголошеннь з знайшов/шукаю
-//   - /notices/for-free - відкриває на сторінці компонент NoticesCategoryList зі списком оголошеннь з віддам в добрі руки
+import {Button} from './NoticesCategoriesNav.styled'
 
-// Авторизований користувач
+export const NoticesCategoriesNav = ({ setCategoriesArr, categoriesArr, categories, category, setCategory }) => {
+  const handleCategory = (categoryItem) => {
+    if (categoriesArr.includes(categoryItem.text)) {
+      setCategoriesArr(categoriesArr.filter(cat => cat !== categoryItem.text));
+    } else {
+      setCategoriesArr([...categoriesArr, categoryItem.text]);
+    }
+  }
 
-// Компонент рендерить блок навігації з маршрутами:
-//   - /notices/favorite -  відкриває на сторінці компонент NoticesCategoryList зі списком оголошень, доданих до обраних
-//   - /notices/own - відкриває на сторінці компонент NoticesCategoryList зі списком оголошень, створених користувачем
-
+  return (
+    <>
+      {categories.map((cat, i) => (
+        <Button key={i} onClick={() => handleCategory(cat)}>
+          {cat.text}
+        </Button>
+      ))}
+    </>
+  );
+}

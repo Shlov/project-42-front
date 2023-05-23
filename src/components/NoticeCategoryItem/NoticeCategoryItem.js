@@ -14,10 +14,13 @@
 import { Card, FavoriteBtn, DeleteBtn, CategoryTag, ImageWrapper, DescriptionWrapper, Title, Image, TagItem, TagList, MoreBtn, SvgIcon, HeartIcon, TrashIcon } from "./NoticeCategoryItem.styled";
 
 import icon from '../../images/icons.svg';
+import { useState } from "react";
+import { ModalNotice } from "components/ModalNotice/ModalNotice";
 
 export const NoticeCategoryItem = ({onTrashModal, item}) => {
 
   const active = false
+
 
   const agePet = (birthday) => {
     const nowDate = new Date();
@@ -37,6 +40,12 @@ export const NoticeCategoryItem = ({onTrashModal, item}) => {
     };
     
   }
+
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const toggleModal = () => {
+    setIsOpenModal(isOpen => !isOpen);
+  };
 
 
   return(
@@ -79,8 +88,9 @@ export const NoticeCategoryItem = ({onTrashModal, item}) => {
 
         <DescriptionWrapper>
           <Title>{item.title ? item.title : 'Cute fox looking for a home'}</Title>
-          <MoreBtn onClick={()=> console.log('learn more')}>Learn more</MoreBtn>
+          <MoreBtn onClick={toggleModal}>Learn more</MoreBtn>
         </DescriptionWrapper>
+        {isOpenModal&& <ModalNotice onClose={toggleModal}/>}
       </Card>
     </>
   )

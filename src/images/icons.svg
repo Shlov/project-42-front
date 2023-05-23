@@ -89,5 +89,11 @@
 <symbol id="trash" viewBox="0 0 32 32">
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2" d="M24 8v16c0 1.473-1.194 2.667-2.667 2.667h-10.667c-1.473 0-2.667-1.194-2.667-2.667v-16M20 8v-1.333c0-1.473-1.194-2.667-2.667-2.667h-2.667c-1.473 0-2.667 1.194-2.667 2.667v1.333M5.333 8h21.333M13.333 13.333v8M18.667 13.333v8"></path>
 </symbol>
+<symbol id="shape" viewBox="0 0 18 13">
+<path  d="M17.0001 1L6.0001 12L1 7" stroke="#00C3AD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+<symbol id="error" viewBox="0 0 24 24">
+<path d="M19 5L5 19M5.00004 5L19 19" stroke="#F43F5E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
 </defs>
 </svg>

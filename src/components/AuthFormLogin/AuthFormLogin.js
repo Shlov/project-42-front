@@ -25,6 +25,11 @@ import {
   Label,
   IconPas,
   SVG,
+  IconOkValidate,
+  IconOkValidateMail,
+  TextOkValidation,
+  IconErrorValidateMail,
+  IconErrorValidate,
 } from '../AuthFormRegister/AuthFormRegister.styled';
 
 const yupLoginValidation = yup.object().shape({
@@ -64,7 +69,6 @@ export const LogForm = () => {
   const [toggleIconPass, setToggleIconPass] = useState(eyeCosed);
   const [typePass, setTypePass] = useState('password');
 
-
   const togglePassInput = e => {
     if (typePass === 'password') {
       setTypePass('text');
@@ -75,16 +79,15 @@ export const LogForm = () => {
     }
   };
 
-
-
   const initialValue = {
     email: '',
     password: '',
   };
+
   const dispatch = useDispatch();
-  const handleSubmit = (values, { resetForm }) => {
+  const handleSubmit = (values, props) => {
     dispatch(userLogin(values));
-    resetForm();
+    props.resetForm();
   };
 
   return (
@@ -94,37 +97,93 @@ export const LogForm = () => {
         validationSchema={yupLoginValidation}
         onSubmit={handleSubmit}
       >
-        <StyledForm>
-          <Title>Login</Title>
-          <Box>
-            <Label>
-              <Input
-                placeholder="Email"
-                label="Email"
-                type="Email"
-                name="email"
-              />
-              <Error component="div" name="email" />
-            </Label>
-            <Label>
-              <Input
-                placeholder="Password"
-                label="Password"
-                name="password"
-                type={typePass}
-              />
-              <IconPas onClick={togglePassInput}>{toggleIconPass}</IconPas>
-              <Error component="div" name="password" /> 
-            </Label>
-          </Box>
-          <Button type="submit">Login</Button>
-          <Text>
-            Already have an account?
-            <Span>
-              <Link to="/register">Registration</Link>
-            </Span>
-          </Text>
-        </StyledForm>
+        {props => {
+          return (
+            <StyledForm>
+              <Title>Login</Title>
+              <Box>
+                <Label>
+                  <Input
+                    placeholder="Email"
+                    label="Email"
+                    type="Email"
+                    name="email"
+                    error={props.errors.email}
+                    value={props.values.email}
+                  />
+                  <IconErrorValidateMail
+                    value={props.values.email}
+                    error={props.errors.email}
+                  >
+                    {' '}
+                    <svg width={24} height={24}>
+                      <use href={icons + '#error'}></use>
+                    </svg>
+                  </IconErrorValidateMail>
+                  <IconOkValidateMail
+                    value={props.values.email}
+                    error={props.errors.email}
+                  >
+                    {' '}
+                    <svg width={24} height={24}>
+                      <use href={icons + '#shape'}></use>
+                    </svg>
+                  </IconOkValidateMail>
+                  <TextOkValidation
+                    value={props.values.email}
+                    error={props.errors.email}
+                  >
+                    Mail is secure
+                  </TextOkValidation>
+                  <Error component="div" name="email" />
+                </Label>
+                <Label>
+                  <Input
+                    placeholder="Password"
+                    label="Password"
+                    name="password"
+                    type={typePass}
+                    error={props.errors.password}
+                    value={props.values.password}
+                  />
+                  <IconPas onClick={togglePassInput}>{toggleIconPass}</IconPas>
+                  <IconErrorValidate
+                    value={props.values.password}
+                    error={props.errors.password}
+                  >
+                    {' '}
+                    <svg width={24} height={24}>
+                      <use href={icons + '#error'}></use>
+                    </svg>
+                  </IconErrorValidate>
+                  <IconOkValidate
+                    value={props.values.password}
+                    error={props.errors.password}
+                  >
+                    {' '}
+                    <svg width={24} height={24}>
+                      <use href={icons + '#shape'}></use>
+                    </svg>
+                  </IconOkValidate>
+                  <TextOkValidation
+                    value={props.values.password}
+                    error={props.errors.password}
+                  >
+                    Password is secure
+                  </TextOkValidation>
+                  <Error component="div" name="password" />
+                </Label>
+              </Box>
+              <Button type="submit">Login</Button>
+              <Text>
+                Already have an account?
+                <Span>
+                  <Link to="/register">Registration</Link>
+                </Span>
+              </Text>
+            </StyledForm>
+          );
+        }}
       </Formik>
     </Wrapper>
   );

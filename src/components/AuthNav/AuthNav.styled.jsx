@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { ReactComponent as Paw } from '../../images/icons/pawprint 1.svg';
 export const AuthNavCss = styled.div`
   display: flex;
   gap: 20px;
@@ -71,7 +70,7 @@ export const ButtonRegister = styled.button`
 
 `;
 
-export const PawCss = styled(Paw)`
+export const PawCss = styled.svg`
   fill: currentColor;
   margin-left: 8px;
 `;
