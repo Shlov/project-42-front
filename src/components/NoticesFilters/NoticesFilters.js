@@ -1,9 +1,7 @@
 import { useState } from 'react'
-import { Button, FilterCSS, FilterSelect, FilterSelectTitle, FiltersButton } from './NoticesFilter.styled'
-import { ReactComponent as ArrowDown} from '../../images/icons/chevron-down.svg'
-import { ReactComponent as ArrowUp} from '../../images/icons/chevron-up.svg'
-import { ReactComponent as Round } from '../../images/icons/round.svg'
-import { ReactComponent as CheckRound } from '../../images/icons/check-round.svg'
+import { Button, FilterCSS, FilterSelect, FilterSelectTitle, FiltersButton, FiltersChevron, FiltersRound } from './NoticesFilter.styled'
+import icons from 'images/icons.svg';
+// import { svg } from '@cloudinary/url-gen/qualifiers/format';
 
 export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, openFilter }) => {
   const [activeAgeButton, setActiveAgeButton] = useState(false)
@@ -54,14 +52,14 @@ export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, 
           <FilterSelectTitle>Filter</FilterSelectTitle>
           <FiltersButton>
             <div onClick={() => setActiveAgeButton(!activeAgeButton)} style={{marginBottom: activeAgeButton ? '16px' : '0px'}}>
-              {activeAgeButton ? <ArrowUp /> : <ArrowDown />}
+              {activeAgeButton ? <FiltersChevron><use href={icons + '#chevron-up'} /></FiltersChevron> : <FiltersChevron><use href={icons + '#chevron-down'} /></FiltersChevron>}
               <p>By age</p>
             </div>
               {filters.age.items.map((item, i) =>
                 activeAgeButton ?
                   <label key={i} htmlFor={item}>
                     <input type="checkbox" name={filters.age.name} id={item} onChange={(event) => handleAges(event, item)} />
-                    {ages.includes(item) ? <CheckRound /> : <Round />}
+                    {ages.includes(item) ? <FiltersRound><use href={icons + '#check-round'} /></FiltersRound> : <FiltersRound><use href={icons + '#round'} /></FiltersRound>}
                     {item}
                   </label>
                 : null
@@ -69,14 +67,14 @@ export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, 
           </FiltersButton>
           <FiltersButton>
             <div onClick={() => setActiveGenderButton(!activeGenderButton)} style={{marginBottom: activeGenderButton ? '16px' : '0px'}}>
-              {activeGenderButton ? <ArrowUp /> : <ArrowDown />}
+              {activeGenderButton ? <FiltersChevron><use href={icons + '#chevron-up'} /></FiltersChevron> : <FiltersChevron><use href={icons + '#chevron-down'} /></FiltersChevron>}
               <p>By gender</p>
             </div>
               {filters.gender.items.map((item, i) =>
                 activeGenderButton ?
                   <label key={i} htmlFor={item}>
                     <input type="checkbox" name={filters.gender.name} id={item} onChange={(event) => handleGender(event, item)} />
-                    {genders.includes(item) ? <CheckRound /> : <Round />}
+                    {genders.includes(item) ? <FiltersRound><use href={icons + '#check-round'} /></FiltersRound> : <FiltersRound><use href={icons + '#round'} /></FiltersRound>}
                     {item}
                   </label>
                 : null
