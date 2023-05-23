@@ -14,10 +14,9 @@ export const Card = styled.div`
     height: 256px;
     padding: 20px;
   }
-  @media  (min-width: 1280px) {
-   display: flex;
+  @media (min-width: 1280px) {
+    display: flex;
     width: 821px;
-    
   }
 `;
 export const Photo = styled.img`
@@ -42,16 +41,16 @@ export const Photo = styled.img`
 `;
 
 export const Description = styled.div`
-max-width: 280px;
+  max-width: 280px;
 
-@media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     max-width: 515px;
   }
 
   @media screen and (min-width: 1280px) {
     max-width: 580px;
   }
-`
+`;
 
 export const Label = styled.p`
   margin: 0;
@@ -90,16 +89,12 @@ export const LastLabel = styled.p`
   line-height: 1.36;
   letter-spacing: 0.04em;
 
-
-  
   @media screen and (min-width: 768px) {
     line-height: 1.57;
-
   }
   @media screen and (min-width: 1280px) {
     font-size: 16px;
     line-height: 1.38;
-
   }
 `;
 
@@ -150,10 +145,84 @@ export const Icon = styled.svg`
   height: 24px;
   top: 0;
   right: 0;
-  fill: var(--cl-blue-link);
+  stroke: var(--cl-blue-link);
+  fill: transparent;
 
   @media screen and (min-width: 768px) {
     top: 0;
     right: 0;
   }
+`;
+
+export const ModalContainer = styled.div`
+  padding: 60px 5px 60px 5px;
+  color: var(--cl-black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  letter-spacing: -0.01em;
+`;
+export const ModalTitle = styled.h1`
+  font-weight: 700;
+  font-size: 28px;
+  text-align: center;
+  line-height: 1.36;
+  padding: 0;
+  margin: 0px;
+  margin-bottom: 40px;
+`;
+
+export const ModalText = styled.p`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.38;
+  text-align: center;
+  margin-bottom: 48px;
+`;
+export const ModalItem = styled.span`
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.38;
+  text-align: center;
+`;
+
+export const ModalButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 17px;
+`;
+
+export const Button = styled.button`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  width: 129px;
+  height: 40px;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+
+  border: 2px solid var(--cl-blue-link);
+  border-radius: 40px;
+  color: var(--cl-blue-link);
+  background-color: var(--cl-background);
+
+  transition: background-color var(--animat), color var(--animat),
+    border-color var(--animat);
+
+  &:hover {
+    background-color: var(--cl-blue-link);
+    color: var(--cl-background);
+}
+`;
+
+export const ModalIcon = styled.svg`
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  fill: transparent;
 `;

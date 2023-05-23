@@ -1,24 +1,28 @@
-import { NavLink} from 'react-router-dom';
+// import { NavLink} from 'react-router-dom';
 
 import { PetsList } from 'components/PetsList/PetsList';
-import { Container } from './PetsData.styled';
-import { useState } from 'react';
+import { Container, AddButton, AddIcon } from './PetsData.styled';
+// import { useState } from 'react';
+import icons from 'images/icons.svg';
 
 export const PetsData = () => {
-  const [showLinkText, setShowLinkText] = useState(true);
-  const handleClick = () => {
-    setShowLinkText(false);
-  };
+  // const [showLinkText, setShowLinkText] = useState(true);
+  // const handleClick = () => {
+  //   setShowLinkText(false);
+  // };
 
   return (
     <div>
       <Container>
-        <p>My Pets</p>
-        {showLinkText ? (
+        <h2>My Pets</h2>
+        {/* <div>{showLinkText ? (
           <NavLink to="/add-pet" onClick={handleClick}>
             Add Pet
           </NavLink>
-        ) : null}
+        ) : null}</div> */}
+      <AddButton type='button'>Add Pet<AddIcon>
+                  <use href={icons + '#plus-small'} />
+                </AddIcon></AddButton>
       </Container>
       <PetsList />
     </div>
