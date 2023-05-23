@@ -11,6 +11,7 @@ import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAc
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav'
 import { FindFilter } from 'components/NoticesFilters/NoticesFilters'
 import { NoticeCategoryList } from 'components/NoticesCategoriesList/NoticesCategoriesList';
+import AddPetButton from 'components/AddPetButton/AddPetButton'
 import {
   Button,
   ButtonWrap,
@@ -18,7 +19,8 @@ import {
   ModalContent,
   TitleModal,
   Trash,
-  Filters
+  Filters,
+  Text
 } from './NoticesPage.styled';
 import icons from 'images/icons.svg';
 
@@ -150,13 +152,10 @@ export const NoticesPage = () => {
           <ModalContent>
             <TitleModal>Delete adverstiment?</TitleModal>
             <DescrModal>
-              Are you sure you want to delete{' '}
-              <strong>
-                “Cute dog looking
-                <br /> for a home”?
-              </strong>
-              <br />
-              You can`t undo this action.
+              <Text>Are you sure you want to delete &nbsp;
+                <strong>“Cute dog looking for a home”?&nbsp;</strong>
+              </Text>
+              <p>You can`t undo this action.</p>
             </DescrModal>
             <ButtonWrap>
               <Button type="button" aria-label="cancel" onClick={toggleModal}>
@@ -172,20 +171,14 @@ export const NoticesPage = () => {
           </ModalContent>
         </ModalApproveAction>
       )}
-      <button
-        type="button"
-        style={{ marginBottom: '200px', backgroundColor: '#CDDC39' }}
-        onClick={toggleModal}
-      >
-        Temporary Open Modal
-      </button>
       <Filters>
         <div>
           <NoticesCategoriesNav categoriesArr={categoriesArr} setCategoriesArr={setCategoriesArr} categories={categories} category={category} setCategory={setCategory} />
         </div>
         <FindFilter setAges={setAges} ages={ages} setGenders={setGenders} genders={genders} setOpenFilter={setOpenFilter} openFilter={openFilter} />
+        <AddPetButton/>
       </Filters>
-      <NoticeCategoryList filteredItems={filteredItems} />
+      <NoticeCategoryList filteredItems={filteredItems} onTrashModal={toggleModal}/>
     </>
   );
 };
