@@ -142,13 +142,13 @@ export const NoticesPage = () => {
   };
 
   const handleAction = () => {
-    console.log('Передаємо екшн');
+    console.log('Видаляємо notice');
   };
 
   return (
     <>
       {isOpenModal && (
-        <ModalApproveAction onClose={toggleModal}>
+        <ModalApproveAction onClose={toggleModal} height="389px">
           <ModalContent>
             <TitleModal>Delete adverstiment?</TitleModal>
             <DescrModal>
@@ -161,7 +161,7 @@ export const NoticesPage = () => {
               <Button type="button" aria-label="cancel" onClick={toggleModal}>
                 Cancel
               </Button>
-              <Button type="button" aria-label="yes" onClick={handleAction}>
+              <Button type="button" aria-label="delete" onClick={handleAction}>
                 Yes
                 <Trash>
                   <use href={icons + '#trash'} />

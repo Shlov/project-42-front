@@ -22,6 +22,7 @@ export const Modal = styled.div`
   box-shadow: var(--shadow-default);
   border-radius: 20px;
 
+
   @media (min-width: 768px) {
     width: 608px;
     height: 354px;
