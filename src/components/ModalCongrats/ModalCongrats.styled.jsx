@@ -5,15 +5,14 @@ export const ModalContent = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-  padding-top: 68px;
-  padding-bottom: 60px;
+  padding: 68px 0 60px;
 
   font-style: normal;
   letter-spacing: 0.04em;
   color: var(--cl-black);
 
   @media (min-width: 768px) {
-    padding-top: 60px;
+    padding: 60px 0 60px;
   }
 `;
 
