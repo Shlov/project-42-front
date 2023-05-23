@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Button, FilterCSS, FilterSelect, FilterSelectTitle, FiltersButton, FiltersChevron, FiltersRound } from './NoticesFilter.styled'
 import icons from 'images/icons.svg';
-// import { svg } from '@cloudinary/url-gen/qualifiers/format';
 
 export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, openFilter }) => {
   const [activeAgeButton, setActiveAgeButton] = useState(false)
