@@ -13,6 +13,7 @@ export const Card = styled.div`
     width: 703px;
     height: 256px;
     padding: 20px;
+    border-radius: 40px;
   }
   @media (min-width: 1280px) {
     display: flex;
@@ -37,6 +38,7 @@ export const Photo = styled.img`
     width: 161px;
     height: 161px;
     margin-right: 32px;
+    border-radius: 40px;
   }
 `;
 
@@ -77,8 +79,9 @@ export const Breed = styled.p`
   line-height: 1.36;
   letter-spacing: 0.04em;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1280px) {
     margin-bottom: 16px;
+    font-size: 16px;
   }
 `;
 
@@ -105,6 +108,11 @@ export const Text = styled.span`
   line-height: 1.36;
   letter-spacing: 0.04em;
   width: 240px;
+
+  @media screen and (min-width: 1280px) {
+    font-size: 16px;
+    
+  }
 `;
 export const LastText = styled.span`
   margin: 0;
@@ -205,6 +213,7 @@ export const Button = styled.button`
   height: 40px;
   letter-spacing: 0.04em;
   font-weight: 700;
+  cursor: pointer;
 
   border: 2px solid var(--cl-blue-link);
   border-radius: 40px;
