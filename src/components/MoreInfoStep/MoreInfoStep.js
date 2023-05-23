@@ -1,6 +1,74 @@
+import { useState, useCallback, useEffect } from 'react';
+import { Field, ErrorMessage, useFormikContext } from 'formik';
 import ImageInput from 'components/ImageInput/ImageInput';
-import { Field, ErrorMessage } from 'formik';
-const MoreInfoStep = ({ onBack, selectedCategory }) => {
+const MoreInfoStep = ({ onBack, selectedCategory, setFormValues }) => {
+  const { values, setTouched } = useFormikContext();
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  // Function to validate form fields. useCallback is used to memoize the validateFields function
+  const validateFields = useCallback(() => {
+    let formErrors = {};
+
+    if (selectedCategory !== 'your-pet') {
+      if (!values.sex) {
+        formErrors.sex = 'Sex is required';
+      }
+      if (!values.location) {
+        formErrors.location = 'Location is required';
+      }
+    }
+
+    if (selectedCategory === 'sell') {
+      if (!values.price) {
+        formErrors.price = 'Price is required';
+      }
+    }
+
+    if (!values.avatar) {
+      formErrors.avatar = 'Avatar is required';
+    }
+
+    // Validate breed field
+    if (!values.comments) {
+      formErrors.comments = 'Comments are required';
+    } else if (values.comments.length < 8) {
+      formErrors.comments = 'Comments must be at least 8 characters';
+    } else if (values.comments.length > 120) {
+      formErrors.comments = 'Comments must be at most 120 characters';
+    }
+    return formErrors;
+  }, [selectedCategory, values]);
+
+  // Handle next button click
+  const handleSubmitClick = () => {
+    setTouched({
+      sex: true,
+      location: true,
+      price: true,
+      avatar: true,
+      comments: true,
+    });
+
+    const formErrors = validateFields();
+
+    if (Object.keys(formErrors).length === 0) {
+      setFormValues(prevState => ({
+        ...prevState,
+        sex: values.sex,
+        location: values.location,
+        price: values.price,
+        avatar: values.avatar,
+        comments: values.comments,
+      }));
+    }
+  };
+
+  // Update disabled state based on form field validation
+  useEffect(() => {
+    const formErrors = validateFields();
+    setIsDisabled(Object.keys(formErrors).length > 0);
+  }, [values, selectedCategory, validateFields]); //  When any of these values change, the effect will run again to update the disabled state
+
   return (
     <>
       {/*     {/* Fields "sex" and "location" are only for the "sell" and "lost" categories */}
@@ -62,17 +130,10 @@ const MoreInfoStep = ({ onBack, selectedCategory }) => {
       )}
 
       <div>
-        {selectedCategory === 'your-pet' ? (
-          <label>
-            Add photo
-            <Field name="avatar" component={ImageInput} />
-          </label>
-        ) : (
-          <label>
-            Load the pet’s image:
-            <Field name="avatar" component={ImageInput} />
-          </label>
-        )}
+        <label>
+          Load the pet’s image:
+          <Field name="avatar" component={ImageInput} />
+        </label>
         <ErrorMessage name="avatar" component="div" className="error-message" />
       </div>
       {/* Field "comments" for additional comments */}
@@ -98,7 +159,9 @@ const MoreInfoStep = ({ onBack, selectedCategory }) => {
         Back
       </button>
       {/* Button to submit the form */}
-      <button type="submit">Done</button>
+      <button type="submit" onClick={handleSubmitClick} disabled={isDisabled}>
+        Done
+      </button>
     </>
   );
 };

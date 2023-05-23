@@ -49,19 +49,20 @@ const validationSchema = object().shape({
   }),
 
   location: string()
-    .required('Location is required')
     .matches(
-      /^[a-zA-Z\s,]+$/,
+      /^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$/,
       'Invalid location format. Please use city names only.'
-    ),
+    )
+    .min(2, 'City name must be at least 2 characters')
+    .required('Location is required'),
   price: number()
-    .required('Price is required')
     .min(0, 'Price must be a positive number')
-    .integer('Price must be an integer'),
+    .integer('Price must be an integer')
+    .required('Price is required'),
   comments: string()
     .min(8, 'Comments must be at least 8 characters')
     .max(120, 'Comments must be at most 120 characters')
-    .required(),
+    .required('Comments are required'),
 
   title: string()
     .min(2, 'Title must be at least 2 characters')
@@ -129,21 +130,44 @@ const AddPetForm = () => {
     setStep(prevStep => prevStep - 1);
   };
 
-  const handleSubmit = values => {
-    console.log(values);
-    // const formData = new FormData();
-    // // Append text data to the FormData object
-    // formData.append('category', values.category);
-    // formData.append('name', values.name);
-    // formData.append('date', values.date);
-    // formData.append('breed', values.breed);
-    // formData.append('sex', values.sex);
-    // formData.append('location', values.location);
-    // formData.append('price', values.price);
-    // formData.append('comments', values.comments);
-    // // Append file data to the FormData object
-    // formData.append('avatar', values.avatar);
-    // console.log('formData', formData);
+  const handleSubmit = () => {
+    const formData = new FormData();
+
+    formData.append('category', formValues.category);
+    formData.append('name', formValues.name);
+    formData.append('date', formValues.date);
+    formData.append('breed', formValues.breed);
+    formData.append('avatar', formValues.avatar);
+    formData.append('comments', formValues.comments);
+
+    if (formValues.category === 'your-pet') {
+      // dispatch(addMyPet(formData))
+      return;
+    }
+
+    formData.append('title', formValues.title);
+    formData.append('sex', formValues.sex);
+    formData.append('location', formValues.location);
+
+    if (formValues.category === 'lost-found') {
+      // dispatch(addNotice({ category: 'lost-found', formData }));
+      return;
+    }
+
+    if (formValues.category === 'for-free') {
+      // dispatch(addNotice({ category: 'in-good-hands', formData }));
+      return;
+    }
+
+    formData.append('price', formValues.price);
+    for (let pair of formData.entries()) {
+      console.log(pair[0] + ': ' + pair[1]);
+    }
+
+    if (formValues.category === 'sell') {
+      // dispatch(addNotice({ category: 'sell', formData }));
+      return;
+    }
   };
 
   const renderStepContent = step => {
@@ -170,6 +194,7 @@ const AddPetForm = () => {
           <MoreInfoStep
             onBack={handleBack}
             selectedCategory={selectedCategory}
+            setFormValues={setFormValues}
           />
         );
       default:
