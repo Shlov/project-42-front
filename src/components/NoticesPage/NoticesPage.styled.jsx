@@ -28,8 +28,6 @@ export const DescrModal = styled.p`
   font-size: 16px;
   line-height: 22px;
   text-align: center;
-
-  margin-bottom: 48px;
 `;
 
 export const ButtonWrap = styled.div`
@@ -72,3 +70,9 @@ export const Trash = styled.svg`
   stroke: currentColor;
   fill: transparent;
 `;
+
+export const Filters = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`

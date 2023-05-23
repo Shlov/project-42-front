@@ -1,4 +1,4 @@
-import { ModalAprooveAction } from 'components/ModalApproveAction/ModalApproveAction';
+import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
 import { useState } from 'react';
 
 import icons from 'images/icons.svg';
@@ -11,7 +11,7 @@ import {
 } from './ModalCongrats.styled';
 
 export const ModalCongrats = () => {
-    // toggleModal, яку потрібно передати компоненту ModalAprooveActionб для закриття вікна
+    // toggleModal, яку потрібно передати компоненту ModalApproveAction для закриття вікна
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const toggleModal = () => {
@@ -25,10 +25,10 @@ export const ModalCongrats = () => {
   return (
     <>
       {isOpenModal && (
-        <ModalAprooveAction onClose={toggleModal}>
+        <ModalApproveAction onClose={toggleModal} height="287px"> 
           <ModalContent>
             <TitleModal>Congrats!</TitleModal>
-            <DescrModal>Youre registration is success</DescrModal>
+            <DescrModal>You`re registration is success</DescrModal>
 
             <Button
               type="button"
@@ -41,7 +41,7 @@ export const ModalCongrats = () => {
               </PawPrint>
             </Button>
           </ModalContent>
-        </ModalAprooveAction>
+        </ModalApproveAction>
       )}
       <button
         type="button"

@@ -4,7 +4,7 @@
 
 //  Всі поля форми валідуються і виводять користувачу відповідну інформацію у випадку, якщо введене значення невалідне
 
-//  Після реєстрації користувач повинен бути переадресований на сторінку UserPage з одночасним відкриттям модального вікна-вітання ModalCongrats. Якщо з бекенда було отримано помилку реєстрації - користувачу необхідно вивести  відповідну інформацію і вигляді нотіфікації 
+//  Після реєстрації користувач повинен бути переадресований на сторінку UserPage з одночасним відкриттям модального вікна-вітання ModalCongrats. Якщо з бекенда було отримано помилку реєстрації - користувачу необхідно вивести  відповідну інформацію і вигляді нотіфікації
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { userReg } from 'Redux/auth/operation';
@@ -24,6 +24,11 @@ import {
   Label,
   IconPas,
   SVG,
+  IconOkValidate,
+  IconOkValidateMail,
+  TextOkValidation,
+  IconErrorValidateMail,
+  IconErrorValidate,
 } from './AuthFormRegister.styled';
 import icons from 'images/icons.svg';
 
@@ -96,14 +101,14 @@ export const RegForm = () => {
     confirmPassword: '',
   };
   const dispatch = useDispatch();
-  const handleSubmit = (values, { resetForm }) => {
+  const handleSubmit = (values, props) => {
     dispatch(
       userReg({
         email: values.email,
         password: values.password,
       })
     );
-    resetForm();
+    props.resetForm();
   };
 
   return (
@@ -113,49 +118,131 @@ export const RegForm = () => {
         validationSchema={yupRegValidation}
         onSubmit={handleSubmit}
       >
-        <StyledForm>
-          <Title>Registration</Title>
-          <Box>
-            <Label>
-              <Input
-                placeholder="Email"
-                label="Email"
-                type="Email"
-                name="email"
-              />
-              <Error component="div" name="email" />
-            </Label>
-            <Label>
-              <Input
-                placeholder="Password"
-                label="Password"
-                name="password"
-                type={typePass}
-              />
-              <IconPas onClick={togglePassInput}>{toggleIconPass}</IconPas>
-              <Error component="div" name="password" /> 
-            </Label>
-            <Label>
-              <Input
-                placeholder="Confirm Password"
-                label="Confirm Password"
-                name="confirmPassword"
-                type={typeCofirm}
-              />
-              <IconPas onClick={toggleConfirmInput}>
-                {toggleIconConfirm}
-              </IconPas>
-              <Error component="div" name="confirmPassword" />
-            </Label>
-          </Box>
-          <Button type="submit">Registration</Button>
-          <Text>
-            Already have an account?
-            <Span>
-              <Link to="/login">Login</Link>
-            </Span>
-          </Text>
-        </StyledForm>
+        {props => {
+          return (
+            <StyledForm>
+              <Title>Registration</Title>
+              <Box>
+                <Label>
+                  <Input
+                    placeholder="Email"
+                    label="Email"
+                    type="Email"
+                    name="email"
+                    error={props.errors.email}
+                    value={props.values.email}
+                  />
+                  <IconErrorValidateMail
+                    value={props.values.email}
+                    error={props.errors.email}
+                  >
+                    {' '}
+                    <svg width={24} height={24}>
+                      <use href={icons + '#error'}></use>
+                    </svg>
+                  </IconErrorValidateMail>
+                  <IconOkValidateMail
+                    value={props.values.email}
+                    error={props.errors.email}
+                  >
+                    {' '}
+                    <svg width={24} height={24}>
+                      <use href={icons + '#shape'}></use>
+                    </svg>
+                  </IconOkValidateMail>
+                  <TextOkValidation
+                    value={props.values.email}
+                    error={props.errors.email}
+                  >
+                    Mail is secure
+                  </TextOkValidation>
+                  <Error component="div" name="email" />
+                </Label>
+                <Label>
+                  <Input
+                    placeholder="Password"
+                    label="Password"
+                    name="password"
+                    type={typePass}
+                    error={props.errors.password}
+                    value={props.values.password}
+                  />
+                  <IconPas onClick={togglePassInput}>{toggleIconPass}</IconPas>
+                  <IconErrorValidate
+                    value={props.values.password}
+                    error={props.errors.password}
+                  >
+                    {' '}
+                    <svg width={24} height={24}>
+                      <use href={icons + '#error'}></use>
+                    </svg>
+                  </IconErrorValidate>
+                  <IconOkValidate
+                    value={props.values.password}
+                    error={props.errors.password}
+                  >
+                    {' '}
+                    <svg width={24} height={24}>
+                      <use href={icons + '#shape'}></use>
+                    </svg>
+                  </IconOkValidate>
+                  <TextOkValidation
+                    value={props.values.password}
+                    error={props.errors.password}
+                  >
+                    Password is secure
+                  </TextOkValidation>
+                  <Error component="div" name="password" />
+                </Label>
+                <Label>
+                  <Input
+                    placeholder="Confirm Password"
+                    label="Confirm Password"
+                    name="confirmPassword"
+                    type={typeCofirm}
+                    value={props.values.confirmPassword}
+                    error={props.errors.confirmPassword}
+                  />
+                  <IconPas onClick={toggleConfirmInput}>
+                    {toggleIconConfirm}
+                  </IconPas>
+                  <IconErrorValidate
+                    value={props.values.confirmPassword}
+                    error={props.errors.confirmPassword}
+                  >
+                    {' '}
+                    <svg width={24} height={24}>
+                      <use href={icons + '#error'}></use>
+                    </svg>
+                  </IconErrorValidate>
+                  <IconOkValidate
+                    value={props.values.confirmPassword}
+                    error={props.errors.confirmPassword}
+                  >
+                    {' '}
+                    <svg width={24} height={24}>
+                      <use href={icons + '#shape'}></use>
+                    </svg>
+                  </IconOkValidate>
+                  <TextOkValidation
+                    value={props.values.confirmPassword}
+                    error={props.errors.confirmPassword}
+                  >
+                    Ponfirm password is secure
+                  </TextOkValidation>
+                  <Error component="div" name="confirmPassword" />
+                </Label>
+              </Box>
+              <Button type="submit">Registration</Button>
+              <Text>
+                Already have an account?
+                <Span>
+                  <Link to="/login">Login</Link>
+                </Span>
+              </Text>
+            </StyledForm>
+          );
+        }}
       </Formik>
     </Wrapper>
   );

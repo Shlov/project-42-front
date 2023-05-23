@@ -58,7 +58,6 @@ export const FavoriteBtn =styled.button`
   :active {
     color: var(--cl-blue-light);
     fill:  red;
-
   }
 `
 
@@ -88,17 +87,26 @@ export const DeleteBtn =styled.button`
   align-items: center;
   justify-content: center;
   fill:  var(--cl-blue-light);
+  stroke:   var(--cl-blue-link);
 
   :hover {
     background-color: var(--cl-blue-link);
     color: var(--cl-blue-light);
+    stroke:   var(--cl-blue-light);
+    fill: var(--cl-blue-link);
   }
   :active {
-    color: var(--cl-blue-light);
-    fill:  red;
-
+    /* color: var(--cl-blue-light); */
   }
 `
+
+export const TrashIcon = styled.svg`
+  display: block;
+  stroke-width:1.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+`
+
 
 export const MoreBtn = styled.button`
   display: flex;
