@@ -6,7 +6,7 @@ export const MobileMenuContainer = styled.div`
   width: 100%;
   position: absolute;
   z-index: 100;
-  top: -100%;
+  top: -200%;
   transition: all 0.3s;
 
   &.active {

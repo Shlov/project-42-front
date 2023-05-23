@@ -11,7 +11,7 @@
 // Клік по кнопці відкриває модальне вікно  ModalApproveAction
 
 
-import { Card, FavoriteBtn, DeleteBtn, CategoryTag, ImageWrapper, DescriptionWrapper, Title, Image, TagItem, TagList, MoreBtn, SvgIcon, HeartIcon } from "./NoticeCategoryItem.styled";
+import { Card, FavoriteBtn, DeleteBtn, CategoryTag, ImageWrapper, DescriptionWrapper, Title, Image, TagItem, TagList, MoreBtn, SvgIcon, HeartIcon, TrashIcon } from "./NoticeCategoryItem.styled";
 
 import icon from '../../images/icons.svg';
 import { useState } from "react";
@@ -60,9 +60,9 @@ export const NoticeCategoryItem = ({onTrashModal}) => {
             </HeartIcon>
           </FavoriteBtn>
           <DeleteBtn onClick={onTrashModal}>
-            <HeartIcon height="20" width="20" >
+            <TrashIcon height="20" width="20" >
               <use href={icon + "#trash"}/>
-            </HeartIcon>
+            </TrashIcon>
           </DeleteBtn>
         </ImageWrapper>
 
