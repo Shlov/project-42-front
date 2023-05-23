@@ -49,19 +49,20 @@ const validationSchema = object().shape({
   }),
 
   location: string()
-    .required('Location is required')
     .matches(
-      /^[a-zA-Z\s,]+$/,
+      /^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$/,
       'Invalid location format. Please use city names only.'
-    ),
+    )
+    .min(2, 'City name must be at least 2 characters')
+    .required('Location is required'),
   price: number()
-    .required('Price is required')
     .min(0, 'Price must be a positive number')
-    .integer('Price must be an integer'),
+    .integer('Price must be an integer')
+    .required('Price is required'),
   comments: string()
     .min(8, 'Comments must be at least 8 characters')
     .max(120, 'Comments must be at most 120 characters')
-    .required(),
+    .required('Comments are required'),
 
   title: string()
     .min(2, 'Title must be at least 2 characters')
@@ -129,8 +130,9 @@ const AddPetForm = () => {
     setStep(prevStep => prevStep - 1);
   };
 
-  const handleSubmit = values => {
-    console.log(values);
+  const handleSubmit = (values, { resetForm }) => {
+    console.log('Values from handleSubmit function', values);
+    resetForm();
     // const formData = new FormData();
     // // Append text data to the FormData object
     // formData.append('category', values.category);
@@ -170,6 +172,7 @@ const AddPetForm = () => {
           <MoreInfoStep
             onBack={handleBack}
             selectedCategory={selectedCategory}
+            setFormValues={setFormValues}
           />
         );
       default:
