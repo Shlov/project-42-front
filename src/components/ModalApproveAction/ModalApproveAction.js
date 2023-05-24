@@ -36,7 +36,7 @@ export const ModalApproveAction = ({ children, onClose, height}) => {
   return (
     <>
       <Overlay onClick={onBackdropClose}>
-        <Modal size={height}>
+        <Modal height={height}>
           <Button type="button" apia-label="close" onClick={onClose}>
             <CloseIcon>
               <use href={icons + '#cross-small'} />
@@ -52,5 +52,5 @@ export const ModalApproveAction = ({ children, onClose, height}) => {
 ModalApproveAction.propTypes = {
   onClose: PropTypes.func.isRequired,
   children: PropTypes.node,
-  size: PropTypes.string,
+  height: PropTypes.string,  
 };
