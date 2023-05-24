@@ -46,20 +46,30 @@ export const App = () => {
 
   return (
     <>
-      <div className="container">
-        <Suspense>
+      {/* <div className="container"> */}
+      <Suspense>
         <Routes>
-          <Route path="/" element={<SharedLayout desktop={desktop} tablet={tablet} mobile={mobile} isConnect={isConnect}/>}>
+          <Route
+            path="/"
+            element={
+              <SharedLayout
+                desktop={desktop}
+                tablet={tablet}
+                mobile={mobile}
+                isConnect={isConnect}
+              />
+            }
+          >
             {/* <Route index element={<MainPage />}/> */}
 
-            <Route path="/main" element={<Main/>}/>
-            <Route path="/user" element={<User/>}/>
-            <Route path="/login" element={<Login/>}/>
-            <Route path="/register" element={<Register/>}/>
-            <Route path="/notices" element={<Notices/>}/>
-            <Route path="/add-pet" element={<AddPet/>}/>
-            <Route path="/news" element={<News/>}/>
-            <Route path="/friends" element={<OurFriends/>}/>
+            <Route index element={<Main />} />
+            <Route path="/user" element={<User />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/notices" element={<Notices />} />
+            <Route path="/add-pet" element={<AddPet />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/friends" element={<OurFriends />} />
 
             {/* <Route path="/user" element={
               <PrivateRoute redirectTo="/login" component={<UserPage/>}/>
@@ -67,11 +77,10 @@ export const App = () => {
             <Route path="/login" element={
               <RestrictedRoute redirectTo="/user" component={<LoginPage/>}/>
             }/> */}
-
           </Route>
-          </Routes>
-          </Suspense>
-      </div>
+        </Routes>
+      </Suspense>
+      {/* </div> */}
     </>
   );
 };
