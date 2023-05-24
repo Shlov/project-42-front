@@ -38,7 +38,6 @@ export const NoticeCategoryItem = ({onTrashModal, item}) => {
     } else {
       return `${differenceMonth} month`
     };
-    
   }
 
   const [isOpenModal, setIsOpenModal] = useState(false);
