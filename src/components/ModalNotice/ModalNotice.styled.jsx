@@ -4,12 +4,10 @@ export const ModalContent = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  /* align-items: center;  */
   gap: 12px;
   padding: 44px 12px 16px;
 
   font-style: normal;
-  /* letter-spacing: 0.04em; */
   color: var(--cl-black);
 
   @media (min-width: 768px) {
@@ -20,8 +18,6 @@ export const ModalContent = styled.div`
 `;
 
 export const ImageWrapper = styled.div`
-  /* position: relative; */
-
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -48,8 +44,6 @@ export const Image = styled.img`
 `;
 export const CategoryTag = styled.p`
   position: absolute;
-  /* top: 16px;
-  left: 14px; */
   top: 60px;
   left: 20px;
 
@@ -122,32 +116,8 @@ export const SignProp = styled.span`
     line-height: 22px;
   }
 `;
-export const ListContact = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-`;
 
-export const ItemContact = styled.li`
-  display: flex;
-  align-items: center;
-`;
-
-export const Contact = styled.span`
-  width: 81px;
-
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 19px;
-
-  @media (min-width: 768px) {
-    width: 121px;
-    font-size: 16px;
-    line-height: 22px;
-  }
-`;
-
-export const SignContact = styled.a`
+export const Contact = styled.a`
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
@@ -169,17 +139,16 @@ export const CommentWrap = styled.div`
   @media (min-width: 768px) {
     font-size: 16px;
     line-height: 24px;
-
-    margin-bottom: 70px; 
-    /* замість марджина зробити висоту ButtonWrapThumb  40+70=110px*/
   }
 `;
 
 export const ButtonWrapThumb = styled.div`
-  @media (min-width: 768px) {
-    width: 617px;
+  @media (min-width: 768px) {   
     display: flex;
     justify-content: flex-end;
+
+    width: 617px;
+    padding-block-start: 70px;
   }
 `;
 
@@ -201,9 +170,11 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   gap: 12px;
-  padding: 0;
+
   width: 256px;
   height: 40px;
+  padding: 0;
+  
   letter-spacing: 0.04em;
   font-weight: 700;
   font-size: 16px;
@@ -211,7 +182,7 @@ export const Button = styled.button`
 
   border: none;
   border-radius: 40px;
-  color: var(--cl-white);
+  color: var(--cl-background);
   background: var(--cl-blue-link);
 
   cursor: pointer;
@@ -235,18 +206,20 @@ export const ContactBtn = styled.a`
   justify-content: center;
   align-items: center;
   gap: 12px;
-  padding: 0;
+
   width: 256px;
   height: 40px;
+  padding: 0;
+
   letter-spacing: 0.04em;
   font-weight: 700;
   font-size: 16px;
   line-height: 22px;
 
-  border: none;
+  border: 2px solid var(--cl-blue-link);
   border-radius: 40px;
-  color: var(--cl-white);
-  background: var(--cl-blue-link);
+  color: var(--cl-blue-link);
+  /* background: var(--cl-blue-link); */
 
   cursor: pointer;
 
@@ -256,6 +229,8 @@ export const ContactBtn = styled.a`
   &:active,
   &:focus {
     background: var(--gr-blue);
+    color: var(--cl-background);
+    border: none;
   }
 
   @media (min-width: 768px) {
@@ -266,6 +241,6 @@ export const ContactBtn = styled.a`
 export const HeartIcon = styled.svg`
   width: 24px;
   height: 24px;
-  stroke: var(--cl-white);
+  stroke: var(--cl-background);
   fill: var(--cl-blue-link);
 `;
