@@ -1,8 +1,11 @@
+import { MainPage } from 'components/MainPage/MainPage';
 
-const MainPage = () => {
+const Main = () => {
   return (
-    <h2>Main</h2>
+    <>
+      <MainPage />
+    </>
   );
 };
 
-export default MainPage;
+export default Main;
