@@ -52,7 +52,7 @@ export const ModalNotice = ({ onClose }) => {
 
   return (
     <>
-      <ModalApproveAction onClose={onClose} height="786px">
+      <ModalApproveAction onClose={onClose}>
         {isLoading ? (
           <h3>Loading...</h3>
         ) : (
