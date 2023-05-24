@@ -90,7 +90,7 @@ export const ListProperty = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 8px; /* delete */
+  margin-bottom: 8px; /* delete після того як об'єднаю стилі*/
 `;
 
 export const ItemProp = styled.li`
@@ -170,7 +170,8 @@ export const CommentWrap = styled.div`
     font-size: 16px;
     line-height: 24px;
 
-    margin-bottom: 70px;
+    margin-bottom: 70px; 
+    /* замість марджина зробити висоту ButtonWrapThumb  40+70=110px*/
   }
 `;
 
