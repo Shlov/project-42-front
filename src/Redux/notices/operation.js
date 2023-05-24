@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-const tokenShlov = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NmM5MDg4M2U2MmUwYTE2MTg3YzlhYyIsImlhdCI6MTY4NDkxODc5NiwiZXhwIjoxNjg0OTYxOTk2fQ.NmVWxuifF71XfVSlzZyeEbbRdLbQqL35CcE8Gx8ufPU'
+const tokenShlov = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NmM5MDg4M2U2MmUwYTE2MTg3YzlhYyIsImlhdCI6MTY4NDkzMTgzNSwiZXhwIjoxNjg0OTc1MDM1fQ.eA3LHBXAK6VB8ds04beE-SSsaLRU4LXpbUeHK1PB2_c'
 
 axios.defaults.baseURL = 'https://fourtwo-back.onrender.com/';
 

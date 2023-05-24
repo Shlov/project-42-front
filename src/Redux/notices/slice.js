@@ -39,7 +39,7 @@ const noticesSlice = createSlice({
     [fetchNotice.fulfilled] (state, action) {
       state.isLoadNotice = false;
       state.error = null;
-      state.item = action.payload.data;
+      state.item = action.payload.data.notice;
     },
     [fetchNotice.rejected]: handleRejected,
   }

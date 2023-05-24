@@ -24,8 +24,8 @@ export const Modal = styled.div`
 
 
   @media (min-width: 768px) {
-    width: 608px;
-    height: 354px;
+    width: 681px;
+    /* height: 354px; */
     border-radius: 40px;
   }
 `;
