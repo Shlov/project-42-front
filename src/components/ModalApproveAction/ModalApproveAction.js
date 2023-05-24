@@ -13,8 +13,6 @@ export const ModalApproveAction = ({ children, onClose, height}) => {
   //   яку потрібно передати компоненту ModalApproveAction
   //   toggleModal - змінює стейт isOpen
 
-  console.log(height)
-
   const onBackdropClose = event => {
     if (event.target === event.currentTarget) {
       onClose();

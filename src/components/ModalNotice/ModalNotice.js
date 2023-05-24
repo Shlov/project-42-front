@@ -5,15 +5,17 @@
 // Кнопка Contact повинна бути реалізована як посилання, при натисканні на яку користувача повинно переадресувати користувача на мобільний пристрій для виконання телефонного дзвінка по номеру користувача, що створив оголошення
 // Модалка повинна закриватись по кліку на кнопку закриття модалки, клік по бекдропу, а також клік по Escape
 
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import icons from '../../images/icons.svg';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
 import {
   Button,
   ButtonWrap,
+  ButtonWrapThumb,
   CategoryTag,
   CommentWrap,
   Contact,
+  ContactBtn,
   HeartIcon,
   Image,
   ImageWrapper,
@@ -28,51 +30,60 @@ import {
   TitleModal,
 } from './ModalNotice.styled';
 
-export const ModalNotice = ({ onClose, notice}) => {
-const {imageURL, categories, name,birthday, place, sex } = notice
-const handleChange = () => {
-console.log("User додав тваринку у favorite")
-}
+export const ModalNotice = ({ onClose, notice }) => {
+  const { imageURL, categories, name, birthday, breed, place, sex, comments } =
+    notice;
+  const handleChange = () => {
+    console.log('User додав тваринку у favorite');
+  };
 
   return (
     <>
-      <ModalApproveAction onClose={onClose} height="786px">
+      <ModalApproveAction onClose={onClose}>
         <ModalContent>
           <ImageWrapper>
             <Image
               alt="pet.name"
-              src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSgGi3YJI2iukoOZ3_fbYCyoiR4dYO8fIyIu_qpphSUf8GRAmFN"
+              src={
+                imageURL
+                  ? imageURL
+                  : 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSgGi3YJI2iukoOZ3_fbYCyoiR4dYO8fIyIu_qpphSUf8GRAmFN'
+              }
             />
-            <CategoryTag>In good hands</CategoryTag>
+            <CategoryTag>{categories ? categories : 'categories'}</CategoryTag>
           </ImageWrapper>
-
-          <TitleModal>Cute dog looking for a home</TitleModal>
-          <ListProperty>
-            <ItemProp>
-              <NameProp>Name:</NameProp>
-              <SignProp>Rich</SignProp>
-            </ItemProp>
-            <ItemProp>
-              <NameProp>Birthday:</NameProp>
-              <SignProp>21.09.2020</SignProp>
-            </ItemProp>
-            <ItemProp>
-              <NameProp>NameBreed:</NameProp>
-              <SignProp>Pomeranian</SignProp>
-            </ItemProp>
-            <ItemProp>
-              <NameProp>Place:</NameProp>
-              <SignProp>Lviv</SignProp>
-            </ItemProp>
-            <ItemProp>
-              <NameProp>The sex:</NameProp>
-              <SignProp>male</SignProp>
-            </ItemProp>
-
+          <div>
+            <div>
+              <TitleModal>Cute dog looking for a home</TitleModal>
+            </div>
+            <ListProperty>
+              <ItemProp>
+                <NameProp>Name:</NameProp>
+                <SignProp>{name ? name : 'Pet'}</SignProp>
+              </ItemProp>
+              <ItemProp>
+                <NameProp>Birthday:</NameProp>
+                <SignProp>{birthday ? birthday : 'find'}</SignProp>
+              </ItemProp>
+              <ItemProp>
+                <NameProp>NameBreed:</NameProp>
+                <SignProp>{breed ? breed : 'superior'}</SignProp>
+              </ItemProp>
+              <ItemProp>
+                <NameProp>Place:</NameProp>
+                <SignProp>{place ? place : 'find'}</SignProp>
+              </ItemProp>
+              <ItemProp>
+                <NameProp>The sex:</NameProp>
+                <SignProp>{sex ? sex : 'sex'}</SignProp>
+              </ItemProp>
+            </ListProperty>
             <ListContact>
               <ItemContact>
                 <Contact>Email:</Contact>
-                <SignContact href="mailto:user@mail.com">user@mail.com</SignContact>
+                <SignProp href="mailto:user@mail.com" color>
+                  user@mail.com
+                </SignProp>
               </ItemContact>
               <ItemContact>
                 <Contact>Phone:</Contact>
@@ -81,30 +92,49 @@ console.log("User додав тваринку у favorite")
                 </SignContact>
               </ItemContact>
             </ListContact>
-
+          </div>
+          {/* {<CommentWrap>
+              <span>Comments:&nbsp;</span><span>Rich would be the perfect addition to an active family that loves to play and go on walks. I bet he would love having a doggy playmate too! </span>
+            </CommentWrap> } */}
+          {comments ? (
             <CommentWrap>
-              <span>Comments:&nbsp;</span><span>Rich would be the perfect addition to an active family that
-                loves to play and go on walks. I bet he would love having a
-                doggy playmate too!</span>
+              <span>Comments:&nbsp;</span>
+              <span>comments</span>
             </CommentWrap>
+          ) : null}
+          <ButtonWrapThumb>
             <ButtonWrap>
-              <Button href="tel:+380971234567" aria-label="phone">
+              <ContactBtn href="tel:+380971234567" aria-label="phone button">
                 Contact
-              </Button>
-              <Button type="button" aria-label="Add to favorite" onChange={handleChange}>
+              </ContactBtn>
+              <Button
+                type="button"
+                aria-label="Add to favorite"
+                onClick={handleChange}
+              >
                 Add to
                 <HeartIcon>
                   <use href={icons + '#heart'}></use>
                 </HeartIcon>
               </Button>
             </ButtonWrap>
-          </ListProperty>
+          </ButtonWrapThumb>
         </ModalContent>
       </ModalApproveAction>
     </>
   );
 };
 
-// ModalNotice.propTypes = {
-//   onClose: PropTypes.func.isRequired,
-// };
+ModalNotice.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  notice: PropTypes.shape({
+    imageURL: PropTypes.string,
+    categories: PropTypes.string,
+    name: PropTypes.string,
+    birthday: PropTypes.string,
+    breed: PropTypes.string,
+    place: PropTypes.string,
+    sex: PropTypes.string,
+    comments: PropTypes.string,
+  }).isRequired,
+};
