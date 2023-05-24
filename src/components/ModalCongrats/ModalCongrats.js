@@ -18,10 +18,6 @@ export const ModalCongrats = () => {
     setIsOpenModal(isOpen => !isOpen);
   };
 
-//   const handleAction = () => {
-//     console.log('Передаємо екшн');
-//   };
-
   return (
     <>
       {isOpenModal && (

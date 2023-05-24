@@ -30,7 +30,7 @@ export const UserPage = () => {
   };
 
   const handleAction = () => {
-    console.log('Передаємо екшн');
+    console.log('Юзер розлогінився');
     dispatch(logOut());
   };
 
