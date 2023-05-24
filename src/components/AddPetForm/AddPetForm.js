@@ -15,6 +15,12 @@ import { object, string, mixed, number } from 'yup';
 import CategoryStep from 'components/CategoryStep/CategoryStep';
 import PersonalDetailsStep from 'components/PersonalDetailsStep/PersonalDetailsStep';
 import MoreInfoStep from 'components/MoreInfoStep/MoreInfoStep';
+import {
+  FormContainer,
+  FormTitle,
+  Stepper,
+  StepperItem,
+} from './AddPetForm.styled';
 
 //   Validation schema using Yup
 const validationSchema = object().shape({
@@ -72,6 +78,7 @@ const validationSchema = object().shape({
 const AddPetForm = () => {
   const [step, setStep] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [completedSteps, setCompletedSteps] = useState([]);
 
   const [formValues, setFormValues] = useState({
     category: selectedCategory,
@@ -86,8 +93,6 @@ const AddPetForm = () => {
     title: '',
   });
   const steps = ['Choose Option', 'Personal Details', 'More Info'];
-
-  console.log(formValues);
 
   const stepTitles = {
     1: 'Add pet',
@@ -123,6 +128,7 @@ const AddPetForm = () => {
       : currentTitle;
 
   const handleNext = () => {
+    setCompletedSteps([...completedSteps, step]);
     setStep(prevStep => prevStep + 1);
   };
 
@@ -203,13 +209,24 @@ const AddPetForm = () => {
   };
 
   return (
-    <>
-      <h2>{dynamicTitle}</h2>
-      <ul>
+    <FormContainer>
+      <FormTitle>{dynamicTitle}</FormTitle>
+      <Stepper>
         {steps.map((name, index) => (
-          <li key={index}>{name}</li>
+          <StepperItem
+            key={index}
+            className={
+              step === index + 1
+                ? 'active'
+                : completedSteps.includes(index + 1)
+                ? 'completed'
+                : ''
+            }
+          >
+            {name}
+          </StepperItem>
         ))}
-      </ul>
+      </Stepper>
       <Formik
         initialValues={formValues}
         validationSchema={validationSchema}
@@ -217,7 +234,7 @@ const AddPetForm = () => {
       >
         <Form>{renderStepContent(step)}</Form>
       </Formik>
-    </>
+    </FormContainer>
   );
 };
 
