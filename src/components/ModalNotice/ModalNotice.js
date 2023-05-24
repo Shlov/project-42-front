@@ -27,18 +27,36 @@ import {
   SignProp,
   TitleModal,
 } from './ModalNotice.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchNotice } from 'Redux/notices/operation';
+import { getIsLoadNotice, getNotice } from 'Redux/notices/selector';
 
 export const ModalNotice = ({ onClose }) => {
+
+  const dispatch = useDispatch()
+  const oneNotice = useSelector(getNotice);
+  const isLoading = useSelector(getIsLoadNotice);
+
+  // в функцію fetchNotice треба буде прокинути id відкриваємої notice
+  // поки бек не віддає без авторизованого користувача 
+  useEffect(() => {
+    dispatch(fetchNotice('646bd2bea5e6d2026f0414bf'))
+  },[dispatch])
+  // 
+
   return (
     <>
       <ModalApproveAction onClose={onClose} height="786px">
-        <ModalContent>
+        {isLoading
+          ? <h3>Loading...</h3>
+          :<ModalContent>
           <ImageWrapper>
             <Image
               alt="pet.name"
               src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSgGi3YJI2iukoOZ3_fbYCyoiR4dYO8fIyIu_qpphSUf8GRAmFN"
             />
-            <CategoryTag>In good hands</CategoryTag>
+            <CategoryTag>{oneNotice.categories ? oneNotice.categories : 'Category'}</CategoryTag>
           </ImageWrapper>
 
           <TitleModal>Cute dog looking for a home</TitleModal>
@@ -94,7 +112,7 @@ export const ModalNotice = ({ onClose }) => {
               </Button>
             </ButtonWrap>
           </ListProperty>
-        </ModalContent>
+          </ModalContent>}
       </ModalApproveAction>
     </>
   );
