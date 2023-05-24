@@ -35,7 +35,7 @@ const dispatch = useDispatch()
     <NoticesList>
       {!isLoading 
       ? allNotices.map(notice =>
-        <NoticeCategoryItem key={notice._id} item={notice} onTrashModal={onTrashModal}/>
+        <NoticeCategoryItem key={notice.id} item={notice} onTrashModal={onTrashModal}/>
       )
       : <h2>loading....</h2>
       }

@@ -5,7 +5,7 @@
 // Кнопка Contact повинна бути реалізована як посилання, при натисканні на яку користувача повинно переадресувати користувача на мобільний пристрій для виконання телефонного дзвінка по номеру користувача, що створив оголошення
 // Модалка повинна закриватись по кліку на кнопку закриття модалки, клік по бекдропу, а також клік по Escape
 
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import icons from '../../images/icons.svg';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
 import {
@@ -28,7 +28,12 @@ import {
   TitleModal,
 } from './ModalNotice.styled';
 
-export const ModalNotice = ({ onClose }) => {
+export const ModalNotice = ({ onClose, notice}) => {
+const {imageURL, categories, name,birthday, place, sex } = notice
+const handleChange = () => {
+console.log("User додав тваринку у favorite")
+}
+
   return (
     <>
       <ModalApproveAction onClose={onClose} height="786px">
@@ -83,10 +88,10 @@ export const ModalNotice = ({ onClose }) => {
                 doggy playmate too!</span>
             </CommentWrap>
             <ButtonWrap>
-              <Button href="mailto:user@mail.com" aria-label="email">
+              <Button href="tel:+380971234567" aria-label="phone">
                 Contact
               </Button>
-              <Button type="button" aria-label="Add to favorite">
+              <Button type="button" aria-label="Add to favorite" onChange={handleChange}>
                 Add to
                 <HeartIcon>
                   <use href={icons + '#heart'}></use>
@@ -100,6 +105,6 @@ export const ModalNotice = ({ onClose }) => {
   );
 };
 
-ModalNotice.propTypes = {
-  onClose: PropTypes.func.isRequired,
-};
+// ModalNotice.propTypes = {
+//   onClose: PropTypes.func.isRequired,
+// };
