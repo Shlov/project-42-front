@@ -9,7 +9,7 @@ import { fetchNotices } from "Redux/notices/operation";
 
 export const NoticeCategoryList = ({onTrashModal}) => {
 
-  const allNotices = useSelector(getNotices);
+  const allNotices = useSelector(getNotices).notices;
   const isLoading = useSelector(getIsLoading);
   console.log(allNotices);
 
@@ -35,7 +35,7 @@ const dispatch = useDispatch()
     <NoticesList>
       {!isLoading 
       ? allNotices.map(notice =>
-        <NoticeCategoryItem key={notice._id} item={notice} onTrashModal={onTrashModal}/>
+        <NoticeCategoryItem key={notice.id} item={notice} onTrashModal={onTrashModal}/>
       )
       : <h2>loading....</h2>
       }
