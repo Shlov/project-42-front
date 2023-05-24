@@ -9,7 +9,7 @@ import { fetchNotices } from "Redux/notices/operation";
 
 export const NoticeCategoryList = ({onTrashModal}) => {
 
-  const allNotices = useSelector(getNotices);
+  const allNotices = useSelector(getNotices).notices;
   const isLoading = useSelector(getIsLoading);
   console.log(allNotices);
 
