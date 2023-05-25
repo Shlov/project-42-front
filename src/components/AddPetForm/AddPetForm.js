@@ -9,7 +9,7 @@
 // Всі поля форми обов'язкові до заповнення
 // Після успішного створення картки, користувача необхідно переадресувата на сторінку UserPage або на сторінку NoticesPage (в залженості від обраної користувачем категорії). Якщо з бекенда було отримано помилку при створенні картки - користувачу необхідно вивести відповідну інформацію у вигляді нотіфікації
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Formik, Form } from 'formik';
 import { object, string, mixed, number } from 'yup';
 import CategoryStep from 'components/CategoryStep/CategoryStep';
@@ -79,6 +79,7 @@ const AddPetForm = () => {
   const [step, setStep] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [completedSteps, setCompletedSteps] = useState([]);
+  const formikRef = useRef(null);
 
   const [formValues, setFormValues] = useState({
     category: selectedCategory,
@@ -138,6 +139,7 @@ const AddPetForm = () => {
 
   const handleSubmit = () => {
     const formData = new FormData();
+    const { resetForm } = formikRef.current;
 
     formData.append('category', formValues.category);
     formData.append('name', formValues.name);
@@ -148,6 +150,7 @@ const AddPetForm = () => {
 
     if (formValues.category === 'your-pet') {
       // dispatch(addMyPet(formData))
+      resetForm();
       return;
     }
 
@@ -157,21 +160,24 @@ const AddPetForm = () => {
 
     if (formValues.category === 'lost-found') {
       // dispatch(addNotice({ category: 'lost-found', formData }));
+      resetForm();
       return;
     }
 
     if (formValues.category === 'for-free') {
       // dispatch(addNotice({ category: 'in-good-hands', formData }));
+      resetForm();
       return;
     }
 
     formData.append('price', formValues.price);
-    for (let pair of formData.entries()) {
-      console.log(pair[0] + ': ' + pair[1]);
-    }
+    // for (let pair of formData.entries()) {
+    //   console.log(pair[0] + ': ' + pair[1]);
+    // }
 
     if (formValues.category === 'sell') {
       // dispatch(addNotice({ category: 'sell', formData }));
+      resetForm();
       return;
     }
   };
@@ -201,6 +207,7 @@ const AddPetForm = () => {
             onBack={handleBack}
             selectedCategory={selectedCategory}
             setFormValues={setFormValues}
+            handleSubmit={handleSubmit}
           />
         );
       default:
@@ -209,7 +216,7 @@ const AddPetForm = () => {
   };
 
   return (
-    <FormContainer>
+    <FormContainer step={step}>
       <FormTitle>{dynamicTitle}</FormTitle>
       <Stepper>
         {steps.map((name, index) => (
@@ -231,8 +238,9 @@ const AddPetForm = () => {
         initialValues={formValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
+        innerRef={formikRef}
       >
-        <Form>{renderStepContent(step)}</Form>
+        {() => <Form>{renderStepContent(step)}</Form>}
       </Formik>
     </FormContainer>
   );
