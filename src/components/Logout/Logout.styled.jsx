@@ -105,6 +105,11 @@ export const Arrow = styled.svg`
   stroke: currentColor;
   fill: transparent;
 `;
+export const ArrowBack = styled.svg`
+  stroke: var(--cl-blue-link);
+  fill: transparent;
+`;
+
 
 export const BtnLogout = styled.button`
   display: inline-flex;
