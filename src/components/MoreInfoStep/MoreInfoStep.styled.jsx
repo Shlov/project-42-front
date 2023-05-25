@@ -102,7 +102,7 @@ export const AvatarLabel = styled.label`
   display: flex;
   flex-direction: row;
   align-items: center;
-  row-gap: 14px;
+  gap: 16px;
 
   @media screen and (min-width: 768px) {
     font-size: 20px;
@@ -176,17 +176,16 @@ export const MoreInfoStepInput = styled(Field)`
   ${Input}
 `;
 
-export const MoreInfoStepTextArea = styled.textarea`
+export const MoreInfoStepTextArea = styled(Field)`
   ${Input}
   resize: none;
-  height: 92;
+  height: 92px;
 
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
     height: 79px;
 
-    ${({ selectedCategory }) =>
-      selectedCategory === 'lost-found' ? 'height: 182px' : ''}
+    ${({ category }) => (category === 'lost-found' ? 'height: 182px' : '')}
   }
 `;

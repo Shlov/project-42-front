@@ -54,6 +54,7 @@ const PersonalDetailsStep = ({
 
   // Handle next button click
   const handleNextClick = () => {
+    // setTouched is called to mark all form fields as touched
     setTouched({
       title: true,
       name: true,
