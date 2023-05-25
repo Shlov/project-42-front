@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { ErrorMessage, useFormikContext } from 'formik';
-import icons from '../../images/icons.svg';
-import { AddPetFormButtonWrapper } from 'components/AddPetFormButtons/AddPetFormButtonWrapper.styled';
+import icons from '../../../images/icons.svg';
+import { AddPetFormButtonWrapper } from 'components/AddPetForm/AddPetFormButtons/AddPetFormButtonWrapper.styled';
 import {
   AvatarField,
   AvatarLabel,
@@ -18,8 +18,8 @@ import {
   SexLabel,
   SexRadioButtonsWrapper,
 } from './MoreInfoStep.styled';
-import BackLink from 'components/AddPetFormButtons/BackLink';
-import AddPetFormNextButton from 'components/AddPetFormButtons/AddPetFormNextButton';
+import BackLink from 'components/AddPetForm/AddPetFormButtons/BackLink';
+import AddPetFormNextButton from 'components/AddPetForm/AddPetFormButtons/AddPetFormNextButton';
 
 const MoreInfoStep = ({
   onBack,

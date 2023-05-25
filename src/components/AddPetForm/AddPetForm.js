@@ -1,68 +1,15 @@
 import { useState, useRef } from 'react';
 import { Formik, Form } from 'formik';
-import { object, string, mixed, number } from 'yup';
-import CategoryStep from 'components/CategoryStep/CategoryStep';
-import PersonalDetailsStep from 'components/PersonalDetailsStep/PersonalDetailsStep';
-import MoreInfoStep from 'components/MoreInfoStep/MoreInfoStep';
+import validationSchema from './validationSchema';
+import CategoryStep from 'components/AddPetForm/CategoryStep/CategoryStep';
+import PersonalDetailsStep from 'components/AddPetForm/PersonalDetailsStep/PersonalDetailsStep';
+import MoreInfoStep from 'components/AddPetForm/MoreInfoStep/MoreInfoStep';
 import {
   FormContainer,
   FormTitle,
   Stepper,
   StepperItem,
 } from './AddPetForm.styled';
-
-//   Validation schema using Yup
-const validationSchema = object().shape({
-  category: string().oneOf(['your-pet', 'sell', 'lost-found', 'for-free']),
-  name: string()
-    .required('Name is required')
-    .min(2, 'Name must be at least 2 characters')
-    .max(16, 'Name must be at most 16 characters'),
-  date: string()
-    .required('Date is required')
-    .matches(
-      /^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$/,
-      'Date must be in the format DD.MM.YYYY'
-    ),
-  breed: string()
-    .min(2, 'Breed must be at least 2 characters')
-    .max(16, 'Breed must be at most 16 characters')
-    .required('Breed is required'),
-  avatar: mixed()
-    .required('File is required')
-    //the test method from Yup to define a custom validation rule for the avatar field. The test checks if the value exists  (a file is selected) and if its size is less than or equal to 3MB (3 * 1024 * 1024 bytes). If the test fails, it will display the error message "File size must not exceed 3MB".
-    .test(
-      'fileSize',
-      'File size must not exceed 3MB',
-      value => value.size <= 3 * 1024 * 1024
-    ),
-  sex: string().when('category', {
-    is: value => ['sell', 'lost-found', 'for-free'].includes(value),
-    then: string()
-      .required('Sex is required')
-      .oneOf(['male', 'female'], 'Please select either "male" or "female"'),
-  }),
-
-  location: string()
-    .matches(
-      /^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$/,
-      'Invalid location format. Please use city names only.'
-    )
-    .min(2, 'City name must be at least 2 characters')
-    .required('Location is required'),
-  price: number()
-    .min(0, 'Price must be a positive number')
-    .integer('Price must be an integer')
-    .required('Price is required'),
-  comments: string()
-    .min(8, 'Comments must be at least 8 characters')
-    .max(120, 'Comments must be at most 120 characters')
-    .required('Comments are required'),
-
-  title: string()
-    .min(2, 'Title must be at least 2 characters')
-    .required('Title is required'),
-});
 
 const AddPetForm = () => {
   const [step, setStep] = useState(1);
@@ -130,11 +77,11 @@ const AddPetForm = () => {
     const formData = new FormData();
     const { resetForm } = formikRef.current;
 
-    formData.append('category', formValues.category);
+    formData.append('categories', formValues.category);
     formData.append('name', values.name);
-    formData.append('date', values.date);
+    formData.append('birthday', values.date);
     formData.append('breed', values.breed);
-    formData.append('avatar', values.avatar);
+    formData.append('imageURL', values.avatar);
     formData.append('comments', values.comments);
 
     if (formValues.category === 'your-pet') {
@@ -142,21 +89,21 @@ const AddPetForm = () => {
         console.log(pair[0] + ': ' + pair[1]);
       }
 
-      // dispatch(addMyPet(formData))
+      // dispatch(addMyPet({category: 'my ads', formData}))
       resetForm();
       return;
     }
 
     formData.append('title', values.title);
     formData.append('sex', values.sex);
-    formData.append('location', values.location);
+    formData.append('place', values.location);
 
     if (formValues.category === 'lost-found') {
       for (let pair of formData.entries()) {
         console.log(pair[0] + ': ' + pair[1]);
       }
 
-      // dispatch(addNotice({ category: 'lost-found', formData }));
+      // dispatch(addNotice({ category: 'lost/found', formData }));
       resetForm();
       return;
     }
@@ -166,7 +113,7 @@ const AddPetForm = () => {
         console.log(pair[0] + ': ' + pair[1]);
       }
 
-      // dispatch(addNotice({ category: 'in-good-hands', formData }));
+      // dispatch(addNotice({ category: 'in good hands', formData }));
       resetForm();
       return;
     }

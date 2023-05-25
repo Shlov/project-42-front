@@ -1,5 +1,5 @@
 import { NextButton, PawIcon } from './NextButton.styled';
-import icons from '../../images/icons.svg';
+import icons from '../../../images/icons.svg';
 
 const AddPetFormNextButton = ({ buttonText, type, onClick, disabled }) => {
   return (

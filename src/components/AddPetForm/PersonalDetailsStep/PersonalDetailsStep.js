@@ -1,6 +1,6 @@
 import { useFormikContext } from 'formik';
 import { useState, useEffect, useCallback } from 'react';
-import AddPetFormNextButton from 'components/AddPetFormButtons/AddPetFormNextButton';
+import AddPetFormNextButton from 'components/AddPetForm/AddPetFormButtons/AddPetFormNextButton';
 import BackLink from '../AddPetFormButtons/BackLink';
 import {
   ErrorMessageContainer,
@@ -9,7 +9,7 @@ import {
   PersonalDetailsStepInput,
   PersonalDetailsStepLabel,
 } from './PersonalDetailsStep.styled';
-import { AddPetFormButtonWrapper } from 'components/AddPetFormButtons/AddPetFormButtonWrapper.styled';
+import { AddPetFormButtonWrapper } from 'components/AddPetForm/AddPetFormButtons/AddPetFormButtonWrapper.styled';
 
 const PersonalDetailsStep = ({
   onBack,
