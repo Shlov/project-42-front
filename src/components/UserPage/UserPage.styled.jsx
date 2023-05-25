@@ -64,31 +64,38 @@ export const Button = styled.button`
   border: 2px solid var(--cl-blue-link);
   border-radius: 40px;
   color: var(--cl-blue-link);
-  background-color: var(--cl-almost-white);
+  background: transparent;
 
   @media (min-width: 768px) {
     width: 129px;
   }
 
-  /* transition: background-color var(--animat), color var(--animat); */
+  transition: background var(--animat);
 
   &:hover,
   &:active,
   &:focus {
     color: var(--cl-background);
-    background-color: var(--cl-blue-link);
+    background: var(--gr-blue);
+    border: none;
+    transition: background var(--animat) 1000ms;
   }
 `;
 
 export const ButtonYes = styled(Button)`
   border: none;
   color: var(--cl-background);
-  background-color: var(--cl-blue-link);
+  background: var(--cl-blue-link);
+
+  cursor: pointer;
+
+  transition: background var(--animat);
 
   &:hover,
   &:active,
   &:focus {
     background: var(--gr-blue);
+    transition: background var(--animat) 1000ms;
   }
 `;
 

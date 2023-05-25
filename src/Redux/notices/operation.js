@@ -5,7 +5,7 @@ const tokenShlov = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NmM5MDg4M2U
 
 axios.defaults.baseURL = 'https://fourtwo-back.onrender.com/';
 
-export const fetchNotices = createAsyncThunk('notices/all', 
+export const fetchNotices = createAsyncThunk('notices/all',
   async(_, thunkAPI) => {
     try {
       const response = await axios.get('/notices'
@@ -22,7 +22,7 @@ export const fetchNotices = createAsyncThunk('notices/all',
   }
 );
 
-export const fetchNotice = createAsyncThunk('notices/one', 
+export const fetchNotice = createAsyncThunk('notices/one',
   async(id, thunkAPI) => {
     try {
       const response = await axios.get(`/notices/${id}`,
@@ -39,3 +39,16 @@ export const fetchNotice = createAsyncThunk('notices/one',
   }
 );
 
+export const getNoticeByCategory = createAsyncThunk(
+  'notices/getNoticesByCategory',
+  async ({ category }, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(`/notices/${category}`, {
+        params: { category },
+      });
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);

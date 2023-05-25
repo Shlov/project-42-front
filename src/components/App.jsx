@@ -3,6 +3,7 @@ import { lazy, useEffect, useState, Suspense } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { setDesktop, setTablet, setMobile } from '../Redux/main/main-slice'
 import { SharedLayout } from './SharedLayout/SharedLayout';
+import Loader from './Loader/Loader';
 
 
 import '../index.css'
@@ -47,7 +48,7 @@ export const App = () => {
   return (
     <>
       {/* <div className="container"> */}
-      <Suspense>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route
             path="/"
@@ -66,7 +67,10 @@ export const App = () => {
             <Route path="/user" element={<User />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/notices" element={<Notices />} />
+            <Route path="/notices">
+              <Route index element={<Notices desktop={desktop} />} />
+              <Route path=":categoryName" element={<Notices desktop={desktop} />} />
+            </Route>
             <Route path="/add-pet" element={<AddPet />} />
             <Route path="/news" element={<News />} />
             <Route path="/friends" element={<OurFriends />} />

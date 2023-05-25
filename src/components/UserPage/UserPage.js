@@ -38,7 +38,7 @@ export const UserPage = () => {
   return (
     <>
       {isOpenModal && (
-        <ModalApproveAction onClose={toggleModal} height="302px">
+        <ModalApproveAction onClose={toggleModal} report>
           <ModalContent>
             <TitleModal>Already leaving?</TitleModal>
             <ButtonWrap>

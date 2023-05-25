@@ -70,12 +70,13 @@ export const Button = styled.button`
 
   cursor: pointer;
 
-  /* transition: background var(--animat); */
+  transition: background var(--animat);
 
   &:hover,
   &:active,
   &:focus {
     background: var(--gr-blue);
+    transition: background var(--animat) 1000ms;
   }
 `;
 

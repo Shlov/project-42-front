@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { Button, CloseIcon, Content, Modal, Overlay } from './ModalApproveAction.styled';
 import icons from 'images/icons.svg';
 
-export const ModalApproveAction = ({ children, onClose, height}) => {
+export const ModalApproveAction = ({ children, onClose}) => {
   //   пропс onClose це функція toggleModal,
   //   яку потрібно передати компоненту ModalApproveAction
   //   toggleModal - змінює стейт isOpen
@@ -27,8 +27,10 @@ export const ModalApproveAction = ({ children, onClose, height}) => {
     };
 
     window.addEventListener('keydown', onEscapeClose);
+    document.body.style.overflow= "hidden";
 
     return () => {
+      document.body.style.overflow = "visible";
       window.removeEventListener('keydown', onEscapeClose);
     };
   }, [onClose]);
@@ -36,7 +38,7 @@ export const ModalApproveAction = ({ children, onClose, height}) => {
   return (
     <>
       <Overlay onClick={onBackdropClose}>
-        <Modal height={height}>
+        <Modal >
           <Button type="button" apia-label="close" onClick={onClose}>
             <CloseIcon>
               <use href={icons + '#cross-small'} />
@@ -51,6 +53,5 @@ export const ModalApproveAction = ({ children, onClose, height}) => {
 
 ModalApproveAction.propTypes = {
   onClose: PropTypes.func.isRequired,
-  children: PropTypes.node,
-  height: PropTypes.string,  
+  children: PropTypes.node, 
 };

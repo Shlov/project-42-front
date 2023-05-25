@@ -117,16 +117,25 @@ export const SignProp = styled.span`
   }
 `;
 
+
+
 export const Contact = styled.a`
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
 
   color: var(--cl-yellow);
+  filter: blur(3px);
+
+  transition: filter var(--animat);
 
   @media (min-width: 768px) {
     font-size: 16px;
     line-height: 22px;
+  }
+
+  &:hover {
+    filter: blur(0px);
   }
 `;
 
@@ -183,16 +192,17 @@ export const Button = styled.button`
   border: none;
   border-radius: 40px;
   color: var(--cl-background);
-  background: var(--cl-blue-link);
+  background:#54adff;
 
   cursor: pointer;
 
-  /* transition: background var(--animat); */
+  transition: background var(--animat);
 
   &:hover,
   &:active,
   &:focus {
     background: var(--gr-blue);
+    transition: background var(--animat) 1000ms;
   }
 
   @media (min-width: 768px) {
@@ -219,15 +229,15 @@ export const ContactBtn = styled.a`
   border: 2px solid var(--cl-blue-link);
   border-radius: 40px;
   color: var(--cl-blue-link);
-  /* background: var(--cl-blue-link); */
 
   cursor: pointer;
 
-  /* transition: background var(--animat); */
+  transition: background var(--animat);
 
   &:hover,
   &:active,
   &:focus {
+    /* transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1); */
     background: var(--gr-blue);
     color: var(--cl-background);
     border: none;

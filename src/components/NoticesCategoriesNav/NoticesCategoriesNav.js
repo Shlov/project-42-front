@@ -1,21 +1,19 @@
-import {Button} from './NoticesCategoriesNav.styled'
+import { NavLink } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { Button, NavWrapper } from './NoticesCategoriesNav.styled';
 
 export const NoticesCategoriesNav = ({ setCategoriesArr, categoriesArr, categories, category, setCategory }) => {
-  const handleCategory = (categoryItem) => {
-    if (categoriesArr.includes(categoryItem.text)) {
-      setCategoriesArr(categoriesArr.filter(cat => cat !== categoryItem.text));
-    } else {
-      setCategoriesArr([...categoriesArr, categoryItem.text]);
-    }
-  }
+  const categoryPage = useParams()
 
   return (
-    <>
+    <NavWrapper>
       {categories.map((cat, i) => (
-        <Button key={i} onClick={() => handleCategory(cat)}>
-          {cat.text}
-        </Button>
+        <NavLink key={i} to={'/notices/' + cat.link}>
+          <Button key={i} categoryPage={categoryPage} category={cat.link}>
+            {cat.text}
+          </Button>
+        </NavLink>
       ))}
-    </>
+    </NavWrapper>
   );
 }
