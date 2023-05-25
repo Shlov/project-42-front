@@ -2,7 +2,7 @@
 
 import { NoticeCategoryItem } from "components/NoticeCategoryItem/NoticeCategoryItem";
 import { NoticesList } from "./NoticesCategoriesList.styled";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getIsLoadNotices, getNotices, selectNoticesByCategory } from "Redux/notices/selector";
 import { useEffect } from "react";
@@ -38,19 +38,24 @@ export const NoticeCategoryList = ({ onTrashModal, filteredItems, setFilteredIte
         // dispatch(getUserNotices({ search, page }));
       }
     }
-  }, [category, dispatch]);
+  }, [category, dispatch, notices, setFilteredItems]);
+
 
   return(
     <NoticesList>
-      {!isLoading && filteredItems
-      ? filteredItems.map((notice, i) =>
-        <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal}/>
-      )
-      : <h2>loading....</h2>
+
+      {isLoading && <h2>loading....</h2>}
+      {!isLoading && !category.categoryName 
+        ? allItems.map((notice, i) =>
+        <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal}/>)
+        : filteredItems.map((notice, i) =>
+        <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal}/>)
       }
     </NoticesList>
   )
 }
+
+
 
   // Наповнювач для карток
   // const arr = [1,1,1,1,1,1,1,1,1,1,1,1]
@@ -64,3 +69,11 @@ export const NoticeCategoryList = ({ onTrashModal, filteredItems, setFilteredIte
   // }
   // const notices = arr.fill(item);
   //
+
+
+  // {!isLoading && filteredItems
+  //   ? filteredItems.map((notice, i) =>
+  //     <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal}/>
+  //   )
+  //   : <h2>loading....</h2>
+  //   }
