@@ -1,4 +1,4 @@
-import { Field } from 'formik';
+import { Field, ErrorMessage } from 'formik';
 import styled, { css } from 'styled-components';
 
 export const MoreInfoStepContainer = styled.div`
@@ -164,7 +164,9 @@ export const Input = css`
   padding: 10px 16px;
   color: var(--cl-gray);
 
-  border: 1px solid var(--cl-blue-link);
+  border: 1px solid
+    ${props => (props.errors ? 'var(--cl-red)' : 'var(--cl-blue-link)')};
+  outline: var(--cl-blue-link);
   outline: var(--cl-blue-link);
 
   @media screen and (min-width: 768px) {
@@ -188,4 +190,12 @@ export const MoreInfoStepTextArea = styled(Field)`
 
     ${({ category }) => (category === 'lost-found' ? 'height: 182px' : '')}
   }
+`;
+
+export const ErrorMessageContainer = styled(ErrorMessage)`
+  color: var(--cl-red);
+  margin-top: 4px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: calc(16 / 12);
 `;

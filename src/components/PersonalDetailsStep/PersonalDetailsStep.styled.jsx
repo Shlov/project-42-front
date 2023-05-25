@@ -1,4 +1,4 @@
-import { Field } from 'formik';
+import { Field, ErrorMessage } from 'formik';
 import styled from 'styled-components';
 
 export const PersonalDetailsStepContainer = styled.div`
@@ -49,10 +49,19 @@ export const PersonalDetailsStepInput = styled(Field)`
   padding: 10px 16px;
   color: var(--cl-gray);
 
-  border: 1px solid var(--cl-blue-link);
+  border: 1px solid
+    ${props => (props.errors ? 'var(--cl-red)' : 'var(--cl-blue-link)')};
   outline: var(--cl-blue-link);
 
   @media screen and (min-width: 768px) {
     font-size: 16px;
   }
+`;
+
+export const ErrorMessageContainer = styled(ErrorMessage)`
+  color: var(--cl-red);
+  margin-top: 4px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: calc(16 / 12);
 `;

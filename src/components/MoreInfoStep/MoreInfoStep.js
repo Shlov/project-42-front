@@ -6,6 +6,7 @@ import {
   AvatarField,
   AvatarLabel,
   AvatarWrapper,
+  ErrorMessageContainer,
   LocationPriceCommentFieldWrapper,
   MoreInfoStepContainer,
   MoreInfoStepInput,
@@ -26,7 +27,8 @@ const MoreInfoStep = ({
   setFormValues,
   handleSubmit,
 }) => {
-  const { values, setTouched, setFieldValue } = useFormikContext();
+  const { values, setTouched, touched, errors, setFieldValue } =
+    useFormikContext();
   const [isDisabled, setIsDisabled] = useState(true);
 
   const handleChange = event => {
@@ -39,7 +41,7 @@ const MoreInfoStep = ({
 
     if (selectedCategory !== 'your-pet') {
       if (!values.sex) {
-        formErrors.sex = 'Sex is required';
+        formErrors.sex = 'Please select a sex';
       }
       if (!values.location) {
         formErrors.location = 'Location is required';
@@ -159,14 +161,11 @@ const MoreInfoStep = ({
                 name="avatar"
                 type="file"
                 onChange={handleChange}
+                errors={touched.avatar && errors.avatar}
               />
             </AvatarWrapper>
           </AvatarLabel>
-          <ErrorMessage
-            name="avatar"
-            component="div"
-            className="error-message"
-          />
+          <ErrorMessageContainer name="avatar" component="div" />
         </SexAvatarFieldWrapper>
         <LocationPriceCommentFieldWrapper>
           {selectedCategory !== 'your-pet' && (
@@ -177,13 +176,10 @@ const MoreInfoStep = ({
                   type="text"
                   name="location"
                   placeholder="Type of location"
+                  errors={touched.location && errors.location}
                 />
               </MoreInfoStepLabel>
-              <ErrorMessage
-                name="location"
-                component="div"
-                className="error-message"
-              />
+              <ErrorMessageContainer name="location" component="div" />
             </div>
           )}
 
@@ -197,13 +193,10 @@ const MoreInfoStep = ({
                   min="0"
                   name="price"
                   placeholder="Type of price"
+                  errors={touched.price && errors.price}
                 />
               </MoreInfoStepLabel>
-              <ErrorMessage
-                name="price"
-                component="div"
-                className="error-message"
-              />
+              <ErrorMessageContainer name="price" component="div" />
             </div>
           )}
 
@@ -216,9 +209,10 @@ const MoreInfoStep = ({
                 placeholder="Type breed"
                 component="textarea"
                 category={selectedCategory}
+                errors={touched.comments && errors.comments}
               ></MoreInfoStepTextArea>
             </MoreInfoStepLabel>
-            <ErrorMessage
+            <ErrorMessageContainer
               name="comments"
               component="div"
               className="error-message"
