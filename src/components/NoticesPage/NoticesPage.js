@@ -6,8 +6,8 @@
 //   - список оголошень NoticesCategoriesList
 //   - елемент навігації Add pet - переадресовує авторизованого користувача на сторінку AddPetPage
 // Під час першого входу на сторінку користувача повинно переадресовувати на маршрут /notices/sell та рендеритися список оголошень з продажу
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect, useMemo } from 'react';
+import { useSelector } from "react-redux";
 import { useLocation, useParams } from 'react-router-dom';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav'
@@ -77,20 +77,20 @@ export const NoticesPage = ({ desktop }) => {
   const [openFilter, setOpenFilter] = useState(false)
   const { categoryName } = useParams();
 
-  const categoryShelf = {
-    sell: 'sell',
-    'lost-found': 'lost/found',
-    'for-free': 'in good hands',
-  };
+  const categoryShelf = useMemo(() => ({
+  sell: 'sell',
+  'lost-found': 'lost/found',
+  'for-free': 'in good hands',
+}), []);
 
   useEffect(() => {
-    if(categoryName) {
-      const categoryValue = categoryShelf[categoryName];
-      setFilteredItems(items.filter(item => item.categories === categoryValue))
-    } else {
-      setFilteredItems(items)
-    }
-  }, [items, categoryName])
+  if (categoryName) {
+    const categoryValue = categoryShelf[categoryName];
+    setFilteredItems(items.filter(item => item.categories === categoryValue))
+  } else {
+    setFilteredItems(items)
+  }
+}, [items, categoryName, categoryShelf])
 
   useEffect(() => {
     let newItems = items ? [...items] : [];
@@ -121,7 +121,7 @@ export const NoticesPage = ({ desktop }) => {
       newItems = newItems.filter(item => item.categories === categoryValue);
     }
     setFilteredItems(newItems)
-  }, [genders, ages]);
+  }, [genders, ages, category, categoryShelf, categoryName, items]);
 
   const toggleModal = () => {
     setIsOpenModal(isOpen => !isOpen);
