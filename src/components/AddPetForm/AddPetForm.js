@@ -137,16 +137,16 @@ const AddPetForm = () => {
     setStep(prevStep => prevStep - 1);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = values => {
     const formData = new FormData();
-    // const { resetForm } = formikRef.current;
+    const { resetForm } = formikRef.current;
 
     formData.append('category', formValues.category);
-    formData.append('name', formValues.name);
-    formData.append('date', formValues.date);
-    formData.append('breed', formValues.breed);
-    formData.append('avatar', formValues.avatar);
-    formData.append('comments', formValues.comments);
+    formData.append('name', values.name);
+    formData.append('date', values.date);
+    formData.append('breed', values.breed);
+    formData.append('avatar', values.avatar);
+    formData.append('comments', values.comments);
 
     if (formValues.category === 'your-pet') {
       for (let pair of formData.entries()) {
@@ -154,13 +154,13 @@ const AddPetForm = () => {
       }
 
       // dispatch(addMyPet(formData))
-      // resetForm();
+      resetForm();
       return;
     }
 
-    formData.append('title', formValues.title);
-    formData.append('sex', formValues.sex);
-    formData.append('location', formValues.location);
+    formData.append('title', values.title);
+    formData.append('sex', values.sex);
+    formData.append('location', values.location);
 
     if (formValues.category === 'lost-found') {
       for (let pair of formData.entries()) {
@@ -168,7 +168,7 @@ const AddPetForm = () => {
       }
 
       // dispatch(addNotice({ category: 'lost-found', formData }));
-      // resetForm();
+      resetForm();
       return;
     }
 
@@ -178,12 +178,11 @@ const AddPetForm = () => {
       }
 
       // dispatch(addNotice({ category: 'in-good-hands', formData }));
-
-      // resetForm();
+      resetForm();
       return;
     }
 
-    formData.append('price', formValues.price);
+    formData.append('price', values.price);
 
     if (formValues.category === 'sell') {
       for (let pair of formData.entries()) {
@@ -191,7 +190,7 @@ const AddPetForm = () => {
       }
 
       // dispatch(addNotice({ category: 'sell', formData }));
-      // resetForm();
+      resetForm();
       return;
     }
   };
@@ -254,7 +253,7 @@ const AddPetForm = () => {
         onSubmit={handleSubmit}
         innerRef={formikRef}
       >
-        {() => <Form>{renderStepContent(step)}</Form>}
+        {({ values }) => <Form>{renderStepContent(step)}</Form>}
       </Formik>
     </FormContainer>
   );

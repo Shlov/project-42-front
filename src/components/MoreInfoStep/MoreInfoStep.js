@@ -33,8 +33,6 @@ const MoreInfoStep = ({
     setFieldValue('avatar', event.target.files[0]);
   };
 
-  console.log(values);
-
   // Function to validate form fields. useCallback is used to memoize the validateFields function
   const validateFields = useCallback(() => {
     let formErrors = {};
@@ -90,7 +88,7 @@ const MoreInfoStep = ({
         avatar: values.avatar,
         comments: values.comments,
       }));
-      handleSubmit();
+      handleSubmit(values);
     }
   };
 
