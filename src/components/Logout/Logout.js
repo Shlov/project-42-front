@@ -11,16 +11,16 @@ import {
   ModalContent,
   TitleModal,
   BtnLogout,
-} from './UserPage.styled';
+  ArrowBack,
+} from './Logout.styled';
 
 import { useDispatch } from 'react-redux';
 import { logOut } from 'Redux/auth/operation';
 
-import LogoutIcon from '../../images/icons/logout.svg';
 import icons from 'images/icons.svg';
-import { ModalCongrats } from 'components/ModalCongrats/ModalCongrats';
+// import { ModalCongrats } from 'components/ModalCongrats/ModalCongrats';
 
-export const UserPage = () => {
+export const LogoutBtn = () => {
   //   toggleModal, яку потрібно передати компоненту ModalApproveAction для закриття вікна
   const [isOpenModal, setIsOpenModal] = useState(false);
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ export const UserPage = () => {
   };
 
   const handleAction = () => {
-    console.log('Юзер розлогінився');
+    console.log('Передаємо екшн');
     dispatch(logOut());
   };
 
@@ -56,11 +56,11 @@ export const UserPage = () => {
       )}
 
       <BtnLogout type="button" onClick={toggleModal}>
-        <img src={LogoutIcon} alt="Button logout" />
+      <ArrowBack><use href={icons + '#logout'}/></ArrowBack>
         LogOut
       </BtnLogout>
 
-      <ModalCongrats />
+      {/* <ModalCongrats /> */}
     </>
   );
 };
