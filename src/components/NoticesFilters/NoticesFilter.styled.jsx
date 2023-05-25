@@ -19,7 +19,7 @@ export const Button = styled.button`
   border-radius: 40px;
   transition: background-color 250ms ease-in-out 0s, color 250ms ease-in-out 0s;
   cursor: pointer;
-  margin-bottom: 40px;
+  margin-right: 0 !important;
 
   &:hover {
     background: var(--gr-blue);
@@ -65,6 +65,7 @@ export const FiltersButton = styled.button`
   width: 100%;
   position: relative;
   margin-bottom: 8px;
+  margin-left: 0px !important;
 
   div {
     display: flex;

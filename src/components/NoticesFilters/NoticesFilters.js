@@ -16,7 +16,7 @@ export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, 
     }
   }
 
-  const handleAges = (event, ageText) => {
+  const handleChange = (event, ageText) => {
     if (event.target.checked) {
       if (!ages.includes(ageText)) {
         setAges([...ages, ageText]);
@@ -57,7 +57,7 @@ export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, 
               {filters.age.items.map((item, i) =>
                 activeAgeButton ?
                   <label key={i} htmlFor={item}>
-                    <input type="checkbox" name={filters.age.name} id={item} onChange={(event) => handleAges(event, item)} />
+                    <input type="checkbox" name={filters.age.name} id={item} onChange={(event) => handleChange(event, item)} />
                     {ages.includes(item) ? <FiltersRound><use href={icons + '#check-round'} /></FiltersRound> : <FiltersRound><use href={icons + '#round'} /></FiltersRound>}
                     {item}
                   </label>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { NavLinks, NavWrap } from './Nav.styled'
 
 const Nav = ({ setActiveBridge, desktop }) => {
@@ -27,7 +27,7 @@ const Nav = ({ setActiveBridge, desktop }) => {
     <NavWrap>
     <NavLinks>
       {links.map((link, i) =>
-        <Link key={i} to={link.link} className="nav" onClick={handleCloseMenu}>{link.text}</Link>
+        <NavLink key={i} to={link.link} className="nav" onClick={handleCloseMenu}>{link.text}</NavLink>
       )}
       </NavLinks>
       </NavWrap>
