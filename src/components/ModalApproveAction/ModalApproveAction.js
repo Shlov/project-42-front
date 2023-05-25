@@ -27,8 +27,10 @@ export const ModalApproveAction = ({ children, onClose}) => {
     };
 
     window.addEventListener('keydown', onEscapeClose);
+    document.body.style.overflow= "hidden";
 
     return () => {
+      document.body.style.overflow = "visible";
       window.removeEventListener('keydown', onEscapeClose);
     };
   }, [onClose]);
