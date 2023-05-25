@@ -46,7 +46,7 @@ export const ModalNotice = ({ onClose }) => {
   // в функцію fetchNotice треба буде прокинути id відкриваємої notice
   // поки бек не віддає без авторизованого користувача
   useEffect(() => {
-    dispatch(fetchNotice('646bd2bea5e6d2026f0414bf'));
+    dispatch(fetchNotice('646bd2fea5e6d2026f0414c3'));
   }, [dispatch]);
   //
 
