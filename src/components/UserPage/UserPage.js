@@ -11,6 +11,7 @@ import {
   ModalContent,
   TitleModal,
   BtnLogout,
+  ButtonYes,
 } from './UserPage.styled';
 
 import { useDispatch } from 'react-redux';
@@ -37,19 +38,19 @@ export const UserPage = () => {
   return (
     <>
       {isOpenModal && (
-        <ModalApproveAction onClose={toggleModal} height="302px">
+        <ModalApproveAction onClose={toggleModal} report>
           <ModalContent>
             <TitleModal>Already leaving?</TitleModal>
             <ButtonWrap>
               <Button type="button" aria-label="cancel" onClick={toggleModal}>
                 Cancel
               </Button>
-              <Button type="button" aria-label="yes" onClick={handleAction}>
+              <ButtonYes type="button" aria-label="yes" onClick={handleAction}>
                 Yes
                 <Arrow>
                   <use href={icons + '#logout'} />
                 </Arrow>
-              </Button>
+              </ButtonYes>
             </ButtonWrap>
           </ModalContent>
         </ModalApproveAction>

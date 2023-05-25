@@ -89,7 +89,7 @@ export const NoticeCategoryItem = ({onTrashModal, item}) => {
           <Title>{item.title ? item.title : 'Cute fox looking for a home'}</Title>
           <MoreBtn onClick={toggleModal}>Learn more</MoreBtn>
         </DescriptionWrapper>
-        {isOpenModal && <ModalNotice onClose={toggleModal}/>}
+        {isOpenModal&& <ModalNotice onClose={toggleModal} notice={item}/>}
       </Card>
     </>
   )
