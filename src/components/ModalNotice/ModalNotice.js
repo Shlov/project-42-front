@@ -19,13 +19,10 @@ import {
   HeartIcon,
   Image,
   ImageWrapper,
-  ItemContact,
   ItemProp,
-  ListContact,
   ListProperty,
   ModalContent,
   NameProp,
-  SignContact,
   SignProp,
   TitleModal,
 } from './ModalNotice.styled';
@@ -42,7 +39,8 @@ export const ModalNotice = ({ onClose }) => {
   };
 
   const dispatch = useDispatch();
-  const { imageURL, categories, name, birthday, breed, place, sex, comments } = useSelector(getNotice);
+  const { imageURL, categories, name, birthday, breed, place, sex, comments } =
+    useSelector(getNotice);
   const isLoading = useSelector(getIsLoadNotice);
 
   // в функцію fetchNotice треба буде прокинути id відкриваємої notice
@@ -54,7 +52,7 @@ export const ModalNotice = ({ onClose }) => {
 
   return (
     <>
-      <ModalApproveAction onClose={onClose} height="786px">
+      <ModalApproveAction onClose={onClose}>
         {isLoading ? (
           <h3>Loading...</h3>
         ) : (
@@ -98,24 +96,27 @@ export const ModalNotice = ({ onClose }) => {
                   <SignProp>{sex ? sex : 'sex'}</SignProp>
                 </ItemProp>
               </ListProperty>
-              <ListContact>
-                <ItemContact>
-                  <Contact>Email:</Contact>
-                  <SignContact href="mailto:user@mail.com">
-                    user@mail.com
-                  </SignContact>
-                </ItemContact>
-                <ItemContact>
-                  <Contact>Phone:</Contact>
-                  <SignContact href="tel:+380971234567" aria-label="phone">
+              <ListProperty>
+                <ItemProp>
+                  <NameProp>Email:</NameProp>
+                  <Contact href="mailto:user@mail.com">user@mail.com</Contact>
+                </ItemProp>
+                <ItemProp>
+                  <NameProp>Phone:</NameProp>
+                  <Contact href="tel:+380971234567" aria-label="phone">
                     +380971234567
-                  </SignContact>
-                </ItemContact>
-              </ListContact>
+                  </Contact>
+                </ItemProp>
+              </ListProperty>
             </div>
-            {/* {<CommentWrap>
-              <span>Comments:&nbsp;</span><span>Rich would be the perfect addition to an active family that loves to play and go on walks. I bet he would love having a doggy playmate too! </span>
-            </CommentWrap> } */}
+            {/* <CommentWrap>
+              <span>Comments:&nbsp;</span>
+              <span>
+                Rich would be the perfect addition to an active family that
+                loves to play and go on walks. I bet he would love having a
+                doggy playmate too!{' '}
+              </span>
+            </CommentWrap> */}
             {comments ? (
               <CommentWrap>
                 <span>Comments:&nbsp;</span>
@@ -148,14 +149,4 @@ export const ModalNotice = ({ onClose }) => {
 
 ModalNotice.propTypes = {
   onClose: PropTypes.func.isRequired,
-  // notice: PropTypes.shape({
-  //   imageURL: PropTypes.string,
-  //   categories: PropTypes.string,
-  //   name: PropTypes.string,
-  //   birthday: PropTypes.string,
-  //   breed: PropTypes.string,
-  //   place: PropTypes.string,
-  //   sex: PropTypes.string,
-  //   comments: PropTypes.string,
-  // }).isRequired,
 };

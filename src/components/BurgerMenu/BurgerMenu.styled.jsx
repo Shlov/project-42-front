@@ -1,21 +1,21 @@
 import styled from 'styled-components';
 
 export const MobileMenuContainer = styled.div`
-  overflow: hidden;
-  background-color: var(--cl-background);
-  height: 100vh;
-  width: 100%;
-  position: fixed;
-  z-index: 100;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transition: all 0.3s;
+overflow: hidden;
+background-color: var(--cl-background);
+height: 100vh;
+width: 100%;
+position: fixed;
+z-index: 100;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+transition: all 0.3s;
 
-  &.active {
-    top: 0;
-  }
+&.active {
+top: 0;
+}
 `;
 
 export const MobileMenuHeader = styled.div`
