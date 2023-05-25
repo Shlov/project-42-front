@@ -23,20 +23,18 @@ export const NoticeCategoryItem = ({onTrashModal, item}) => {
 
 
   const agePet = (birthday) => {
-    const nowDate = new Date();
+    const nowDate = new Date().getTime();
     const [day, month, year] = birthday.split('.');
-    const birthDate = new Date (`${Number(year)}-${Number(month)}-${Number(day)}`);
+    const birthDate = new Date (`${Number(year)}-${Number(month)}-${Number(day)}`).getTime();
 
-    const differenceYear = nowDate.getFullYear() - birthDate.getFullYear();
-    const differenceMonth = 12 - birthDate.getMonth()+ 1 + nowDate.getMonth() + 1;
-    const differenceDay = 30.44 - birthDate.getDay() + nowDate.getDay();
-
-    if (differenceMonth > 12 || differenceYear > 1 ) {
-      return `${differenceYear ? differenceYear : '1'} year`
-    } else if (differenceYear === 0 && differenceMonth === 0 && differenceDay < 30) {
-      return `${Math.floor(differenceDay/7)} week`
+    const differenceTime = nowDate - birthDate
+    
+    if (differenceTime < 2630016000) {
+      return `${Math.floor(differenceTime/604800000)} week`
+    } else if ( differenceTime < 31560192000) {
+      return `${Math.floor(differenceTime/2630016000)} mos`
     } else {
-      return `${differenceMonth} mos`
+      return `${Math.floor(differenceTime/31560192000)} year`
     };
   }
 
