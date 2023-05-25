@@ -4,7 +4,7 @@ export const FormContainer = styled.div`
   margin-right: auto;
   margin-left: auto;
   margin-top: 20px;
-  width: 280px;
+  width: 100%;
   min-height: 496px;
   padding: 20px 8px 17px;
   background-color: var(--cl-almost-white);
@@ -13,9 +13,11 @@ export const FormContainer = styled.div`
 
   @media screen and (min-width: 768px) {
     margin-top: 60px;
-    width: 458px;
+    width: fit-content;
     min-height: 542px;
     padding: 20px 32px;
+
+    ${({ step }) => (step === 1 || step === 2 ? 'width: 458px' : '')}
   }
 `;
 
