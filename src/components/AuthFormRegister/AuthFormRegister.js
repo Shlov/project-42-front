@@ -6,9 +6,11 @@
 
 //  Після реєстрації користувач повинен бути переадресований на сторінку UserPage з одночасним відкриттям модального вікна-вітання ModalCongrats. Якщо з бекенда було отримано помилку реєстрації - користувачу необхідно вивести  відповідну інформацію і вигляді нотіфікації
 import { Formik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { userReg } from 'Redux/auth/operation';
 import { useState } from 'react';
+import { Navigate } from "react-router-dom";
+import { getConnect } from "Redux/auth/selector";
 import * as yup from 'yup';
 import {
   Box,
@@ -110,6 +112,11 @@ export const RegForm = () => {
     );
     props.resetForm();
   };
+
+      const isConnect = useSelector(getConnect);
+  if (isConnect) {
+    return (< Navigate to = "/user" replace />)
+  }
 
   return (
     <Wrapper>

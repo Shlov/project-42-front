@@ -141,8 +141,6 @@ const AddPetForm = () => {
     const formData = new FormData();
     // const { resetForm } = formikRef.current;
 
-    console.log(formValues);
-
     formData.append('category', formValues.category);
     formData.append('name', formValues.name);
     formData.append('date', formValues.date);
@@ -180,6 +178,7 @@ const AddPetForm = () => {
       }
 
       // dispatch(addNotice({ category: 'in-good-hands', formData }));
+
       // resetForm();
       return;
     }
