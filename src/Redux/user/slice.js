@@ -1,27 +1,27 @@
-import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { currentUser } from './operation';
-// import { fetchContacts, , deleteContact, editingContact } from './operations';
+// import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+// import { currentUser } from './operation';
+// // import { fetchContacts, , deleteContact, editingContact } from './operations';
 
-const authSlice = createSlice({
-    name: 'auth',
-    initialState:{ user: { name: null, email: null, phone: null, birthday: null, city: null, avatarURL: null },
-    token: null,
-    isLoggedIn: false,
-    isRefreshing: false,},
-    extraReducers: builder => {
-      builder
-        .addCase(currentUser.fulfilled, (state, action) => {
-          state.user = action.payload;
-          state.isLoggedIn = true;
-          state.isRefreshing = false;
-        })
-        .addCase(refreshUser.rejected, state => {
-          state.isRefreshing = false;
-        });
-    },
-  });
+// const authSlice = createSlice({
+//     name: 'auth',
+//     initialState:{ user: { name: null, email: null, phone: null, birthday: null, city: null, avatarURL: null },
+//     token: null,
+//     isLoggedIn: false,
+//     isRefreshing: false,},
+//     extraReducers: builder => {
+//       builder
+//         .addCase(currentUser.fulfilled, (state, action) => {
+//           state.user = action.payload;
+//           state.isLoggedIn = true;
+//           state.isRefreshing = false;
+//         })
+//         .addCase(refreshUser.rejected, state => {
+//           state.isRefreshing = false;
+//         });
+//     },
+//   });
   
-  export const authReducer = authSlice.reducer;
+//   export const authReducer = authSlice.reducer;
 
 
 
