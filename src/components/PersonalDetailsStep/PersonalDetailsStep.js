@@ -1,5 +1,14 @@
-import { Field, ErrorMessage, useFormikContext } from 'formik';
+import { ErrorMessage, useFormikContext } from 'formik';
 import { useState, useEffect, useCallback } from 'react';
+import AddPetFormNextButton from 'components/AddPetFormButtons/AddPetFormNextButton';
+import BackLink from '../AddPetFormButtons/BackLink';
+import {
+  PersonalDetailsField,
+  PersonalDetailsStepContainer,
+  PersonalDetailsStepInput,
+  PersonalDetailsStepLabel,
+} from './PersonalDetailsStep.styled';
+import { AddPetFormButtonWrapper } from 'components/AddPetFormButtons/AddPetFormButtonWrapper.styled';
 
 const PersonalDetailsStep = ({
   onBack,
@@ -74,53 +83,83 @@ const PersonalDetailsStep = ({
 
   return (
     <>
-      {/* Field "title" is only for the "sell" and "lost" categories */}
-      {selectedCategory !== 'your-pet' && (
-        <div>
-          <label>
-            Title of add
-            <Field type="text" name="title" placeholder="Type title" />
-          </label>
+      <PersonalDetailsStepContainer>
+        {/* Field "title" is only for the "sell" and "lost" categories */}
+        {selectedCategory !== 'your-pet' && (
+          <PersonalDetailsField>
+            <PersonalDetailsStepLabel>
+              Title of add
+              <PersonalDetailsStepInput
+                type="text"
+                name="title"
+                placeholder="Type title"
+              />
+            </PersonalDetailsStepLabel>
+            <ErrorMessage
+              name="title"
+              component="div"
+              className="error-message"
+            />
+          </PersonalDetailsField>
+        )}
+
+        {/* Input field for capturing the name of the pet */}
+        <PersonalDetailsField>
+          <PersonalDetailsStepLabel>
+            Pet’s name
+            <PersonalDetailsStepInput
+              type="text"
+              name="name"
+              placeholder="Type name pet"
+            />
+          </PersonalDetailsStepLabel>
+          <ErrorMessage name="name" component="div" className="error-message" />
+        </PersonalDetailsField>
+        {/* Input field for capturing the date of birth of the pet */}
+        <PersonalDetailsField>
+          <PersonalDetailsStepLabel>
+            Date of birth
+            <PersonalDetailsStepInput
+              type="text"
+              name="date"
+              placeholder="Type date of birth"
+            />
+          </PersonalDetailsStepLabel>
+          <ErrorMessage name="date" component="div" className="error-message" />
+        </PersonalDetailsField>
+        {/* Input field for capturing the breed of the pet */}
+        <PersonalDetailsField>
+          <PersonalDetailsStepLabel>
+            Breed
+            <PersonalDetailsStepInput
+              type="text"
+              name="breed"
+              placeholder="Type breed"
+            />
+          </PersonalDetailsStepLabel>
           <ErrorMessage
-            name="title"
+            name="breed"
             component="div"
             className="error-message"
           />
-        </div>
-      )}
-
-      {/* Input field for capturing the name of the pet */}
-      <div>
-        <label>
-          Pet’s name
-          <Field type="text" name="name" placeholder="Type name pet" />
-        </label>
-        <ErrorMessage name="name" component="div" className="error-message" />
-      </div>
-      {/* Input field for capturing the date of birth of the pet */}
-      <div>
-        <label>
-          Date of birth
-          <Field type="text" name="date" placeholder="Type date of birth" />
-        </label>
-        <ErrorMessage name="date" component="div" className="error-message" />
-      </div>
-      {/* Input field for capturing the breed of the pet */}
-      <div>
-        <label>
-          Breed
-          <Field type="text" name="breed" placeholder="Type breed" />
-        </label>
-        <ErrorMessage name="breed" component="div" className="error-message" />
-      </div>
-      {/* Button to navigate to the previous step */}
-      <button type="button" onClick={onBack}>
-        Back
-      </button>
-      {/* Button to navigate to the next step */}
-      <button type="button" onClick={handleNextClick} disabled={isDisabled}>
-        Next
-      </button>
+        </PersonalDetailsField>
+      </PersonalDetailsStepContainer>
+      <AddPetFormButtonWrapper>
+        {/* Button to navigate to the previous step */}
+        <BackLink
+          type="button"
+          buttonText="Back"
+          handleClick={onBack}
+          isLink={false}
+        />
+        {/* Button to navigate to the next step */}
+        <AddPetFormNextButton
+          type="button"
+          onClick={handleNextClick}
+          disabled={isDisabled}
+          buttonText="Next"
+        />
+      </AddPetFormButtonWrapper>
     </>
   );
 };

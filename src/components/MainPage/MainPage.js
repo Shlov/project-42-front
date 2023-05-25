@@ -1,7 +1,12 @@
 // Компонент рендериться на маршрут /main
 // Головна сторінка містить в собі заголовок застосунку та контентне зображення домашніх улюбленців
 import React from 'react';
-import { MainContainer, MainTitle, MainImg } from './MainPage.styled';
+import {
+  MainContainer,
+  MainTitle,
+  MainImg,
+  MainPicture,
+} from './MainPage.styled';
 
 import mobileMainImg1x from '../../images/main/main@1x_sm.png';
 import mobileMainImg2x from '../../images/main/main@2x_sm.png';
@@ -15,7 +20,7 @@ export const MainPage = () => {
     <>
       <MainContainer>
         <MainTitle>Take good care of your small pets</MainTitle>
-        <picture>
+        <MainPicture>
           <source
             media="(min-width: 1280px)"
             srcset={`${desktopMainImg1x} 1x, ${desktopMainImg2x} 2x`}
@@ -32,7 +37,7 @@ export const MainPage = () => {
             type="image/png"
           />
           <MainImg src={mobileMainImg1x} alt="Cute pets" />
-        </picture>
+        </MainPicture>
       </MainContainer>
     </>
   );

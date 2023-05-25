@@ -1,7 +1,17 @@
-import { Field, ErrorMessage } from 'formik';
 import { useRef, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import BackLink from './../BackLink/BackLink';
+import BackLink from '../AddPetFormButtons/BackLink';
+import {
+  CategoryStepContainer,
+  CategoryStepLabel,
+  RadioButton,
+} from './CategoryStep.styled';
+import icons from '../../images/icons.svg';
+import {
+  NextButton,
+  PawIcon,
+} from 'components/AddPetFormButtons/NextButton.styled';
+import { AddPetFormButtonWrapper } from 'components/AddPetFormButtons/AddPetFormButtonWrapper.styled';
 
 const CategoryStep = ({ onNext, onSelectCategory, selectedCategory }) => {
   const location = useLocation();
@@ -20,61 +30,58 @@ const CategoryStep = ({ onNext, onSelectCategory, selectedCategory }) => {
   return (
     <>
       {/* Radio buttons for selecting a category */}
-      <div>
-        <label>
-          <Field
-            type="radio"
-            name="category"
-            value="your-pet"
-            checked={selectedCategory === 'your-pet'}
-            onChange={handleCategoryChange}
-          />
+      <CategoryStepContainer>
+        <RadioButton
+          type="radio"
+          name="category"
+          value="your-pet"
+          id="your-pet"
+          checked={selectedCategory === 'your-pet'}
+          onChange={handleCategoryChange}
+        />
+        <CategoryStepLabel htmlFor="your-pet">
           {/* Initial selection is "your pet" */}
           your pet
-        </label>
-        <label>
-          <Field
-            type="radio"
-            name="category"
-            value="sell"
-            checked={selectedCategory === 'sell'}
-            onChange={handleCategoryChange}
-          />
-          sell
-        </label>
-        <label>
-          <Field
-            type="radio"
-            name="category"
-            value="lost-found"
-            checked={selectedCategory === 'lost-found'}
-            onChange={handleCategoryChange}
-          />
-          lost/found
-        </label>
-        <label>
-          <Field
-            type="radio"
-            name="category"
-            value="for-free"
-            checked={selectedCategory === 'for-free'}
-            onChange={handleCategoryChange}
-          />
-          in good hands
-        </label>
-        <ErrorMessage
+        </CategoryStepLabel>
+        <RadioButton
+          type="radio"
           name="category"
-          component="div"
-          className="error-message"
+          value="sell"
+          id="sell"
+          checked={selectedCategory === 'sell'}
+          onChange={handleCategoryChange}
         />
-        {/* Validation error message for the category field */}
-      </div>
-      <BackLink to={locRef.current}>Cancel</BackLink>
-      {/* Cancel button, must be changed to BackLink */}
-      <button type="button" onClick={onNext} disabled={isDisabled}>
-        {/* Proceed to the next step */}
-        Next
-      </button>
+        <CategoryStepLabel htmlFor="sell">sell</CategoryStepLabel>
+        <RadioButton
+          type="radio"
+          name="category"
+          value="lost-found"
+          id="lost-found"
+          checked={selectedCategory === 'lost-found'}
+          onChange={handleCategoryChange}
+        />
+        <CategoryStepLabel htmlFor="lost-found">lost/found</CategoryStepLabel>
+        <RadioButton
+          type="radio"
+          name="category"
+          value="for-free"
+          id="for-free"
+          checked={selectedCategory === 'for-free'}
+          onChange={handleCategoryChange}
+        />
+        <CategoryStepLabel htmlFor="for-free">in good hands</CategoryStepLabel>
+      </CategoryStepContainer>
+      <AddPetFormButtonWrapper>
+        <BackLink to={locRef.current} buttonText="Cancel" isLink={true} />
+        {/* Cancel button, must be changed to BackLink */}
+        <NextButton type="button" onClick={onNext} disabled={isDisabled}>
+          {/* Proceed to the next step */}
+          Next
+          <PawIcon width={24} height={24}>
+            <use href={icons + '#pawprint'} />
+          </PawIcon>
+        </NextButton>
+      </AddPetFormButtonWrapper>
     </>
   );
 };

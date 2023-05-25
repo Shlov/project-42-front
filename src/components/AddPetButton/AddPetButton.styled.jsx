@@ -1,5 +1,5 @@
 import styled from "styled-components";
- 
+
 export const Button = styled.button`
   font-size: 16px;
   font-weight: 700;
@@ -14,10 +14,9 @@ export const Button = styled.button`
   border-radius: 40px;
   transition: background-color 250ms ease-in-out 0s, color 250ms ease-in-out 0s;
   cursor: pointer;
-  margin-bottom: 40px;
 
    &:hover {
     background: var(--cl-background);
     color: var(--cl-blue-link);
-    border: none;
+    border: 2px solid var(--cl-blue-link);
  `

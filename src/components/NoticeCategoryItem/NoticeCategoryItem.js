@@ -24,19 +24,19 @@ export const NoticeCategoryItem = ({onTrashModal, item}) => {
 
   const agePet = (birthday) => {
     const nowDate = new Date();
-    const [month, day, year] = birthday.split('.');
-    const birthDate = new Date (`${Number(month)-1},${Number(day)},${Number(year)}`);
+    const [day, month, year] = birthday.split('.');
+    const birthDate = new Date (`${Number(year)}-${Number(month)}-${Number(day)}`);
 
     const differenceYear = nowDate.getFullYear() - birthDate.getFullYear();
     const differenceMonth = 12 - birthDate.getMonth()+ 1 + nowDate.getMonth() + 1;
     const differenceDay = 30.44 - birthDate.getDay() + nowDate.getDay();
 
-    if ((differenceMonth > 12 && differenceYear > 0) || differenceYear > 1 ) {
-      return `${differenceYear} year`
+    if (differenceMonth > 12 || differenceYear > 1 ) {
+      return `${differenceYear ? differenceYear : '1'} year`
     } else if (differenceYear === 0 && differenceMonth === 0 && differenceDay < 30) {
       return `${Math.floor(differenceDay/7)} week`
     } else {
-      return `${differenceMonth} month`
+      return `${differenceMonth} mos`
     };
   }
 
@@ -89,7 +89,7 @@ export const NoticeCategoryItem = ({onTrashModal, item}) => {
           <Title>{item.title ? item.title : 'Cute fox looking for a home'}</Title>
           <MoreBtn onClick={toggleModal}>Learn more</MoreBtn>
         </DescriptionWrapper>
-        {isOpenModal && <ModalNotice onClose={toggleModal}/>}
+        {isOpenModal&& <ModalNotice onClose={toggleModal} notice={item}/>}
       </Card>
     </>
   )

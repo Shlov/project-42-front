@@ -11,19 +11,18 @@ import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAc
 import {
   Button,
   ButtonWrap,
+  ButtonWrapThumb,
   CategoryTag,
   CommentWrap,
   Contact,
+  ContactBtn,
   HeartIcon,
   Image,
   ImageWrapper,
-  ItemContact,
   ItemProp,
-  ListContact,
   ListProperty,
   ModalContent,
   NameProp,
-  SignContact,
   SignProp,
   TitleModal,
 } from './ModalNotice.styled';
@@ -33,86 +32,116 @@ import { fetchNotice } from 'Redux/notices/operation';
 import { getIsLoadNotice, getNotice } from 'Redux/notices/selector';
 
 export const ModalNotice = ({ onClose }) => {
+  // const { imageURL, categories, name, birthday, breed, place, sex, comments } =
+  //   notice;
+  const handleChange = () => {
+    console.log('User додав тваринку у favorite');
+  };
 
-  const dispatch = useDispatch()
-  const oneNotice = useSelector(getNotice);
+  const dispatch = useDispatch();
+  const { imageURL, categories, name, birthday, breed, place, sex, comments } =
+    useSelector(getNotice);
   const isLoading = useSelector(getIsLoadNotice);
 
   // в функцію fetchNotice треба буде прокинути id відкриваємої notice
-  // поки бек не віддає без авторизованого користувача 
+  // поки бек не віддає без авторизованого користувача
   useEffect(() => {
-    dispatch(fetchNotice('646bd2bea5e6d2026f0414bf'))
-  },[dispatch])
-  // 
+    dispatch(fetchNotice('646bd2fea5e6d2026f0414c3'));
+  }, [dispatch]);
+  //
 
   return (
     <>
-      <ModalApproveAction onClose={onClose} height="786px">
-        {isLoading
-          ? <h3>Loading...</h3>
-          :<ModalContent>
-          <ImageWrapper>
-            <Image
-              alt="pet.name"
-              src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSgGi3YJI2iukoOZ3_fbYCyoiR4dYO8fIyIu_qpphSUf8GRAmFN"
-            />
-            <CategoryTag>{oneNotice.categories ? oneNotice.categories : 'Category'}</CategoryTag>
-          </ImageWrapper>
-
-          <TitleModal>Cute dog looking for a home</TitleModal>
-          <ListProperty>
-            <ItemProp>
-              <NameProp>Name:</NameProp>
-              <SignProp>Rich</SignProp>
-            </ItemProp>
-            <ItemProp>
-              <NameProp>Birthday:</NameProp>
-              <SignProp>21.09.2020</SignProp>
-            </ItemProp>
-            <ItemProp>
-              <NameProp>NameBreed:</NameProp>
-              <SignProp>Pomeranian</SignProp>
-            </ItemProp>
-            <ItemProp>
-              <NameProp>Place:</NameProp>
-              <SignProp>Lviv</SignProp>
-            </ItemProp>
-            <ItemProp>
-              <NameProp>The sex:</NameProp>
-              <SignProp>male</SignProp>
-            </ItemProp>
-
-            <ListContact>
-              <ItemContact>
-                <Contact>Email:</Contact>
-                <SignContact href="mailto:user@mail.com">user@mail.com</SignContact>
-              </ItemContact>
-              <ItemContact>
-                <Contact>Phone:</Contact>
-                <SignContact href="tel:+380971234567" aria-label="phone">
-                  +380971234567
-                </SignContact>
-              </ItemContact>
-            </ListContact>
-
-            <CommentWrap>
-              <span>Comments:&nbsp;</span><span>Rich would be the perfect addition to an active family that
+      <ModalApproveAction onClose={onClose}>
+        {isLoading ? (
+          <h3>Loading...</h3>
+        ) : (
+          <ModalContent>
+            <ImageWrapper>
+              <Image
+                alt="pet.name"
+                src={
+                  imageURL
+                    ? imageURL
+                    : 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSgGi3YJI2iukoOZ3_fbYCyoiR4dYO8fIyIu_qpphSUf8GRAmFN'
+                }
+              />
+              <CategoryTag>
+                {categories ? categories : 'categories'}
+              </CategoryTag>
+            </ImageWrapper>
+            <div>
+              <div>
+                <TitleModal>Cute dog looking for a home</TitleModal>
+              </div>
+              <ListProperty>
+                <ItemProp>
+                  <NameProp>Name:</NameProp>
+                  <SignProp>{name ? name : 'Pet'}</SignProp>
+                </ItemProp>
+                <ItemProp>
+                  <NameProp>Birthday:</NameProp>
+                  <SignProp>{birthday ? birthday : 'find'}</SignProp>
+                </ItemProp>
+                <ItemProp>
+                  <NameProp>NameBreed:</NameProp>
+                  <SignProp>{breed ? breed : 'superior'}</SignProp>
+                </ItemProp>
+                <ItemProp>
+                  <NameProp>Place:</NameProp>
+                  <SignProp>{place ? place : 'find'}</SignProp>
+                </ItemProp>
+                <ItemProp>
+                  <NameProp>The sex:</NameProp>
+                  <SignProp>{sex ? sex : 'sex'}</SignProp>
+                </ItemProp>
+              </ListProperty>
+              <ListProperty>
+                <ItemProp>
+                  <NameProp>Email:</NameProp>
+                  <Contact href="mailto:user@mail.com">user@mail.com</Contact>
+                </ItemProp>
+                <ItemProp>
+                  <NameProp>Phone:</NameProp>
+                  <Contact href="tel:+380971234567" aria-label="phone">
+                    +380971234567
+                  </Contact>
+                </ItemProp>
+              </ListProperty>
+            </div>
+            {/* <CommentWrap>
+              <span>Comments:&nbsp;</span>
+              <span>
+                Rich would be the perfect addition to an active family that
                 loves to play and go on walks. I bet he would love having a
-                doggy playmate too!</span>
-            </CommentWrap>
-            <ButtonWrap>
-              <Button href="mailto:user@mail.com" aria-label="email">
-                Contact
-              </Button>
-              <Button type="button" aria-label="Add to favorite">
-                Add to
-                <HeartIcon>
-                  <use href={icons + '#heart'}></use>
-                </HeartIcon>
-              </Button>
-            </ButtonWrap>
-          </ListProperty>
-          </ModalContent>}
+                doggy playmate too!{' '}
+              </span>
+            </CommentWrap> */}
+            {comments ? (
+              <CommentWrap>
+                <span>Comments:&nbsp;</span>
+                <span>comments</span>
+              </CommentWrap>
+            ) : null}
+            <ButtonWrapThumb>
+              <ButtonWrap>
+                <ContactBtn href="tel:+380971234567" aria-label="phone button">
+                  Contact
+                </ContactBtn>
+                <Button
+                  type="button"
+                  aria-label="Add to favorite"
+                  onClick={handleChange}
+                >
+                  Add to
+                  <HeartIcon>
+                    <use href={icons + '#heart'}></use>
+                  </HeartIcon>
+                </Button>
+              </ButtonWrap>
+            </ButtonWrapThumb>
+          </ModalContent>
+        )}
       </ModalApproveAction>
     </>
   );

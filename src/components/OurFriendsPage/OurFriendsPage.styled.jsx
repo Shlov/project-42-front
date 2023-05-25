@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 
 export const FriendsSection = styled.div`
-
   display: flex;
   align-items: center;
   flex-direction: column;
   gap: 24px;
+
+  @media (min-width: 991px) {
+    width: 1230px;
+  margin: 0 auto;
+  }
 `;
 
 export const Title = styled.h1`
