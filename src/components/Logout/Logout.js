@@ -12,13 +12,14 @@ import {
   TitleModal,
   BtnLogout,
   //Ірина
-
   ArrowBack,
-// } from './Logout.styled';
+  
+  //Олексій
+  ButtonYes,
+} from './Logout.styled';
 
 //Олексій
-  ButtonYes,
-} from './UserPage.styled';
+// } from './UserPage.styled';
 
 import { useDispatch } from 'react-redux';
 import { logOut } from 'Redux/auth/operation';
