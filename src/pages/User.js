@@ -1,10 +1,10 @@
-import { UserPage } from "components/UserPage/UserPage";
+
+import { UserData } from "components/UserData/UserData";
 
 const User = () => {
   return (
     <>
-      <h2>User</h2>
-      <UserPage/>
+      <UserData/>
     </>
   );
 };
