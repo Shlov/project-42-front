@@ -19,7 +19,7 @@ import {
   BtnText,
   BtnPhoto,
   ImgContainer,
-  SVG,
+  svgIcon,
   SVGBtn,
   DIV,
   ImgCon,
@@ -47,9 +47,9 @@ const schema = yup.object().shape({
 const Camera = () => {
   return (
     <BtnPhoto>
-      <SVG>
+      <svgIcon>
         <use href={icons + '#camera'} />
-      </SVG>
+      </svgIcon>
       <BtnText>Edit photo</BtnText>
     </BtnPhoto>
   );
@@ -58,9 +58,9 @@ const Camera = () => {
 const CheckBlue = () => {
   return (
     <BtnPhoto>
-      <SVG>
+      <svgIcon>
         <use href={icons + '#check'} />
-      </SVG>
+      </svgIcon>
       <BtnText>Confirm</BtnText>
     </BtnPhoto>
   );

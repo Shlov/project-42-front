@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Form, Field, ErrorMessage } from 'formik';
 
+
 export const TitleCard = styled.h2`
 font-weight: 500;
 font-size: 20px;
@@ -72,7 +73,7 @@ export const ImgContainer = styled.div`
 export const ImgAvatar = styled.img`
   border-radius: 40px;
 `;
-export const SVG = styled.svg`
+export const svgIcon = styled.svg`
   margin-right: 8px;
   width: 24px;
   height: 24px;

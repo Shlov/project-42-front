@@ -25,6 +25,7 @@ import { useDispatch } from 'react-redux';
 import { logOut } from 'Redux/auth/operation';
 
 import icons from 'images/icons.svg';
+import { Link } from 'react-router-dom';
 // import { ModalCongrats } from 'components/ModalCongrats/ModalCongrats';
 
 export const LogoutBtn = () => {
@@ -37,7 +38,7 @@ export const LogoutBtn = () => {
   };
 
   const handleAction = () => {
-    console.log('Передаємо екшн');
+    // console.log('Передаємо екшн');
     dispatch(logOut());
   };
 
@@ -51,12 +52,13 @@ export const LogoutBtn = () => {
               <Button type="button" aria-label="cancel" onClick={toggleModal}>
                 Cancel
               </Button>
-              <ButtonYes type="button" aria-label="yes" onClick={handleAction}>
+            <Link to='/login' ><ButtonYes type="button" aria-label="yes" onClick={handleAction}>
                 Yes
                 <Arrow>
                   <use href={icons + '#logout'} />
                 </Arrow>
               </ButtonYes>
+              </Link>
             </ButtonWrap>
           </ModalContent>
         </ModalApproveAction>
