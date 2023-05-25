@@ -14,7 +14,7 @@ export const ModalContent = styled.div`
 
 export const TitleModal = styled.h4`
   width: 240px;
-  
+
   font-size: 24px;
   line-height: 33px;
   text-align: center;
@@ -93,10 +93,31 @@ export const Filters = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 42px;
 
   @media (min-width: 991px) {
     width: 1280px;
-    margin: 0 auto;
+    margin: 0 auto 42px;
+  }
+
+  .filters {
+    display: flex;
+
+    button {
+      &:last-child {
+        margin-left: 12px;
+      }
+    }
+    @media (max-width: 500px) {
+      display: block;
+
+      button {
+        margin: 0px 0 12px !important;
+        &:last-child {
+          margin-bottom: 12px;
+        }
+      }
+    }
   }
 `
 export const Text = styled.p`
