@@ -1,8 +1,8 @@
-import { RegForm } from "components/AuthFormRegister/AuthFormRegister";
+import { RegPage } from "components/RegisterPage/RegisterPage";
 
 const RegisterPage = () => {
   return (
-    <RegForm/>
+    <RegPage/>
   );
 };
 
