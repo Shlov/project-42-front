@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import {Button, NavWrapper} from './NoticesCategoriesNav.styled'
+import { Button, NavWrapper } from './NoticesCategoriesNav.styled';
 
 export const NoticesCategoriesNav = ({ setCategoriesArr, categoriesArr, categories, category, setCategory }) => {
   const categoryPage = useParams()
