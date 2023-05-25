@@ -26,13 +26,14 @@ const MoreInfoStep = ({
   setFormValues,
   handleSubmit,
 }) => {
-  const { values, setTouched } = useFormikContext();
+  const { values, setTouched, setFieldValue } = useFormikContext();
   const [isDisabled, setIsDisabled] = useState(true);
-  const [file, setFile] = useState(null);
 
   const handleChange = event => {
-    setFile(event.target.files[0]);
+    setFieldValue('avatar', event.target.files[0]);
   };
+
+  console.log(values);
 
   // Function to validate form fields. useCallback is used to memoize the validateFields function
   const validateFields = useCallback(() => {
@@ -53,11 +54,11 @@ const MoreInfoStep = ({
       }
     }
 
-    if (!file) {
+    if (!values.avatar) {
       formErrors.avatar = 'Avatar is required';
     }
 
-    // Validate breed field
+    // Validate comments field
     if (!values.comments) {
       formErrors.comments = 'Comments are required';
     } else if (values.comments.length < 8) {
@@ -66,7 +67,7 @@ const MoreInfoStep = ({
       formErrors.comments = 'Comments must be at most 120 characters';
     }
     return formErrors;
-  }, [selectedCategory, values, file]);
+  }, [selectedCategory, values]);
 
   // Handle next button click
   const handleSubmitClick = () => {
@@ -86,11 +87,11 @@ const MoreInfoStep = ({
         sex: values.sex,
         location: values.location,
         price: values.price,
-        avatar: file,
+        avatar: values.avatar,
         comments: values.comments,
       }));
+      handleSubmit();
     }
-    handleSubmit();
   };
 
   // Update disabled state based on form field validation
@@ -145,12 +146,15 @@ const MoreInfoStep = ({
           <AvatarLabel selectedCategory={selectedCategory}>
             Load the pet’s image:
             <AvatarWrapper>
-              {!file ? (
+              {!values.avatar ? (
                 <svg width={182} height={182}>
                   <use href={icons + '#defaultAvatar'} />
                 </svg>
               ) : (
-                <img src={URL.createObjectURL(file)} alt="Pet's avatar" />
+                <img
+                  src={URL.createObjectURL(values.avatar)}
+                  alt="Pet's avatar"
+                />
               )}
               <AvatarField
                 accept="image/*"
@@ -167,21 +171,23 @@ const MoreInfoStep = ({
           />
         </SexAvatarFieldWrapper>
         <LocationPriceCommentFieldWrapper>
-          <div>
-            <MoreInfoStepLabel>
-              Location
-              <MoreInfoStepInput
-                type="text"
+          {selectedCategory !== 'your-pet' && (
+            <div>
+              <MoreInfoStepLabel>
+                Location
+                <MoreInfoStepInput
+                  type="text"
+                  name="location"
+                  placeholder="Type of location"
+                />
+              </MoreInfoStepLabel>
+              <ErrorMessage
                 name="location"
-                placeholder="Type of location"
+                component="div"
+                className="error-message"
               />
-            </MoreInfoStepLabel>
-            <ErrorMessage
-              name="location"
-              component="div"
-              className="error-message"
-            />
-          </div>
+            </div>
+          )}
 
           {/* Field "price" is only for the "sell" category */}
           {selectedCategory === 'sell' && (
@@ -211,7 +217,7 @@ const MoreInfoStep = ({
                 name="comments"
                 placeholder="Type breed"
                 component="textarea"
-                selectedCategory={selectedCategory}
+                category={selectedCategory}
               ></MoreInfoStepTextArea>
             </MoreInfoStepLabel>
             <ErrorMessage

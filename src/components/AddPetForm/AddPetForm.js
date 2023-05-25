@@ -139,7 +139,7 @@ const AddPetForm = () => {
 
   const handleSubmit = () => {
     const formData = new FormData();
-    const { resetForm } = formikRef.current;
+    // const { resetForm } = formikRef.current;
 
     formData.append('category', formValues.category);
     formData.append('name', formValues.name);
@@ -149,8 +149,12 @@ const AddPetForm = () => {
     formData.append('comments', formValues.comments);
 
     if (formValues.category === 'your-pet') {
+      for (let pair of formData.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+      }
+
       // dispatch(addMyPet(formData))
-      resetForm();
+      // resetForm();
       return;
     }
 
@@ -159,25 +163,35 @@ const AddPetForm = () => {
     formData.append('location', formValues.location);
 
     if (formValues.category === 'lost-found') {
+      for (let pair of formData.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+      }
+
       // dispatch(addNotice({ category: 'lost-found', formData }));
-      resetForm();
+      // resetForm();
       return;
     }
 
     if (formValues.category === 'for-free') {
+      for (let pair of formData.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+      }
+
       // dispatch(addNotice({ category: 'in-good-hands', formData }));
-      resetForm();
+
+      // resetForm();
       return;
     }
 
     formData.append('price', formValues.price);
-    // for (let pair of formData.entries()) {
-    //   console.log(pair[0] + ': ' + pair[1]);
-    // }
 
     if (formValues.category === 'sell') {
+      for (let pair of formData.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+      }
+
       // dispatch(addNotice({ category: 'sell', formData }));
-      resetForm();
+      // resetForm();
       return;
     }
   };
