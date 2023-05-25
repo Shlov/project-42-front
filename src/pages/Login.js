@@ -1,8 +1,8 @@
-import { LogForm } from "components/AuthFormLogin/AuthFormLogin";
+import { LoginPages } from "components/LoginPage/LoginPage";
 
 const LoginPage = () => {
   return (
-    <LogForm/>
+    <LoginPages/>
 
   );
 };

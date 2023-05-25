@@ -7,8 +7,12 @@
 //  Після авторизації користувач повинен бути переадресований на сторінку UserPage. Якщо з бекенда було отримано помилку авторизації - користувачу необхідно вивести  відповідну інформацію і вигляді нотіфікації
 import { Formik } from 'formik';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { userLogin } from 'Redux/auth/operation';
+import { Navigate } from "react-router-dom";
+import { getConnect } from "Redux/auth/selector";
+
+
 import icons from 'images/icons.svg';
 import * as yup from 'yup';
 import {
@@ -66,6 +70,9 @@ const eyeOpen = () => {
 };
 
 export const LogForm = () => {
+
+
+
   const [toggleIconPass, setToggleIconPass] = useState(eyeCosed);
   const [typePass, setTypePass] = useState('password');
 
@@ -79,6 +86,8 @@ export const LogForm = () => {
     }
   };
 
+  
+
   const initialValue = {
     email: '',
     password: '',
@@ -90,7 +99,13 @@ export const LogForm = () => {
     props.resetForm();
   };
 
+    const isConnect = useSelector(getConnect);
+  if (isConnect) {
+    return <Navigate to="/user" replace />;
+  }
+
   return (
+
     <Wrapper>
       <Formik
         initialValues={initialValue}
@@ -174,7 +189,8 @@ export const LogForm = () => {
                   <Error component="div" name="password" />
                 </Label>
               </Box>
-              <Button type="submit">Login</Button>
+              
+                <Button type="submit" >Login</Button>
               <Text>
                 Already have an account?
                 <Span>
