@@ -5,7 +5,7 @@ import { createSlice } from '@reduxjs/toolkit'
 // import { currentUser, updateUser } from './operation';
 
 //Олексій
-import {userReg, userLogin} from './operation'
+import {userReg, userLogin, refreshUser} from './operation'
 
 
 export const authSlice = createSlice({
@@ -63,9 +63,10 @@ export const authSlice = createSlice({
 
   user: { email: '' },
   token: '',
-  isConnect: false
+  isConnect: false,
+  isRefreshing: false,
   },
-   extraReducers: builder => {
+  extraReducers: builder => {
     builder
       .addCase(userReg.fulfilled, (state, action) => {
         state.user = action.payload.user;
@@ -76,6 +77,17 @@ export const authSlice = createSlice({
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isConnect = true;
+      })
+      .addCase(refreshUser.pending, (state) => {
+        state.isRefreshing = true;
+      })
+      .addCase(refreshUser.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isRefreshing = false;
+      })
+      .addCase(refreshUser.rejected, (state) => {
+        state.isRefreshing = false;
       })
   },
 
