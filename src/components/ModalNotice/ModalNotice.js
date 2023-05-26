@@ -28,12 +28,11 @@ import {
 } from './ModalNotice.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+// import { useNavigate} from "react-router-dom";
 import { fetchNotice } from 'Redux/notices/operation';
 import { getIsLoadNotice, getNotice } from 'Redux/notices/selector';
 
-export const ModalNotice = ({ onClose }) => {
-  // const { imageURL, categories, name, birthday, breed, place, sex, comments } =
-  //   notice;
+export const ModalNotice = ({ onClose, noticeId}) => {
   const handleChange = () => {
     console.log('User додав тваринку у favorite');
   };
@@ -43,12 +42,15 @@ export const ModalNotice = ({ onClose }) => {
     useSelector(getNotice);
   const isLoading = useSelector(getIsLoadNotice);
 
+  // const navigate = useNavigate()
+ 
   // в функцію fetchNotice треба буде прокинути id відкриваємої notice
   // поки бек не віддає без авторизованого користувача
-  useEffect(() => {
-    dispatch(fetchNotice('646bd2fea5e6d2026f0414c3'));
-  }, [dispatch]);
-  //
+  useEffect(() => {    
+    dispatch(fetchNotice(noticeId));    
+    // navigate(`/notices/${noticeId}`)
+  }, [dispatch, noticeId]);
+  
 
   return (
     <>
