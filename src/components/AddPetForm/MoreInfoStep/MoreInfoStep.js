@@ -1,11 +1,12 @@
 import { useState, useCallback, useEffect } from 'react';
 import { ErrorMessage, useFormikContext } from 'formik';
-import icons from '../../images/icons.svg';
-import { AddPetFormButtonWrapper } from 'components/AddPetFormButtons/AddPetFormButtonWrapper.styled';
+import icons from '../../../images/icons.svg';
+import { AddPetFormButtonWrapper } from 'components/AddPetForm/AddPetFormButtons/AddPetFormButtonWrapper.styled';
 import {
   AvatarField,
   AvatarLabel,
   AvatarWrapper,
+  ErrorMessageContainer,
   LocationPriceCommentFieldWrapper,
   MoreInfoStepContainer,
   MoreInfoStepInput,
@@ -17,8 +18,8 @@ import {
   SexLabel,
   SexRadioButtonsWrapper,
 } from './MoreInfoStep.styled';
-import BackLink from 'components/AddPetFormButtons/BackLink';
-import AddPetFormNextButton from 'components/AddPetFormButtons/AddPetFormNextButton';
+import BackLink from 'components/AddPetForm/AddPetFormButtons/BackLink';
+import AddPetFormNextButton from 'components/AddPetForm/AddPetFormButtons/AddPetFormNextButton';
 
 const MoreInfoStep = ({
   onBack,
@@ -26,14 +27,13 @@ const MoreInfoStep = ({
   setFormValues,
   handleSubmit,
 }) => {
-  const { values, setTouched, setFieldValue } = useFormikContext();
+  const { values, setTouched, touched, errors, setFieldValue } =
+    useFormikContext();
   const [isDisabled, setIsDisabled] = useState(true);
 
   const handleChange = event => {
     setFieldValue('avatar', event.target.files[0]);
   };
-
-  console.log(values);
 
   // Function to validate form fields. useCallback is used to memoize the validateFields function
   const validateFields = useCallback(() => {
@@ -41,7 +41,7 @@ const MoreInfoStep = ({
 
     if (selectedCategory !== 'your-pet') {
       if (!values.sex) {
-        formErrors.sex = 'Sex is required';
+        formErrors.sex = 'Please select a sex';
       }
       if (!values.location) {
         formErrors.location = 'Location is required';
@@ -90,7 +90,7 @@ const MoreInfoStep = ({
         avatar: values.avatar,
         comments: values.comments,
       }));
-      handleSubmit();
+      handleSubmit(values);
     }
   };
 
@@ -161,14 +161,11 @@ const MoreInfoStep = ({
                 name="avatar"
                 type="file"
                 onChange={handleChange}
+                errors={touched.avatar && errors.avatar}
               />
             </AvatarWrapper>
           </AvatarLabel>
-          <ErrorMessage
-            name="avatar"
-            component="div"
-            className="error-message"
-          />
+          <ErrorMessageContainer name="avatar" component="div" />
         </SexAvatarFieldWrapper>
         <LocationPriceCommentFieldWrapper>
           {selectedCategory !== 'your-pet' && (
@@ -179,13 +176,10 @@ const MoreInfoStep = ({
                   type="text"
                   name="location"
                   placeholder="Type of location"
+                  errors={touched.location && errors.location}
                 />
               </MoreInfoStepLabel>
-              <ErrorMessage
-                name="location"
-                component="div"
-                className="error-message"
-              />
+              <ErrorMessageContainer name="location" component="div" />
             </div>
           )}
 
@@ -199,13 +193,10 @@ const MoreInfoStep = ({
                   min="0"
                   name="price"
                   placeholder="Type of price"
+                  errors={touched.price && errors.price}
                 />
               </MoreInfoStepLabel>
-              <ErrorMessage
-                name="price"
-                component="div"
-                className="error-message"
-              />
+              <ErrorMessageContainer name="price" component="div" />
             </div>
           )}
 
@@ -218,9 +209,10 @@ const MoreInfoStep = ({
                 placeholder="Type breed"
                 component="textarea"
                 category={selectedCategory}
+                errors={touched.comments && errors.comments}
               ></MoreInfoStepTextArea>
             </MoreInfoStepLabel>
-            <ErrorMessage
+            <ErrorMessageContainer
               name="comments"
               component="div"
               className="error-message"
