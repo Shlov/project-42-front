@@ -6,12 +6,12 @@ import {
   CategoryStepLabel,
   RadioButton,
 } from './CategoryStep.styled';
-import icons from '../../images/icons.svg';
+import icons from '../../../images/icons.svg';
 import {
   NextButton,
   PawIcon,
-} from 'components/AddPetFormButtons/NextButton.styled';
-import { AddPetFormButtonWrapper } from 'components/AddPetFormButtons/AddPetFormButtonWrapper.styled';
+} from 'components/AddPetForm/AddPetFormButtons/NextButton.styled';
+import { AddPetFormButtonWrapper } from 'components/AddPetForm/AddPetFormButtons/AddPetFormButtonWrapper.styled';
 
 const CategoryStep = ({ onNext, onSelectCategory, selectedCategory }) => {
   const location = useLocation();
