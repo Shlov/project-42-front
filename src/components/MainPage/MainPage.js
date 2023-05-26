@@ -23,17 +23,17 @@ export const MainPage = () => {
         <MainPicture>
           <source
             media="(min-width: 1280px)"
-            srcset={`${desktopMainImg1x} 1x, ${desktopMainImg2x} 2x`}
+            srcSet={`${desktopMainImg1x} 1x, ${desktopMainImg2x} 2x`}
             type="image/png"
           />
           <source
             media="(min-width: 768px)"
-            srcset={`${tabletMainImg1x} 1x, ${tabletMainImg2x} 2x`}
+            srcSet={`${tabletMainImg1x} 1x, ${tabletMainImg2x} 2x`}
             type="image/png"
           />
           <source
             media="(max-width: 767px)"
-            srcset={`${mobileMainImg1x} 1x, ${mobileMainImg2x} 2x`}
+            srcSet={`${mobileMainImg1x} 1x, ${mobileMainImg2x} 2x`}
             type="image/png"
           />
           <MainImg src={mobileMainImg1x} alt="Cute pets" />

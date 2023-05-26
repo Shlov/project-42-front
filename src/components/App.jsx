@@ -1,9 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
-import { lazy, useEffect, useState, Suspense } from 'react';
+// import { lazy, useEffect, useState, Suspense } from 'react';
+import { lazy, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setDesktop, setTablet, setMobile } from '../Redux/main/main-slice';
 import { SharedLayout } from './SharedLayout/SharedLayout';
-import Loader from './Loader/Loader';
+// import Loader from './Loader/Loader';
 
 import '../index.css';
 // import { selectIsRefreshing } from 'Redux/auth/selector';
@@ -53,10 +54,10 @@ export const App = () => {
       // isRefreshing 
       // ? (<p> Refreshing user... </p>) 
       // :(
-      <>
+      // <>
+      // <Suspense fallback={<Loader />}>
+      <Routes>
         {/* <div className="container"> */}
-        <Suspense fallback={<Loader />}>
-          <Routes>
             <Route
               path="/"
               element={
@@ -89,10 +90,10 @@ export const App = () => {
                 <RestrictedRoute redirectTo="/user" component={<LoginPage/>}/>
               }/> */}
             </Route>
-          </Routes>
-        </Suspense>
       {/* </div> */}
-    </>
+          </Routes>
+        // </Suspense>
+    // </>
     // )
   );
 };
