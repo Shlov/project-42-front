@@ -1,5 +1,13 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
+const waveAnimation = keyframes`
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+`
 
 export const Card = styled.div`
     width: 280px;
@@ -15,8 +23,18 @@ export const Card = styled.div`
 `
 
 export const ImageWrapper = styled.div`
+  width: 280px;
+  @media (min-width:768px) and (max-width:1279px) {
+    width: 336px;
+  }
+  height: 288px;
   position: relative;
+  background-color: #ccc;
+  background-image: linear-gradient(to right, #ccc, #808080, #ccc);
+  animation: ${waveAnimation} 2s linear infinite; 
+  
 `
+
 
 export const DescriptionWrapper = styled.div`
   position: relative;
@@ -34,37 +52,28 @@ export const Title = styled.h3`
   margin-bottom: auto;
 `
 
-export const FavoriteBtn =styled.button`
+export const FavoriteBtn =styled.div`
   width: 40px;
   height: 40px;
   border-radius: 20px;
   border: none;
-  background-color: var(--cl-blue-light);
+  background-color: #808080;
   color: var(--cl-blue-link);
   position: absolute;
   right: 12px;
   top: 12px;
-  cursor: pointer;
 
   display: flex;
   align-items: center;
   justify-content: center;
   fill:  var(--cl-blue-light);
 
-  :hover {
-    background-color: var(--cl-blue-link);
-    color: var(--cl-blue-light);
-  }
-  :active {
-    color: var(--cl-blue-light);
-    fill:  red;
-  }
 `
 
 export const HeartIcon = styled.svg`
   display: block;
-  fill: ${props => (props.isActive ? 'var(--cl-blue-link)' : 'var(--cl-blue-light)' )} ;
-  stroke:   ${props => (props.isActive ? 'var(--cl-blue-light)' : 'var(--cl-blue-link)' )};
+  fill: #8080 ;
+  stroke:   #ccc;
   stroke-width:1.5;
   stroke-linecap:round;
   stroke-linejoin:round;
@@ -100,14 +109,6 @@ export const DeleteBtn =styled.button`
   }
 `
 
-export const TrashIcon = styled.svg`
-  display: block;
-  stroke-width:1.5;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-`
-
-
 export const MoreBtn = styled.button`
   display: flex;
   flex-direction: row;
@@ -129,7 +130,6 @@ export const MoreBtn = styled.button`
   align-items: center;
   letter-spacing: 0.04em;
 
-  background-color: transparent;
   color: var(--cl-blue-link);
 
   :hover {
@@ -144,8 +144,8 @@ export const MoreBtn = styled.button`
 export const SvgIcon = styled.svg`
 
   display: block;
-  fill: var(--cl-blue-light);
-  stroke: var(--cl-blue-link);
+  fill: #8080 ;
+  stroke:   #ccc;
   stroke-width:1.5;
   stroke-linecap:round;
   stroke-linejoin:round;
@@ -155,7 +155,7 @@ export const SvgIcon = styled.svg`
 export const CategoryTag = styled.p`
   height: 32px;
   padding: 11px 17px;
-  background-color: var(--cl-blue-light);
+  background-color:	#808080;
   border-radius: 0px 16px 16px 0px;
   position: absolute;
   top: 16px;
@@ -169,11 +169,7 @@ export const CategoryTag = styled.p`
 `
 
 export const Image = styled.img`
-  width: 280px;
-  @media (min-width:768px) and (max-width:1279px) {
-    width: 336px;
-  }
-  height: 288px;
+  
 `
 
 export const TagList = styled.ul`
@@ -198,7 +194,7 @@ export const TagItem = styled.li`
   font-weight: 600;
   font-size: 12px;
   line-height: calc(16 / 12);
-  background-color: var(--cl-blue-light);
+  background-color: #808080;
   border-radius: 16px;
 `
 

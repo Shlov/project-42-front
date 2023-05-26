@@ -125,7 +125,8 @@ export const Contact = styled.a`
   line-height: 16px;
 
   color: var(--cl-yellow);
-  filter: blur(3px);
+  filter: blur(0px);
+  /* filter: ${props => props.blur ? "3px" : "0px"}; */
 
   transition: filter var(--animat);
 
@@ -133,11 +134,12 @@ export const Contact = styled.a`
     font-size: 16px;
     line-height: 22px;
   }
-
-  &:hover {
-    filter: blur(0px);
-  }
 `;
+
+export const ContactBlur = styled(Contact)`
+  filter: blur(3px);
+`
+
 
 export const CommentWrap = styled.div`
   font-weight: 600;
@@ -192,17 +194,16 @@ export const Button = styled.button`
   border: none;
   border-radius: 40px;
   color: var(--cl-background);
-  background:#54adff;
+  background: var(--cl-blue-link);
 
   cursor: pointer;
 
-  transition: background var(--animat);
+  transition: background 500ms cubic-bezier(0.4, 0, 0.2, 1) 1000ms;
 
   &:hover,
   &:active,
   &:focus {
     background: var(--gr-blue);
-    transition: background var(--animat) 1000ms;
   }
 
   @media (min-width: 768px) {
@@ -210,7 +211,7 @@ export const Button = styled.button`
   }
 `;
 
-export const ContactBtn = styled.a`
+export const ContactBtn = styled.button`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -229,15 +230,16 @@ export const ContactBtn = styled.a`
   border: 2px solid var(--cl-blue-link);
   border-radius: 40px;
   color: var(--cl-blue-link);
+  background: transparent;
 
   cursor: pointer;
 
-  transition: background var(--animat);
+  /* transition: background var(--animat); */
+  transition: background 500ms cubic-bezier(0.4, 0, 0.2, 1) 1000ms;
 
   &:hover,
   &:active,
   &:focus {
-    /* transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1); */
     background: var(--gr-blue);
     color: var(--cl-background);
     border: none;
