@@ -6,6 +6,8 @@ import { SharedLayout } from './SharedLayout/SharedLayout';
 import Loader from './Loader/Loader';
 
 import '../index.css';
+// import { selectIsRefreshing } from 'Redux/auth/selector';
+// import { refreshUser } from 'Redux/auth/operation';
 // import { PrivateRoute } from './PrivateRoute';
 // import { RestrictedRoute } from './RestrictedRoute';
 
@@ -42,46 +44,55 @@ export const App = () => {
     dispatch(setMobile(width < 768));
   }, [width, dispatch]);
 
+  // const isRefreshing = useSelector(selectIsRefreshing);
+
+  // useEffect(() => {dispatch(refreshUser())}, [dispatch]);
+
   return (
-    <>
-      {/* <div className="container"> */}
-      <Suspense fallback={<Loader />}>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <SharedLayout
+  
+      // isRefreshing 
+      // ? (<p> Refreshing user... </p>) 
+      // :(
+      <>
+        {/* <div className="container"> */}
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <SharedLayout
                 desktop={desktop}
                 tablet={tablet}
                 mobile={mobile}
                 isConnect={isConnect}
-              />
-            }
-          >
-            {/* <Route index element={<MainPage />}/> */}
+                />
+              }
+              >
+              {/* <Route index element={<MainPage />}/> */}
 
-            <Route index element={<Main />} />
-            <Route path="/user" element={<User />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/notices">
-              <Route index element={<Notices desktop={desktop} />} />
-              <Route path=":categoryName" element={<Notices desktop={desktop} />} />
+              <Route index element={<Main />} />
+              <Route path="/user" element={<User />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/notices">
+                <Route index element={<Notices desktop={desktop} />} />
+                <Route path=":categoryName" element={<Notices desktop={desktop} />} />
+              </Route>
+              <Route path="/add-pet" element={<AddPet />} />
+              <Route path="/news" element={<News />} />
+              <Route path="/friends" element={<OurFriends />} />
+
+              {/* <Route path="/user" element={
+                <PrivateRoute redirectTo="/login" component={<UserPage/>}/>
+              }/>
+              <Route path="/login" element={
+                <RestrictedRoute redirectTo="/user" component={<LoginPage/>}/>
+              }/> */}
             </Route>
-            <Route path="/add-pet" element={<AddPet />} />
-            <Route path="/news" element={<News />} />
-            <Route path="/friends" element={<OurFriends />} />
-
-            {/* <Route path="/user" element={
-              <PrivateRoute redirectTo="/login" component={<UserPage/>}/>
-            }/>
-            <Route path="/login" element={
-              <RestrictedRoute redirectTo="/user" component={<LoginPage/>}/>
-            }/> */}
-          </Route>
-        </Routes>
-      </Suspense>
+          </Routes>
+        </Suspense>
       {/* </div> */}
     </>
+    // )
   );
 };
