@@ -1,20 +1,11 @@
-// Компонент містить в собі форму, що складається з наступних кроків:
-// - Сhoose option - на якому користувач обирає категорію оголошення
-// - Personal Details - на якому користувач заповнює детальну інформацію про улюбленця (імʼя, дату народження та його породу)
-// - More info - на якому користувач додає фотокартку улюбленця та особисті коментарі
-// Кнопка Cancel переадресовує користувача на сторінку, з якої він до того перейшов на сторінку AddPetPage.
-// Кнопка Next - активізує перевірку на валідність введеної користувачем інформації. У разі їх валідності - користувач переходить до наступного кроку заповнення форми. У разі введення користувачем невалідних значень - візуалізувати це йому у вигляді повідомлень
-// Кнопка Back - повертає користувача на попередній крок заповнення форми з полями, заповненими інформацією, яку ввів користувач до того
-// Кнопка Done - активізує перевірку на валідність введеної користувачем інформації. У разі їх валідності - відправляє запит на бекенд про створення картки з особистим домашнім улюбленцем користувача або про створення оголошення (в залежності від обраної користувачем категорії). У разі введення користувачем невалідних значень - візуалізувати це йому у вигляді повідомлень
-// Всі поля форми обов'язкові до заповнення
-// Після успішного створення картки, користувача необхідно переадресувата на сторінку UserPage або на сторінку NoticesPage (в залженості від обраної користувачем категорії). Якщо з бекенда було отримано помилку при створенні картки - користувачу необхідно вивести відповідну інформацію у вигляді нотіфікації
-
 import { useState, useRef } from 'react';
 import { Formik, Form } from 'formik';
-import { object, string, mixed, number } from 'yup';
-import CategoryStep from 'components/CategoryStep/CategoryStep';
-import PersonalDetailsStep from 'components/PersonalDetailsStep/PersonalDetailsStep';
-import MoreInfoStep from 'components/MoreInfoStep/MoreInfoStep';
+// import { useDispatch } from 'react-redux';
+// import { addNotice } from 'Redux/notices/operation';
+import validationSchema from './validationSchema';
+import CategoryStep from 'components/AddPetForm/CategoryStep/CategoryStep';
+import PersonalDetailsStep from 'components/AddPetForm/PersonalDetailsStep/PersonalDetailsStep';
+import MoreInfoStep from 'components/AddPetForm/MoreInfoStep/MoreInfoStep';
 import {
   FormContainer,
   FormTitle,
@@ -22,60 +13,8 @@ import {
   StepperItem,
 } from './AddPetForm.styled';
 
-//   Validation schema using Yup
-const validationSchema = object().shape({
-  category: string().oneOf(['your-pet', 'sell', 'lost-found', 'for-free']),
-  name: string()
-    .required('Name is required')
-    .min(2, 'Name must be at least 2 characters')
-    .max(16, 'Name must be at most 16 characters'),
-  date: string()
-    .required('Date is required')
-    .matches(
-      /^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$/,
-      'Date must be in the format DD.MM.YYYY'
-    ),
-  breed: string()
-    .min(2, 'Breed must be at least 2 characters')
-    .max(16, 'Breed must be at most 16 characters')
-    .required('Breed is required'),
-  avatar: mixed()
-    .required('File is required')
-    //the test method from Yup to define a custom validation rule for the avatar field. The test checks if the value exists  (a file is selected) and if its size is less than or equal to 3MB (3 * 1024 * 1024 bytes). If the test fails, it will display the error message "File size must not exceed 3MB".
-    .test(
-      'fileSize',
-      'File size must not exceed 3MB',
-      value => value.size <= 3 * 1024 * 1024
-    ),
-  sex: string().when('category', {
-    is: value => ['sell', 'lost-found', 'for-free'].includes(value),
-    then: string()
-      .required('Sex is required')
-      .oneOf(['male', 'female'], 'Please select either "male" or "female"'),
-  }),
-
-  location: string()
-    .matches(
-      /^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$/,
-      'Invalid location format. Please use city names only.'
-    )
-    .min(2, 'City name must be at least 2 characters')
-    .required('Location is required'),
-  price: number()
-    .min(0, 'Price must be a positive number')
-    .integer('Price must be an integer')
-    .required('Price is required'),
-  comments: string()
-    .min(8, 'Comments must be at least 8 characters')
-    .max(120, 'Comments must be at most 120 characters')
-    .required('Comments are required'),
-
-  title: string()
-    .min(2, 'Title must be at least 2 characters')
-    .required('Title is required'),
-});
-
 const AddPetForm = () => {
+  // const dispatch = useDispatch();
   const [step, setStep] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [completedSteps, setCompletedSteps] = useState([]);
@@ -137,38 +76,40 @@ const AddPetForm = () => {
     setStep(prevStep => prevStep - 1);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = values => {
     const formData = new FormData();
-    // const { resetForm } = formikRef.current;
+    const { resetForm } = formikRef.current;
 
-    formData.append('category', formValues.category);
-    formData.append('name', formValues.name);
-    formData.append('date', formValues.date);
-    formData.append('breed', formValues.breed);
-    formData.append('avatar', formValues.avatar);
-    formData.append('comments', formValues.comments);
+    formData.append('categories', formValues.category);
+    formData.append('name', values.name);
+    formData.append('birthday', values.date);
+    formData.append('breed', values.breed);
+    formData.append('imageURL', values.avatar);
+    formData.append('comments', values.comments);
 
     if (formValues.category === 'your-pet') {
       for (let pair of formData.entries()) {
         console.log(pair[0] + ': ' + pair[1]);
       }
 
-      // dispatch(addMyPet(formData))
-      // resetForm();
+      // dispatch(addMyPet({category: 'my ads', formData}))
+      resetForm();
       return;
     }
 
-    formData.append('title', formValues.title);
-    formData.append('sex', formValues.sex);
-    formData.append('location', formValues.location);
+    formData.append('title', values.title);
+    formData.append('sex', values.sex);
+    formData.append('place', values.location);
 
     if (formValues.category === 'lost-found') {
       for (let pair of formData.entries()) {
         console.log(pair[0] + ': ' + pair[1]);
       }
+      // dispatch(
+      //   addNotice({ formData: { ...formData, categories: 'lost/found' } })
+      // );
 
-      // dispatch(addNotice({ category: 'lost-found', formData }));
-      // resetForm();
+      resetForm();
       return;
     }
 
@@ -177,13 +118,12 @@ const AddPetForm = () => {
         console.log(pair[0] + ': ' + pair[1]);
       }
 
-      // dispatch(addNotice({ category: 'in-good-hands', formData }));
-
-      // resetForm();
+      // dispatch(addNotice({ category: 'in good hands', formData }));
+      resetForm();
       return;
     }
 
-    formData.append('price', formValues.price);
+    formData.append('price', values.price);
 
     if (formValues.category === 'sell') {
       for (let pair of formData.entries()) {
@@ -191,7 +131,7 @@ const AddPetForm = () => {
       }
 
       // dispatch(addNotice({ category: 'sell', formData }));
-      // resetForm();
+      resetForm();
       return;
     }
   };
@@ -254,7 +194,7 @@ const AddPetForm = () => {
         onSubmit={handleSubmit}
         innerRef={formikRef}
       >
-        {() => <Form>{renderStepContent(step)}</Form>}
+        {({ values }) => <Form>{renderStepContent(step)}</Form>}
       </Formik>
     </FormContainer>
   );

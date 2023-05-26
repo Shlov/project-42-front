@@ -1,14 +1,15 @@
-import { ErrorMessage, useFormikContext } from 'formik';
+import { useFormikContext } from 'formik';
 import { useState, useEffect, useCallback } from 'react';
-import AddPetFormNextButton from 'components/AddPetFormButtons/AddPetFormNextButton';
+import AddPetFormNextButton from 'components/AddPetForm/AddPetFormButtons/AddPetFormNextButton';
 import BackLink from '../AddPetFormButtons/BackLink';
 import {
+  ErrorMessageContainer,
   PersonalDetailsField,
   PersonalDetailsStepContainer,
   PersonalDetailsStepInput,
   PersonalDetailsStepLabel,
 } from './PersonalDetailsStep.styled';
-import { AddPetFormButtonWrapper } from 'components/AddPetFormButtons/AddPetFormButtonWrapper.styled';
+import { AddPetFormButtonWrapper } from 'components/AddPetForm/AddPetFormButtons/AddPetFormButtonWrapper.styled';
 
 const PersonalDetailsStep = ({
   onBack,
@@ -16,7 +17,7 @@ const PersonalDetailsStep = ({
   selectedCategory,
   setFormValues,
 }) => {
-  const { values, setTouched } = useFormikContext();
+  const { values, setTouched, touched, errors } = useFormikContext();
   const [isDisabled, setIsDisabled] = useState(true);
 
   // Function to validate form fields. useCallback is used to memoize the validateFields function
@@ -94,13 +95,11 @@ const PersonalDetailsStep = ({
                 type="text"
                 name="title"
                 placeholder="Type title"
+                errors={touched.title && errors.title}
               />
             </PersonalDetailsStepLabel>
-            <ErrorMessage
-              name="title"
-              component="div"
-              className="error-message"
-            />
+
+            <ErrorMessageContainer name="title" component="div" />
           </PersonalDetailsField>
         )}
 
@@ -112,9 +111,10 @@ const PersonalDetailsStep = ({
               type="text"
               name="name"
               placeholder="Type name pet"
+              errors={touched.name && errors.name}
             />
           </PersonalDetailsStepLabel>
-          <ErrorMessage name="name" component="div" className="error-message" />
+          <ErrorMessageContainer name="name" component="div" />
         </PersonalDetailsField>
         {/* Input field for capturing the date of birth of the pet */}
         <PersonalDetailsField>
@@ -124,9 +124,10 @@ const PersonalDetailsStep = ({
               type="text"
               name="date"
               placeholder="Type date of birth"
+              errors={touched.date && errors.date}
             />
           </PersonalDetailsStepLabel>
-          <ErrorMessage name="date" component="div" className="error-message" />
+          <ErrorMessageContainer name="date" component="div" />
         </PersonalDetailsField>
         {/* Input field for capturing the breed of the pet */}
         <PersonalDetailsField>
@@ -136,13 +137,10 @@ const PersonalDetailsStep = ({
               type="text"
               name="breed"
               placeholder="Type breed"
+              errors={touched.breed && errors.breed}
             />
           </PersonalDetailsStepLabel>
-          <ErrorMessage
-            name="breed"
-            component="div"
-            className="error-message"
-          />
+          <ErrorMessageContainer name="breed" component="div" />
         </PersonalDetailsField>
       </PersonalDetailsStepContainer>
       <AddPetFormButtonWrapper>
