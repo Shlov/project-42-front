@@ -1,5 +1,5 @@
 import { useFormikContext } from 'formik';
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback } from 'react';
 import AddPetFormNextButton from 'components/AddPetForm/AddPetFormButtons/AddPetFormNextButton';
 import BackLink from '../AddPetFormButtons/BackLink';
 import {
@@ -18,9 +18,8 @@ const PersonalDetailsStep = ({
   setFormValues,
 }) => {
   const { values, setTouched, touched, errors } = useFormikContext();
-  const [isDisabled, setIsDisabled] = useState(true);
 
-  // Function to validate form fields. useCallback is used to memoize the validateFields function
+  // Function to validate form fields. UseCallback is used to memoize the validateFields function
   const validateFields = useCallback(() => {
     let formErrors = {};
 
@@ -66,6 +65,7 @@ const PersonalDetailsStep = ({
     const formErrors = validateFields();
 
     if (Object.keys(formErrors).length === 0) {
+      // Update form values with the values from the input fields
       setFormValues(prevState => ({
         ...prevState,
         title: values.title,
@@ -73,15 +73,10 @@ const PersonalDetailsStep = ({
         date: values.date,
         breed: values.breed,
       }));
+      // Call the onNext function to proceed to the next step
       onNext();
     }
   };
-
-  // Update disabled state based on form field validation
-  useEffect(() => {
-    const formErrors = validateFields();
-    setIsDisabled(Object.keys(formErrors).length > 0);
-  }, [values, selectedCategory, validateFields]); //  When any of these values change, the effect will run again to update the disabled state
 
   return (
     <>
@@ -155,7 +150,6 @@ const PersonalDetailsStep = ({
         <AddPetFormNextButton
           type="button"
           onClick={handleNextClick}
-          disabled={isDisabled}
           buttonText="Next"
         />
       </AddPetFormButtonWrapper>

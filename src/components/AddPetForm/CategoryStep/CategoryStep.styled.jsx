@@ -47,3 +47,11 @@ export const CategoryStepLabel = styled.label`
     color: var(--cl-background);
   }
 `;
+
+export const ErrorMessage = styled.div`
+  color: var(--cl-red);
+  margin-top: 4px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: calc(16 / 12);
+`;
