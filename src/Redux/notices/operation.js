@@ -1,5 +1,7 @@
-import axios from 'axios';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from "axios";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import toast from 'react-hot-toast';
+
 
 const tokenShlov =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NmM5MDg4M2U2MmUwYTE2MTg3YzlhYyIsImlhdCI6MTY4NDkzMTgzNSwiZXhwIjoxNjg0OTc1MDM1fQ.eA3LHBXAK6VB8ds04beE-SSsaLRU4LXpbUeHK1PB2_c';
@@ -18,7 +20,8 @@ export const fetchNotices = createAsyncThunk(
         //   },
         // }
       );
-      return response.data;
+      toast.success('Notices done! 👏');
+      return response.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

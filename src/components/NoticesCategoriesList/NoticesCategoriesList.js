@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getIsLoadNotices, getNotices, selectNoticesByCategory } from "Redux/notices/selector";
 import { useEffect } from "react";
 import { fetchNotices, getNoticeByCategory } from "Redux/notices/operation";
+import { NoticeCategoryItemLoad } from "components/NoticeCategoryItemLoad/NoticeCategoryItemLoad";
 
 export const categoryShelf = {
   sell: 'sell',
@@ -44,7 +45,8 @@ export const NoticeCategoryList = ({ onTrashModal, filteredItems, setFilteredIte
   return(
     <NoticesList>
 
-      {isLoading && <h2>loading....</h2>}
+      {isLoading && <NoticeCategoryItemLoad/>}
+      {/* {true && <NoticeCategoryItemLoad/>} */}
       {!isLoading && !category.categoryName 
         ? allItems.map((notice, i) =>
         <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal}/>)
