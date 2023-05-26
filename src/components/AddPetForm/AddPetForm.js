@@ -1,5 +1,7 @@
 import { useState, useRef } from 'react';
 import { Formik, Form } from 'formik';
+// import { useDispatch } from 'react-redux';
+// import { addNotice } from 'Redux/notices/operation';
 import validationSchema from './validationSchema';
 import CategoryStep from 'components/AddPetForm/CategoryStep/CategoryStep';
 import PersonalDetailsStep from 'components/AddPetForm/PersonalDetailsStep/PersonalDetailsStep';
@@ -12,6 +14,7 @@ import {
 } from './AddPetForm.styled';
 
 const AddPetForm = () => {
+  // const dispatch = useDispatch();
   const [step, setStep] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [completedSteps, setCompletedSteps] = useState([]);
@@ -102,8 +105,10 @@ const AddPetForm = () => {
       for (let pair of formData.entries()) {
         console.log(pair[0] + ': ' + pair[1]);
       }
+      // dispatch(
+      //   addNotice({ formData: { ...formData, categories: 'lost/found' } })
+      // );
 
-      // dispatch(addNotice({ category: 'lost/found', formData }));
       resetForm();
       return;
     }

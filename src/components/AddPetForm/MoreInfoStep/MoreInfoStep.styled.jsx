@@ -91,6 +91,19 @@ export const SexLabel = styled.label`
   ${RadioButton}:checked + & {
     color: var(--cl-green);
   }
+
+  & svg {
+    stroke: ${({ htmlFor }) => {
+      switch (htmlFor) {
+        case 'female':
+          return 'var(--cl-red)';
+        case 'male':
+          return 'var(--cl-blue-link)';
+        default:
+          return 'inherit';
+      }
+    }};
+  }
 `;
 
 export const AvatarLabel = styled.label`
