@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
-// import { deletePet } from 'Redux/pets/operations';
+import { deletePet } from 'Redux/pets/operations';
 import icons from 'images/icons.svg';
 import {
   Card,
@@ -25,7 +25,7 @@ import {
 } from './PetsItem.styled';
 
 export const PetsItem = ({ item }) => {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const toggleModal = () => {
@@ -33,7 +33,7 @@ export const PetsItem = ({ item }) => {
   };
 
   const handleDeletePet = () => {
-    // dispatch(deletePet(item.id));
+    dispatch(deletePet(item.id));
   };
   return (
     <Card>

@@ -1,4 +1,3 @@
-// import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { PetsList } from 'components/PetsList/PetsList';
@@ -9,17 +8,13 @@ import icons from 'images/icons.svg';
 export const PetsData = () => {
   const [currentPage, setCurrentPage] = useState('');
   const [showPreviousPage, setShowPreviousPage] = useState(true);
-// console.log(currentPage);
-// console.log(showPreviousPage);
-  // useEffect(() => {
-  //   setShowPreviousPage(true)
-  // }, [])
+
   const handleChangePage = page => {
     setCurrentPage(page);
     setShowPreviousPage(false);
   };
 
- return (
+  return (
     <>
       {showPreviousPage && (
         <div>

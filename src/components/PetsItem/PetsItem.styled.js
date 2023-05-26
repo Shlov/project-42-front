@@ -11,7 +11,6 @@ export const Card = styled.div`
   @media screen and (min-width: 768px) {
     display: flex;
     width: 703px;
-    height: 256px;
     padding: 20px;
     border-radius: 40px;
   }
@@ -21,8 +20,7 @@ export const Card = styled.div`
   }
 `;
 export const Photo = styled.img`
-  display: block;
-  background-color: gray;
+   background-color: gray;
   margin-bottom: 20px;
   width: 240px;
   height: 240px;
@@ -55,7 +53,6 @@ export const Description = styled.div`
 `;
 
 export const Label = styled.p`
-  margin: 0;
   margin-bottom: 12px;
   font-weight: 700;
   font-size: 14px;
@@ -72,7 +69,6 @@ export const Label = styled.p`
   }
 `;
 export const Breed = styled.p`
-  margin: 0;
   margin-bottom: 12px;
   font-weight: 700;
   font-size: 14px;
@@ -86,7 +82,6 @@ export const Breed = styled.p`
 `;
 
 export const LastLabel = styled.p`
-  margin: 0;
   font-weight: 700;
   font-size: 14px;
   line-height: 1.36;
@@ -102,7 +97,6 @@ export const LastLabel = styled.p`
 `;
 
 export const Text = styled.span`
-  margin: 0;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.36;
@@ -115,7 +109,6 @@ export const Text = styled.span`
   }
 `;
 export const LastText = styled.span`
-  margin: 0;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.36;
