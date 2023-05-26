@@ -3,7 +3,7 @@ import { lazy, useEffect, useState, Suspense } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setDesktop, setTablet, setMobile } from '../Redux/main/main-slice';
 import { SharedLayout } from './SharedLayout/SharedLayout';
-import Loader from './Loader/Loader';
+import { Loader } from './Loader/Loader';
 
 import '../index.css';
 // import { PrivateRoute } from './PrivateRoute';
