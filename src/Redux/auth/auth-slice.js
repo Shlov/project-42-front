@@ -61,7 +61,7 @@ export const authSlice = createSlice({
 
 // Олекій
 
-  user: { email: '' },
+  user: {_id:'', email: ''},
   token: '',
   isConnect: false,
   isRefreshing: false,
@@ -69,12 +69,12 @@ export const authSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(userReg.fulfilled, (state, action) => {
-        state.user = action.payload.user;
+        state.user.email = action.payload.result;
         state.token = action.payload.token;
         state.isConnect = true;
       })
       .addCase(userLogin.fulfilled, (state, action) => {
-        state.user = action.payload.user;
+        state.user.email = action.payload.result;
         state.token = action.payload.token;
         state.isConnect = true;
       })
@@ -90,7 +90,6 @@ export const authSlice = createSlice({
         state.isRefreshing = false;
       })
   },
-
 })
 
 export const { isConnect } = authSlice.actions
@@ -98,10 +97,3 @@ export const { isConnect } = authSlice.actions
 
 
 export default authSlice.reducer
-
-
-
-
-
-
-  
