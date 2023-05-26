@@ -2,21 +2,17 @@ import styled from 'styled-components';
 import { Form, Field, ErrorMessage } from 'formik';
 
 export const TitleCard = styled.h2`
-font-weight: 500;
-font-size: 20px;
-line-height: 27px;
-margin-bottom: 18px;
-@media screen and (min-width: 480px) {
-  margin-bottom: 24px;
   font-weight: 500;
-font-size: 28px;
-line-height: 38px;
-}
-
-
-`
-
-
+  font-size: 20px;
+  line-height: 27px;
+  margin-bottom: 18px;
+  @media screen and (min-width: 480px) {
+    margin-bottom: 24px;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 38px;
+  }
+`;
 
 export const FormContainer = styled(Form)`
   position: relative;
@@ -29,37 +25,25 @@ export const FormContainer = styled(Form)`
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 20px;
 
-  // display: flex;
-  // gap: 12px;
-  // align-items: center;
-  // justify-content: space-between;
+  @media screen and (min-width: 480px) {
+    width: 704px;
+    height: 268px;
+    padding: 20px 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 71px;
+  }
 
-  //   font-weight: 500;
-  //   font-family: 'Manrope';
-  // font-size: 16px;
-  // border: none;
-  // background-color: transparent;
-
-    @media screen and (min-width: 480px) {
-      width: 704px;
-      height: 268px;
-      padding: 20px 20px;
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: flex-end;
-      gap: 71px;
-
-    }
-
-    @media screen and (min-width: 768px) {
-      width: 395px;
-      height: 520px;
-      padding: 20px 24px 16px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      gap: 25px;
-    }
+  @media screen and (min-width: 768px) {
+    width: 395px;
+    height: 520px;
+    padding: 20px 24px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 25px;
+  }
 `;
 
 export const ImgContainer = styled.div`
@@ -72,14 +56,13 @@ export const ImgContainer = styled.div`
 export const ImgAvatar = styled.img`
   border-radius: 40px;
 `;
-export const SVG = styled.svg`
+export const SvgIcon = styled.svg`
   margin-right: 8px;
   width: 24px;
   height: 24px;
   stroke: var(--cl-blue-link);
   fill: transparent;
 `;
-
 
 export const InputAvatar = styled(Field)`
   width: 96px;
@@ -96,7 +79,6 @@ export const BtnPhoto = styled.div`
   border: none;
   background-color: transparent;
 `;
-
 
 export const BtnText = styled.p`
   font-weight: 400;
@@ -120,29 +102,11 @@ export const BtnCheck = styled.button`
   }
   @media screen and (min-width: 768px) {
     position: absolute;
-  
-   left: 315px;
+
+    left: 315px;
   }
-
-  
-
-
 `;
 
-// export const InputList = styled.div`
-// &: first-child{
-//   margin-top: 21px;
-// }
-
-// &: last-child{
-//   margin-bottom: 21px;
-// `
-
-// export const Input = styled(Field)`
-//   width: 130px;
-//   border: none;
-//   background-color: transparent;
-// `;
 export const InputContainer = styled(Field)`
   padding: 6px 12px;
   width: 190px;
@@ -158,23 +122,18 @@ export const InputContainer = styled(Field)`
   &: focus {
     outline: none;
   }
-  
+
   @media screen and (min-width: 480px) {
     padding: 6px 12px;
     width: 255px;
     height: 32px;
   }
-
-
-
 `;
 
 export const Label = styled.label`
-
   font-weight: 600;
   font-size: 14px;
   line-height: 19px;
-
 
   @media screen and (min-width: 480px) {
     font-size: 18px;
@@ -209,8 +168,7 @@ export const StyledErrorMessage = styled(ErrorMessage)`
   color: #da1414;
 `;
 
-
-export const SVGBtn = styled.svg`
+export const SvgBtn = styled.svg`
   width: 24px;
   height: 24px;
   stroke: var(--cl-green);

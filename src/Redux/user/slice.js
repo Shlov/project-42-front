@@ -1,27 +1,31 @@
-// import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-// import { currentUser } from './operation';
-// // import { fetchContacts, , deleteContact, editingContact } from './operations';
+import { createSlice } from '@reduxjs/toolkit';
+import { refreshUser } from 'Redux/auth/operation';
+import { currentUser } from './operation';
 
-// const authSlice = createSlice({
-//     name: 'auth',
-//     initialState:{ user: { name: null, email: null, phone: null, birthday: null, city: null, avatarURL: null },
-//     token: null,
-//     isLoggedIn: false,
-//     isRefreshing: false,},
-//     extraReducers: builder => {
-//       builder
-//         .addCase(currentUser.fulfilled, (state, action) => {
-//           state.user = action.payload;
-//           state.isLoggedIn = true;
-//           state.isRefreshing = false;
-//         })
-//         .addCase(refreshUser.rejected, state => {
-//           state.isRefreshing = false;
-//         });
-//     },
-//   });
+
+
+ const userSlice = createSlice({
+    name: 'user',
+    initialState:{
+     item:{},
+    },
+    token: '',
+    isRefreshing: false,
+
+    extraReducers: builder => {
+      builder
+        .addCase(currentUser.fulfilled, (state, action) => {
+          state = action.payload;
+          state.isLoggedIn = true;
+          state.isRefreshing = false;
+        })
+        .addCase(refreshUser.rejected, state => {
+          state.isRefreshing = false;
+        })
+    },
+})
   
-//   export const authReducer = authSlice.reducer;
+  export const userReducer = userSlice.reducer;
 
 
 

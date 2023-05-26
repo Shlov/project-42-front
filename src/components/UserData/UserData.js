@@ -3,8 +3,8 @@ import * as yup from 'yup';
 
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectUser } from 'Redux/auth/selector';
-import { currentUser, updateUser } from 'Redux/auth/operation';
+import { selectEmail } from 'Redux/auth/selector';
+import { currentUser, updateUser } from 'Redux/user/operation';
 
 import icons from 'images/icons.svg';
 import { LogoutBtn } from 'components/Logout/Logout';
@@ -19,8 +19,8 @@ import {
   BtnText,
   BtnPhoto,
   ImgContainer,
-  SVG,
-  SVGBtn,
+  SvgIcon,
+  SvgBtn,
   DIV,
   ImgCon,
   Photosvg,
@@ -47,9 +47,9 @@ const schema = yup.object().shape({
 const Camera = () => {
   return (
     <BtnPhoto>
-      <SVG>
+      <SvgIcon>
         <use href={icons + '#camera'} />
-      </SVG>
+      </SvgIcon>
       <BtnText>Edit photo</BtnText>
     </BtnPhoto>
   );
@@ -58,9 +58,9 @@ const Camera = () => {
 const CheckBlue = () => {
   return (
     <BtnPhoto>
-      <SVG>
+      <SvgIcon>
         <use href={icons + '#check'} />
-      </SVG>
+      </SvgIcon>
       <BtnText>Confirm</BtnText>
     </BtnPhoto>
   );
@@ -69,16 +69,20 @@ const CheckBlue = () => {
 export const UserData = () => {
   const dispatch = useDispatch();
 
-  const user = useSelector(selectUser);
+  const user = useSelector(selectEmail);
+  console.log(user.email);
+
+
+
   const [toggleIconPass, setToggleIconPass] = useState(Camera);
 
   const [imgUrl, setImgUrl] = useState('');
 
-  const [userName, setUserName] = useState(user.name);
+  const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState(user.email);
-  const [userBirthday, setUserBirthday] = useState(user.birthday);
-  const [userPhone, setUserPhone] = useState(user.phone);
-  const [userCity, setUserCity] = useState(user.city);
+  const [userBirthday, setUserBirthday] = useState('');
+  const [userPhone, setUserPhone] = useState('');
+  const [userCity, setUserCity] = useState('');
 
   const [isEditingName, setIsEditingName] = useState(false);
   const [isEditingEmail, setIsEditingEmail] = useState(false);
@@ -147,10 +151,10 @@ export const UserData = () => {
       <Formik
         enableReinitialize={true}
         initialValues={{
-          name: formData.name || user?.name || '',
-          email: formData.name || user?.email || '',
-          phone: formData.phone || user?.phone || '',
-          city: formData.phone || user?.city || '',
+          // name: formData.name || user?.name || '',
+          // email: formData.name || email || '',
+          // phone: formData.phone || user?.phone || '',
+          // city: formData.phone || user?.city || '',
         }}
 
         validationSchema={schema}
@@ -211,9 +215,9 @@ export const UserData = () => {
                     type="submit"
                     onClick={() => setIsEditingName(false)}
                   >
-                    <SVGBtn>
+                    <SvgBtn>
                       <use href={icons + '#check'} />
-                    </SVGBtn>
+                    </SvgBtn>
                   </BtnCheck>
                 ) : (
                   <BtnCheck onClick={() => setIsEditingName(true)}>
@@ -241,9 +245,9 @@ export const UserData = () => {
                     type="submit"
                     onClick={() => setIsEditingEmail(false)}
                   >
-                    <SVGBtn>
+                    <SvgBtn>
                       <use href={icons + '#check'} />
-                    </SVGBtn>
+                    </SvgBtn>
                   </BtnCheck>
                 ) : (
                   <BtnCheck onClick={() => setIsEditingEmail(true)}>
@@ -284,9 +288,9 @@ export const UserData = () => {
                     type="submit"
                     onClick={() => setIsEditingBirthday(false)}
                   >
-                    <SVGBtn>
+                    <SvgBtn>
                       <use href={icons + '#check'} />
-                    </SVGBtn>
+                    </SvgBtn>
                   </BtnCheck>
                 ) : (
                   <BtnCheck onClick={() => setIsEditingBirthday(true)}>
@@ -314,9 +318,9 @@ export const UserData = () => {
                     type="submit"
                     onClick={() => setIsEditingPhone(false)}
                   >
-                    <SVGBtn>
+                    <SvgBtn>
                       <use href={icons + '#check'} />
-                    </SVGBtn>
+                    </SvgBtn>
                   </BtnCheck>
                 ) : (
                   <BtnCheck onClick={() => setIsEditingPhone(true)}>
@@ -344,9 +348,9 @@ export const UserData = () => {
                     type="submit"
                     onClick={() => setIsEditingCity(false)}
                   >
-                    <SVGBtn>
+                    <SvgBtn>
                       <use href={icons + '#check'} />
-                    </SVGBtn>
+                    </SvgBtn>
                   </BtnCheck>
                 ) : (
                   <BtnCheck onClick={() => setIsEditingCity(true)}>

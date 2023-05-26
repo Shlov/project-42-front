@@ -22,7 +22,7 @@ import {
 // } from './UserPage.styled';
 
 import { useDispatch } from 'react-redux';
-import { logOut } from 'Redux/auth/operation';
+import { logOut } from '../../Redux/user/operation';
 
 import icons from 'images/icons.svg';
 // import { ModalCongrats } from 'components/ModalCongrats/ModalCongrats';
