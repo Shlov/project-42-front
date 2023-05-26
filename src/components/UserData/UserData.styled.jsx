@@ -1,12 +1,45 @@
 import styled from 'styled-components';
 import { Form, Field, ErrorMessage } from 'formik';
 
+export const MainContainer = styled.div`
+padding: 20px;
+display: flex;
+justify-content: center;
+flex-direction: column;
+margin: 0 auto;
+
+@media screen and (min-width: 767px) {
+ 
+  padding: 32px;
+  width: 768px;
+
+}
+@media screen and (min-width: 991px) {
+  flex-direction: row;
+  padding: 30px, 16px, 30px, 16px;
+  width: 1280px;
+  
+  
+}
+
+`
+export const Box = styled.div`
+margin: 0 auto;
+
+@media screen and (min-width: 767px) {
+margin: 0;
+
+}
+`
+
+
+
 export const TitleCard = styled.h2`
 font-weight: 500;
 font-size: 20px;
 line-height: 27px;
 margin-bottom: 18px;
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 767px) {
   margin-bottom: 24px;
   font-weight: 500;
 font-size: 28px;
@@ -28,6 +61,9 @@ export const FormContainer = styled(Form)`
 
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 20px;
+  /* margin: 0 auto; */
+  /* margin: 0 auto; */
+ margin-bottom: 40px;
 
   // display: flex;
   // gap: 12px;
@@ -40,7 +76,7 @@ export const FormContainer = styled(Form)`
   // border: none;
   // background-color: transparent;
 
-    @media screen and (min-width: 480px) {
+    @media screen and (min-width: 767px) {
       width: 704px;
       height: 268px;
       padding: 20px 20px;
@@ -48,10 +84,11 @@ export const FormContainer = styled(Form)`
       flex-direction: row-reverse;
       justify-content: flex-end;
       gap: 71px;
+      
 
     }
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 991px) {
       width: 395px;
       height: 520px;
       padding: 20px 24px 16px;
@@ -59,6 +96,7 @@ export const FormContainer = styled(Form)`
       flex-direction: column;
       justify-content: flex-start;
       gap: 25px;
+      margin-right: 32px;
     }
 `;
 
@@ -113,12 +151,12 @@ export const BtnCheck = styled.button`
   border: none;
   background-color: transparent;
 
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 767px) {
     position: absolute;
     right: 0px;
     left: 0px;
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 991px) {
     position: absolute;
   
    left: 315px;
@@ -159,7 +197,7 @@ export const InputContainer = styled(Field)`
     outline: none;
   }
   
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 767px) {
     padding: 6px 12px;
     width: 255px;
     height: 32px;
@@ -176,7 +214,7 @@ export const Label = styled.label`
   line-height: 19px;
 
 
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 991px) {
     font-size: 18px;
     line-height: 25px;
   }
@@ -189,7 +227,7 @@ export const DIV = styled.div`
   justify-content: space-between;
   margin: 12px auto;
 
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 767px) {
     margin: 8px auto;
     width: 355px;
     height: 32px;

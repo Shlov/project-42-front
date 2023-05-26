@@ -8,8 +8,11 @@ import { currentUser, updateUser } from 'Redux/auth/operation';
 
 import icons from 'images/icons.svg';
 import { LogoutBtn } from 'components/Logout/Logout';
+import { PetsData } from 'components/PetsData/PetsData';
 
 import {
+  MainContainer,
+  Box,
   TitleCard,
   FormContainer,
   BtnCheck,
@@ -142,7 +145,8 @@ export const UserData = () => {
   };
 
   return (
-    <div>
+    <MainContainer>
+    <Box>
       <TitleCard>My information:</TitleCard>
       <Formik
         enableReinitialize={true}
@@ -361,7 +365,9 @@ export const UserData = () => {
             </div>
           </FormContainer>
         )}
-      </Formik>
-    </div>
+        </Formik>
+      </Box>
+      <PetsData/>
+    </MainContainer>
   );
 };
