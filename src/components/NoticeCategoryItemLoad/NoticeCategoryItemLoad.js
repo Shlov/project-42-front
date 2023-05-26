@@ -1,7 +1,7 @@
 // Картка нотіси завантаження
 
 import icon from '../../images/icons.svg';
-import { Card, FavoriteBtn,  CategoryTag, ImageWrapper, DescriptionWrapper, Title, TagItem, TagList, MoreBtn, SvgIcon, HeartIcon, Loader } from "./NoticeCategoryItemLoad.styled";
+import { Card, FavoriteBtn,  CategoryTag, ImageWrapper, DescriptionWrapper, Title, TagItem, TagList, MoreBtn, SvgIcon, HeartIcon} from "./NoticeCategoryItemLoad.styled";
 
 export const NoticeCategoryItemLoad = ({onTrashModal, item}) => {
 
