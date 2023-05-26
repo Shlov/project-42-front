@@ -15,6 +15,7 @@ import {
   CategoryTag,
   CommentWrap,
   Contact,
+  ContactBlur,
   ContactBtn,
   HeartIcon,
   Image,
@@ -27,14 +28,22 @@ import {
   TitleModal,
 } from './ModalNotice.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 // import { useNavigate} from "react-router-dom";
 import { fetchNotice } from 'Redux/notices/operation';
 import { getIsLoadNotice, getNotice } from 'Redux/notices/selector';
 
-export const ModalNotice = ({ onClose, noticeId}) => {
+export const ModalNotice = ({ onClose, noticeId }) => {
+  // const [isWithoutBlur, setIsWithoutBlur] = useState(false);
+  const [withoutBlur, setWithoutBlur] = useState(0);
+  console.log(withoutBlur);
+
   const handleChange = () => {
     console.log('User додав тваринку у favorite');
+  };
+
+  const withoutBlurEmail = () => {
+    setWithoutBlur(withoutBlur + 1);
   };
 
   const dispatch = useDispatch();
@@ -42,15 +51,11 @@ export const ModalNotice = ({ onClose, noticeId}) => {
     useSelector(getNotice);
   const isLoading = useSelector(getIsLoadNotice);
 
-  // const navigate = useNavigate()
- 
   // в функцію fetchNotice треба буде прокинути id відкриваємої notice
   // поки бек не віддає без авторизованого користувача
-  useEffect(() => {    
-    dispatch(fetchNotice(noticeId));    
-    // navigate(`/notices/${noticeId}`)
+  useEffect(() => {
+    dispatch(fetchNotice(noticeId));
   }, [dispatch, noticeId]);
-  
 
   return (
     <>
@@ -101,13 +106,25 @@ export const ModalNotice = ({ onClose, noticeId}) => {
               <ListProperty>
                 <ItemProp>
                   <NameProp>Email:</NameProp>
-                  <Contact href="mailto:user@mail.com">user@mail.com</Contact>
+                  {!withoutBlur ? (
+                    <ContactBlur href="mailto:user@mail.com">user@mail.com</ContactBlur>
+                  ) : (
+                    <Contact href="mailto:user@mail.com">
+                      user@mail.com
+                    </Contact>
+                  )}
                 </ItemProp>
                 <ItemProp>
                   <NameProp>Phone:</NameProp>
-                  <Contact href="tel:+380971234567" aria-label="phone">
-                    +380971234567
-                  </Contact>
+                  {!withoutBlur ? (
+                    <ContactBlur href="tel:+380971234567" aria-label="phone">
+                      +380971234567
+                    </ContactBlur>
+                  ) : (
+                    <Contact href="tel:+380971234567" aria-label="phone">
+                      +380971234567
+                    </Contact>
+                  )}
                 </ItemProp>
               </ListProperty>
             </div>
@@ -126,8 +143,15 @@ export const ModalNotice = ({ onClose, noticeId}) => {
               </CommentWrap>
             ) : null}
             <ButtonWrapThumb>
+              {/* <PriceProp> <Price>Place:</Price>
+                  <Value>{price ? price : 'invaluable'}</Value></PriceProp> */}
               <ButtonWrap>
-                <ContactBtn href="tel:+380971234567" aria-label="phone button">
+                {/* <ContactBtn href="tel:+380971234567" aria-label="phone button"> */}
+                <ContactBtn
+                  type="button"
+                  aria-label="show contact button"
+                  onClick={withoutBlurEmail}
+                >
                   Contact
                 </ContactBtn>
                 <Button
