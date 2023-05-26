@@ -21,7 +21,6 @@ export const NoticeCategoryItem = ({onTrashModal, item}) => {
 
   const active = false
 
-
   const agePet = (birthday) => {
     const nowDate = new Date().getTime();
     const [day, month, year] = birthday.split('.');
@@ -41,7 +40,7 @@ export const NoticeCategoryItem = ({onTrashModal, item}) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const toggleModal = () => {
-    setIsOpenModal(isOpen => !isOpen);
+    setIsOpenModal(isOpen => !isOpen);    
   };
 
 
@@ -87,7 +86,7 @@ export const NoticeCategoryItem = ({onTrashModal, item}) => {
           <Title>{item.title ? item.title : 'Cute fox looking for a home'}</Title>
           <MoreBtn onClick={toggleModal}>Learn more</MoreBtn>
         </DescriptionWrapper>
-        {isOpenModal&& <ModalNotice onClose={toggleModal} notice={item}/>}
+        {isOpenModal&& <ModalNotice onClose={toggleModal} notice={item} noticeId={item.id}/>}
       </Card>
     </>
   )

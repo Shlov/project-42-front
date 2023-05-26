@@ -25,7 +25,7 @@ export const fetchNotices = createAsyncThunk('notices/all',
 export const fetchNotice = createAsyncThunk('notices/one',
   async(id, thunkAPI) => {
     try {
-      const response = await axios.get(`/notices/${id}`,
+      const response = await axios.get(`/notices/${id}`, 
       {
         headers: {
           Authorization: `Bearer ${tokenShlov}`
