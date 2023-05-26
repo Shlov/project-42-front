@@ -1,38 +1,40 @@
-import axios from "axios";
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from 'axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const tokenShlov = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NmM5MDg4M2U2MmUwYTE2MTg3YzlhYyIsImlhdCI6MTY4NDkzMTgzNSwiZXhwIjoxNjg0OTc1MDM1fQ.eA3LHBXAK6VB8ds04beE-SSsaLRU4LXpbUeHK1PB2_c'
+const tokenShlov =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NmM5MDg4M2U2MmUwYTE2MTg3YzlhYyIsImlhdCI6MTY4NDkzMTgzNSwiZXhwIjoxNjg0OTc1MDM1fQ.eA3LHBXAK6VB8ds04beE-SSsaLRU4LXpbUeHK1PB2_c';
 
 axios.defaults.baseURL = 'https://fourtwo-back.onrender.com/';
 
-export const fetchNotices = createAsyncThunk('notices/all',
-  async(_, thunkAPI) => {
+export const fetchNotices = createAsyncThunk(
+  'notices/all',
+  async (_, thunkAPI) => {
     try {
-      const response = await axios.get('/notices'
-      // {
-      //   headers: {
-      //     Authorization: `Bearer ${token}`
-      //   },
-      // }
+      const response = await axios.get(
+        '/notices'
+        // {
+        //   headers: {
+        //     Authorization: `Bearer ${token}`
+        //   },
+        // }
       );
-      return response.data
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-export const fetchNotice = createAsyncThunk('notices/one',
-  async(id, thunkAPI) => {
+export const fetchNotice = createAsyncThunk(
+  'notices/one',
+  async (id, thunkAPI) => {
     try {
-      const response = await axios.get(`/notices/${id}`, 
-      {
+      const response = await axios.get(`/notices/${id}`, {
         headers: {
-          Authorization: `Bearer ${tokenShlov}`
+          Authorization: `Bearer ${tokenShlov}`,
         },
-      }
-      );
-      return response.data
+      });
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -52,3 +54,19 @@ export const getNoticeByCategory = createAsyncThunk(
     }
   }
 );
+
+// export const addNotice = createAsyncThunk(
+//   'notices/addNotice',
+//   async ({ formData }, thunkAPI) => {
+//     try {
+//       const response = await axios.post('/notices/user', formData, {
+//         headers: {
+//           'content-type': 'multipart/form-data'
+//         },
+//       });
+//       console.log(response.data);
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
