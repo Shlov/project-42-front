@@ -11,6 +11,7 @@ import { userReg } from 'Redux/auth/operation';
 import { useState } from 'react';
 import { Navigate } from "react-router-dom";
 import { getConnect } from "Redux/auth/selector";
+import { Hearts } from 'react-loader-spinner';
 import * as yup from 'yup';
 import {
   Box,
@@ -31,6 +32,7 @@ import {
   TextOkValidation,
   IconErrorValidateMail,
   IconErrorValidate,
+  LoaderStyle,
 } from './AuthFormRegister.styled';
 import icons from 'images/icons.svg';
 
@@ -71,11 +73,30 @@ export const eyeOpen = () => {
   );
 };
 
+      const Loader = () => {
+  return (
+    <LoaderStyle>
+      <Hearts
+        color="orange"
+        strokeWidth="5"
+        animationDuration="1.5"
+        width="96"
+        visible={true}
+      />
+    </LoaderStyle>
+  );
+};
+
 export const RegForm = () => {
   const [toggleIconPass, setToggleIconPass] = useState(eyeCosed);
   const [typePass, setTypePass] = useState('password');
   const [toggleIconConfirm, setToggleIconConfirm] = useState(eyeCosed);
   const [typeCofirm, setTypeCofirm] = useState('password');
+    const [isLoad, setIsLoad] = useState();
+
+  const onLoader = e => {
+   setIsLoad( Loader)
+  }
 
   const togglePassInput = e => {
     if (typePass === 'password') {
@@ -240,7 +261,7 @@ export const RegForm = () => {
                   <Error component="div" name="confirmPassword" />
                 </Label>
               </Box>
-              <Button type="submit">Registration</Button>
+              <Button type="submit" onClick={onLoader}>{isLoad} Registration</Button>
               <Text>
                 Already have an account?
                 <Span>

@@ -71,16 +71,16 @@ export const Input = styled(Field)`
   font-size: 16px;
   padding: 12px 16px;
   width: 100%;
-   border: 1px solid ${props => { 
-  if (props.error) {
-    return ('var(--cl-red)');
-  }else if (props.value && !props.error) {
-    return ('var(--cl-green)');
-  } else {
-    return ('var(--cl-blue-link)');
-  }
-  }
- } ;
+  border: 1px solid
+    ${props => {
+      if (props.error) {
+        return 'var(--cl-red)';
+      } else if (props.value && !props.error) {
+        return 'var(--cl-green)';
+      } else {
+        return 'var(--cl-blue-link)';
+      }
+    }};
   border-radius: 40px;
   cursor: pointer;
   outline: none;
@@ -96,7 +96,7 @@ export const Error = styled(ErrorMessage)`
 `;
 
 export const Label = styled.label`
-position: relative;
+  position: relative;
   display: flex;
   text-align: left;
   flex-direction: column;
@@ -142,7 +142,7 @@ export const Span = styled.span`
   margin-left: 3px;
 `;
 
-export const Link = styled(NavLink)`  
+export const Link = styled(NavLink)`
   color: var(--cl-blue-link);
   line-height: 16px;
 `;
@@ -161,68 +161,75 @@ export const SVG = styled.svg`
 `;
 
 export const IconOkValidate = styled.span`
-${props => { 
- if (props.value && !props.error) {
-   return (`position: absolute;
+  ${props => {
+    if (props.value && !props.error) {
+      return `position: absolute;
     cursor: pointer;
   top: 12px;
-  right: 45px;`);
-  } else {
-    return ('display: none;');
-  }
-  }
-  }`;
- 
-  export const IconOkValidateMail = styled.span`
-${props => { 
- if (props.value && !props.error) {
-   return (`position: absolute;
+  right: 45px;`;
+    } else {
+      return 'display: none;';
+    }
+  }}
+`;
+
+export const IconOkValidateMail = styled.span`
+  ${props => {
+    if (props.value && !props.error) {
+      return `position: absolute;
     cursor: pointer;
   top: 12px;
-  right: 15px;`);
-  } else {
-    return ('display: none;');
-  }
-  }
-  }`;
- 
-    export const TextOkValidation = styled.div`
-${props => { 
- if (props.value && !props.error) {
-   return (`  position: absolute;
+  right: 15px;`;
+    } else {
+      return 'display: none;';
+    }
+  }}
+`;
+
+export const TextOkValidation = styled.div`
+  ${props => {
+    if (props.value && !props.error) {
+      return `  position: absolute;
   top: 52px;
   left: 18px;
   font-size: 12px;
   font-weight: 400;
-  color: var(--cl-green);`);
-  } else {
-    return ('display: none;');
-  }
-  }
-  }`;
+  color: var(--cl-green);`;
+    } else {
+      return 'display: none;';
+    }
+  }}
+`;
 
-      export const IconErrorValidateMail = styled.span`
-${props => { 
- if (props.error) {
-   return (`position: absolute;
+export const IconErrorValidateMail = styled.span`
+  ${props => {
+    if (props.error) {
+      return `position: absolute;
   top: 12px;
   right: 15px;
-  color: var(--cl-red);`);
-  } else {
-    return ('display: none;');
-  }
-  }
-  }`;
+  color: var(--cl-red);`;
+    } else {
+      return 'display: none;';
+    }
+  }}
+`;
 
-        export const IconErrorValidate = styled.span`
-${props => { 
- if (props.error) {
-   return (`position: absolute;
+export const IconErrorValidate = styled.span`
+  ${props => {
+    if (props.error) {
+      return `position: absolute;
   top: 12px;
   right: 45px;
-  color: var(--cl-red);`);
-  } else {
-    return ('display: none;');
-  }
-  }
-  }`;
+  color: var(--cl-red);`;
+    } else {
+      return 'display: none;';
+    }
+  }}
+`;
+
+export const LoaderStyle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 0px;`;
+

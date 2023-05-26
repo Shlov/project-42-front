@@ -9,9 +9,9 @@ import { Formik } from 'formik';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userLogin } from 'Redux/auth/operation';
-import { Navigate } from "react-router-dom";
-import { getConnect } from "Redux/auth/selector";
-
+import { Navigate } from 'react-router-dom';
+import { getConnect } from 'Redux/auth/selector';
+import { Hearts } from 'react-loader-spinner';
 
 import icons from 'images/icons.svg';
 import * as yup from 'yup';
@@ -34,6 +34,7 @@ import {
   TextOkValidation,
   IconErrorValidateMail,
   IconErrorValidate,
+  LoaderStyle,
 } from '../AuthFormRegister/AuthFormRegister.styled';
 
 const yupLoginValidation = yup.object().shape({
@@ -69,12 +70,28 @@ const eyeOpen = () => {
   );
 };
 
+      const Loader = () => {
+  return (
+    <LoaderStyle>
+      <Hearts
+        color="orange"
+        strokeWidth="5"
+        animationDuration="1.5"
+        width="96"
+        visible={true}
+      />
+    </LoaderStyle>
+  );
+};
+
 export const LogForm = () => {
-
-
-
   const [toggleIconPass, setToggleIconPass] = useState(eyeCosed);
   const [typePass, setTypePass] = useState('password');
+  const [isLoad, setIsLoad] = useState();
+
+  const onLoader = e => {
+   setIsLoad( Loader)
+  }
 
   const togglePassInput = e => {
     if (typePass === 'password') {
@@ -85,8 +102,6 @@ export const LogForm = () => {
       setToggleIconPass(eyeCosed);
     }
   };
-
-  
 
   const initialValue = {
     email: '',
@@ -99,13 +114,15 @@ export const LogForm = () => {
     props.resetForm();
   };
 
-    const isConnect = useSelector(getConnect);
+
+  const isConnect = useSelector(getConnect);
   if (isConnect) {
     return <Navigate to="/user" replace />;
   }
 
-  return (
 
+
+  return (
     <Wrapper>
       <Formik
         initialValues={initialValue}
@@ -189,8 +206,11 @@ export const LogForm = () => {
                   <Error component="div" name="password" />
                 </Label>
               </Box>
-              
-                <Button type="submit" >Login</Button>
+
+              <Button type="submit" onClick={onLoader}>
+{isLoad}
+                Login
+              </Button>
               <Text>
                 Already have an account?
                 <Span>
