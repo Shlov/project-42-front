@@ -1,18 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchNotices } from './operation';
+import { fetchNotices, fetchNotice, getNoticeByCategory } from './operation';
 
 const handlePending = state => {
-  state.isLoading = true;
+  state.isLoadNotices = true;
 };
 
 const handleRejected = (state, action) => {
-  state.isLoading = false;
+  state.isLoadNotices = false;
   state.error = action.payload;
 };
 
 const noticesInitialState = {
+  noticesByCategory: [],
   items: [],
-  isLoading: false,
+  item: {},
+  isLoadNotices: false,
+  isLoadNotice: false,
   category: 'sell',
   filter: {query: '', gender: '', age: ''},
   pagination: {page: null, },
@@ -26,12 +29,26 @@ const noticesSlice = createSlice({
   extraReducers: {
     [fetchNotices.pending]: handlePending,
     [fetchNotices.fulfilled] (state, action) {
-      state.isLoading = false;
+      state.isLoadNotices = false;
       state.error = null;
-      state.items = action.payload.data;
+      state.items = action.payload.data.notices;
     },
     [fetchNotices.rejected]: handleRejected,
-
+    [fetchNotice.pending] (state) {
+      state.isLoadNotice = true;
+    },
+    [fetchNotice.fulfilled] (state, action) {
+      state.isLoadNotice = false;
+      state.error = null;
+      state.item = action.payload.data.notice;
+    },
+    [fetchNotice.rejected]: handleRejected,
+    [getNoticeByCategory.pending]: handlePending,
+    [getNoticeByCategory.fulfilled] (state, action) {
+      state.noticesByCategory = action.payload.data;
+      state.isLoading = false;
+      state.error = null;
+    }
   }
 });
 

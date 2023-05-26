@@ -9,12 +9,18 @@
 // Всі поля форми обов'язкові до заповнення
 // Після успішного створення картки, користувача необхідно переадресувата на сторінку UserPage або на сторінку NoticesPage (в залженості від обраної користувачем категорії). Якщо з бекенда було отримано помилку при створенні картки - користувачу необхідно вивести відповідну інформацію у вигляді нотіфікації
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Formik, Form } from 'formik';
 import { object, string, mixed, number } from 'yup';
 import CategoryStep from 'components/CategoryStep/CategoryStep';
 import PersonalDetailsStep from 'components/PersonalDetailsStep/PersonalDetailsStep';
 import MoreInfoStep from 'components/MoreInfoStep/MoreInfoStep';
+import {
+  FormContainer,
+  FormTitle,
+  Stepper,
+  StepperItem,
+} from './AddPetForm.styled';
 
 //   Validation schema using Yup
 const validationSchema = object().shape({
@@ -72,6 +78,8 @@ const validationSchema = object().shape({
 const AddPetForm = () => {
   const [step, setStep] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [completedSteps, setCompletedSteps] = useState([]);
+  const formikRef = useRef(null);
 
   const [formValues, setFormValues] = useState({
     category: selectedCategory,
@@ -86,8 +94,6 @@ const AddPetForm = () => {
     title: '',
   });
   const steps = ['Choose Option', 'Personal Details', 'More Info'];
-
-  console.log(formValues);
 
   const stepTitles = {
     1: 'Add pet',
@@ -123,6 +129,7 @@ const AddPetForm = () => {
       : currentTitle;
 
   const handleNext = () => {
+    setCompletedSteps([...completedSteps, step]);
     setStep(prevStep => prevStep + 1);
   };
 
@@ -132,6 +139,7 @@ const AddPetForm = () => {
 
   const handleSubmit = () => {
     const formData = new FormData();
+    // const { resetForm } = formikRef.current;
 
     formData.append('category', formValues.category);
     formData.append('name', formValues.name);
@@ -141,7 +149,12 @@ const AddPetForm = () => {
     formData.append('comments', formValues.comments);
 
     if (formValues.category === 'your-pet') {
+      for (let pair of formData.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+      }
+
       // dispatch(addMyPet(formData))
+      // resetForm();
       return;
     }
 
@@ -150,22 +163,35 @@ const AddPetForm = () => {
     formData.append('location', formValues.location);
 
     if (formValues.category === 'lost-found') {
+      for (let pair of formData.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+      }
+
       // dispatch(addNotice({ category: 'lost-found', formData }));
+      // resetForm();
       return;
     }
 
     if (formValues.category === 'for-free') {
+      for (let pair of formData.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+      }
+
       // dispatch(addNotice({ category: 'in-good-hands', formData }));
+
+      // resetForm();
       return;
     }
 
     formData.append('price', formValues.price);
-    for (let pair of formData.entries()) {
-      console.log(pair[0] + ': ' + pair[1]);
-    }
 
     if (formValues.category === 'sell') {
+      for (let pair of formData.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+      }
+
       // dispatch(addNotice({ category: 'sell', formData }));
+      // resetForm();
       return;
     }
   };
@@ -195,6 +221,7 @@ const AddPetForm = () => {
             onBack={handleBack}
             selectedCategory={selectedCategory}
             setFormValues={setFormValues}
+            handleSubmit={handleSubmit}
           />
         );
       default:
@@ -203,21 +230,33 @@ const AddPetForm = () => {
   };
 
   return (
-    <>
-      <h2>{dynamicTitle}</h2>
-      <ul>
+    <FormContainer step={step}>
+      <FormTitle>{dynamicTitle}</FormTitle>
+      <Stepper>
         {steps.map((name, index) => (
-          <li key={index}>{name}</li>
+          <StepperItem
+            key={index}
+            className={
+              step === index + 1
+                ? 'active'
+                : completedSteps.includes(index + 1)
+                ? 'completed'
+                : ''
+            }
+          >
+            {name}
+          </StepperItem>
         ))}
-      </ul>
+      </Stepper>
       <Formik
         initialValues={formValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
+        innerRef={formikRef}
       >
-        <Form>{renderStepContent(step)}</Form>
+        {() => <Form>{renderStepContent(step)}</Form>}
       </Formik>
-    </>
+    </FormContainer>
   );
 };
 

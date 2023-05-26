@@ -11,16 +11,23 @@ import {
   ModalContent,
   TitleModal,
   BtnLogout,
-} from './UserPage.styled';
+  //Ірина
+  ArrowBack,
+  
+  //Олексій
+  ButtonYes,
+} from './Logout.styled';
+
+//Олексій
+// } from './UserPage.styled';
 
 import { useDispatch } from 'react-redux';
 import { logOut } from 'Redux/auth/operation';
 
-import LogoutIcon from '../../images/icons/logout.svg';
 import icons from 'images/icons.svg';
-import { ModalCongrats } from 'components/ModalCongrats/ModalCongrats';
+// import { ModalCongrats } from 'components/ModalCongrats/ModalCongrats';
 
-export const UserPage = () => {
+export const LogoutBtn = () => {
   //   toggleModal, яку потрібно передати компоненту ModalApproveAction для закриття вікна
   const [isOpenModal, setIsOpenModal] = useState(false);
   const dispatch = useDispatch();
@@ -37,30 +44,30 @@ export const UserPage = () => {
   return (
     <>
       {isOpenModal && (
-        <ModalApproveAction onClose={toggleModal} height="302px">
+        <ModalApproveAction onClose={toggleModal} report>
           <ModalContent>
             <TitleModal>Already leaving?</TitleModal>
             <ButtonWrap>
               <Button type="button" aria-label="cancel" onClick={toggleModal}>
                 Cancel
               </Button>
-              <Button type="button" aria-label="yes" onClick={handleAction}>
+              <ButtonYes type="button" aria-label="yes" onClick={handleAction}>
                 Yes
                 <Arrow>
                   <use href={icons + '#logout'} />
                 </Arrow>
-              </Button>
+              </ButtonYes>
             </ButtonWrap>
           </ModalContent>
         </ModalApproveAction>
       )}
 
       <BtnLogout type="button" onClick={toggleModal}>
-        <img src={LogoutIcon} alt="Button logout" />
+      <ArrowBack><use href={icons + '#logout'}/></ArrowBack>
         LogOut
       </BtnLogout>
 
-      <ModalCongrats />
+      {/* <ModalCongrats /> */}
     </>
   );
 };

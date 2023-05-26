@@ -53,9 +53,11 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   gap: 12px;
+
   padding: 0;
   width: 248px;
   height: 40px;
+
   letter-spacing: 0.04em;
   font-weight: 700;
   font-size: 16px;
@@ -63,17 +65,18 @@ export const Button = styled.button`
 
   border: none;
   border-radius: 40px;
-  color: var(--cl-white);
+  color: var(--cl-background);
   background: var(--cl-blue-link);
 
   cursor: pointer;
 
-  /* transition: background var(--animat); */
+  transition: background var(--animat);
 
   &:hover,
   &:active,
   &:focus {
     background: var(--gr-blue);
+    transition: background var(--animat) 1000ms;
   }
 `;
 

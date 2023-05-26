@@ -18,14 +18,10 @@ export const ModalCongrats = () => {
     setIsOpenModal(isOpen => !isOpen);
   };
 
-//   const handleAction = () => {
-//     console.log('Передаємо екшн');
-//   };
-
   return (
     <>
       {isOpenModal && (
-        <ModalApproveAction onClose={toggleModal} height="287px"> 
+        <ModalApproveAction report onClose={toggleModal}> 
           <ModalContent>
             <TitleModal>Congrats!</TitleModal>
             <DescrModal>You`re registration is success</DescrModal>

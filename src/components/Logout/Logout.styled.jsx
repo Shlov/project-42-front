@@ -5,6 +5,7 @@ export const ModalContent = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
+
   padding: 77px 0 60px;
 
   font-style: normal;
@@ -51,32 +52,50 @@ export const Button = styled.button`
   align-items: center;
   gap: 8px;
 
+  width: 256px;
+  height: 40px;
   padding: 0;
 
   font-weight: 700;
   font-size: 16px;
   line-height: 22px;
-
   letter-spacing: 0.04em;
-  font-weight: 700;
 
   border: 2px solid var(--cl-blue-link);
   border-radius: 40px;
   color: var(--cl-blue-link);
-  background-color: var(--cl-white);
-  width: 256px;
-  height: 40px;
+  background: transparent;
+
   @media (min-width: 768px) {
     width: 129px;
   }
 
-  transition: background-color var(--animat), color var(--animat);
+  transition: background var(--animat);
 
   &:hover,
   &:active,
   &:focus {
-    background-color: var(--cl-blue-link);
-    color: var(--cl-white);
+    color: var(--cl-background);
+    background: var(--gr-blue);
+    border: none;
+    transition: background var(--animat) 1000ms;
+  }
+`;
+
+export const ButtonYes = styled(Button)`
+  border: none;
+  color: var(--cl-background);
+  background: var(--cl-blue-link);
+
+  cursor: pointer;
+
+  transition: background var(--animat);
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: var(--gr-blue);
+    transition: background var(--animat) 1000ms;
   }
 `;
 
@@ -86,17 +105,25 @@ export const Arrow = styled.svg`
   stroke: currentColor;
   fill: transparent;
 `;
+export const ArrowBack = styled.svg`
+  stroke: var(--cl-blue-link);
+  fill: transparent;
+`;
+
 
 export const BtnLogout = styled.button`
   display: inline-flex;
-  gap: 12px;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
+
   width: 98px;
   height: 30px;
+
   font-weight: 500;
   font-family: 'Manrope';
   font-size: 16px;
+
   border: none;
   background-color: transparent;
 `;
