@@ -61,7 +61,7 @@ export const authSlice = createSlice({
 
 // Олекій
 
-  user: {_id:'', email: ''},
+  user: {},
   token: '',
   isConnect: false,
   isRefreshing: false,
