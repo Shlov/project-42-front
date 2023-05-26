@@ -129,6 +129,7 @@ export const MoreBtn = styled.button`
   align-items: center;
   letter-spacing: 0.04em;
 
+  background-color: transparent;
   color: var(--cl-blue-link);
 
   :hover {

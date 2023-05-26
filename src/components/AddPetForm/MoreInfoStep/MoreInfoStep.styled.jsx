@@ -205,10 +205,18 @@ export const MoreInfoStepTextArea = styled(Field)`
   }
 `;
 
-export const ErrorMessageContainer = styled(ErrorMessage)`
+export const Error = css`
   color: var(--cl-red);
   margin-top: 4px;
   font-weight: 400;
   font-size: 12px;
   line-height: calc(16 / 12);
+`;
+
+export const ErrorMessageContainer = styled(ErrorMessage)`
+  ${Error}
+`;
+
+export const SexErrorMessage = styled.div`
+  ${Error}
 `;
