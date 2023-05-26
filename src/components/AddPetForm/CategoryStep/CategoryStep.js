@@ -1,10 +1,11 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import BackLink from '../AddPetFormButtons/BackLink';
 import {
   CategoryStepContainer,
   CategoryStepLabel,
   RadioButton,
+  ErrorMessage,
 } from './CategoryStep.styled';
 import icons from '../../../images/icons.svg';
 import {
@@ -16,12 +17,16 @@ import { AddPetFormButtonWrapper } from 'components/AddPetForm/AddPetFormButtons
 const CategoryStep = ({ onNext, onSelectCategory, selectedCategory }) => {
   const location = useLocation();
   const locRef = useRef(location.state?.from ?? '/main'); // for Back button
-  const [isDisabled, setIsDisabled] = useState(true);
+  const [nextClicked, setNextClicked] = useState(false); // State variable to track Next button click
 
-  useEffect(() => {
-    !selectedCategory ? setIsDisabled(true) : setIsDisabled(false);
-  }, [selectedCategory]);
+  const handleNext = () => {
+    setNextClicked(true); // Set nextClicked to true when Next button is clicked
+    if (selectedCategory) {
+      onNext();
+    }
+  };
 
+  // Update selected category when a radio button is changed
   const handleCategoryChange = event => {
     const selectedCategory = event.target.value;
     onSelectCategory(selectedCategory);
@@ -39,10 +44,7 @@ const CategoryStep = ({ onNext, onSelectCategory, selectedCategory }) => {
           checked={selectedCategory === 'your-pet'}
           onChange={handleCategoryChange}
         />
-        <CategoryStepLabel htmlFor="your-pet">
-          {/* Initial selection is "your pet" */}
-          your pet
-        </CategoryStepLabel>
+        <CategoryStepLabel htmlFor="your-pet">your pet</CategoryStepLabel>
         <RadioButton
           type="radio"
           name="category"
@@ -70,11 +72,14 @@ const CategoryStep = ({ onNext, onSelectCategory, selectedCategory }) => {
           onChange={handleCategoryChange}
         />
         <CategoryStepLabel htmlFor="for-free">in good hands</CategoryStepLabel>
+        {!selectedCategory && nextClicked && (
+          <ErrorMessage>Please choose a category</ErrorMessage>
+        )}
       </CategoryStepContainer>
       <AddPetFormButtonWrapper>
         <BackLink to={locRef.current} buttonText="Cancel" isLink={true} />
         {/* Cancel button, must be changed to BackLink */}
-        <NextButton type="button" onClick={onNext} disabled={isDisabled}>
+        <NextButton type="button" onClick={handleNext}>
           {/* Proceed to the next step */}
           Next
           <PawIcon width={24} height={24}>
