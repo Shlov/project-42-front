@@ -29,17 +29,41 @@ import {
 } from './ModalNotice.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-// import { useNavigate} from "react-router-dom";
+import toast from 'react-hot-toast';
 import { fetchNotice } from 'Redux/notices/operation';
 import { getIsLoadNotice, getNotice } from 'Redux/notices/selector';
 
 export const ModalNotice = ({ onClose, noticeId }) => {
-  // const [isWithoutBlur, setIsWithoutBlur] = useState(false);
   const [withoutBlur, setWithoutBlur] = useState(0);
+  const [isFavorite, setIsFavirite] = useState(false);
   console.log(withoutBlur);
 
   const handleChange = () => {
-    console.log('User додав тваринку у favorite');
+    setIsFavirite(isFavorite => !isFavorite);
+
+    if (isFavorite) {
+      console.log('Favirite true');
+      console.log(isFavorite);
+      toast.success('Pet has been added to favorites!', {
+        style: {
+          backgroundColor: '#fef9f9',
+          padding: '6px',
+          color: `'#111111'`,
+        },
+        icon: '💗',
+      });
+    } else {
+      console.log('Favirite false');
+      console.log(isFavorite);
+      toast.success('Pet has been removed from favorites!', {
+        style: {
+          backgroundColor: '#fef9f9',
+          padding: '6px',
+          color: `'#111111'`,
+        },
+        icon: '😿',
+      });
+    }
   };
 
   const withoutBlurEmail = () => {
@@ -107,11 +131,11 @@ export const ModalNotice = ({ onClose, noticeId }) => {
                 <ItemProp>
                   <NameProp>Email:</NameProp>
                   {!withoutBlur ? (
-                    <ContactBlur href="mailto:user@mail.com">user@mail.com</ContactBlur>
-                  ) : (
-                    <Contact href="mailto:user@mail.com">
+                    <ContactBlur href="mailto:user@mail.com">
                       user@mail.com
-                    </Contact>
+                    </ContactBlur>
+                  ) : (
+                    <Contact href="mailto:user@mail.com">user@mail.com</Contact>
                   )}
                 </ItemProp>
                 <ItemProp>
