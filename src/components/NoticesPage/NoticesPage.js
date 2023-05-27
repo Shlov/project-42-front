@@ -8,7 +8,8 @@
 // Під час першого входу на сторінку користувача повинно переадресовувати на маршрут /notices/sell та рендеритися список оголошень з продажу
 import { useState, useEffect, useMemo } from 'react';
 import { useSelector } from "react-redux";
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
+// import { getNoticeByCategory } from 'Redux/notices/operation';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav'
 import { FindFilter } from 'components/NoticesFilters/NoticesFilters'
@@ -25,6 +26,7 @@ import {
   Text
 } from './NoticesPage.styled';
 import icons from 'images/icons.svg';
+import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 
 const categories = [
   {
@@ -64,7 +66,7 @@ const categories = [
   }
 ]
 
-export const NoticesPage = ({ desktop }) => {
+export const NoticesPage = () => {
   //   toggleModal, яку потрібно передати компоненту ModalAprooveActionб для закриття вікна
   const items = useSelector((state) => state.notices.items);
   const location = useLocation();
@@ -75,7 +77,9 @@ export const NoticesPage = ({ desktop }) => {
   const [ages, setAges] = useState([])
   const [genders, setGenders] = useState([])
   const [openFilter, setOpenFilter] = useState(false)
+  const [search, setSearch] = useState('')
   const { categoryName } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const categoryShelf = useMemo(() => ({
   sell: 'sell',
@@ -83,14 +87,10 @@ export const NoticesPage = ({ desktop }) => {
   'for-free': 'in good hands',
 }), []);
 
+
   useEffect(() => {
-  if (categoryName) {
-    const categoryValue = categoryShelf[categoryName];
-    setFilteredItems(items.filter(item => item.categories === categoryValue))
-  } else {
-    setFilteredItems(items)
-  }
-}, [items, categoryName, categoryShelf])
+    setSearch(searchParams.get('search') || '');
+  }, [searchParams]);
 
   useEffect(() => {
     let newItems = items ? [...items] : [];
@@ -116,12 +116,15 @@ export const NoticesPage = ({ desktop }) => {
         return ageRanges.some(range => petAge >= range.start && petAge <= range.end);
       });
     }
-    if (category !== '') {
+    if (categoryName) {
       const categoryValue = categoryShelf[categoryName];
       newItems = newItems.filter(item => item.categories === categoryValue);
     }
+    if (search) {
+      newItems = newItems.filter(item => item.title.toLowerCase().includes(search.toLowerCase()));
+    }
     setFilteredItems(newItems)
-  }, [genders, ages, category, categoryShelf, categoryName, items]);
+  }, [search, genders, ages, category, categoryShelf, categoryName, items]);
 
   const toggleModal = () => {
     setIsOpenModal(isOpen => !isOpen);
@@ -137,6 +140,14 @@ export const NoticesPage = ({ desktop }) => {
     const birthDate = new Date (`${Number(month)-1},${Number(day)},${Number(year)}`);
     const differenceMonth = 12 - birthDate.getMonth()+ 1 + nowDate.getMonth() + 1;
     return differenceMonth
+  }
+
+  const handleSearch = (searchTerm) => {
+    setSearch(searchTerm)
+    setSearchParams({ search: searchTerm });
+    searchTerm = searchTerm.toLowerCase();
+    const filteredItems = items.filter(item => item.title.toLowerCase().includes(searchTerm));
+    setFilteredItems(filteredItems);
   }
 
   return (
@@ -165,28 +176,17 @@ export const NoticesPage = ({ desktop }) => {
           </ModalContent>
         </ModalApproveAction>
       )}
+      <NoticesSearch onSubmit={handleSearch} />
       <Filters>
-        {desktop ?
-        <>
-          <div>
-            <NoticesCategoriesNav categoriesArr={categoriesArr} setCategoriesArr={setCategoriesArr} categories={categories} category={category} setCategory={setCategory} />
-          </div>
-          <FindFilter setAges={setAges} ages={ages} setGenders={setGenders} genders={genders} setOpenFilter={setOpenFilter} openFilter={openFilter} items={items} />
-          <AddPetButton/>
-        </>
-        :
-        <>
-          <div>
+        <div>
             <NoticesCategoriesNav categoriesArr={categoriesArr} setCategoriesArr={setCategoriesArr} categories={categories} category={category} setCategory={setCategory} />
           </div>
           <div className='filters'>
             <FindFilter setAges={setAges} ages={ages} setGenders={setGenders} genders={genders} setOpenFilter={setOpenFilter} openFilter={openFilter} items={items} />
             <AddPetButton/>
           </div>
-        </>
-        }
       </Filters>
-      <NoticeCategoryList filteredItems={filteredItems} onTrashModal={toggleModal} items={items}/>
+      <NoticeCategoryList filteredItems={filteredItems} setFilteredItems={setFilteredItems} onTrashModal={toggleModal} items={items} search={search}/>
     </>
   );
 };
