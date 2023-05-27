@@ -1,42 +1,64 @@
 import styled from "styled-components";
-import { ReactComponent as Filter } from '../../images/icons/filters-3.svg';
 
 export const FilterWrapper = styled.div`
   position: relative;
 `
 
 export const Button = styled.button`
-  color: var(--cl-blue-link);
-  font-size: 16px;
-  font-weight: 700;
-  width: 152px;
+  width: 40px;
   height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--cl-almost-white);
-  border: 2px solid rgb(84, 173, 255);
-  border-radius: 40px;
+  color: var(--cl-blue-link); 
+  background-color: var(--cl-blue-light);
+  border: 2px solid var(--cl-blue-light);
+  border-radius: 50%;
   transition: background-color 250ms ease-in-out 0s, color 250ms ease-in-out 0s;
   cursor: pointer;
-  margin-right: 0 !important;
+  margin-right: 20px;
+  fill: var(--cl-blue-light);
 
   &:hover {
     background: var(--gr-blue);
     color: var(--cl-background);
     border: none;
-
+    fill: var(--cl-blue-link);
+    
     path {
-      stroke: var(--cl-background);
+    stroke: var(--cl-background);   
     }
+  }
+
+  @media (min-width: 767px) {
+  background-color: var(--cl-almost-white);
+  width: 152px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40px;
+  fill: var(--cl-background);
+  border: 2px solid rgb(84, 173, 255);
+  margin-right: 0 !important;
   }
 `
 
-export const FilterCSS = styled(Filter)`
-  wirth: 21px;
-  height: 24px;
-  margin-left: 12px;
+export const ButtonText = styled.h1`
+display: none;
+
+@media (min-width: 768px) {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+  }
+`
+
+export const FilterCSS = styled.svg`
+  width: 21px;
+  height: 24px; 
   stroke: currentColor;
+
+  @media (min-width: 768px) {
+  margin-left: 12px;
+  }
 `
 
 export const FilterSelect = styled.div`

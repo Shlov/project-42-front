@@ -4,7 +4,7 @@ import { lazy, useEffect, useState } from 'react';
 import {  useDispatch, useSelector } from 'react-redux';
 import { setDesktop, setTablet, setMobile } from '../Redux/main/main-slice';
 import { SharedLayout } from './SharedLayout/SharedLayout';
-// import Loader from './Loader/Loader';
+// import { Loader } from './Loader/Loader';
 
 import '../index.css';
 import { selectIsRefreshing } from 'Redux/auth/selector';
