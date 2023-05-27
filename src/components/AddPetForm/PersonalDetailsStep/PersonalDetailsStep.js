@@ -23,7 +23,7 @@ const PersonalDetailsStep = ({
   const validateFields = useCallback(() => {
     let formErrors = {};
 
-    // Validate title field if category is 'sell', 'lost-found' or 'for-free'
+    // Validate title field if category is 'sell', 'lost/found' or 'for-free'
     if (selectedCategory !== 'your-pet') {
       if (!values.title) {
         formErrors.title = 'Title is required';
