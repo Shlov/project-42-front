@@ -145,7 +145,13 @@ export const SvgIcon = styled.svg`
 
   display: block;
   fill: var(--cl-blue-light);
-  stroke: var(--cl-blue-link);
+  stroke: ${({sex}) => {
+    if (sex === 'female') {
+      return 'var(--cl-red)'
+    } else  {
+      return 'var(--cl-blue-link)'
+    }
+  }};
   stroke-width:1.5;
   stroke-linecap:round;
   stroke-linejoin:round;

@@ -64,9 +64,14 @@ export const NoticeCategoryItem = ({onTrashModal, item}) => {
               <p>{item.birthday ? agePet(item.birthday) : 'age'}</p>
             </TagItem>
             <TagItem>
-              <SvgIcon height="20" width="20">
+              {item.sex === 'female'
+              ?<SvgIcon height="20" width="20" sex={item.sex}>
+                <use href={icon + "#female"}/>
+              </SvgIcon>
+              :<SvgIcon height="20" width="20" sex={item.sex}>
                 <use href={icon + "#male"}/>
               </SvgIcon>
+              } 
               <p>{item.sex ? item.sex : 'sex'}</p>
             </TagItem>
           </TagList>
