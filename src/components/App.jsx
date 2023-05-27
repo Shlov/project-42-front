@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 // import { lazy, useEffect, useState, Suspense } from 'react';
 import { lazy, useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import {  useDispatch } from 'react-redux';
 import { setDesktop, setTablet, setMobile } from '../Redux/main/main-slice';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 // import Loader from './Loader/Loader';
@@ -21,14 +21,13 @@ const AddPet = lazy(() => import('../pages/AddPet'));
 const News = lazy(() => import('../pages/News'));
 const OurFriends = lazy(() => import('../pages/OurFriends'));
 
-
 export const App = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const dispatch = useDispatch();
-  const desktop = useSelector((state) => state.main.desktop)
-  const tablet = useSelector((state) => state.main.tablet)
-  const mobile = useSelector((state) => state.main.mobile)
-  const isConnect = useSelector((state) => state.auth.isConnect)
+  // const desktop = useSelector(state => state.main.desktop);
+  // const tablet = useSelector(state => state.main.tablet);
+  // const mobile = useSelector(state => state.main.mobile);
+  // const isConnect = useSelector(state => state.auth.isConnect);
 
   useEffect(() => {
     const handleResize = (event) => {
@@ -63,10 +62,7 @@ export const App = () => {
               path="/"
               element={
                 <SharedLayout
-                desktop={desktop}
-                tablet={tablet}
-                mobile={mobile}
-                isConnect={isConnect}
+
                 />
               }
               >
@@ -77,8 +73,8 @@ export const App = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/notices">
-                <Route index element={<Notices desktop={desktop} />} />
-                <Route path=":categoryName" element={<Notices desktop={desktop} />} />
+                <Route index element={<Notices />} />
+                <Route path=":categoryName" element={<Notices />} />
               </Route>
               <Route path="/add-pet" element={<AddPet />} />
               <Route path="/news" element={<News />} />

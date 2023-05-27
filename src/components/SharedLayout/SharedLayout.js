@@ -4,11 +4,11 @@ import { Toaster } from 'react-hot-toast';
 import { Suspense } from "react";
 import Loader from '../Loader/Loader';
 
-export const SharedLayout = ({ desktop, tablet, mobile, isConnect }) => {
+export const SharedLayout = () => {
 
   return (
     <>
-      <Header desktop={desktop} tablet={tablet} mobile={mobile} isConnect={isConnect} />
+      <Header/>
       <Toaster/>
       <Suspense fallback={<Loader />}>
         <Outlet />

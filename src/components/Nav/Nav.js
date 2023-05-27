@@ -1,8 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { NavLinks, NavWrap } from './Nav.styled'
+import { useSelector } from "react-redux";
 
-const Nav = ({ setActiveBridge, desktop }) => {
+const Nav = ({ setActiveBridge }) => {
+
+  const desktop = useSelector(state => state.main.desktop);
+
   const handleCloseMenu = () => {
     if(!desktop) {
       setActiveBridge(false)

@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import icons from 'images/icons.svg';
 import { AuthNavCss, ButtonLogin, PawCss, ButtonRegister } from './AuthNav.styled';
+import { useSelector } from 'react-redux';
 
-const AuthNav = ({ setActiveBridge, desktop }) => {
+const AuthNav = ({ setActiveBridge }) => {
   const [isIconLoaded, setIsIconLoaded] = useState(false);
+    const desktop = useSelector(state => state.main.desktop);
 
   useEffect(() => {
     const iconImage = new Image();
