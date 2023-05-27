@@ -30,18 +30,18 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { fetchNotice } from 'Redux/notices/operation';
-import { getIsLoadNotice, getNotice } from 'Redux/notices/selector';
+import { fetchNotice, getFavoriteNotices } from 'Redux/notices/operation';
+import { getIsLoadNotice, getNotice, selectFavorites } from 'Redux/notices/selector';
 
 export const ModalNotice = ({ onClose, noticeId }) => {
   const [withoutBlur, setWithoutBlur] = useState(0);
   const [isFavorite, setIsFavirite] = useState(false);
-  console.log(withoutBlur);
+  // console.log(withoutBlur);
 
-  const handleChange = () => {
+  const handleFavorite = () => {
     setIsFavirite(isFavorite => !isFavorite);
 
-    if (isFavorite) {
+    if (!isFavorite) {
       console.log('Favirite true');
       console.log(isFavorite);
       toast.success('Pet has been added to favorites!', {
@@ -66,7 +66,7 @@ export const ModalNotice = ({ onClose, noticeId }) => {
     }
   };
 
-  const withoutBlurEmail = () => {
+  const handleBlurContacts = () => {
     setWithoutBlur(withoutBlur + 1);
   };
 
@@ -75,11 +75,18 @@ export const ModalNotice = ({ onClose, noticeId }) => {
     useSelector(getNotice);
   const isLoading = useSelector(getIsLoadNotice);
 
+  const favorites = useSelector(selectFavorites)
+  console.log(favorites)
+
   // в функцію fetchNotice треба буде прокинути id відкриваємої notice
   // поки бек не віддає без авторизованого користувача
   useEffect(() => {
     dispatch(fetchNotice(noticeId));
   }, [dispatch, noticeId]);
+
+  useEffect(()=> {
+    dispatch(getFavoriteNotices())
+  }, [dispatch])
 
   return (
     <>
@@ -174,14 +181,14 @@ export const ModalNotice = ({ onClose, noticeId }) => {
                 <ContactBtn
                   type="button"
                   aria-label="show contact button"
-                  onClick={withoutBlurEmail}
+                  onClick={handleBlurContacts}
                 >
                   Contact
                 </ContactBtn>
                 <Button
                   type="button"
                   aria-label="Add to favorite"
-                  onClick={handleChange}
+                  onClick={handleFavorite}
                 >
                   Add to
                   <HeartIcon>

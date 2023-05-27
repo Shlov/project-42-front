@@ -95,3 +95,21 @@ export const getNoticeByCategory = createAsyncThunk(
 //     }
 //   }
 // );
+
+export const getFavoriteNotices = createAsyncThunk(
+  'notices/user/favorite',
+  async(_,thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.token;
+      const response = await axios.get('/notices/user/favorite', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+      });
+      console.log(response.data.data.notices)
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
