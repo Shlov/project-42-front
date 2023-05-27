@@ -9,12 +9,18 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 
-const petsSlice = createSlice({
-  name: 'pets',
-  initialState: [],
+const petsInitialState = {
+  pets: [],
   isLoggedIn: false,
   isLoading: false,
   error: '',
+  isResponseSuccessful: false,
+};
+
+const petsSlice = createSlice({
+  name: 'pets',
+  initialState: petsInitialState,
+
   reducers: {
     [fetchPets.fulfilled](state, action) {
       state = action.payload;
@@ -28,6 +34,7 @@ const petsSlice = createSlice({
       state.push(action.payload); // // Add the new pet to the Redux store
       state.isLoading = false;
       state.error = '';
+      state.isResponseSuccessful = true;
     },
     [addPet.rejected]: handleRejected,
   },

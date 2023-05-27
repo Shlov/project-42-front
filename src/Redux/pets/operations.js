@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 axios.defaults.baseURL = 'https://fourtwo-back.onrender.com';
@@ -42,9 +41,8 @@ export const deletePet = createAsyncThunk(
 );
 
 export const addPet = createAsyncThunk(
-  'notices/addPet',
+  'pets/addPet',
   async ({ formData }, thunkAPI) => {
-    const navigate = useNavigate();
     try {
       const response = await axios.post('pets/addpet', formData, {
         headers: {
@@ -53,7 +51,6 @@ export const addPet = createAsyncThunk(
       });
       toast.success('Successfully added to your pets');
       console.log(response.data);
-      navigate('/user');
     } catch (error) {
       if (error.response.status === 400) {
         toast.error('Pet creation error. Please try again🙏');
