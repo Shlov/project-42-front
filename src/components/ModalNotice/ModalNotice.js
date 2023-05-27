@@ -21,9 +21,12 @@ import {
   Image,
   ImageWrapper,
   ItemProp,
+  ListContact,
   ListProperty,
   ModalContent,
   NameProp,
+  Price,
+  PriceValue,
   PriceWrap,
   SignProp,
   TitleModal,
@@ -76,7 +79,7 @@ export const ModalNotice = ({ onClose, noticeId }) => {
   };
 
   const dispatch = useDispatch();
-  const { imageURL, categories, name, birthday, breed, place, sex, comments } =
+  const { imageURL, categories, name, birthday, breed, place, sex, comments, price } =
     useSelector(getNotice);
   const isLoading = useSelector(getIsLoadNotice);
 
@@ -115,7 +118,7 @@ export const ModalNotice = ({ onClose, noticeId }) => {
             </ImageWrapper>
             <div>
               <div>
-                <TitleModal>Cute dog looking for a home</TitleModal>
+                <TitleModal>Cute pet looking for a home</TitleModal>
               </div>
               <ListProperty>
                 <ItemProp>
@@ -139,7 +142,7 @@ export const ModalNotice = ({ onClose, noticeId }) => {
                   <SignProp>{sex ? sex : 'sex'}</SignProp>
                 </ItemProp>
               </ListProperty>
-              <ListProperty>
+              <ListContact>
                 <ItemProp>
                   <NameProp>Email:</NameProp>
                   {!withoutBlur ? (
@@ -162,7 +165,7 @@ export const ModalNotice = ({ onClose, noticeId }) => {
                     </Contact>
                   )}
                 </ItemProp>
-              </ListProperty>
+              </ListContact>
             </div>
             {/* <CommentWrap>
               <span>Comments:&nbsp;</span>
@@ -179,12 +182,15 @@ export const ModalNotice = ({ onClose, noticeId }) => {
               </CommentWrap>
             ) : null}
             {/* <PriceProp> <Price>Place:</Price>
-                  <Value>{price ? price : 'invaluable'}</Value></PriceProp> */}
-            <PriceWrap>
-              <NameProp>Price:</NameProp>
-              <SignProp>invaluable</SignProp>
-            </PriceWrap>
+                  <Value>{price ? price : 'invaluable'}</Value></PriceProp> */}            
             <ButtonWrapThumb>
+            {price ? ( <PriceWrap price>
+             <Price>Price:</Price>
+              <PriceValue>{price}</PriceValue>
+            </PriceWrap>) : ( <PriceWrap >
+             <Price></Price>
+              <PriceValue></PriceValue>
+            </PriceWrap>)}
               <ButtonWrap>
                 {/* <ContactBtn href="tel:+380971234567" aria-label="phone button"> */}
                 <ContactBtn

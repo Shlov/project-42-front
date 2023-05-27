@@ -4,7 +4,7 @@ export const ModalContent = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  gap: 12px;
+  gap: 5px;
   padding: 44px 12px 16px;
 
   font-style: normal;
@@ -45,7 +45,7 @@ export const Image = styled.img`
 export const CategoryTag = styled.p`
   position: absolute;
   top: 60px;
-  left: 20px;
+  left: 24px;
 
   display: flex;
   align-items: center;
@@ -84,8 +84,12 @@ export const ListProperty = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 8px; /* delete після того як об'єднаю стилі*/
+  margin-bottom: 8px;
 `;
+
+export const ListContact = styled(ListProperty)`
+   margin-bottom: 0px;
+`
 
 export const ItemProp = styled.li`
   display: flex;
@@ -116,8 +120,6 @@ export const SignProp = styled.span`
     line-height: 22px;
   }
 `;
-
-
 
 export const Contact = styled.a`
   font-weight: 500;
@@ -155,13 +157,47 @@ export const CommentWrap = styled.div`
 
 export const PriceWrap = styled.div`
    display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   gap: 8px;
+   margin-bottom: 8px;
+
+   width: 265px;
+
+   @media (min-width: 768px) {
+    margin-bottom: 0px;
+   }
+`
+
+export const Price = styled.span`
+  width: 81px;
+
+font-weight: 600;
+font-size: 14px;
+line-height: 19px;
+
+@media (min-width: 768px) {
+  width: 45px;
+  font-size: 16px;
+  line-height: 22px;
+}
+`
+export const PriceValue = styled.span`
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+    line-height: 22px;
+  }
 `
 
 export const ButtonWrapThumb = styled.div`
   @media (min-width: 768px) {   
     display: flex;
-    justify-content: flex-end;
-
+    justify-content: ${props => props.price ? "space-between" : "flex-end"};
+ 
     width: 617px;
     padding-block-start: 70px;
   }
