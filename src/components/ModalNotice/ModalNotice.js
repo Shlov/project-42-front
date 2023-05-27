@@ -24,6 +24,7 @@ import {
   ListProperty,
   ModalContent,
   NameProp,
+  PriceWrap,
   SignProp,
   TitleModal,
 } from './ModalNotice.styled';
@@ -31,7 +32,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { fetchNotice, getFavoriteNotices } from 'Redux/notices/operation';
-import { getIsLoadNotice, getNotice, selectFavorites } from 'Redux/notices/selector';
+import {
+  getIsLoadNotice,
+  getNotice,
+  selectFavorites,
+} from 'Redux/notices/selector';
 
 export const ModalNotice = ({ onClose, noticeId }) => {
   const [withoutBlur, setWithoutBlur] = useState(0);
@@ -75,8 +80,8 @@ export const ModalNotice = ({ onClose, noticeId }) => {
     useSelector(getNotice);
   const isLoading = useSelector(getIsLoadNotice);
 
-  const favorites = useSelector(selectFavorites)
-  console.log(favorites)
+  const favorites = useSelector(selectFavorites);
+  console.log(favorites);
 
   // в функцію fetchNotice треба буде прокинути id відкриваємої notice
   // поки бек не віддає без авторизованого користувача
@@ -84,9 +89,9 @@ export const ModalNotice = ({ onClose, noticeId }) => {
     dispatch(fetchNotice(noticeId));
   }, [dispatch, noticeId]);
 
-  useEffect(()=> {
-    dispatch(getFavoriteNotices())
-  }, [dispatch])
+  useEffect(() => {
+    dispatch(getFavoriteNotices());
+  }, [dispatch]);
 
   return (
     <>
@@ -173,9 +178,13 @@ export const ModalNotice = ({ onClose, noticeId }) => {
                 <span>comments</span>
               </CommentWrap>
             ) : null}
-            <ButtonWrapThumb>
-              {/* <PriceProp> <Price>Place:</Price>
+            {/* <PriceProp> <Price>Place:</Price>
                   <Value>{price ? price : 'invaluable'}</Value></PriceProp> */}
+            <PriceWrap>
+              <NameProp>Price:</NameProp>
+              <SignProp>invaluable</SignProp>
+            </PriceWrap>
+            <ButtonWrapThumb>
               <ButtonWrap>
                 {/* <ContactBtn href="tel:+380971234567" aria-label="phone button"> */}
                 <ContactBtn

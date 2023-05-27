@@ -126,7 +126,6 @@ export const Contact = styled.a`
 
   color: var(--cl-yellow);
   filter: blur(0px);
-  /* filter: ${props => props.blur ? "3px" : "0px"}; */
 
   transition: filter var(--animat);
 
@@ -138,6 +137,7 @@ export const Contact = styled.a`
 
 export const ContactBlur = styled(Contact)`
   filter: blur(3px);
+  pointer-events: none;
 `
 
 
@@ -152,6 +152,10 @@ export const CommentWrap = styled.div`
     line-height: 24px;
   }
 `;
+
+export const PriceWrap = styled.div`
+   display: flex;
+`
 
 export const ButtonWrapThumb = styled.div`
   @media (min-width: 768px) {   
