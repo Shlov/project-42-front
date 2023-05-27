@@ -30,7 +30,7 @@ export const App = () => {
   // const isConnect = useSelector(state => state.auth.isConnect);
 
   useEffect(() => {
-    const handleResize = event => {
+    const handleResize = (event) => {
       setWidth(window.innerWidth);
     };
     window.addEventListener('resize', handleResize);
@@ -40,9 +40,9 @@ export const App = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(setDesktop(width > 992));
-    dispatch(setTablet(width > 768 && width < 991));
-    dispatch(setMobile(width < 768));
+    dispatch(setDesktop(width > 992))
+    dispatch(setTablet(width > 768 && width < 991))
+    dispatch(setMobile(width < 768))
   }, [width, dispatch]);
 
   const isRefreshing = useSelector(selectIsRefreshing);
