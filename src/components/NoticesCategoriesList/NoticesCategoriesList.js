@@ -40,19 +40,31 @@ export const NoticeCategoryList = ({ onTrashModal, search, setFilteredItems, fil
     }
   }, [category, dispatch, notices, filteredItems, search, setFilteredItems ]);
 
+  const allOrFilterItems = () => {
+    if(!isLoading && (!filteredItems.length && !search)) {
+      return (
+        allItems.map((notice, i) =>
+          <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal}/>
+        )
+      )
+    } else if(!isLoading && (!filteredItems.length && search)) {
+      return (
+        <p>Not found!</p>
+      )
+    } else if(!isLoading && ((filteredItems.length && search))) {
+      return (
+        filteredItems.map((notice, i) =>
+          <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal}/>
+        )
+      )
+    }
+  }
+
   return(
     <NoticesList>
 
       {isLoading && <NoticeCategoryItemLoad/>}
-      {
-        !isLoading && (!filteredItems.length && !search) ?
-        allItems.map((notice, i) =>
-          <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal}/>
-        ) :
-        filteredItems.map((notice, i) =>
-          <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal}/>
-        )
-      }
+      {allOrFilterItems()}
     </NoticesList>
   )
 }
