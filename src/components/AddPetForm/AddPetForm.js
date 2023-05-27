@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
-import { Formik, Form } from 'formik';
 import { useDispatch } from 'react-redux';
+import { Formik, Form } from 'formik';
 import { addNotice } from 'Redux/notices/operation';
 import { addPet } from 'Redux/pets/operations';
 import validationSchema from './validationSchema';
@@ -109,7 +109,6 @@ const AddPetForm = () => {
         console.log(pair[0] + ': ' + pair[1]);
       }
       dispatch(addNotice({ formData }));
-
       // resetForm();
       return;
     }
@@ -118,7 +117,6 @@ const AddPetForm = () => {
       for (let pair of formData.entries()) {
         console.log(pair[0] + ': ' + pair[1]);
       }
-
       dispatch(addNotice({ formData }));
       // resetForm();
       return;
@@ -130,7 +128,6 @@ const AddPetForm = () => {
       for (let pair of formData.entries()) {
         console.log(pair[0] + ': ' + pair[1]);
       }
-
       dispatch(addNotice({ formData }));
       // resetForm();
       return;
