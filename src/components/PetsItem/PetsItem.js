@@ -35,6 +35,7 @@ export const PetsItem = ({ item }) => {
   const handleDeletePet = () => {
     dispatch(deletePet(item.id));
   };
+  
   return (
     <Card>
       {isOpenModal && (
@@ -62,7 +63,7 @@ export const PetsItem = ({ item }) => {
         </ModalApproveAction>
       )}
       <div>
-        <Photo src={item.photo} alt={item.name} width="240" height="240" />
+        <Photo src={item.avatarURL} alt={item.name} width="240" height="240" />
         <Btn type="button" onClick={toggleModal}>
           <Icon>
             <use href={icons + '#trash'} />
@@ -75,7 +76,7 @@ export const PetsItem = ({ item }) => {
           Name: <Text>{item.name}</Text>
         </Label>
         <Label>
-          Date of birth: <Text>{item.birthDate}</Text>
+          Date of birth: <Text>{item.birthday}</Text>
         </Label>
         <Breed>
           Breed: <Text>{item.breed}</Text>
@@ -93,7 +94,7 @@ PetsItem.propTypes = {
     id: PropTypes.string.isRequired,
     photo: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    birthDate: PropTypes.string.isRequired,
+    birthday: PropTypes.string.isRequired,
     breed: PropTypes.string.isRequired,
     comments: PropTypes.string.isRequired,
   }),

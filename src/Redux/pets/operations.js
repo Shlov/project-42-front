@@ -1,20 +1,23 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import toast from 'react-hot-toast';
 
-axios.defaults.baseURL = 'https://fourtwo-back.onrender.com/';
-
-// const setAuthHeader = token => {
-//   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-// };
+axios.defaults.baseURL = 'https://fourtwo-back.onrender.com';
 
 export const fetchPets = createAsyncThunk(
   'pets/fetchPets',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('/pets');
-      console.log(response);
+      const token = thunkAPI.getState().auth.token;
+      const response = await axios.get('/user-pets',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+        });
       return response.data;
     } catch (error) {
+      toast.error('Something went wrong!!!')
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -24,9 +27,15 @@ export const deletePet = createAsyncThunk(
   'pet/deletePet',
   async (petId, thunkAPI) => {
     try {
-      const response = await axios.delete(`/pets/${petId}`);
+      const token = thunkAPI.getState().auth.token;
+      const response = await axios.delete(`/pets/${petId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+      });
       return response.data;
     } catch (error) {
+      toast.error('Something went wrong. Try again!!!')
       return thunkAPI.rejectWithValue(error.message);
     }
   }
