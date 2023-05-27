@@ -1,14 +1,14 @@
 import { Route, Routes } from 'react-router-dom';
 // import { lazy, useEffect, useState, Suspense } from 'react';
 import { lazy, useEffect, useState } from 'react';
-import {  useDispatch } from 'react-redux';
+import {  useDispatch, useSelector } from 'react-redux';
 import { setDesktop, setTablet, setMobile } from '../Redux/main/main-slice';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 // import Loader from './Loader/Loader';
 
 import '../index.css';
-// import { selectIsRefreshing } from 'Redux/auth/selector';
-// import { refreshUser } from 'Redux/auth/operation';
+import { selectIsRefreshing } from 'Redux/auth/selector';
+import { refreshUser } from 'Redux/auth/operation';
 // import { PrivateRoute } from './PrivateRoute';
 // import { RestrictedRoute } from './RestrictedRoute';
 
@@ -45,15 +45,17 @@ export const App = () => {
     dispatch(setMobile(width < 768));
   }, [width, dispatch]);
 
-  // const isRefreshing = useSelector(selectIsRefreshing);
+  const isRefreshing = useSelector(selectIsRefreshing);
 
-  // useEffect(() => {dispatch(refreshUser())}, [dispatch]);
+  useEffect(() => {dispatch(refreshUser())}, [dispatch]);
+
+
 
   return (
   
-      // isRefreshing 
-      // ? (<p> Refreshing user... </p>) 
-      // :(
+      isRefreshing 
+      ? (<p> Refreshing user... </p>) 
+      :(
       // <>
       // <Suspense fallback={<Loader />}>
       <Routes>
@@ -91,6 +93,8 @@ export const App = () => {
           </Routes>
         // </Suspense>
     // </>
-    // )
+    )
   );
 };
+
+

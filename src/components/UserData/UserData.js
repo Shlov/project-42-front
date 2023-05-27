@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectUser } from 'Redux/auth/selector';
-import { currentUser, updateUser } from 'Redux/auth/operation';
+import { updateUser } from 'Redux/auth/operation';
 
 import icons from 'images/icons.svg';
 import { LogoutBtn } from 'components/Logout/Logout';
@@ -86,7 +86,7 @@ export const UserData = () => {
   const [isEditingPhone, setIsEditingPhone] = useState(false);
   const [isEditingCity, setIsEditingCity] = useState(false);
 
-  const [isUpdateForm, setIsUpdateForm] = useState(null);
+  // const [isUpdateForm, setIsUpdateForm] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -104,12 +104,12 @@ export const UserData = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (isUpdateForm) {
-      dispatch(currentUser());
-      setIsUpdateForm(null);
-    }
-  }, [dispatch, isUpdateForm]);
+  // useEffect(() => {
+  //   if (isUpdateForm) {
+  //     dispatch(currentUser());
+  //     setIsUpdateForm(null);
+  //   }
+  // }, [dispatch, isUpdateForm]);
 
   useEffect(() => {
     localStorage.setItem('formData', JSON.stringify(formData));
