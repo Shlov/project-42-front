@@ -45,14 +45,35 @@ export const fetchNotice = createAsyncThunk(
 
 export const getNoticeByCategory = createAsyncThunk(
   'notices/getNoticesByCategory',
-  async ({ category }, thunkAPI) => {
+  async ({ category, search }, thunkAPI) => {
     try {
-      const token = thunkAPI.getState().auth.token;
-      const { data } = await axios.get(`/notices/${category}`, {
-        params: { category },
-        headers: { Authorization: `Bearer ${token}`},
-      });
-      return data;
+      console.log(search);
+      if(search === '' && category) {
+        const token = thunkAPI.getState().auth.token;
+        const { data } = await axios.get(`/notices/${category}`, {
+          params: { category, search },
+          headers: { Authorization: `Bearer ${token}`},
+        });
+        return data;
+      } else if(search !== '' && !category) {
+        const { data } = await axios.get(
+          `/notices/title/search`,
+          {
+            params: { search, category },
+          }
+        );
+        console.log(data);
+        return data;
+      } else {
+        const { data } = await axios.get(
+          `/notices/title/search/${category}`,
+          {
+            params: { search, category },
+          }
+        );
+        console.log(data);
+        return data;
+      }
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

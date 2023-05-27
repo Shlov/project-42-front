@@ -1,5 +1,4 @@
 // Компонент рендерить список всіх оголошень відповідної категорії - NoticeCategoryItem, дані по яким отримує з бекенду
-
 import { NoticeCategoryItem } from "components/NoticeCategoryItem/NoticeCategoryItem";
 import { NoticesList } from "./NoticesCategoriesList.styled";
 import { useParams } from "react-router-dom";
@@ -15,7 +14,7 @@ export const categoryShelf = {
   'for-free': 'for-free',
 };
 
-export const NoticeCategoryList = ({ onTrashModal, filteredItems, setFilteredItems }) => {
+export const NoticeCategoryList = ({ onTrashModal, search, setFilteredItems, filteredItems }) => {
   const isLoading = useSelector(getIsLoadNotices);
   const dispatch = useDispatch()
   const notices = useSelector(selectNoticesByCategory);
@@ -29,7 +28,7 @@ export const NoticeCategoryList = ({ onTrashModal, filteredItems, setFilteredIte
   useEffect(() => {
     if (category) {
       if (category === categoryShelf[category]) {
-        dispatch(getNoticeByCategory({ category: category }));
+        dispatch(getNoticeByCategory({ category: category, search: search }));
         setFilteredItems(notices)
       }
       if (category === 'favorites-ads') {
@@ -39,20 +38,40 @@ export const NoticeCategoryList = ({ onTrashModal, filteredItems, setFilteredIte
         // dispatch(getUserNotices({ search, page }));
       }
     }
-  }, [category, dispatch, notices, setFilteredItems]);
+  }, [category, dispatch, notices, filteredItems, search, setFilteredItems ]);
 
+  const allOrFilterItems = () => {
+    if(!isLoading && (!filteredItems.length && !search)) {
+      return (
+        allItems.map((notice, i) =>
+          <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal}/>
+        )
+      )
+    } else if(!isLoading && (!filteredItems.length && search)) {
+      return (
+        <p>Not found!</p>
+      )
+    } else if(!isLoading && (filteredItems.length && search)) {
+      return (
+        filteredItems.map((notice, i) =>
+          <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal}/>
+        )
+      )
+    }
+    else if(!isLoading && (filteredItems.length && !search)) {
+      return (
+        filteredItems.map((notice, i) =>
+          <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal}/>
+        )
+      )
+    }
+  }
 
   return(
     <NoticesList>
 
       {isLoading && <NoticeCategoryItemLoad/>}
-      {/* {true && <NoticeCategoryItemLoad/>} */}
-      {!isLoading && !category.categoryName 
-        ? allItems.map((notice, i) =>
-        <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal}/>)
-        : filteredItems.map((notice, i) =>
-        <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal}/>)
-      }
+      {allOrFilterItems()}
     </NoticesList>
   )
 }
@@ -71,11 +90,3 @@ export const NoticeCategoryList = ({ onTrashModal, filteredItems, setFilteredIte
   // }
   // const notices = arr.fill(item);
   //
-
-
-  // {!isLoading && filteredItems
-  //   ? filteredItems.map((notice, i) =>
-  //     <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal}/>
-  //   )
-  //   : <h2>loading....</h2>
-  //   }
