@@ -3,6 +3,7 @@ import {
   fetchNotices,
   fetchNotice,
   getNoticeByCategory,
+  getFavoriteNotices,
   // addNotice,
 } from './operation';
 
@@ -25,6 +26,7 @@ const noticesInitialState = {
   filter: { query: '', gender: '', age: '' },
   pagination: { page: null },
   error: '',
+  favorites: [],
 };
 
 const noticesSlice = createSlice({
@@ -60,6 +62,10 @@ const noticesSlice = createSlice({
     //   state.error = null;
     // },
     // [addNotice.rejected]: handleRejected,
+  },
+  [getFavoriteNotices.fulfilled](state, action) {
+    console.log(action)
+    state.favorites = action.payload.data.notices;
   },
 });
 
