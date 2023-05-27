@@ -159,6 +159,8 @@ const MoreInfoStep = ({
                 <img
                   src={URL.createObjectURL(values.avatar)}
                   alt="Pet's avatar"
+                  width="182"
+                  height="182"
                 />
               )}
               <AvatarField

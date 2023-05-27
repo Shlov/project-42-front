@@ -122,9 +122,7 @@ export const AvatarLabel = styled.label`
     line-height: calc(26 / 20);
 
     ${({ selectedCategory }) =>
-      selectedCategory !== 'your-pet'
-        ? 'flex-direction: column;column-gap: 12px'
-        : ''}
+      selectedCategory !== 'your-pet' ? 'flex-direction: column; gap: 8px' : ''}
   }
 `;
 
@@ -136,6 +134,11 @@ export const AvatarWrapper = styled.div`
   overflow: hidden;
   object-position: center;
   object-fit: cover;
+
+  & img {
+    width: 182px;
+    height: 182px;
+  }
 `;
 
 export const AvatarField = styled.input`
@@ -201,7 +204,7 @@ export const MoreInfoStepTextArea = styled(Field)`
   @media screen and (min-width: 768px) {
     height: 79px;
 
-    ${({ category }) => (category === 'lost-found' ? 'height: 182px' : '')}
+    ${({ category }) => (category === 'lost/found' ? 'height: 182px' : '')}
   }
 `;
 

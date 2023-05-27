@@ -1,7 +1,7 @@
 import { object, string, mixed, number } from 'yup';
 //   Validation schema using Yup
 const validationSchema = object().shape({
-  category: string().oneOf(['your-pet', 'sell', 'lost-found', 'for-free']),
+  category: string().oneOf(['your-pet', 'sell', 'lost/found', 'for-free']),
   name: string()
     .required('Name is required')
     .min(2, 'Name must be at least 2 characters')
@@ -25,7 +25,7 @@ const validationSchema = object().shape({
       value => value.size <= 3 * 1024 * 1024
     ),
   sex: string().when('category', {
-    is: value => ['sell', 'lost-found', 'for-free'].includes(value),
+    is: value => ['sell', 'lost/found', 'for-free'].includes(value),
     then: string()
       .required('Sex is required')
       .oneOf(['male', 'female'], 'Please select either "male" or "female"'),

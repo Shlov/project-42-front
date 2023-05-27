@@ -3,8 +3,8 @@ import {
   fetchNotices,
   fetchNotice,
   getNoticeByCategory,
+  addNotice,
   getFavoriteNotices,
-  // addNotice,
 } from './operation';
 
 const handlePending = state => {
@@ -56,15 +56,15 @@ const noticesSlice = createSlice({
       state.isLoading = false;
       state.error = null;
     },
-    // [addNotice.pending]: handlePending,
-    // [addNotice.fulfilled](state, action) {
-    //   state.isLoading = false;
-    //   state.error = null;
-    // },
-    // [addNotice.rejected]: handleRejected,
+    [addNotice.pending]: handlePending,
+    [addNotice.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = null;
+    },
+    [addNotice.rejected]: handleRejected,
   },
   [getFavoriteNotices.fulfilled](state, action) {
-    console.log(action)
+    console.log(action);
     state.favorites = action.payload.data.notices;
   },
 });
