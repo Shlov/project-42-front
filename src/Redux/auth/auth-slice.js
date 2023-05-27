@@ -69,12 +69,12 @@ export const authSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(userReg.fulfilled, (state, action) => {
-        state.user.email = action.payload.result;
+        state.user = action.payload.result;
         state.token = action.payload.token;
         state.isConnect = true;
       })
       .addCase(userLogin.fulfilled, (state, action) => {
-        state.user.email = action.payload.result;
+        state.user = action.payload.result;
         state.token = action.payload.token;
         state.isConnect = true;
       })
@@ -82,8 +82,7 @@ export const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.user = action.payload;
         state.isRefreshing = false;
       })
       .addCase(refreshUser.rejected, (state) => {
