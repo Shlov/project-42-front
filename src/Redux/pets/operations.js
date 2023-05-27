@@ -40,3 +40,19 @@ export const deletePet = createAsyncThunk(
     }
   }
 );
+
+export const addPet = createAsyncThunk(
+  'notices/addPet',
+  async ({ formData }, thunkAPI) => {
+    try {
+      const response = await axios.post('pets/addpet', formData, {
+        headers: {
+          'content-type': 'multipart/form-data',
+        },
+      });
+      console.log(response.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

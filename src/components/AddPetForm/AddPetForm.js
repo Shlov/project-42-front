@@ -1,7 +1,8 @@
 import { useState, useRef } from 'react';
 import { Formik, Form } from 'formik';
-// import { useDispatch } from 'react-redux';
-// import { addNotice } from 'Redux/notices/operation';
+import { useDispatch } from 'react-redux';
+import { addNotice } from 'Redux/notices/operation';
+import { addPet } from 'Redux/pets/operations';
 import validationSchema from './validationSchema';
 import CategoryStep from 'components/AddPetForm/CategoryStep/CategoryStep';
 import PersonalDetailsStep from 'components/AddPetForm/PersonalDetailsStep/PersonalDetailsStep';
@@ -14,7 +15,7 @@ import {
 } from './AddPetForm.styled';
 
 const AddPetForm = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [step, setStep] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [completedSteps, setCompletedSteps] = useState([]);
@@ -39,13 +40,13 @@ const AddPetForm = () => {
     2: {
       'your-pet': 'Add my pet',
       sell: 'Add pet for sell',
-      'lost-found': 'Add lost or found pet',
+      'lost/found': 'Add lost or found pet',
       'for-free': 'Add pet for adoption',
     },
     3: {
       'your-pet': 'Add my pet',
       sell: 'Add pet for sell',
-      'lost-found': 'Add lost or found pet',
+      'lost/found': 'Add lost or found pet',
       'for-free': 'Add pet for adoption',
     },
   };
@@ -78,9 +79,12 @@ const AddPetForm = () => {
 
   const handleSubmit = values => {
     const formData = new FormData();
-    const { resetForm } = formikRef.current;
+    // const { resetForm } = formikRef.current;
 
-    formData.append('categories', formValues.category);
+    formData.append(
+      'categories',
+      formValues.category === 'for-free' ? 'in good hands' : formValues.category
+    );
     formData.append('name', values.name);
     formData.append('birthday', values.date);
     formData.append('breed', values.breed);
@@ -91,9 +95,8 @@ const AddPetForm = () => {
       for (let pair of formData.entries()) {
         console.log(pair[0] + ': ' + pair[1]);
       }
-
-      // dispatch(addMyPet({category: 'my ads', formData}))
-      resetForm();
+      dispatch(addPet({ category: 'my ads', formData }));
+      // resetForm();
       return;
     }
 
@@ -101,15 +104,13 @@ const AddPetForm = () => {
     formData.append('sex', values.sex);
     formData.append('place', values.location);
 
-    if (formValues.category === 'lost-found') {
+    if (formValues.category === 'lost/found') {
       for (let pair of formData.entries()) {
         console.log(pair[0] + ': ' + pair[1]);
       }
-      // dispatch(
-      //   addNotice({ formData: { ...formData, categories: 'lost/found' } })
-      // );
+      dispatch(addNotice({ formData }));
 
-      resetForm();
+      // resetForm();
       return;
     }
 
@@ -118,8 +119,8 @@ const AddPetForm = () => {
         console.log(pair[0] + ': ' + pair[1]);
       }
 
-      // dispatch(addNotice({ category: 'in good hands', formData }));
-      resetForm();
+      dispatch(addNotice({ formData }));
+      // resetForm();
       return;
     }
 
@@ -130,8 +131,8 @@ const AddPetForm = () => {
         console.log(pair[0] + ': ' + pair[1]);
       }
 
-      // dispatch(addNotice({ category: 'sell', formData }));
-      resetForm();
+      dispatch(addNotice({ formData }));
+      // resetForm();
       return;
     }
   };

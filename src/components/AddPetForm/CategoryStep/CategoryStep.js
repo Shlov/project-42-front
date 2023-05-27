@@ -57,12 +57,12 @@ const CategoryStep = ({ onNext, onSelectCategory, selectedCategory }) => {
         <RadioButton
           type="radio"
           name="category"
-          value="lost-found"
-          id="lost-found"
-          checked={selectedCategory === 'lost-found'}
+          value="lost/found"
+          id="lost/found"
+          checked={selectedCategory === 'lost/found'}
           onChange={handleCategoryChange}
         />
-        <CategoryStepLabel htmlFor="lost-found">lost/found</CategoryStepLabel>
+        <CategoryStepLabel htmlFor="lost/found">lost/found</CategoryStepLabel>
         <RadioButton
           type="radio"
           name="category"
