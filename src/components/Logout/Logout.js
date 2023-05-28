@@ -44,7 +44,7 @@ export const LogoutBtn = () => {
   return (
     <>
       {isOpenModal && (
-        <ModalApproveAction onClose={toggleModal} report>
+        <ModalApproveAction onClose={toggleModal} >
           <ModalContent>
             <TitleModal>Already leaving?</TitleModal>
             <ButtonWrap>

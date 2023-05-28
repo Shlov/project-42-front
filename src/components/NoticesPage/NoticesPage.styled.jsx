@@ -65,7 +65,7 @@ export const Button = styled.button`
   border: 2px solid var(--cl-blue-link);
   border-radius: 40px;
   color: var(--cl-blue-link);
-  background-color: var(--cl-white);
+  background-color: var(--cl-almost-white);
   width: 256px;
   height: 40px;
   @media (min-width: 768px) {

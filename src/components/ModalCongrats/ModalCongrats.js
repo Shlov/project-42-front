@@ -21,7 +21,7 @@ export const ModalCongrats = () => {
   return (
     <>
       {isOpenModal && (
-        <ModalApproveAction report onClose={toggleModal}> 
+        <ModalApproveAction onClose={toggleModal}> 
           <ModalContent>
             <TitleModal>Congrats!</TitleModal>
             <DescrModal>You`re registration is success</DescrModal>

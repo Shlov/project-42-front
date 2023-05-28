@@ -19,13 +19,16 @@ export const Overlay = styled.div`
 export const Modal = styled.div`
   position: relative;
   width: 280px;
+  max-height: 590px; //найменша висота телефону
+  overflow-y: auto;
+  overflow-x: hidden;
   
   background-color: var(--cl-almost-white);
   box-shadow: var(--shadow-default);
   border-radius: 20px;
 
   @media (min-width: 768px) {
-    width: ${props => props.report ? "681px" : "608px"};
+    width: ${props => props.width ? "681px" : "608px"};
     border-radius: 40px;
   }
 `;
