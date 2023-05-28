@@ -1,17 +1,19 @@
 import { object, string, mixed, number } from 'yup';
+
+const nameRegexp = /^([a-zA-Zа-яА-ЯёЁёЁЇїІіҐґЄє\s]+)$/;
+const birthdayRegexp = /^(\d{1,2})\.(\d{1,2})(?:\.(\d{4}))?$/;
+
 //   Validation schema using Yup
 const validationSchema = object().shape({
-  category: string().oneOf(['your-pet', 'sell', 'lost-found', 'for-free']),
+  category: string().oneOf(['your-pet', 'sell', 'lost/found', 'for-free']),
   name: string()
     .required('Name is required')
     .min(2, 'Name must be at least 2 characters')
-    .max(16, 'Name must be at most 16 characters'),
+    .max(16, 'Name must be at most 16 characters')
+    .matches(nameRegexp, 'Name must contain only letters'),
   date: string()
     .required('Date is required')
-    .matches(
-      /^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$/,
-      'Date must be in the format DD.MM.YYYY'
-    ),
+    .matches(birthdayRegexp, 'Date must be in the format DD.MM.YYYY'),
   breed: string()
     .min(2, 'Breed must be at least 2 characters')
     .max(16, 'Breed must be at most 16 characters')
@@ -25,7 +27,7 @@ const validationSchema = object().shape({
       value => value.size <= 3 * 1024 * 1024
     ),
   sex: string().when('category', {
-    is: value => ['sell', 'lost-found', 'for-free'].includes(value),
+    is: value => ['sell', 'lost/found', 'for-free'].includes(value),
     then: string()
       .required('Sex is required')
       .oneOf(['male', 'female'], 'Please select either "male" or "female"'),

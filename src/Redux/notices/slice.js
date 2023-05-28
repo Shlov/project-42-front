@@ -3,8 +3,8 @@ import {
   fetchNotices,
   fetchNotice,
   getNoticeByCategory,
+  addNotice,
   getFavoriteNotices,
-  // addNotice,
 } from './operation';
 
 const handlePending = state => {
@@ -27,6 +27,7 @@ const noticesInitialState = {
   pagination: { page: null },
   error: '',
   favorites: [],
+  isResponseSuccessful: false,
 };
 
 const noticesSlice = createSlice({
@@ -56,15 +57,16 @@ const noticesSlice = createSlice({
       state.isLoading = false;
       state.error = null;
     },
-    // [addNotice.pending]: handlePending,
-    // [addNotice.fulfilled](state, action) {
-    //   state.isLoading = false;
-    //   state.error = null;
-    // },
-    // [addNotice.rejected]: handleRejected,
+    [addNotice.pending]: handlePending,
+    [addNotice.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = '';
+      state.isResponseSuccessful = true;
+    },
+    [addNotice.rejected]: handleRejected,
   },
   [getFavoriteNotices.fulfilled](state, action) {
-    console.log(action)
+    console.log(action);
     state.favorites = action.payload.data.notices;
   },
 });

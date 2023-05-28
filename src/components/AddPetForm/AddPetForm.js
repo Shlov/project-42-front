@@ -1,7 +1,11 @@
 import { useState, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
-// import { useDispatch } from 'react-redux';
-// import { addNotice } from 'Redux/notices/operation';
+import { addNotice } from 'Redux/notices/operation';
+import { addPet } from 'Redux/pets/operations';
+import { getAddNoticeSuccessfulConnection } from 'Redux/notices/selector';
+import { getAddPetSuccessfulConnection } from 'Redux/pets/selectors';
 import validationSchema from './validationSchema';
 import CategoryStep from 'components/AddPetForm/CategoryStep/CategoryStep';
 import PersonalDetailsStep from 'components/AddPetForm/PersonalDetailsStep/PersonalDetailsStep';
@@ -14,7 +18,12 @@ import {
 } from './AddPetForm.styled';
 
 const AddPetForm = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isAddNoticeResponseSuccessful = useSelector(
+    getAddNoticeSuccessfulConnection
+  );
+  const isAddPetResponseSuccessful = useSelector(getAddPetSuccessfulConnection);
   const [step, setStep] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [completedSteps, setCompletedSteps] = useState([]);
@@ -39,13 +48,13 @@ const AddPetForm = () => {
     2: {
       'your-pet': 'Add my pet',
       sell: 'Add pet for sell',
-      'lost-found': 'Add lost or found pet',
+      'lost/found': 'Add lost or found pet',
       'for-free': 'Add pet for adoption',
     },
     3: {
       'your-pet': 'Add my pet',
       sell: 'Add pet for sell',
-      'lost-found': 'Add lost or found pet',
+      'lost/found': 'Add lost or found pet',
       'for-free': 'Add pet for adoption',
     },
   };
@@ -76,11 +85,17 @@ const AddPetForm = () => {
     setStep(prevStep => prevStep - 1);
   };
 
+  // Function to handle the backend response and navigate based on the success
+  const handleBackendResponse = () => {
+    if (isAddNoticeResponseSuccessful) {
+      navigate('/notices');
+    }
+  };
+
   const handleSubmit = values => {
     const formData = new FormData();
-    const { resetForm } = formikRef.current;
+    // const { resetForm } = formikRef.current;
 
-    formData.append('categories', formValues.category);
     formData.append('name', values.name);
     formData.append('birthday', values.date);
     formData.append('breed', values.breed);
@@ -91,25 +106,29 @@ const AddPetForm = () => {
       for (let pair of formData.entries()) {
         console.log(pair[0] + ': ' + pair[1]);
       }
-
-      // dispatch(addMyPet({category: 'my ads', formData}))
-      resetForm();
+      dispatch(addPet({ formData }));
+      if (isAddPetResponseSuccessful) {
+        navigate('/user');
+      }
+      // resetForm();
       return;
     }
 
+    formData.append(
+      'categories',
+      formValues.category === 'for-free' ? 'in good hands' : formValues.category
+    );
     formData.append('title', values.title);
     formData.append('sex', values.sex);
     formData.append('place', values.location);
 
-    if (formValues.category === 'lost-found') {
+    if (formValues.category === 'lost/found') {
       for (let pair of formData.entries()) {
         console.log(pair[0] + ': ' + pair[1]);
       }
-      // dispatch(
-      //   addNotice({ formData: { ...formData, categories: 'lost/found' } })
-      // );
-
-      resetForm();
+      dispatch(addNotice({ formData }));
+      handleBackendResponse();
+      // resetForm();
       return;
     }
 
@@ -117,9 +136,9 @@ const AddPetForm = () => {
       for (let pair of formData.entries()) {
         console.log(pair[0] + ': ' + pair[1]);
       }
-
-      // dispatch(addNotice({ category: 'in good hands', formData }));
-      resetForm();
+      dispatch(addNotice({ formData }));
+      handleBackendResponse();
+      // resetForm();
       return;
     }
 
@@ -129,9 +148,9 @@ const AddPetForm = () => {
       for (let pair of formData.entries()) {
         console.log(pair[0] + ': ' + pair[1]);
       }
-
-      // dispatch(addNotice({ category: 'sell', formData }));
-      resetForm();
+      dispatch(addNotice({ formData }));
+      handleBackendResponse();
+      // resetForm();
       return;
     }
   };

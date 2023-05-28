@@ -7,7 +7,7 @@
 //   - елемент навігації Add pet - переадресовує авторизованого користувача на сторінку AddPetPage
 // Під час першого входу на сторінку користувача повинно переадресовувати на маршрут /notices/sell та рендеритися список оголошень з продажу
 import { useState, useEffect, useMemo } from 'react';
-import { useSelector } from "react-redux";
+import {useSelector } from "react-redux";
 import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 // import { getNoticeByCategory } from 'Redux/notices/operation';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
@@ -25,8 +25,10 @@ import {
   Filters,
   Text
 } from './NoticesPage.styled';
+import { FilterItem } from 'components/NoticesFilters/NoticesFilter.styled';
 import icons from 'images/icons.svg';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
+import RemoveItem from '../../images/icons/cross-small-1.svg'
 
 const categories = [
   {
@@ -69,6 +71,8 @@ const categories = [
 export const NoticesPage = () => {
   //   toggleModal, яку потрібно передати компоненту ModalAprooveActionб для закриття вікна
   const items = useSelector((state) => state.notices.items);
+  const tablet = useSelector((state) => state.main.tablet);
+  const mobile = useSelector((state) => state.main.mobile)
   const location = useLocation();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [category, setCategory] = useState(location.pathname.split('/')[2])
@@ -78,6 +82,7 @@ export const NoticesPage = () => {
   const [genders, setGenders] = useState([])
   const [openFilter, setOpenFilter] = useState(false)
   const [search, setSearch] = useState('')
+  const [activeButtons, setActiveButtons] = useState([...ages, ...genders])
   const { categoryName } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -150,6 +155,18 @@ export const NoticesPage = () => {
     setFilteredItems(filteredItems);
   }
 
+  const handleRemoveItem = (item) => {
+    setActiveButtons(activeButtons.filter(btn => btn !== item));
+
+    if (ages.includes(item)) {
+      setAges(ages.filter(cat => cat !== item));
+    }
+
+    if (genders.includes(item)) {
+      setGenders(genders.filter(gender => gender !== item));
+    }
+  };
+
   return (
     <>
       {isOpenModal && (
@@ -177,14 +194,24 @@ export const NoticesPage = () => {
         </ModalApproveAction>
       )}
       <NoticesSearch onSubmit={handleSearch} />
-      <Filters>
+      <Filters mobile={mobile}>
         <div>
-            <NoticesCategoriesNav categoriesArr={categoriesArr} setCategoriesArr={setCategoriesArr} categories={categories} category={category} setCategory={setCategory} />
+          <NoticesCategoriesNav categoriesArr={categoriesArr} setCategoriesArr={setCategoriesArr} categories={categories} category={category} setCategory={setCategory} />
+        </div>
+        <div className='filters'>
+          <FindFilter setAges={setAges} ages={ages} setGenders={setGenders} genders={genders} setOpenFilter={setOpenFilter} openFilter={openFilter} items={items} activeButtons={activeButtons} setActiveButtons={setActiveButtons} handleRemoveItem={handleRemoveItem} />
+          {!mobile && <AddPetButton/>}
+          <div className='filters-items'>
+            {(tablet || mobile) &&
+              activeButtons.map(button =>
+                <FilterItem tablet={tablet} mobile={mobile}>
+                  <p>{button}</p>
+                  <img src={RemoveItem} alt="" onClick={() => handleRemoveItem(button)} />
+                </FilterItem>
+              )
+            }
           </div>
-          <div className='filters'>
-            <FindFilter setAges={setAges} ages={ages} setGenders={setGenders} genders={genders} setOpenFilter={setOpenFilter} openFilter={openFilter} items={items} />
-            <AddPetButton/>
-          </div>
+        </div>
       </Filters>
       <NoticeCategoryList filteredItems={filteredItems} setFilteredItems={setFilteredItems} onTrashModal={toggleModal} items={items} search={search}/>
     </>
