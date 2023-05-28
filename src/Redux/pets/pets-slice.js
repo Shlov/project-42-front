@@ -21,7 +21,7 @@ const petsSlice = createSlice({
   name: 'pets',
   initialState: petsInitialState,
 
-  reducers: {
+  extraReducers: {
     [fetchPets.fulfilled](state, action) {
       state = action.payload;
     },
@@ -31,7 +31,8 @@ const petsSlice = createSlice({
     },
     [addPet.pending]: handlePending,
     [addPet.fulfilled](state, action) {
-      state.push(action.payload); // // Add the new pet to the Redux store
+      console.log(action.payload);
+      state.pets.push(action.payload); // // Add the new pet to the Redux store
       state.isLoading = false;
       state.error = '';
       state.isResponseSuccessful = true;
