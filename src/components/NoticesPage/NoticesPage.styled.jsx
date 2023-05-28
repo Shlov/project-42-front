@@ -65,7 +65,7 @@ export const Button = styled.button`
   border: 2px solid var(--cl-blue-link);
   border-radius: 40px;
   color: var(--cl-blue-link);
-  background-color: var(--cl-almost-white);
+  background-color: var(--cl-white);
   width: 256px;
   height: 40px;
   @media (min-width: 768px) {
@@ -109,10 +109,8 @@ export const Filters = styled.div`
   .filters {
     display: flex;
 
-    button {
-      &:last-child {
-        margin-left: 12px;
-      }
+    & > a {
+      margin-left: 12px;
     }
     @media (max-width: 500px) {
       display: block;
