@@ -22,13 +22,21 @@ const petsSlice = createSlice({
   initialState: petsInitialState,
 
   extraReducers: {
+    [fetchPets.pending]: handlePending,
     [fetchPets.fulfilled](state, action) {
       state.pets = action.payload.result.pets;
+      state.isLoading = false;
+      state.error = '';
     },
+    [fetchPets.rejected]: handleRejected,
+    [deletePet.pending]: handlePending,
     [deletePet.fulfilled](state, action) {
       const index = state.pets.findIndex(item => item.id === action.payload);
       state.pets.splice(index, 1);
+      state.isLoading = false;
+      state.error = '';
     },
+    [deletePet.rejected]: handleRejected,
     [addPet.pending]: handlePending,
     [addPet.fulfilled](state, action) {
       state.pets.push(action.payload); // // Add the new pet to the Redux store

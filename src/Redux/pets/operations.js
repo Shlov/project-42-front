@@ -25,10 +25,10 @@ export const fetchPets = createAsyncThunk(
 
 export const deletePet = createAsyncThunk(
   'pet/deletePet',
-  async (id, thunkAPI) => {
+  async (petId, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.token;
-      const response = await axios.delete(`/pets/${id}`, {
+      const response = await axios.delete(`/pets/${petId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
