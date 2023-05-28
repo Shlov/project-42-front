@@ -45,7 +45,7 @@ export const Image = styled.img`
 export const CategoryTag = styled.p`
   position: absolute;
   top: 60px;
-  left: 24px;
+  left: 20px;
 
   display: flex;
   align-items: center;
@@ -149,9 +149,14 @@ export const CommentWrap = styled.div`
   line-height: 19px;
   letter-spacing: 0.04em;
 
+
+
   @media (min-width: 768px) {
     font-size: 16px;
     line-height: 24px;
+    width: 618px;
+    height: 86px;
+    overflow-y: auto;
   }
 `;
 
@@ -159,13 +164,13 @@ export const PriceWrap = styled.div`
    display: flex;
    align-items: center;
    justify-content: flex-start;
-   gap: 8px;
+
    margin-bottom: 8px;
 
-   width: 265px;
-
    @media (min-width: 768px) {
+    gap: 8px;
     margin-bottom: 0px;
+    width: 338px;
    }
 `
 
@@ -188,8 +193,8 @@ export const PriceValue = styled.span`
   line-height: 18px;
 
   @media (min-width: 768px) {
-    font-size: 16px;
-    line-height: 22px;
+    font-size: 18px;
+    line-height: 26px;
   }
 `
 
@@ -199,7 +204,7 @@ export const ButtonWrapThumb = styled.div`
     justify-content: ${props => props.price ? "space-between" : "flex-end"};
  
     width: 617px;
-    padding-block-start: 70px;
+    /* padding-block-start: 70px; */
   }
 `;
 
