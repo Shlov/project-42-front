@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-hot-toast';
 
 // default Axios URL
 axios.defaults.baseURL = 'https://fourtwo-back.onrender.com';
@@ -9,8 +10,6 @@ const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-
-
 // Utility to remove JWT
 const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';
@@ -19,13 +18,20 @@ const clearAuthHeader = () => {
 //Register
 export const userReg = createAsyncThunk(
   'auth/reg',
-  async (formData, thunkAPI) => {       
+  async (formData, thunkAPI) => {
     try {
       const response = await axios.post('/auth/register', formData);
       setAuthHeader(response.data.token);
-      // localStorage.setItem("token", JSON.stringify(`Bearer ${response.data.token}`))
       return response.data;
     } catch (e) {
+      console.log(e.message);
+      if (e.message === 'Request failed with status code 409') {
+        toast.error('This email is registered, please go to login!');
+      } else if (e.message === 'Network Error') {
+        toast.error('Network Error, please check the connect');
+      } else if (e.message === 'Request failed with status code 500') {
+        toast.error('The server encountered an unexpected error that prevented it from fulfilling the request');
+      }
       return thunkAPI.rejectWithValue(e.message);
     }
   }
@@ -36,10 +42,16 @@ export const userLogin = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const response = await axios.post('/auth/login', formData);
-      // localStorage.setItem("token", JSON.stringify(`Bearer ${response.data.token}`))
       setAuthHeader(response.data.token);
       return response.data;
     } catch (e) {
+      if (e.message === 'Request failed with status code 401') {
+        toast.error('Email or password is incorrect!');
+      } else if (e.message === 'Network Error') {
+        toast.error('Network Error, please check the connect');
+      } else if (e.message === 'Request failed with status code 500') {
+        toast.error('The server encountered an unexpected error that prevented it from fulfilling the request');
+      }
       return thunkAPI.rejectWithValue(e.message);
     }
   }
@@ -58,7 +70,6 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
-
 
 /*
  * GET @ /users/current
@@ -88,8 +99,6 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
 //   }
 // );
 
-
-
 export const updateUser = createAsyncThunk(
   'user/updateUser',
   async (values, thunkAPI) => {
@@ -114,8 +123,8 @@ export const updateUser = createAsyncThunk(
   }
 );
 
-
-export const refreshUser = createAsyncThunk('auth/refreshUser',
+export const refreshUser = createAsyncThunk(
+  'auth/refreshUser',
   async (_, thunkAPI) => {
     const persistedToken = thunkAPI.getState().auth.token;
     if (persistedToken === null) {
