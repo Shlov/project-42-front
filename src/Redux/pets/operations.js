@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
 
-axios.defaults.baseURL = 'https://fourtwo-back.onrender.com';
+// axios.defaults.baseURL = 'https://fourtwo-back.onrender.com/';
 
 export const fetchPets = createAsyncThunk(
   'pets/fetchPets',
@@ -15,6 +15,7 @@ export const fetchPets = createAsyncThunk(
             Authorization: `Bearer ${token}`
           },
         });
+        console.log(response.data);
       return response.data;
     } catch (error) {
       toast.error('Something went wrong!!!')

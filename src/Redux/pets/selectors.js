@@ -1,3 +1,3 @@
 // import { createSelector } from '@reduxjs/toolkit';
 
-export const selectPets = state => state.pets
+export const selectPets = state => state.pets.items;

@@ -33,7 +33,7 @@ export const PetsItem = ({ item }) => {
   };
 
   const handleDeletePet = () => {
-    dispatch(deletePet(item.id));
+    dispatch(deletePet(item._id));
   };
   
   return (
@@ -63,7 +63,7 @@ export const PetsItem = ({ item }) => {
         </ModalApproveAction>
       )}
       <div>
-        <Photo src={item.avatarURL} alt={item.name} width="240" height="240" />
+        <Photo src={item.photo} alt={item.name} width="240" height="240" />
         <Btn type="button" onClick={toggleModal}>
           <Icon>
             <use href={icons + '#trash'} />
