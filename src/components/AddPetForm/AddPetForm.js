@@ -116,11 +116,11 @@ const AddPetForm = () => {
   };
 
   if (isAddNoticeResponseSuccessful) {
-    return <Navigate to="/notices" replace />;
+    return <Navigate to="/notices" />;
   }
 
   if (isAddPetResponseSuccessful) {
-    return <Navigate to="/user" replace />;
+    return <Navigate to="/user" />;
   }
 
   const renderStepContent = step => {

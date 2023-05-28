@@ -1,6 +1,9 @@
 import { useCallback, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
+import { TailSpin } from 'react-loader-spinner';
 import icons from '../../../images/icons.svg';
+import { Label } from '../Input/Input.styled';
 import { AddPetFormButtonWrapper } from 'components/AddPetForm/AddPetFormButtons/AddPetFormButtonWrapper.styled';
 import {
   AvatarField,
@@ -10,7 +13,6 @@ import {
   LocationPriceCommentFieldWrapper,
   MoreInfoStepContainer,
   MoreInfoStepInput,
-  MoreInfoStepLabel,
   MoreInfoStepTextArea,
   RadioButton,
   SexAvatarFieldWrapper,
@@ -21,6 +23,8 @@ import {
 } from './MoreInfoStep.styled';
 import BackLink from 'components/AddPetForm/AddPetFormButtons/BackLink';
 import AddPetFormNextButton from 'components/AddPetForm/AddPetFormButtons/AddPetFormNextButton';
+import { getIsLoadNotices } from 'Redux/notices/selector';
+import { getIsLoading } from 'Redux/pets/selectors';
 
 const MoreInfoStep = ({
   onBack,
@@ -30,8 +34,9 @@ const MoreInfoStep = ({
 }) => {
   const { values, setTouched, touched, errors, setFieldValue } =
     useFormikContext();
-
   const [doneClicked, setDoneClicked] = useState(false); // State variable to track Next button click
+  const isAddNoticeLoading = useSelector(getIsLoadNotices);
+  const isAddPetLoading = useSelector(getIsLoading);
 
   // Function to handle the file input change and set the selected avatar
   const handleChange = event => {
@@ -164,7 +169,7 @@ const MoreInfoStep = ({
                 />
               )}
               <AvatarField
-                accept="image/*"
+                accept="'image/png', 'image/jpg', 'image/jpeg'"
                 name="avatar"
                 type="file"
                 onChange={handleChange}
@@ -177,7 +182,7 @@ const MoreInfoStep = ({
         <LocationPriceCommentFieldWrapper>
           {selectedCategory !== 'your-pet' && (
             <div>
-              <MoreInfoStepLabel>
+              <Label>
                 Location
                 <MoreInfoStepInput
                   type="text"
@@ -185,7 +190,7 @@ const MoreInfoStep = ({
                   placeholder="Type of location"
                   errors={touched.location && errors.location}
                 />
-              </MoreInfoStepLabel>
+              </Label>
               <ErrorMessageContainer name="location" component="div" />
             </div>
           )}
@@ -193,7 +198,7 @@ const MoreInfoStep = ({
           {/* Field "price" is only for the "sell" category */}
           {selectedCategory === 'sell' && (
             <div>
-              <MoreInfoStepLabel>
+              <Label>
                 Price
                 <MoreInfoStepInput
                   type="number"
@@ -202,14 +207,14 @@ const MoreInfoStep = ({
                   placeholder="Type of price"
                   errors={touched.price && errors.price}
                 />
-              </MoreInfoStepLabel>
+              </Label>
               <ErrorMessageContainer name="price" component="div" />
             </div>
           )}
 
           {/* Field "comments" for additional comments */}
           <div>
-            <MoreInfoStepLabel>
+            <Label>
               Comments
               <MoreInfoStepTextArea
                 name="comments"
@@ -218,7 +223,7 @@ const MoreInfoStep = ({
                 category={selectedCategory}
                 errors={touched.comments && errors.comments}
               ></MoreInfoStepTextArea>
-            </MoreInfoStepLabel>
+            </Label>
             <ErrorMessageContainer
               name="comments"
               component="div"
@@ -227,23 +232,39 @@ const MoreInfoStep = ({
           </div>
         </LocationPriceCommentFieldWrapper>
       </MoreInfoStepContainer>
-      <AddPetFormButtonWrapper>
-        {/* Button to navigate to the previous step */}
-        {/* Button to navigate to the previous step */}
-        <BackLink
-          type="button"
-          buttonText="Back"
-          handleClick={onBack}
-          isLink={false}
+      {isAddNoticeLoading || isAddPetLoading ? (
+        <TailSpin
+          height="80"
+          width="80"
+          color="#54ADFF"
+          ariaLabel="tail-spin-loading"
+          radius="1"
+          visible={true}
+          wrapperStyle={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
         />
-        {/* Button to submit the form */}
-        <AddPetFormNextButton
-          type="submit"
-          onClick={handleSubmitClick}
-          // disabled={isDisabled}
-          buttonText="Done"
-        />
-      </AddPetFormButtonWrapper>
+      ) : (
+        <AddPetFormButtonWrapper>
+          {/* Button to navigate to the previous step */}
+          <BackLink
+            type="button"
+            buttonText="Back"
+            handleClick={onBack}
+            isLink={false}
+          />
+          {/* Button to submit the form */}
+
+          <AddPetFormNextButton
+            type="submit"
+            onClick={handleSubmitClick}
+            // disabled={isDisabled}
+            buttonText="Done"
+          />
+        </AddPetFormButtonWrapper>
+      )}
     </>
   );
 };

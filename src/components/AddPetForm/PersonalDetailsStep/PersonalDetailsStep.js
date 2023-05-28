@@ -2,12 +2,12 @@ import { useFormikContext } from 'formik';
 import { useCallback } from 'react';
 import AddPetFormNextButton from 'components/AddPetForm/AddPetFormButtons/AddPetFormNextButton';
 import BackLink from '../AddPetFormButtons/BackLink';
+import { Label } from '../Input/Input.styled';
 import {
   ErrorMessageContainer,
   PersonalDetailsField,
   PersonalDetailsStepContainer,
   PersonalDetailsStepInput,
-  PersonalDetailsStepLabel,
 } from './PersonalDetailsStep.styled';
 import { AddPetFormButtonWrapper } from 'components/AddPetForm/AddPetFormButtons/AddPetFormButtonWrapper.styled';
 
@@ -84,7 +84,7 @@ const PersonalDetailsStep = ({
         {/* Field "title" is only for the "sell" and "lost" categories */}
         {selectedCategory !== 'your-pet' && (
           <PersonalDetailsField>
-            <PersonalDetailsStepLabel>
+            <Label>
               Title of add
               <PersonalDetailsStepInput
                 type="text"
@@ -92,7 +92,7 @@ const PersonalDetailsStep = ({
                 placeholder="Type title"
                 errors={touched.title && errors.title}
               />
-            </PersonalDetailsStepLabel>
+            </Label>
 
             <ErrorMessageContainer name="title" component="div" />
           </PersonalDetailsField>
@@ -100,7 +100,7 @@ const PersonalDetailsStep = ({
 
         {/* Input field for capturing the name of the pet */}
         <PersonalDetailsField>
-          <PersonalDetailsStepLabel>
+          <Label>
             Pet’s name
             <PersonalDetailsStepInput
               type="text"
@@ -108,12 +108,12 @@ const PersonalDetailsStep = ({
               placeholder="Type name pet"
               errors={touched.name && errors.name}
             />
-          </PersonalDetailsStepLabel>
+          </Label>
           <ErrorMessageContainer name="name" component="div" />
         </PersonalDetailsField>
         {/* Input field for capturing the date of birth of the pet */}
         <PersonalDetailsField>
-          <PersonalDetailsStepLabel>
+          <Label>
             Date of birth
             <PersonalDetailsStepInput
               type="text"
@@ -121,12 +121,12 @@ const PersonalDetailsStep = ({
               placeholder="Type date of birth"
               errors={touched.date && errors.date}
             />
-          </PersonalDetailsStepLabel>
+          </Label>
           <ErrorMessageContainer name="date" component="div" />
         </PersonalDetailsField>
         {/* Input field for capturing the breed of the pet */}
         <PersonalDetailsField>
-          <PersonalDetailsStepLabel>
+          <Label>
             Breed
             <PersonalDetailsStepInput
               type="text"
@@ -134,7 +134,7 @@ const PersonalDetailsStep = ({
               placeholder="Type breed"
               errors={touched.breed && errors.breed}
             />
-          </PersonalDetailsStepLabel>
+          </Label>
           <ErrorMessageContainer name="breed" component="div" />
         </PersonalDetailsField>
       </PersonalDetailsStepContainer>

@@ -1,7 +1,22 @@
 import { object, string, mixed, number } from 'yup';
 
 const nameRegexp = /^([a-zA-Zа-яА-ЯёЁёЁЇїІіҐґЄє\s]+)$/;
-const birthdayRegexp = /^(\d{1,2})\.(\d{1,2})(?:\.(\d{4}))?$/;
+const birthdayRegexp =
+  /^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$/;
+
+// Custom Yup test for birthday field
+const validateBirthday = value => {
+  const birthday = new Date(value.replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1'));
+  const parsed = Date.parse(birthday);
+  const today = Date.now();
+  const diff = today - parsed;
+
+  if (diff < 0 || diff > 9467280000000 || isNaN(parsed)) {
+    return false;
+  }
+
+  return true;
+};
 
 //   Validation schema using Yup
 const validationSchema = object().shape({
@@ -13,7 +28,8 @@ const validationSchema = object().shape({
     .matches(nameRegexp, 'Name must contain only letters'),
   date: string()
     .required('Date is required')
-    .matches(birthdayRegexp, 'Date must be in the format DD.MM.YYYY'),
+    .matches(birthdayRegexp, 'Date must be in the format DD.MM.YYYY')
+    .test('birthday', 'Invalid birthday', validateBirthday),
   breed: string()
     .min(2, 'Breed must be at least 2 characters')
     .max(16, 'Breed must be at most 16 characters')
@@ -50,7 +66,8 @@ const validationSchema = object().shape({
     .required('Comments are required'),
 
   title: string()
-    .min(2, 'Title must be at least 2 characters')
+    .min(3, 'Title must be at least 3 characters')
+    .max(30, 'Title must be at most 30 characters')
     .required('Title is required'),
 });
 
