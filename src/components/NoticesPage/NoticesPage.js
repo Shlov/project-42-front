@@ -36,35 +36,38 @@ const categories = [
     type: 'public',
     id: 1,
     name: 'category',
-    link: 'sell'
+    link: 'sell',
   },
   {
     text: 'lost/found',
     type: 'public',
     id: 2,
     name: 'category',
-    link: 'lost-found'
+    link: 'lost-found',
   },
   {
     text: 'in good hands',
     type: 'public',
     id: 3,
     name: 'category',
-    link: 'for-free'
-  },
+    link: 'for-free',
+  }
+];
+
+const privateCategory = [
   {
     text: 'favourite ads',
     type: 'private',
     id: 4,
     name: 'category',
-    link: 'favorites-ads'
+    link: 'favorites-ads',
   },
   {
     text: 'my ads',
     type: 'private',
     id: 5,
     name: 'category',
-    link: 'my-ads'
+    link: 'my-ads',
   }
 ]
 
@@ -87,10 +90,12 @@ export const NoticesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const categoryShelf = useMemo(() => ({
-  sell: 'sell',
-  'lost-found': 'lost/found',
-  'for-free': 'in good hands',
-}), []);
+    sell: 'sell',
+    'lost-found': 'lost/found',
+    'for-free': 'in good hands',
+    'favorites-ads': 'favourite ads',
+    'my-ads': 'my ads'
+  }), []);
 
 
   useEffect(() => {
@@ -141,11 +146,15 @@ export const NoticesPage = () => {
 
   const agePet = (birthday) => {
     const nowDate = new Date();
-    const [month, day, year] = birthday.split('.');
-    const birthDate = new Date (`${Number(month)-1},${Number(day)},${Number(year)}`);
-    const differenceMonth = 12 - birthDate.getMonth()+ 1 + nowDate.getMonth() + 1;
-    return differenceMonth
-  }
+    const [day, month, year] = birthday.split('.');
+    const birthDate = new Date(`${year}-${month}-${day}`);
+
+    const differenceMonths =
+      (nowDate.getFullYear() - birthDate.getFullYear()) * 12 +
+      (nowDate.getMonth() - birthDate.getMonth());
+
+    return differenceMonths;
+  };
 
   const handleSearch = (searchTerm) => {
     setSearch(searchTerm)
@@ -170,7 +179,7 @@ export const NoticesPage = () => {
   return (
     <>
       {isOpenModal && (
-        <ModalApproveAction onClose={toggleModal}>
+        <ModalApproveAction onClose={toggleModal} height="389px">
           <ModalContent>
             <TitleModal>Delete adverstiment?</TitleModal>
             <DescrModal>
@@ -194,17 +203,17 @@ export const NoticesPage = () => {
         </ModalApproveAction>
       )}
       <NoticesSearch onSubmit={handleSearch} />
-      <Filters mobile={mobile}>
+      <Filters>
         <div>
-          <NoticesCategoriesNav categoriesArr={categoriesArr} setCategoriesArr={setCategoriesArr} categories={categories} category={category} setCategory={setCategory} />
+          <NoticesCategoriesNav categoriesArr={categoriesArr} setCategoriesArr={setCategoriesArr} categories={categories} category={category} setCategory={setCategory} privateCategory={privateCategory} />
         </div>
         <div className='filters'>
           <FindFilter setAges={setAges} ages={ages} setGenders={setGenders} genders={genders} setOpenFilter={setOpenFilter} openFilter={openFilter} items={items} activeButtons={activeButtons} setActiveButtons={setActiveButtons} handleRemoveItem={handleRemoveItem} />
           {!mobile && <AddPetButton/>}
           <div className='filters-items'>
             {(tablet || mobile) &&
-              activeButtons.map(button =>
-                <FilterItem tablet={tablet} mobile={mobile}>
+              activeButtons.map((button, i) =>
+                <FilterItem tablet={tablet} mobile={mobile} key={i}>
                   <p>{button}</p>
                   <img src={RemoveItem} alt="" onClick={() => handleRemoveItem(button)} />
                 </FilterItem>
