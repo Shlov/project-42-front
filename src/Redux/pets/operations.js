@@ -14,7 +14,7 @@ export const fetchPets = createAsyncThunk(
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response.data);
+      toast.success('Here are your own pets');
       return response.data;
     } catch (error) {
       toast.error('Something went wrong!!!');
@@ -25,17 +25,18 @@ export const fetchPets = createAsyncThunk(
 
 export const deletePet = createAsyncThunk(
   'pet/deletePet',
-  async (petId, thunkAPI) => {
+  async (id, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.token;
-      const response = await axios.delete(`/pets/${petId}`, {
+      const response = await axios.delete(`/pets/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+      toast.success('Your pet has been successfully removed')
       return response.data;
     } catch (error) {
-      toast.error('Something went wrong. Try again!!!');
+      toast.error('Something went wrong. Try again');
       return thunkAPI.rejectWithValue(error.message);
     }
   }

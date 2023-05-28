@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchPets, deletePet, addPet } from './operations';
 
-
 const handlePending = state => {
   state.isLoading = true;
 };
@@ -11,7 +10,7 @@ const handleRejected = (state, action) => {
 };
 
 const petsInitialState = {
-  items: [],
+  pets: [],
   isLoggedIn: false,
   isLoading: false,
   error: '',
@@ -24,12 +23,11 @@ const petsSlice = createSlice({
 
   extraReducers: {
     [fetchPets.fulfilled](state, action) {
-      state.items = action.payload.result.pets;
-      
+      state.pets = action.payload.result.pets;
     },
     [deletePet.fulfilled](state, action) {
-      const index = state.findIndex(item => item.id === action.payload);
-      state.splice(index, 1);
+      const index = state.pets.findIndex(item => item.id === action.payload);
+      state.pets.splice(index, 1);
     },
     [addPet.pending]: handlePending,
     [addPet.fulfilled](state, action) {

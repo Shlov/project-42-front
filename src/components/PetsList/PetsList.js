@@ -13,7 +13,6 @@ export const PetsList = () => {
     dispatch(fetchPets());
   }, [dispatch]);
 
-  console.log(pets);
   return (
     <List>
       {pets.map(pet => (

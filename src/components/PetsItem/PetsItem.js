@@ -91,8 +91,7 @@ export const PetsItem = ({ item }) => {
 
 PetsItem.propTypes = {
   item: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    photo: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     birthday: PropTypes.string.isRequired,
     breed: PropTypes.string.isRequired,
