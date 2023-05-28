@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
+// import { boolean } from 'yup';
 
 axios.defaults.baseURL = 'https://fourtwo-back.onrender.com/';
 
@@ -106,6 +107,31 @@ export const getFavoriteNotices = createAsyncThunk(
       console.log(response.data.data.notices);
       return response.data;
     } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateFavorite = createAsyncThunk(
+  'notices/updateFavorite',
+  async ({noticeId, isFavorite}, thunkAPI) => {
+    console.log(noticeId);
+    console.log(isFavorite)
+    try {
+      const token = thunkAPI.getState().auth.token;
+      const responce = await axios.patch(`/notices/user/favorite/${noticeId}?favorite=${isFavorite}`, {
+        // params: { favorite },
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      console.log(responce);
+      return responce.data.notice.favorite;
+    } catch (error) {
+      if (error.response.status === 401) {
+        toast.error('Please authorization and try again🙏');
+      }
+      if (error.response.status === 500) {
+        toast.error('Server error. Please try later🙏');
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }

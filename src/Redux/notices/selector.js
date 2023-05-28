@@ -12,3 +12,5 @@ export const selectFavorites = state => state.notices.favorites;
 
 export const getAddNoticeSuccessfulConnection = state =>
   state.notices.isResponseSuccessful;
+
+export const selectIsFavorite = state => state.notices.isFavorite;

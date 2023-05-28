@@ -5,6 +5,7 @@ import {
   getNoticeByCategory,
   addNotice,
   getFavoriteNotices,
+  updateFavorite,
 } from './operation';
 
 const handlePending = state => {
@@ -28,6 +29,7 @@ const noticesInitialState = {
   error: '',
   favorites: [],
   isResponseSuccessful: false,
+  isFavorite: false,
 };
 
 const noticesSlice = createSlice({
@@ -49,6 +51,7 @@ const noticesSlice = createSlice({
       state.isLoadNotice = false;
       state.error = null;
       state.item = action.payload.data.notice;
+      state.favorites = action.payload.data.notice.favorite;
     },
     [fetchNotice.rejected]: handleRejected,
     [getNoticeByCategory.pending]: handlePending,
@@ -69,6 +72,10 @@ const noticesSlice = createSlice({
     console.log(action);
     state.favorites = action.payload.data.notices;
   },
+  [updateFavorite.fulfilled](state, action){
+    console.log(action);
+    state.isFavorite = action.payload
+  }
 });
 
 export const noticesReducer = noticesSlice.reducer;
