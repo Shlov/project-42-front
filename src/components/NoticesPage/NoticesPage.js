@@ -164,7 +164,7 @@ export const NoticesPage = () => {
   return (
     <>
       {isOpenModal && (
-        <ModalApproveAction onClose={toggleModal} height="389px">
+        <ModalApproveAction onClose={toggleModal}>
           <ModalContent>
             <TitleModal>Delete adverstiment?</TitleModal>
             <DescrModal>
