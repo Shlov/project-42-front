@@ -2,11 +2,16 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import { SearchButton, SearchInput, SearchWrapper, SearchTitle } from './NoticesSearch.styled'
-import CleanInput from '../../images/icons/cross-small.svg'
+import {
+  SearchButton,
+  SearchInput,
+  SearchWrapper,
+  SearchTitle,
+} from './NoticesSearch.styled';
+import CleanInput from '../../images/icons/cross-small.svg';
 
 const NoticesSearch = ({ onSubmit }) => {
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState('');
   const [searchParams] = useSearchParams();
   const params = useMemo(
     () => Object.fromEntries([...searchParams]),
@@ -19,15 +24,15 @@ const NoticesSearch = ({ onSubmit }) => {
     }
   }, [params.query]);
 
-  const handleSearch = (e) => {
-    setSearch(e.target.value)
-  }
+  const handleSearch = e => {
+    setSearch(e.target.value);
+  };
 
   const handleCleanInput = () => {
-    setSearch('')
-  }
+    setSearch('');
+  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     if (search.trim() === '') {
       return toast.error('Enter your request, please', {
@@ -41,19 +46,32 @@ const NoticesSearch = ({ onSubmit }) => {
         },
       });
     }
-    onSubmit(search)
-    setSearch('')
-  }
+    onSubmit(search);
+    setSearch('');
+  };
 
-    return (
-      <div><SearchTitle>Find your favorite pet</SearchTitle>
+  return (
+    <div>
+      <SearchTitle>Find your favorite pet</SearchTitle>
       <SearchWrapper>
-      <SearchInput placeholder='Search' value={search} onChange={(e) => handleSearch(e)} search={search} />
-      <SearchButton search={search} onClick={handleSubmit} />
-      {search ? <img src={CleanInput} alt="" onClick={handleCleanInput} /> : null}
-            </SearchWrapper>
-            </div>
-  )
-}
+        <SearchInput
+          placeholder="Search"
+          value={search}
+          onChange={e => handleSearch(e)}
+          search={search}
+          onKeyPress={e => {
+            if (e.key === 'Enter') {
+              handleSubmit(e);
+            }
+          }}
+        />
+        <SearchButton search={search} onClick={handleSubmit} />
+        {search ? (
+          <img src={CleanInput} alt="" onClick={handleCleanInput} />
+        ) : null}
+      </SearchWrapper>
+    </div>
+  );
+};
 
 export default NoticesSearch;
