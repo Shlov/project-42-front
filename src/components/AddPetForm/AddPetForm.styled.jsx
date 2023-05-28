@@ -4,7 +4,7 @@ export const FormContainer = styled.div`
   margin-right: auto;
   margin-left: auto;
   margin-top: 20px;
-  width: 100%;
+  width: 280px;
   min-height: 496px;
   padding: 20px 8px 17px;
   background-color: var(--cl-almost-white);

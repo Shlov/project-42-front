@@ -1,8 +1,13 @@
 import { useState } from 'react'
-import { Button, FilterCSS, FilterSelect, FilterSelectTitle, FiltersButton, FiltersChevron, FiltersRound, FilterWrapper, ButtonText } from './NoticesFilter.styled'
+import { Button, FilterCSS, FilterSelect, FilterSelectTitle, FiltersButton, FiltersChevron, FiltersRound, FilterWrapper, FilterItem } from './NoticesFilter.styled'
 import icons from 'images/icons.svg';
+import { useSelector } from 'react-redux';
+import RemoveItem from '../../images/icons/cross-small-1.svg'
 
-export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, openFilter }) => {
+export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, openFilter, setActiveButtons, activeButtons, handleRemoveItem }) => {
+  const mobile = useSelector(state => state.main.mobile)
+  const tablet = useSelector(state => state.main.tablet)
+  const desktop = useSelector(state => state.main.desktop)
   const [activeAgeButton, setActiveAgeButton] = useState(false)
   const [activeGenderButton, setActiveGenderButton] = useState(false)
   const filters = {
@@ -20,9 +25,11 @@ export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, 
     if (event.target.checked) {
       if (!ages.includes(ageText)) {
         setAges([...ages, ageText]);
+        setActiveButtons([...activeButtons, ageText]);
       }
     } else {
       setAges(ages.filter(cat => cat !== ageText));
+      setActiveButtons(activeButtons.filter(btn => btn !== ageText));
     }
   }
 
@@ -30,9 +37,11 @@ export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, 
     if (event.target.checked) {
       if (!genders.includes(genderText)) {
         setGenders([...genders, genderText]);
+        setActiveButtons([...activeButtons, genderText]); // Обновление состояния activeButtons
       }
     } else {
       setGenders(genders.filter(gender => gender !== genderText));
+      setActiveButtons(activeButtons.filter(btn => btn !== genderText)); // Обновление состояния activeButtons
     }
   }
 
@@ -41,11 +50,20 @@ export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, 
   }
 
   return (
-    <FilterWrapper>
-      <Button onClick={handleOpenFilter}>
-        <ButtonText>Filter</ButtonText>
-        <FilterCSS><use href={icons + '#filters-2'} /></FilterCSS>
+    <FilterWrapper desktop={desktop} mobile={mobile} tablet={tablet}>
+      {desktop &&
+        activeButtons.map((button, i) =>
+          <FilterItem key={i}>
+            <p>{button}</p>
+            <img src={RemoveItem} alt="" onClick={() => handleRemoveItem(button)} />
+          </FilterItem>
+        )
+      }
+      <Button onClick={handleOpenFilter} mobile={mobile} ages={ages}>
+        {!mobile && 'Filter'}
+        <FilterCSS width="21" height="24" mobile={mobile} ages={ages}/>
       </Button>
+
       {openFilter ?
         <FilterSelect>
           <FilterSelectTitle>Filter</FilterSelectTitle>

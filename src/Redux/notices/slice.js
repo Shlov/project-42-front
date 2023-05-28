@@ -27,6 +27,7 @@ const noticesInitialState = {
   pagination: { page: null },
   error: '',
   favorites: [],
+  isResponseSuccessful: false,
 };
 
 const noticesSlice = createSlice({
@@ -59,7 +60,8 @@ const noticesSlice = createSlice({
     [addNotice.pending]: handlePending,
     [addNotice.fulfilled](state, action) {
       state.isLoading = false;
-      state.error = null;
+      state.error = '';
+      state.isResponseSuccessful = true;
     },
     [addNotice.rejected]: handleRejected,
   },

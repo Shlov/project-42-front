@@ -1,29 +1,36 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
-export const Button = styled.button`
-  
- display: none;
-
-   
-    @media (min-width: 768px) {
- font-size: 16px;
-  font-weight: 700;
-  width: 152px;
-  height: 40px;
+export const Button = styled(NavLink)`
   display: flex;
-  align-items: center;
-  color: var(--cl-almost-white);
+  flex-wrap: wrap;
   justify-content: center;
-  background-color: var(--cl-blue-link);
-  border: 2px solid rgb(84, 173, 255);
-  border-radius: 40px;
-  transition: background-color 250ms ease-in-out 0s, color 250ms ease-in-out 0s;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  width: 129px;
+  height: 40px;
+  letter-spacing: 0.04em;
+  font-weight: 700;
   cursor: pointer;
-  }
+
+  border: 2px solid var(--cl-blue-link);
+  border-radius: 40px;
+  color: var(--cl-background);
+  background-color: var(--cl-blue-link);
+
+  transition: background-color var(--animat), color var(--animat),
+    border-color var(--animat);
 
   &:hover {
-    background: var(--cl-background);
-    color: var(--cl-blue-link);
-    border: 2px solid var(--cl-blue-link);
-  
- `
+    background-color: var(--cl-blue-link);
+    color: var(--cl-background);
+  }
+`;
+
+export const AddIcon = styled.svg`
+  width: 24px;
+  height: 24px;
+  stroke: var(--cl-background);
+  fill: transparent;
+`;

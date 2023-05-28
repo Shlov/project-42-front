@@ -93,20 +93,24 @@ export const Filters = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 42px;
+  width: 320px;
+   margin: 0 auto 40px;
+
+  @media (min-width: 767px) {
+    width: 730px;
+    margin: 0 auto 40px;
+  }
 
   @media (min-width: 991px) {
-    width: 1280px;
+    width: 1235px;
     margin: 0 auto 42px;
   }
 
   .filters {
     display: flex;
 
-    button {
-      &:last-child {
-        margin-left: 12px;
-      }
+    & > a {
+      margin-left: 12px;
     }
     @media (max-width: 500px) {
       display: block;
