@@ -38,7 +38,7 @@ export const ModalApproveAction = ({ children, onClose, width}) => {
   return (
     <>
       <Overlay onClick={onBackdropClose}>
-        <Modal width={width.toString()}>
+        <Modal width={width ? width="true" : undefined }>
           <Button type="button" apia-label="close" onClick={onClose}>
             <CloseIcon>
               <use href={icons + '#cross-small'} />
@@ -53,6 +53,6 @@ export const ModalApproveAction = ({ children, onClose, width}) => {
 
 ModalApproveAction.propTypes = {
   onClose: PropTypes.func.isRequired,
-  children: PropTypes.node, 
-  width: PropTypes.bool, 
+  children: PropTypes.node,
+  width: PropTypes.any
 };

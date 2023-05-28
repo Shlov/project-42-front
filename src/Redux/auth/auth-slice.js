@@ -30,8 +30,9 @@ export const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.result;
         state.isRefreshing = false;
+        state.isConnect = true;
       })
       .addCase(refreshUser.rejected, (state) => {
         state.isRefreshing = false;
@@ -39,7 +40,7 @@ export const authSlice = createSlice({
       .addCase(logOut.fulfilled, state => {
         state.user = {};
         state.token = '';
-
+        state.isConnect = false;
       })
   },
 })

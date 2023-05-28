@@ -33,68 +33,79 @@ import {
 } from './ModalNotice.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
-import { fetchNotice, getFavoriteNotices } from 'Redux/notices/operation';
-import {
-  getIsLoadNotice,
-  getNotice,
-  selectFavorites,
-} from 'Redux/notices/selector';
+import { fetchNotice, updateFavorite } from 'Redux/notices/operation';
+import { getIsLoadNotice, getNotice, selectFavorites } from 'Redux/notices/selector';
+import { selectUser } from 'Redux/auth/selector';
 
 export const ModalNotice = ({ onClose, noticeId }) => {
   const [withoutBlur, setWithoutBlur] = useState(0);
-  const [isFavorite, setIsFavirite] = useState(false);
+  // const [isFavorite, setIsFavirite] = useState(false);
   // console.log(withoutBlur);
 
-  const handleFavorite = () => {
-    setIsFavirite(isFavorite => !isFavorite);
+  // const handleFavorite = () => {
+  //   setIsFavirite(isFavorite => !isFavorite);
 
-    if (!isFavorite) {
-      console.log('Favirite true');
-      console.log(isFavorite);
-      toast.success('Pet has been added to favorites!', {
-        style: {
-          backgroundColor: '#fef9f9',
-          padding: '6px',
-          color: `'#111111'`,
-        },
-        icon: '💗',
-      });
-    } else {
-      console.log('Favirite false');
-      console.log(isFavorite);
-      toast.success('Pet has been removed from favorites!', {
-        style: {
-          backgroundColor: '#fef9f9',
-          padding: '6px',
-          color: `'#111111'`,
-        },
-        icon: '😿',
-      });
-    }
-  };
+  //   if (!isFavorite) {
+  //     console.log('Favirite true');
+  //     console.log(isFavorite);
+  //     toast.success('Pet has been added to favorites!', {
+  //       style: {
+  //         backgroundColor: '#fef9f9',
+  //         padding: '6px',
+  //         color: `'#111111'`,
+  //       },
+  //       icon: '💗',
+  //     });
+  //   } else {
+  //     console.log('Favirite false');
+  //     console.log(isFavorite);
+  //     toast.success('Pet has been removed from favorites!', {
+  //       style: {
+  //         backgroundColor: '#fef9f9',
+  //         padding: '6px',
+  //         color: `'#111111'`,
+  //       },
+  //       icon: '😿',
+  //     });
+  //   }
+  // };
 
   const handleBlurContacts = () => {
     setWithoutBlur(withoutBlur + 1);
   };
 
   const dispatch = useDispatch();
-  const { imageURL, categories, name, birthday, breed, place, sex, comments, price } =
-    useSelector(getNotice);
+  const {
+    imageURL,
+    categories,
+    name,
+    birthday,
+    breed,
+    place,
+    sex,
+    comments,
+    price,
+  } = useSelector(getNotice);
   const isLoading = useSelector(getIsLoadNotice);
 
-  const favorites = useSelector(selectFavorites);
-  console.log(favorites);
+  const inUsersFavorites = useSelector(selectFavorites);
+  console.log(inUsersFavorites);
 
-  // в функцію fetchNotice треба буде прокинути id відкриваємої notice
-  // поки бек не віддає без авторизованого користувача
+  const userId = useSelector(selectUser).id
+  console.log(userId)
+
+  // const userId = '646f0e3366cea3f192faca83'
+
+  const isFavorite = inUsersFavorites.includes(userId)
+  console.log(isFavorite)
+
   useEffect(() => {
     dispatch(fetchNotice(noticeId));
   }, [dispatch, noticeId]);
 
-  useEffect(() => {
-    dispatch(getFavoriteNotices());
-  }, [dispatch]);
+  const handleFavorite = () => {
+        dispatch(updateFavorite({noticeId, userId}));
+  };
 
   return (
     <>
@@ -180,17 +191,23 @@ export const ModalNotice = ({ onClose, noticeId }) => {
                 <span>Comments:&nbsp;</span>
                 <span>{comments}</span>
               </CommentWrap>
-            ) : <CommentWrap></CommentWrap>}
+            ) : (
+              <CommentWrap></CommentWrap>
+            )}
             {/* <PriceProp> <Price>Place:</Price>
-                  <Value>{price ? price : 'invaluable'}</Value></PriceProp> */}            
+                  <Value>{price ? price : 'invaluable'}</Value></PriceProp> */}
             <ButtonWrapThumb>
-            {price ? ( <PriceWrap price>
-             <Price>Price:</Price>
-              <PriceValue>{price}</PriceValue>
-            </PriceWrap>) : ( <PriceWrap >
-             <Price></Price>
-              <PriceValue></PriceValue>
-            </PriceWrap>)}
+              {price ? (
+                <PriceWrap price>
+                  <Price>Price:</Price>
+                  <PriceValue>{price}</PriceValue>
+                </PriceWrap>
+              ) : (
+                <PriceWrap>
+                  <Price></Price>
+                  <PriceValue></PriceValue>
+                </PriceWrap>
+              )}
               <ButtonWrap>
                 {/* <ContactBtn href="tel:+380971234567" aria-label="phone button"> */}
                 <ContactBtn
