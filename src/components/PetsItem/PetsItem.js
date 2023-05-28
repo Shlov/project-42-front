@@ -63,7 +63,7 @@ export const PetsItem = ({ item }) => {
         </ModalApproveAction>
       )}
       <div>
-        <Photo src={item.photo} alt={item.name} width="240" height="240" />
+        <Photo src={item.imageURL} alt={item.name} width="240" height="240" />
         <Btn type="button" onClick={toggleModal}>
           <Icon>
             <use href={icons + '#trash'} />

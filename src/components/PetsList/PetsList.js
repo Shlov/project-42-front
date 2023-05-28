@@ -5,14 +5,13 @@ import { PetsItem } from 'components/PetsItem/PetsItem';
 import { List } from './PetsList.styled';
 import { fetchPets } from 'Redux/pets/operations';
 
-
 export const PetsList = () => {
   const pets = useSelector(selectPets);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchPets())
-  }, [dispatch])
+    dispatch(fetchPets());
+  }, [dispatch]);
 
   console.log(pets);
   return (
