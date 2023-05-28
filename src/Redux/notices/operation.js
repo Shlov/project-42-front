@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
-import { boolean } from 'yup';
+// import { boolean } from 'yup';
 
 axios.defaults.baseURL = 'https://fourtwo-back.onrender.com/';
 
@@ -114,7 +114,7 @@ export const getFavoriteNotices = createAsyncThunk(
 
 export const updateFavorite = createAsyncThunk(
   'notices/updateFavorite',
-  async (noticeId, isFavorite, thunkAPI) => {
+  async ({noticeId, isFavorite}, thunkAPI) => {
     console.log(noticeId);
     console.log(isFavorite)
     try {

@@ -35,7 +35,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { fetchNotice, updateFavorite } from 'Redux/notices/operation';
 import { getIsLoadNotice, getNotice, selectFavorites } from 'Redux/notices/selector';
-// import { selectUser } from 'Redux/auth/selector';
+import { selectUser } from 'Redux/auth/selector';
 
 export const ModalNotice = ({ onClose, noticeId }) => {
   const [withoutBlur, setWithoutBlur] = useState(0);
@@ -91,10 +91,10 @@ export const ModalNotice = ({ onClose, noticeId }) => {
   const inUsersFavorites = useSelector(selectFavorites);
   console.log(inUsersFavorites);
 
-  // const userIdState = useSelector(selectUser)
-  // console.log(userIdState)
+  const userId = useSelector(selectUser).id
+  console.log(userId)
 
-  const userId = '646f0e3366cea3f192faca83'
+  // const userId = '646f0e3366cea3f192faca83'
 
   const isFavorite = inUsersFavorites.includes(userId)
   console.log(isFavorite)
@@ -104,7 +104,7 @@ export const ModalNotice = ({ onClose, noticeId }) => {
   }, [dispatch, noticeId]);
 
   const handleFavorite = () => {
-        dispatch(updateFavorite(noticeId));
+        dispatch(updateFavorite({noticeId, userId}));
   };
 
   return (
