@@ -178,7 +178,7 @@ export const ModalNotice = ({ onClose, noticeId }) => {
             {comments ? (
               <CommentWrap>
                 <span>Comments:&nbsp;</span>
-                <span>comments</span>
+                <span>{comments}</span>
               </CommentWrap>
             ) : null}
             {/* <PriceProp> <Price>Place:</Price>
