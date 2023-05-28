@@ -95,8 +95,13 @@ export const Filters = styled.div`
   align-items: center;
   margin-bottom: 42px;
 
+  @media (min-width: 767px) {
+    width: 730px;
+    margin: 0 auto 40px;
+  }
+
   @media (min-width: 991px) {
-    width: 1280px;
+    width: 1235px;
     margin: 0 auto 42px;
   }
 

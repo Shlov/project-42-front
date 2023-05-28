@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Button = styled.button`
   
  display: none;
+ margin-left: 12px;
 
    
     @media (min-width: 768px) {
