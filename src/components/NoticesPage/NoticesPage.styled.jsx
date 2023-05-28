@@ -93,7 +93,8 @@ export const Filters = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 42px;
+  width: 320px;
+   margin: 0 auto 40px;
 
   @media (min-width: 767px) {
     width: 730px;
