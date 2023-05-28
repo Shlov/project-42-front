@@ -23,9 +23,7 @@ const AddPetForm = () => {
   const isAddNoticeResponseSuccessful = useSelector(
     getAddNoticeSuccessfulConnection
   );
-  console.log('isAddNoticeResponseSuccessful', isAddNoticeResponseSuccessful);
   const isAddPetResponseSuccessful = useSelector(getAddPetSuccessfulConnection);
-  console.log('isAddPetResponseSuccessful', isAddPetResponseSuccessful);
   const [step, setStep] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [completedSteps, setCompletedSteps] = useState([]);
