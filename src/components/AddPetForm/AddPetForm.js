@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import { addNotice } from 'Redux/notices/operation';
 import { addPet } from 'Redux/pets/operations';
@@ -19,7 +19,6 @@ import {
 
 const AddPetForm = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const isAddNoticeResponseSuccessful = useSelector(
     getAddNoticeSuccessfulConnection
   );
@@ -85,13 +84,6 @@ const AddPetForm = () => {
     setStep(prevStep => prevStep - 1);
   };
 
-  // Function to handle the backend response and navigate based on the success
-  const handleBackendResponse = () => {
-    if (isAddNoticeResponseSuccessful) {
-      navigate('/notices');
-    }
-  };
-
   const handleSubmit = values => {
     const formData = new FormData();
     // const { resetForm } = formikRef.current;
@@ -103,13 +95,7 @@ const AddPetForm = () => {
     formData.append('comments', values.comments);
 
     if (formValues.category === 'your-pet') {
-      for (let pair of formData.entries()) {
-        console.log(pair[0] + ': ' + pair[1]);
-      }
       dispatch(addPet({ formData }));
-      if (isAddPetResponseSuccessful) {
-        navigate('/user');
-      }
       // resetForm();
       return;
     }
@@ -122,38 +108,20 @@ const AddPetForm = () => {
     formData.append('sex', values.sex);
     formData.append('place', values.location);
 
-    if (formValues.category === 'lost/found') {
-      for (let pair of formData.entries()) {
-        console.log(pair[0] + ': ' + pair[1]);
-      }
-      dispatch(addNotice({ formData }));
-      handleBackendResponse();
-      // resetForm();
-      return;
-    }
-
-    if (formValues.category === 'for-free') {
-      for (let pair of formData.entries()) {
-        console.log(pair[0] + ': ' + pair[1]);
-      }
-      dispatch(addNotice({ formData }));
-      handleBackendResponse();
-      // resetForm();
-      return;
-    }
-
-    formData.append('price', values.price);
-
     if (formValues.category === 'sell') {
-      for (let pair of formData.entries()) {
-        console.log(pair[0] + ': ' + pair[1]);
-      }
-      dispatch(addNotice({ formData }));
-      handleBackendResponse();
-      // resetForm();
-      return;
+      formData.append('price', values.price);
     }
+
+    dispatch(addNotice({ formData }));
   };
+
+  if (isAddNoticeResponseSuccessful) {
+    return <Navigate to="/notices" replace />;
+  }
+
+  if (isAddPetResponseSuccessful) {
+    return <Navigate to="/user" replace />;
+  }
 
   const renderStepContent = step => {
     switch (step) {
@@ -210,10 +178,9 @@ const AddPetForm = () => {
       <Formik
         initialValues={formValues}
         validationSchema={validationSchema}
-        onSubmit={handleSubmit}
         innerRef={formikRef}
       >
-        {({ values }) => <Form>{renderStepContent(step)}</Form>}
+        {() => <Form>{renderStepContent(step)}</Form>}
       </Formik>
     </FormContainer>
   );

@@ -136,8 +136,14 @@ export const AvatarWrapper = styled.div`
   object-fit: cover;
 
   & img {
-    width: 182px;
-    height: 182px;
+    width: 112px;
+    height: 112px;
+    border-radius: 20px;
+
+    @media screen and (min-width: 768px) {
+      width: 182px;
+      height: 182px;
+    }
   }
 `;
 
@@ -202,9 +208,10 @@ export const MoreInfoStepTextArea = styled(Field)`
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
-    height: 79px;
+    height: 182px;
+    width: 395px;
 
-    ${({ category }) => (category === 'lost/found' ? 'height: 182px' : '')}
+    ${({ category }) => (category === 'your-pet' ? 'height: 79px' : '')}
   }
 `;
 

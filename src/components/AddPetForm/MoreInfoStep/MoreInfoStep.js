@@ -213,7 +213,7 @@ const MoreInfoStep = ({
               Comments
               <MoreInfoStepTextArea
                 name="comments"
-                placeholder="Type breed"
+                placeholder="Type comments"
                 component="textarea"
                 category={selectedCategory}
                 errors={touched.comments && errors.comments}
