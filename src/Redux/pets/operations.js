@@ -50,8 +50,9 @@ export const addPet = createAsyncThunk(
           'content-type': 'multipart/form-data',
         },
       });
+      const newPet = response.data;
       toast.success('Successfully added to your pets');
-      console.log(response.data);
+      return newPet; // Return the new pet object as the payload of the fulfilled action
     } catch (error) {
       if (error.response.status === 400) {
         toast.error('Pet creation error. Please try again🙏');

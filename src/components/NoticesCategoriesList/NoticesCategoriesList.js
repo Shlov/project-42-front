@@ -6,10 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   getIsLoadNotices,
   getNotices,
-  selectNoticesByCategory,
 } from 'Redux/notices/selector';
 import { useEffect } from 'react';
-import { fetchNotices, getNoticeByCategory } from 'Redux/notices/operation';
+import { fetchNotices } from 'Redux/notices/operation';
 import { NoticeCategoryItemLoad } from 'components/NoticeCategoryItemLoad/NoticeCategoryItemLoad';
 
 export const categoryShelf = {
@@ -21,46 +20,25 @@ export const categoryShelf = {
 export const NoticeCategoryList = ({
   onTrashModal,
   search,
-  setFilteredItems,
-  filteredItems,
+  filteredItems
 }) => {
   const isLoading = useSelector(getIsLoadNotices);
   const dispatch = useDispatch();
-  const notices = useSelector(selectNoticesByCategory);
   const allItems = useSelector(getNotices);
-  const category = useParams();
+  const { categoryName } = useParams();
 
   useEffect(() => {
     dispatch(fetchNotices());
-  }, [dispatch, category]);
-
-  useEffect(() => {
-    if (category) {
-      if (category === categoryShelf[category]) {
-        dispatch(getNoticeByCategory({ category: category, search: search }));
-        setFilteredItems(notices);
-      }
-      if (category === 'favorites-ads') {
-        // dispatch(getFavorites({ search, page }));
-      }
-      if (category === 'my-ads') {
-        // dispatch(getUserNotices({ search, page }));
-      }
-    }
-  }, [category, dispatch, notices, filteredItems, search, setFilteredItems]);
+  }, [dispatch]);
 
   const allOrFilterItems = () => {
-    if (!isLoading && !filteredItems.length && !search) {
+    if (!isLoading && !filteredItems && (!search && !categoryName)) {
       return allItems.map((notice, i) => (
         <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal} />
       ));
-    } else if (!isLoading && !filteredItems.length && search) {
+    } else if (!isLoading && !filteredItems.length) {
       return <p>Not found!</p>;
-    } else if (!isLoading && filteredItems.length && search) {
-      return filteredItems.map((notice, i) => (
-        <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal} />
-      ));
-    } else if (!isLoading && filteredItems.length && !search) {
+    } else if(!isLoading && filteredItems.length) {
       return filteredItems.map((notice, i) => (
         <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal} />
       ));

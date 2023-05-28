@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 
 import { PetsList } from 'components/PetsList/PetsList';
-import { Container, AddButton, AddIcon, Title } from './PetsData.styled';
+import { Container, Title } from './PetsData.styled';
 import { useState } from 'react';
-import icons from 'images/icons.svg';
+import AddPetButton from 'components/AddPetButton/AddPetButton';
 
 export const PetsData = () => {
   const [currentPage, setCurrentPage] = useState('');
@@ -20,14 +20,11 @@ export const PetsData = () => {
         <div>
           <Container>
             <Title>My Pets:</Title>
-            <Link to="/add-pet" onClick={() => handleChangePage(currentPage)}>
-              <AddButton type="button">
-                Add Pet
-                <AddIcon>
-                  <use href={icons + '#plus-small'} />
-                </AddIcon>
-              </AddButton>
-            </Link>
+            <Link
+              to="/add-pet"
+              onClick={() => handleChangePage(currentPage)}
+            ></Link>
+            <AddPetButton />
           </Container>
           <PetsList />
         </div>

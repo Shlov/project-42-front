@@ -109,10 +109,8 @@ export const Filters = styled.div`
   .filters {
     display: flex;
 
-    button {
-      &:last-child {
-        margin-left: 12px;
-      }
+    & > a {
+      margin-left: 12px;
     }
     @media (max-width: 500px) {
       display: block;

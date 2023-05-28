@@ -1,9 +1,10 @@
-import { NavLink } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Button, NavWrapper } from './NoticesCategoriesNav.styled';
 
-export const NoticesCategoriesNav = ({ setCategoriesArr, categoriesArr, categories, category, setCategory }) => {
+export const NoticesCategoriesNav = ({ categories, privateCategory }) => {
   const categoryPage = useParams()
+  const isConnect = useSelector(state => state.auth.isConnect)
 
   return (
     <NavWrapper>
@@ -14,6 +15,15 @@ export const NoticesCategoriesNav = ({ setCategoriesArr, categoriesArr, categori
           </Button>
         </NavLink>
       ))}
+      {isConnect &&
+        privateCategory.map((cat, i) => (
+          <NavLink key={i} to={'/notices/' + cat.link}>
+            <Button key={i} categoryPage={categoryPage} category={cat.link}>
+              {cat.text}
+            </Button>
+          </NavLink>
+        ))
+      }
     </NavWrapper>
   );
 }

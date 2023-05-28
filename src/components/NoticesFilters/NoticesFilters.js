@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Button, FilterCSS, FilterSelect, FilterSelectTitle, FiltersButton, FiltersChevron, FiltersRound, FilterWrapper, FilterItem } from './NoticesFilter.styled'
 import icons from 'images/icons.svg';
 import { useSelector } from 'react-redux';
@@ -10,7 +10,6 @@ export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, 
   const desktop = useSelector(state => state.main.desktop)
   const [activeAgeButton, setActiveAgeButton] = useState(false)
   const [activeGenderButton, setActiveGenderButton] = useState(false)
-  // const [activeButtons, setActiveButtons] = useState([...ages, ...genders])
   const filters = {
     age: {
       name: 'age',
@@ -21,10 +20,6 @@ export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, 
       items: ['male', 'female']
     }
   }
-
-  useEffect(() => {
-
-  }, [ages, genders])
 
   const handleChange = (event, ageText) => {
     if (event.target.checked) {
@@ -57,8 +52,8 @@ export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, 
   return (
     <FilterWrapper desktop={desktop} mobile={mobile} tablet={tablet}>
       {desktop &&
-        activeButtons.map(button =>
-          <FilterItem>
+        activeButtons.map((button, i) =>
+          <FilterItem key={i}>
             <p>{button}</p>
             <img src={RemoveItem} alt="" onClick={() => handleRemoveItem(button)} />
           </FilterItem>
