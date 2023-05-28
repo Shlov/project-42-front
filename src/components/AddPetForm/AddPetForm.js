@@ -119,7 +119,6 @@ const AddPetForm = () => {
     return <Navigate to="/notices" replace />;
   }
 
-  console.log(isAddPetResponseSuccessful);
   if (isAddPetResponseSuccessful) {
     return <Navigate to="/user" replace />;
   }
