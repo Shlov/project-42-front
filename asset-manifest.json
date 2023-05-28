@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/project-42-front/static/css/main.84d4a705.css",
-    "main.js": "/project-42-front/static/js/main.f54d3cb3.js",
+    "main.js": "/project-42-front/static/js/main.207ac12f.js",
     "static/js/318.263cf6d0.chunk.js": "/project-42-front/static/js/318.263cf6d0.chunk.js",
     "static/js/394.58f84215.chunk.js": "/project-42-front/static/js/394.58f84215.chunk.js",
     "static/js/327.1f86a055.chunk.js": "/project-42-front/static/js/327.1f86a055.chunk.js",
@@ -25,7 +25,7 @@
     "static/media/bg@2x_md.png": "/project-42-front/static/media/bg@2x_md.93dbe87c4be9872867fb.png",
     "static/media/bg@2x_lg.png": "/project-42-front/static/media/bg@2x_lg.afa1f0f263f29c9ab541.png",
     "static/media/inter-latin-400-normal.woff2": "/project-42-front/static/media/inter-latin-400-normal.be7cb18dc7caf47cf7e9.woff2",
-    "static/media/icons.svg": "/project-42-front/static/media/icons.b656fb60108e28091a4ed0dbc4f817ad.svg",
+    "static/media/icons.svg": "/project-42-front/static/media/icons.8c44062d9b3d69c4016cd488faeca5ea.svg",
     "static/media/manrope-latin-400-normal.woff2": "/project-42-front/static/media/manrope-latin-400-normal.2cfae0fb4662deefa552.woff2",
     "static/media/inter-cyrillic-ext-400-normal.woff2": "/project-42-front/static/media/inter-cyrillic-ext-400-normal.fcc125c4fef4b94c8b13.woff2",
     "static/media/inter-greek-400-normal.woff2": "/project-42-front/static/media/inter-greek-400-normal.0278a49f9007106a0bf4.woff2",
@@ -43,7 +43,7 @@
     "static/media/cross-small.svg": "/project-42-front/static/media/cross-small.8da70af0e6f5ef55f05592dc1412e003.svg",
     "static/media/menu-hamburger.svg": "/project-42-front/static/media/menu-hamburger.e5ce08a82de7546bfde31ea978aefa46.svg",
     "main.84d4a705.css.map": "/project-42-front/static/css/main.84d4a705.css.map",
-    "main.f54d3cb3.js.map": "/project-42-front/static/js/main.f54d3cb3.js.map",
+    "main.207ac12f.js.map": "/project-42-front/static/js/main.207ac12f.js.map",
     "318.263cf6d0.chunk.js.map": "/project-42-front/static/js/318.263cf6d0.chunk.js.map",
     "394.58f84215.chunk.js.map": "/project-42-front/static/js/394.58f84215.chunk.js.map",
     "327.1f86a055.chunk.js.map": "/project-42-front/static/js/327.1f86a055.chunk.js.map",
@@ -57,6 +57,6 @@
   },
   "entrypoints": [
     "static/css/main.84d4a705.css",
-    "static/js/main.f54d3cb3.js"
+    "static/js/main.207ac12f.js"
   ]
 }
