@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const MobileMenuContainer = styled.div`
-overflow: hidden;
+overflow-x: hidden;
 background-color: var(--cl-background);
 height: 100vh;
 width: 100%;
