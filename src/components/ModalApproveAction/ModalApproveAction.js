@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { Button, CloseIcon, Content, Modal, Overlay } from './ModalApproveAction.styled';
 import icons from 'images/icons.svg';
 
-export const ModalApproveAction = ({ children, onClose}) => {
+export const ModalApproveAction = ({ children, onClose, width}) => {
   //   пропс onClose це функція toggleModal,
   //   яку потрібно передати компоненту ModalApproveAction
   //   toggleModal - змінює стейт isOpen
@@ -38,7 +38,7 @@ export const ModalApproveAction = ({ children, onClose}) => {
   return (
     <>
       <Overlay onClick={onBackdropClose}>
-        <Modal >
+        <Modal width={width.toString()}>
           <Button type="button" apia-label="close" onClick={onClose}>
             <CloseIcon>
               <use href={icons + '#cross-small'} />
@@ -54,4 +54,5 @@ export const ModalApproveAction = ({ children, onClose}) => {
 ModalApproveAction.propTypes = {
   onClose: PropTypes.func.isRequired,
   children: PropTypes.node, 
+  width: PropTypes.bool, 
 };

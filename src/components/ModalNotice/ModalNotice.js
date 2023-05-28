@@ -98,7 +98,7 @@ export const ModalNotice = ({ onClose, noticeId }) => {
 
   return (
     <>
-      <ModalApproveAction onClose={onClose}>
+      <ModalApproveAction onClose={onClose} width>
         {isLoading ? (
           <h3>Loading...</h3>
         ) : (
@@ -180,7 +180,7 @@ export const ModalNotice = ({ onClose, noticeId }) => {
                 <span>Comments:&nbsp;</span>
                 <span>{comments}</span>
               </CommentWrap>
-            ) : null}
+            ) : <CommentWrap></CommentWrap>}
             {/* <PriceProp> <Price>Place:</Price>
                   <Value>{price ? price : 'invaluable'}</Value></PriceProp> */}            
             <ButtonWrapThumb>
