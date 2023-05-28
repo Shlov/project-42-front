@@ -208,10 +208,13 @@ export const MoreInfoStepTextArea = styled(Field)`
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
-    height: 182px;
+    height: 79px;
     width: 395px;
 
-    ${({ category }) => (category === 'your-pet' ? 'height: 79px' : '')}
+    ${({ category }) =>
+      category === 'for-free' || category === 'lost/found'
+        ? 'height: 182px'
+        : ''}
   }
 `;
 
