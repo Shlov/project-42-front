@@ -21,9 +21,13 @@ import {
   Image,
   ImageWrapper,
   ItemProp,
+  ListContact,
   ListProperty,
   ModalContent,
   NameProp,
+  Price,
+  PriceValue,
+  PriceWrap,
   SignProp,
   TitleModal,
 } from './ModalNotice.styled';
@@ -31,7 +35,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { fetchNotice, getFavoriteNotices } from 'Redux/notices/operation';
-import { getIsLoadNotice, getNotice, selectFavorites } from 'Redux/notices/selector';
+import {
+  getIsLoadNotice,
+  getNotice,
+  selectFavorites,
+} from 'Redux/notices/selector';
 
 export const ModalNotice = ({ onClose, noticeId }) => {
   const [withoutBlur, setWithoutBlur] = useState(0);
@@ -71,12 +79,12 @@ export const ModalNotice = ({ onClose, noticeId }) => {
   };
 
   const dispatch = useDispatch();
-  const { imageURL, categories, name, birthday, breed, place, sex, comments } =
+  const { imageURL, categories, name, birthday, breed, place, sex, comments, price } =
     useSelector(getNotice);
   const isLoading = useSelector(getIsLoadNotice);
 
-  const favorites = useSelector(selectFavorites)
-  console.log(favorites)
+  const favorites = useSelector(selectFavorites);
+  console.log(favorites);
 
   // в функцію fetchNotice треба буде прокинути id відкриваємої notice
   // поки бек не віддає без авторизованого користувача
@@ -84,9 +92,9 @@ export const ModalNotice = ({ onClose, noticeId }) => {
     dispatch(fetchNotice(noticeId));
   }, [dispatch, noticeId]);
 
-  useEffect(()=> {
-    dispatch(getFavoriteNotices())
-  }, [dispatch])
+  useEffect(() => {
+    dispatch(getFavoriteNotices());
+  }, [dispatch]);
 
   return (
     <>
@@ -110,7 +118,7 @@ export const ModalNotice = ({ onClose, noticeId }) => {
             </ImageWrapper>
             <div>
               <div>
-                <TitleModal>Cute dog looking for a home</TitleModal>
+                <TitleModal>Cute pet looking for a home</TitleModal>
               </div>
               <ListProperty>
                 <ItemProp>
@@ -134,7 +142,7 @@ export const ModalNotice = ({ onClose, noticeId }) => {
                   <SignProp>{sex ? sex : 'sex'}</SignProp>
                 </ItemProp>
               </ListProperty>
-              <ListProperty>
+              <ListContact>
                 <ItemProp>
                   <NameProp>Email:</NameProp>
                   {!withoutBlur ? (
@@ -157,7 +165,7 @@ export const ModalNotice = ({ onClose, noticeId }) => {
                     </Contact>
                   )}
                 </ItemProp>
-              </ListProperty>
+              </ListContact>
             </div>
             {/* <CommentWrap>
               <span>Comments:&nbsp;</span>
@@ -173,9 +181,16 @@ export const ModalNotice = ({ onClose, noticeId }) => {
                 <span>comments</span>
               </CommentWrap>
             ) : null}
+            {/* <PriceProp> <Price>Place:</Price>
+                  <Value>{price ? price : 'invaluable'}</Value></PriceProp> */}            
             <ButtonWrapThumb>
-              {/* <PriceProp> <Price>Place:</Price>
-                  <Value>{price ? price : 'invaluable'}</Value></PriceProp> */}
+            {price ? ( <PriceWrap price>
+             <Price>Price:</Price>
+              <PriceValue>{price}</PriceValue>
+            </PriceWrap>) : ( <PriceWrap >
+             <Price></Price>
+              <PriceValue></PriceValue>
+            </PriceWrap>)}
               <ButtonWrap>
                 {/* <ContactBtn href="tel:+380971234567" aria-label="phone button"> */}
                 <ContactBtn
