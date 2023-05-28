@@ -11,7 +11,6 @@ import {
   ModalContent,
   TitleModal,
   BtnLogout,
-  //Ірина
   ArrowBack,
   
   //Олексій
@@ -25,7 +24,7 @@ import { useDispatch } from 'react-redux';
 import { logOut } from 'Redux/auth/operation';
 
 import icons from 'images/icons.svg';
-// import { ModalCongrats } from 'components/ModalCongrats/ModalCongrats';
+import { Navigate } from 'react-router-dom';
 
 export const LogoutBtn = () => {
   //   toggleModal, яку потрібно передати компоненту ModalApproveAction для закриття вікна
@@ -37,9 +36,10 @@ export const LogoutBtn = () => {
   };
 
   const handleAction = () => {
-    console.log('Передаємо екшн');
+    // console.log('Передаємо екшн');
     dispatch(logOut());
-  };
+  <Navigate to='/' replace/>
+};
 
   return (
     <>
@@ -66,8 +66,6 @@ export const LogoutBtn = () => {
       <ArrowBack><use href={icons + '#logout'}/></ArrowBack>
         LogOut
       </BtnLogout>
-
-      {/* <ModalCongrats /> */}
     </>
   );
 };

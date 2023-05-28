@@ -20,7 +20,7 @@ export const ModalCongrats = () => {
 
   return (
     <>
-      {isOpenModal && (
+      {!isOpenModal && (
         <ModalApproveAction report onClose={toggleModal}> 
           <ModalContent>
             <TitleModal>Congrats!</TitleModal>
@@ -39,13 +39,6 @@ export const ModalCongrats = () => {
           </ModalContent>
         </ModalApproveAction>
       )}
-      <button
-        type="button"
-        style={{ marginBottom: '200px', backgroundColor: '#CDDC39' }}
-        onClick={toggleModal}
-      >
-        Temporary Open ModalCongrats
-      </button>
     </>
   );
 };

@@ -57,15 +57,14 @@ export const userLogin = createAsyncThunk(
   }
 );
 
-/*
- * POST @ /user/logout
- * headers: Authorization: Bearer token
- */
+
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
+ 
+
     await axios.post('/user/logout');
-    // After a successful logout, remove the token from the HTTP header
-    clearAuthHeader();
+    
+   clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -76,28 +75,28 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
  * headers: Authorization: Bearer token
  */
 
-// export const currentUser = createAsyncThunk(
-//   'user/current',
-//   async (_, thunkAPI) => {
-//     // Reading the token from the state via getState()
-//     const state = thunkAPI.getState();
-//     const persistedToken = state.auth.token;
+export const currentUser = createAsyncThunk(
+  'user/current',
+  async (_, thunkAPI) => {
+    // Reading the token from the state via getState()
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
 
-//     if (!persistedToken) {
-//       // If there is no token, exit without performing any request
-//       return thunkAPI.rejectWithValue('Unable to fetch user');
-//     }
+    if (!persistedToken) {
+      // If there is no token, exit without performing any request
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
 
-//     try {
-//       // If there is a token, add it to the HTTP header and perform the request
-//       setAuthHeader(persistedToken);
-//       const response = await axios.get('/user/current');
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
+    try {
+      // If there is a token, add it to the HTTP header and perform the request
+      setAuthHeader(persistedToken);
+      const response = await axios.get('/user/current');
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 export const updateUser = createAsyncThunk(
   'user/updateUser',
