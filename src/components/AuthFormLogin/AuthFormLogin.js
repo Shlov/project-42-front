@@ -70,7 +70,7 @@ const eyeOpen = () => {
   );
 };
 
-      const Loader = () => {
+const Loader = () => {
   return (
     <LoaderStyle>
       <Hearts
@@ -90,8 +90,8 @@ export const LogForm = () => {
   const [isLoad, setIsLoad] = useState();
 
   const onLoader = e => {
-   setIsLoad( Loader)
-  }
+    setIsLoad(Loader);
+  };
 
   const togglePassInput = e => {
     if (typePass === 'password') {
@@ -114,13 +114,11 @@ export const LogForm = () => {
     props.resetForm();
   };
 
-
   const isConnect = useSelector(getConnect);
+
   if (isConnect) {
     return <Navigate to="/user" replace />;
   }
-
-
 
   return (
     <Wrapper>
@@ -208,7 +206,7 @@ export const LogForm = () => {
               </Box>
 
               <Button type="submit" onClick={onLoader}>
-{isLoad}
+                {isLoad}
                 Login
               </Button>
               <Text>

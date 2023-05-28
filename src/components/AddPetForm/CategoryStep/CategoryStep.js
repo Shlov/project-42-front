@@ -16,7 +16,7 @@ import { AddPetFormButtonWrapper } from 'components/AddPetForm/AddPetFormButtons
 
 const CategoryStep = ({ onNext, onSelectCategory, selectedCategory }) => {
   const location = useLocation();
-  const locRef = useRef(location.state?.from ?? '/main'); // for Back button
+  const locRef = useRef(location.state?.from ?? '/'); // for Back button
   const [nextClicked, setNextClicked] = useState(false); // State variable to track Next button click
 
   const handleNext = () => {

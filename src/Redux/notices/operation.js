@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
 
@@ -74,7 +73,6 @@ export const getNoticeByCategory = createAsyncThunk(
 export const addNotice = createAsyncThunk(
   'notices/addNotice',
   async ({ formData }, thunkAPI) => {
-    const navigate = useNavigate();
     try {
       const response = await axios.post('/notices/user', formData, {
         headers: {
@@ -82,7 +80,6 @@ export const addNotice = createAsyncThunk(
         },
       });
       toast.success('Successfully added to notices');
-      navigate('/notices');
       console.log(response);
     } catch (error) {
       if (error.response.status === 400) {
