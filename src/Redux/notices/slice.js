@@ -70,12 +70,18 @@ const noticesSlice = createSlice({
   [getFavoriteNotices.fulfilled](state, action) {
     state.items = action.payload.data.notices;
   },
-  [updateFavorite.pending]:handlePending,
-  [updateFavorite.fulfilled](state, action){
-    state.favorites = action.payload.notice.favorite
-    console.log(state.favorites)
+  [updateFavorite.pending]: state => {
+    state.isLoadNotice = true;
   },
-  [updateFavorite.pending]:handleRejected,
+  [updateFavorite.fulfilled](state, action) {
+    state.isLoadNotice = false;
+    state.error = '';
+    state.favorites = action.payload.notice.favorite;
+    console.log(state.favorites);
+  },
+  [updateFavorite.rejected]: (state, action) => {
+    state.error = action.payload;
+  },
 });
 
 export const noticesReducer = noticesSlice.reducer;
