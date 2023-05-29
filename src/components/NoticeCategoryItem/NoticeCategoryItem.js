@@ -27,18 +27,15 @@ export const NoticeCategoryItem = ({onTrashModal, item}) => {
   const idUser = useSelector(selectUser).id;
   // const isLogin = useSelector(getConnect);
   const activeFavorite = item.favorite.includes(idUser);
-  const idNotice = item.id
+  const noticeId = item.id
+  const favorite = !activeFavorite
   const dispatch = useDispatch();
-
-  console.log('id', idUser)
-  console.log('item', item)
-  console.log('activeFavorite', activeFavorite)
-
+  
   const agePet = (birthday) => {
     const nowDate = new Date().getTime();
     const [day, month, year] = birthday.split('.');
     const birthDate = new Date (`${Number(year)}-${Number(month)}-${Number(day)}`).getTime();
-
+    
     const differenceTime = nowDate - birthDate
     
     if (differenceTime < 2630016000) {
@@ -49,14 +46,12 @@ export const NoticeCategoryItem = ({onTrashModal, item}) => {
       return `${Math.floor(differenceTime/31560192000)} year`
     };
   }
-
+  
   const handleFavorite = () => {
-
     if (!idUser) {
       toast.error('Please authorization and try again 😸');
     }
-    const isFavorite = item.favorite.includes(idUser)
-    dispatch(updateFavorite({idNotice, isFavorite}));
+    dispatch(updateFavorite({noticeId, favorite}));
   };
 
   const [isOpenModal, setIsOpenModal] = useState(false);
