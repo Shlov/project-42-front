@@ -76,8 +76,13 @@ const noticesSlice = createSlice({
   [updateFavorite.fulfilled](state, action) {
     state.isLoadNotice = false;
     state.error = '';
-    state.favorites = action.payload.notice.favorite;
-    console.log(state.favorites);
+    // if (action.payload.notice.favorite) {
+      state.item.favorite.push(state.auth.user.id);
+      state.favorites.push(state.auth.user.id)
+    // } else {
+    //  тут буде слайс
+    // }
+
   },
   [updateFavorite.rejected]: (state, action) => {
     state.error = action.payload;
