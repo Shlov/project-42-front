@@ -30,7 +30,6 @@ export const NoticeCategoryItem = ({onTrashModal, item}) => {
   const noticeId = item.id
   const favorite = !activeFavorite
   const dispatch = useDispatch();
-  
   const agePet = (birthday) => {
     const nowDate = new Date().getTime();
     const [day, month, year] = birthday.split('.');
