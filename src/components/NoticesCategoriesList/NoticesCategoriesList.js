@@ -10,7 +10,7 @@ import { selectUser } from "Redux/auth/selector";
 import { getFavoriteNotices, getNoticeByCategory } from 'Redux/notices/operation';
 import { useEffect } from 'react';
 import { fetchNotices } from 'Redux/notices/operation';
-import { NoticeCategoryItemLoad } from 'components/NoticeCategoryItemLoad/NoticeCategoryItemLoad';
+import { Loader } from 'components/Loader/Loader';
 
 export const categoryShelf = {
   sell: 'sell',
@@ -142,21 +142,9 @@ export const NoticeCategoryList = ({
 
   return (
     <NoticesList>
-      {isLoading && <NoticeCategoryItemLoad />}
+      {isLoading && <Loader/>}
       {allOrFilterItems()}
     </NoticesList>
   );
 };
 
-// Наповнювач для карток
-// const arr = [1,1,1,1,1,1,1,1,1,1,1,1]
-// const item = {
-//   category: 'In good hands',
-//   img: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSgGi3YJI2iukoOZ3_fbYCyoiR4dYO8fIyIu_qpphSUf8GRAmFN",
-//   title: "Cute fox looking for a home",
-//   location: 'Kyiv',
-//   age: '1 year',
-//   sex: 'female',
-// }
-// const notices = arr.fill(item);
-//

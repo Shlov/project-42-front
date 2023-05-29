@@ -15,7 +15,7 @@ export const fetchNotices = createAsyncThunk(
           Authorization: `Bearer ${token}`,
         },
       });
-      toast.success('Notices done! 👏');
+      // toast.success('Notices done! 👏');
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
