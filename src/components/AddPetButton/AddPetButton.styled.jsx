@@ -18,13 +18,10 @@ export const Button = styled(NavLink)`
   border-radius: 40px;
   color: var(--cl-background);
   background-color: var(--cl-blue-link);
-
-  transition: background-color var(--animat), color var(--animat),
-    border-color var(--animat);
+  border-color var(--animat);
 
   &:hover {
-    background-color: var(--cl-blue-link);
-    color: var(--cl-background);
+    background: var(--gr-blue);
   }
 `;
 
