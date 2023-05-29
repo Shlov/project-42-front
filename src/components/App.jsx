@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 // import { lazy, useEffect, useState, Suspense } from 'react';
 import { lazy, useEffect, useState } from 'react';
-import {  useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setDesktop, setTablet, setMobile } from '../Redux/main/main-slice';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 // import { Loader } from './Loader/Loader';
@@ -20,6 +20,7 @@ const User = lazy(() => import('../pages/User'));
 const AddPet = lazy(() => import('../pages/AddPet'));
 const News = lazy(() => import('../pages/News'));
 const OurFriends = lazy(() => import('../pages/OurFriends'));
+const NotFound = lazy(() => import('../pages/NotFound'));
 
 export const App = () => {
   const [width, setWidth] = useState(window.innerWidth);
@@ -30,7 +31,7 @@ export const App = () => {
   // const isConnect = useSelector(state => state.auth.isConnect);
 
   useEffect(() => {
-    const handleResize = (event) => {
+    const handleResize = event => {
       setWidth(window.innerWidth);
     };
     window.addEventListener('resize', handleResize);
@@ -40,61 +41,50 @@ export const App = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(setDesktop(width > 992))
-    dispatch(setTablet(width > 768 && width < 991))
-    dispatch(setMobile(width < 768))
+    dispatch(setDesktop(width > 992));
+    dispatch(setTablet(width > 768 && width < 991));
+    dispatch(setMobile(width < 768));
   }, [width, dispatch]);
 
   const isRefreshing = useSelector(selectIsRefreshing);
 
-  useEffect(() => {dispatch(refreshUser())}, [dispatch]);
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
 
+  return isRefreshing ? (
+    <p> Refreshing user... </p>
+  ) : (
+    // <>
+    // <Suspense fallback={<Loader />}>
+    <Routes>
+      {/* <div className="container"> */}
+      <Route path="/" element={<SharedLayout />}>
+        {/* <Route index element={<MainPage />}/> */}
 
+        <Route index element={<Main />} />
+        <Route path="/user" element={<User />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/notices">
+          <Route index element={<Notices />} />
+          <Route path=":categoryName" element={<Notices />} />
+        </Route>
+        <Route path="/add-pet" element={<AddPet />} />
+        <Route path="/news" element={<News />} />
+        <Route path="/friends" element={<OurFriends />} />
+        <Route path="*" element={<NotFound />} />
 
-  return (
-  
-      isRefreshing 
-      ? (<p> Refreshing user... </p>) 
-      :(
-      // <>
-      // <Suspense fallback={<Loader />}>
-      <Routes>
-        {/* <div className="container"> */}
-            <Route
-              path="/"
-              element={
-                <SharedLayout
-
-                />
-              }
-              >
-              {/* <Route index element={<MainPage />}/> */}
-
-              <Route index element={<Main />} />
-              <Route path="/user" element={<User />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/notices">
-                <Route index element={<Notices />} />
-                <Route path=":categoryName" element={<Notices />} />
-              </Route>
-              <Route path="/add-pet" element={<AddPet />} />
-              <Route path="/news" element={<News />} />
-              <Route path="/friends" element={<OurFriends />} />
-
-              {/* <Route path="/user" element={
+        {/* <Route path="/user" element={
                 <PrivateRoute redirectTo="/login" component={<UserPage/>}/>
               }/>
               <Route path="/login" element={
                 <RestrictedRoute redirectTo="/user" component={<LoginPage/>}/>
               }/> */}
-            </Route>
+      </Route>
       {/* </div> */}
-          </Routes>
-        // </Suspense>
+    </Routes>
+    // </Suspense>
     // </>
-    )
   );
 };
-
-

@@ -7,7 +7,7 @@
 //   - елемент навігації Add pet - переадресовує авторизованого користувача на сторінку AddPetPage
 // Під час першого входу на сторінку користувача повинно переадресовувати на маршрут /notices/sell та рендеритися список оголошень з продажу
 import { useState, useEffect, useMemo } from 'react';
-import {useSelector } from "react-redux";
+import {useSelector, useDispatch } from "react-redux";
 import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 // import { getNoticeByCategory } from 'Redux/notices/operation';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
@@ -30,6 +30,10 @@ import icons from 'images/icons.svg';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import RemoveItem from '../../images/icons/cross-small-1.svg'
 import { Pagination } from 'components/Pagination/Pagination';
+import { deleteNotice } from 'Redux/notices/operation';
+import { selectUser } from 'Redux/auth/selector';
+import { toast } from 'react-hot-toast';
+import { getNotice } from 'Redux/notices/selector';
 
 const categories = [
   {
@@ -89,6 +93,8 @@ export const NoticesPage = () => {
   const [activeButtons, setActiveButtons] = useState([...ages, ...genders])
   const { categoryName } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useDispatch();
+  const userId = useSelector(selectUser).id;
 
   const categoryShelf = useMemo(() => ({
     sell: 'sell',
@@ -142,6 +148,37 @@ export const NoticesPage = () => {
   };
 
   const handleAction = () => {
+    if(!userId) {
+      console.log("user disconnect") 
+      toast.error('Please authorization and try again!', {
+        style: {
+          backgroundColor: `var(--cl-background)`,
+          padding: '6px',
+          color: `var(--cl-black)`,
+        },
+        icon: '😸',
+      });
+      return;
+    }
+
+    const noticeOwner = items.filter(item => item.owner !== userId)
+
+    if(!noticeOwner) {
+      console.log("user doesn`t owner notice") 
+      toast.error('You aren`t the owner of this notice!', {
+        style: {
+          backgroundColor: `var(--cl-background)`,
+          padding: '6px',
+          color: `var(--cl-black)`,
+        },
+        icon: '😸',
+      });
+      return;
+    }
+    
+    const noticeId = "646fab24d72f7be5ee4c9984"
+
+    dispatch(deleteNotice(noticeId))
     console.log('Видаляємо notice');
   };
 
