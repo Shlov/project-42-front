@@ -35,7 +35,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { fetchNotice, updateFavorite } from 'Redux/notices/operation';
 import { getIsLoadNotice, getNotice, selectFavorites} from 'Redux/notices/selector';
-import { getConnect, selectUser } from 'Redux/auth/selector';
+import { selectUser } from 'Redux/auth/selector';
 import { toast } from 'react-hot-toast';
 
 export const ModalNotice = ({ onClose, noticeId }) => {
@@ -47,14 +47,16 @@ export const ModalNotice = ({ onClose, noticeId }) => {
   const isLoading = useSelector(getIsLoadNotice);
   const inUsersFavorites = useSelector(selectFavorites);
   const userId = useSelector(selectUser).id;
-  const userConnect = useSelector(getConnect)
+  const isFavorite = !inUsersFavorites.includes(userId);
+  console.log(isFavorite)
 
   const handleBlurContacts = () => {
     setWithoutBlur(withoutBlur + 1);
   };
   
-  const handleFavorite = () => {    
-    if(!userConnect) {
+  const handleFavorite = () => {   
+    if(!userId) {
+      console.log("user disconnect") 
       toast.error('Please authorization and try again!', {
         style: {
           backgroundColor: '#fef9f9',
@@ -65,8 +67,8 @@ export const ModalNotice = ({ onClose, noticeId }) => {
       });
       return;
     }
-    const favorite = !inUsersFavorites.includes(userId);
-    dispatch(updateFavorite({noticeId, favorite}));
+    
+    dispatch(updateFavorite({noticeId, isFavorite}));
   };
 
 
@@ -145,14 +147,6 @@ export const ModalNotice = ({ onClose, noticeId }) => {
                 </ItemProp>
               </ListContact>
             </div>
-            {/* <CommentWrap>
-              <span>Comments:&nbsp;</span>
-              <span>
-                Rich would be the perfect addition to an active family that
-                loves to play and go on walks. I bet he would love having a
-                doggy playmate too!{' '}
-              </span>
-            </CommentWrap> */}
             {comments ? (
               <CommentWrap>
                 <span>Comments:&nbsp;</span>
@@ -161,8 +155,6 @@ export const ModalNotice = ({ onClose, noticeId }) => {
             ) : (
               <CommentWrap></CommentWrap>
             )}
-            {/* <PriceProp> <Price>Place:</Price>
-                  <Value>{price ? price : 'invaluable'}</Value></PriceProp> */}
             <ButtonWrapThumb>
               {price ? (
                 <PriceWrap price>
@@ -186,10 +178,10 @@ export const ModalNotice = ({ onClose, noticeId }) => {
                 </ContactBtn>
                 <Button
                   type="button"
-                  aria-label="Add to favorite"
+                  aria-label="favorite button"
                   onClick={handleFavorite}
                 >
-                  Add to
+                  {isFavorite ? "Add to" : "Del from"}
                   <HeartIcon>
                     <use href={icons + '#heart'}></use>
                   </HeartIcon>

@@ -30,9 +30,9 @@ export const NoticeCategoryItem = ({onTrashModal, item}) => {
   const idNotice = item.id
   const dispatch = useDispatch();
 
-  console.log('id', idUser)
-  console.log('item', item)
-  console.log('activeFavorite', activeFavorite)
+  // console.log('id', idUser)
+  // console.log('item', item)
+  // console.log('activeFavorite', activeFavorite)
 
   const agePet = (birthday) => {
     const nowDate = new Date().getTime();

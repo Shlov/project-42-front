@@ -114,13 +114,13 @@ export const getFavoriteNotices = createAsyncThunk(
 
 export const updateFavorite = createAsyncThunk(
   'notices/updateFavorite',
-  async ({noticeId, favorite}, thunkAPI) => {
+  async ({noticeId, isFavorite}, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.token;
-      const responce = await axios.patch(`/notices/user/favorite/${noticeId}?favorite=${favorite}`, {
+      const responce = await axios.patch(`/notices/user/favorite/${noticeId}?favorite=${isFavorite}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      if(favorite) {
+      if(isFavorite) {
         toast.success('Pet has been added to favorites!', {
           style: {
             backgroundColor: '#fef9f9',
@@ -130,7 +130,7 @@ export const updateFavorite = createAsyncThunk(
           icon: '💗',
         });
       }
-      if(!favorite) {
+      if(!isFavorite) {
         toast.success('Pet has been removed from favorites!', {
           style: {
             backgroundColor: '#fef9f9',
@@ -140,7 +140,7 @@ export const updateFavorite = createAsyncThunk(
           icon: '😿',
         });
       }
-      console.log(responce.data);
+      // console.log(responce.data.data.notice.favorite);
       return responce.data;
     } catch (error) {
       if (error.response.status === 401) {

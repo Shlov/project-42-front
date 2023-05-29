@@ -66,27 +66,23 @@ const noticesSlice = createSlice({
       state.isResponseSuccessful = true;
     },
     [addNotice.rejected]: handleRejected,
+    [getFavoriteNotices.fulfilled](state, action) {
+      state.items = action.payload.data.notices;
+    },
+    [updateFavorite.pending](state){
+      state.isLoadNotice = true;
+    },
+    [updateFavorite.fulfilled](state, action) {
+      state.isLoadNotice = false;
+      state.error = '';
+      state.favorites = action.payload.data.notice.favorite;   
+      state.item.favorite = action.payload.data.notice.favorite;
+    },
+    [updateFavorite.rejected](state, action) {
+      state.error = action.payload;
+    },
   },
-  [getFavoriteNotices.fulfilled](state, action) {
-    state.items = action.payload.data.notices;
-  },
-  [updateFavorite.pending]: state => {
-    state.isLoadNotice = true;
-  },
-  [updateFavorite.fulfilled](state, action) {
-    state.isLoadNotice = false;
-    state.error = '';
-    // if (action.payload.notice.favorite) {
-      state.item.favorite.push(state.auth.user.id);
-      state.favorites.push(state.auth.user.id)
-    // } else {
-    //  тут буде слайс
-    // }
-
-  },
-  [updateFavorite.rejected]: (state, action) => {
-    state.error = action.payload;
-  },
+ 
 });
 
 export const noticesReducer = noticesSlice.reducer;
