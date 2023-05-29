@@ -1,14 +1,18 @@
-import { PaginationPanel, PaginationKey, SvgIcon } from "./Pagination.styled";
+import { PaginationWrapper, PaginationPanel, PaginationKey, SvgIcon } from "./Pagination.styled";
 import icon from '../../images/icons.svg';
 
 
 
 export const Pagination = () => {
 
+  const isDisabled = true
+
   return(
+    <PaginationWrapper>
+
     <PaginationPanel>
       <PaginationKey>
-        <SvgIcon >
+        <SvgIcon>
           <use href={icon + "#chevron-down"}/>
         </SvgIcon>
       </PaginationKey>
@@ -24,11 +28,12 @@ export const Pagination = () => {
       <PaginationKey>
         4
       </PaginationKey>
-      <PaginationKey>
+      <PaginationKey disabled={isDisabled}>
         <SvgIcon>
           <use href={icon + "#chevron-up"}/>
         </SvgIcon>
       </PaginationKey>
     </PaginationPanel>
+    </PaginationWrapper>
   )
 }

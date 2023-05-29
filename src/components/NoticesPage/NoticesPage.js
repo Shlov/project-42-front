@@ -33,7 +33,7 @@ import { Pagination } from 'components/Pagination/Pagination';
 import { deleteNotice } from 'Redux/notices/operation';
 import { selectUser } from 'Redux/auth/selector';
 import { toast } from 'react-hot-toast';
-import { getNotice } from 'Redux/notices/selector';
+// import { getNotice } from 'Redux/notices/selector';
 
 const categories = [
   {
