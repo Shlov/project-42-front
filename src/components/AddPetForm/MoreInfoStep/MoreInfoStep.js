@@ -26,12 +26,7 @@ import AddPetFormNextButton from 'components/AddPetForm/AddPetFormButtons/AddPet
 import { getIsLoadNotices } from 'Redux/notices/selector';
 import { getIsLoading } from 'Redux/pets/selectors';
 
-const MoreInfoStep = ({
-  onBack,
-  selectedCategory,
-  setFormValues,
-  handleSubmit,
-}) => {
+const MoreInfoStep = ({ onBack, selectedCategory, handleSubmit }) => {
   const { values, setTouched, touched, errors, setFieldValue } =
     useFormikContext();
   const [doneClicked, setDoneClicked] = useState(false); // State variable to track Next button click
@@ -98,15 +93,6 @@ const MoreInfoStep = ({
 
     // Check if there are no form errors
     if (Object.keys(formErrors).length === 0) {
-      // Update form values with the values from the input fields
-      setFormValues(prevState => ({
-        ...prevState,
-        sex: values.sex,
-        location: values.location,
-        price: values.price,
-        avatar: values.avatar,
-        comments: values.comments,
-      }));
       // Call the handleSubmit function to submit the form
       handleSubmit(values);
     }

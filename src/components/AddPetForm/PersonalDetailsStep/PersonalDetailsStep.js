@@ -11,12 +11,7 @@ import {
 } from './PersonalDetailsStep.styled';
 import { AddPetFormButtonWrapper } from 'components/AddPetForm/AddPetFormButtons/AddPetFormButtonWrapper.styled';
 
-const PersonalDetailsStep = ({
-  onBack,
-  onNext,
-  selectedCategory,
-  setFormValues,
-}) => {
+const PersonalDetailsStep = ({ onBack, onNext, selectedCategory }) => {
   const { values, setTouched, touched, errors } = useFormikContext();
 
   // Function to validate form fields. UseCallback is used to memoize the validateFields function
@@ -65,14 +60,6 @@ const PersonalDetailsStep = ({
     const formErrors = validateFields();
 
     if (Object.keys(formErrors).length === 0) {
-      // Update form values with the values from the input fields
-      setFormValues(prevState => ({
-        ...prevState,
-        title: values.title,
-        name: values.name,
-        date: values.date,
-        breed: values.breed,
-      }));
       // Call the onNext function to proceed to the next step
       onNext();
     }

@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
@@ -26,9 +26,8 @@ const AddPetForm = () => {
   const [step, setStep] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [completedSteps, setCompletedSteps] = useState([]);
-  const formikRef = useRef(null);
 
-  const [formValues, setFormValues] = useState({
+  const formValues = {
     category: selectedCategory,
     name: '',
     date: '',
@@ -39,7 +38,7 @@ const AddPetForm = () => {
     price: '',
     comments: '',
     title: '',
-  });
+  };
   const steps = ['Choose Option', 'Personal Details', 'More Info'];
 
   const stepTitles = {
@@ -61,10 +60,6 @@ const AddPetForm = () => {
   // Function to handle category selection
   const handleCategorySelect = category => {
     setSelectedCategory(category);
-    setFormValues(prevFormValues => ({
-      ...prevFormValues,
-      category: category,
-    }));
   };
 
   const currentTitle =
@@ -94,7 +89,7 @@ const AddPetForm = () => {
     formData.append('imageURL', values.avatar);
     formData.append('comments', values.comments);
 
-    if (formValues.category === 'your-pet') {
+    if (selectedCategory === 'your-pet') {
       dispatch(addPet({ formData }));
       // resetForm();
       return;
@@ -102,7 +97,7 @@ const AddPetForm = () => {
 
     formData.append(
       'categories',
-      formValues.category === 'for-free' ? 'in good hands' : formValues.category
+      selectedCategory === 'for-free' ? 'in good hands' : selectedCategory
     );
     formData.append('title', values.title);
     formData.append('sex', values.sex);
@@ -139,7 +134,6 @@ const AddPetForm = () => {
             onBack={handleBack}
             onNext={handleNext}
             selectedCategory={selectedCategory}
-            setFormValues={setFormValues}
           />
         );
       case 3:
@@ -147,7 +141,6 @@ const AddPetForm = () => {
           <MoreInfoStep
             onBack={handleBack}
             selectedCategory={selectedCategory}
-            setFormValues={setFormValues}
             handleSubmit={handleSubmit}
           />
         );
@@ -175,11 +168,7 @@ const AddPetForm = () => {
           </StepperItem>
         ))}
       </Stepper>
-      <Formik
-        initialValues={formValues}
-        validationSchema={validationSchema}
-        innerRef={formikRef}
-      >
+      <Formik initialValues={formValues} validationSchema={validationSchema}>
         {() => <Form>{renderStepContent(step)}</Form>}
       </Formik>
     </FormContainer>
