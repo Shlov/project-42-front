@@ -6,6 +6,7 @@ import {
   addNotice,
   getFavoriteNotices,
   updateFavorite,
+  deleteNotice,
 } from './operation';
 
 const handlePending = state => {
@@ -81,6 +82,19 @@ const noticesSlice = createSlice({
     [updateFavorite.rejected](state, action) {
       state.error = action.payload;
     },
+    [deleteNotice.pending](state){
+      state.isLoadNotice = true;
+    },
+    [deleteNotice.fulfilled](state, action){
+      state.isLoadNotice = false;
+      state.error = '';
+      state.items = state.items.filter(
+        item => item.id !== action.payload.data.notice.id
+      )
+    },
+    [deleteNotice](state, action){
+      state.error = action.payload;
+    }
   },
  
 });

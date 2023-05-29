@@ -10,25 +10,20 @@ import { useState, useEffect, useMemo } from 'react';
 import {useSelector } from "react-redux";
 import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 // import { getNoticeByCategory } from 'Redux/notices/operation';
-import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
+// import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav'
 import { FindFilter } from 'components/NoticesFilters/NoticesFilters'
 import { NoticeCategoryList } from 'components/NoticesCategoriesList/NoticesCategoriesList';
 import AddPetButton from 'components/AddPetButton/AddPetButton'
-import {
-  Button,
-  ButtonWrap,
-  DescrModal,
-  ModalContent,
-  TitleModal,
-  Trash,
-  Filters,
-  Text
-} from './NoticesPage.styled';
+import {Filters} from './NoticesPage.styled';
 import { FilterItem } from 'components/NoticesFilters/NoticesFilter.styled';
-import icons from 'images/icons.svg';
+// import icons from 'images/icons.svg';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import RemoveItem from '../../images/icons/cross-small-1.svg'
+// import { deleteNotice } from 'Redux/notices/operation';
+// import { selectUser } from 'Redux/auth/selector';
+// import { toast } from 'react-hot-toast';
+// import { getNotice } from 'Redux/notices/selector';
 
 const categories = [
   {
@@ -77,7 +72,7 @@ export const NoticesPage = () => {
   const tablet = useSelector((state) => state.main.tablet);
   const mobile = useSelector((state) => state.main.mobile)
   const location = useLocation();
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  // const [isOpenModal, setIsOpenModal] = useState(false);
   const [category, setCategory] = useState(location.pathname.split('/')[2])
   const [filteredItems, setFilteredItems] = useState(items)
   const [categoriesArr, setCategoriesArr] = useState([]);
@@ -88,6 +83,8 @@ export const NoticesPage = () => {
   const [activeButtons, setActiveButtons] = useState([...ages, ...genders])
   const { categoryName } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
+  // const dispatch = useDispatch();
+  // const userId = useSelector(selectUser).id;
 
   const categoryShelf = useMemo(() => ({
     sell: 'sell',
@@ -136,13 +133,44 @@ export const NoticesPage = () => {
     setFilteredItems(newItems)
   }, [search, genders, ages, category, categoryShelf, categoryName, items]);
 
-  const toggleModal = () => {
-    setIsOpenModal(isOpen => !isOpen);
-  };
+  // const toggleModal = () => {
+  //   setIsOpenModal(isOpen => !isOpen);
+  // };
 
-  const handleAction = () => {
-    console.log('Видаляємо notice');
-  };
+  // const handleAction = () => {
+  //   if(!userId) {
+  //     console.log("user disconnect") 
+  //     toast.error('Please authorization and try again!', {
+  //       style: {
+  //         backgroundColor: `var(--cl-background)`,
+  //         padding: '6px',
+  //         color: `var(--cl-black)`,
+  //       },
+  //       icon: '😸',
+  //     });
+  //     return;
+  //   }
+
+  //   const noticeOwner = items.filter(item => item.owner === userId)
+
+  //   if(!noticeOwner) {
+  //     console.log("user doesn`t owner notice") 
+  //     toast.error('You aren`t the owner of this notice!', {
+  //       style: {
+  //         backgroundColor: `var(--cl-background)`,
+  //         padding: '6px',
+  //         color: `var(--cl-black)`,
+  //       },
+  //       icon: '😸',
+  //     });
+  //     return;
+  //   }
+    
+  //   const noticeId = "646fab24d72f7be5ee4c9984"
+
+  //   dispatch(deleteNotice(noticeId))
+  //   console.log('Видаляємо notice');
+  // };
 
   const agePet = (birthday) => {
     const nowDate = new Date();
@@ -178,7 +206,7 @@ export const NoticesPage = () => {
 
   return (
     <>
-      {isOpenModal && (
+      {/* {isOpenModal && (
         <ModalApproveAction onClose={toggleModal} height="389px">
           <ModalContent>
             <TitleModal>Delete adverstiment?</TitleModal>
@@ -201,7 +229,7 @@ export const NoticesPage = () => {
             </ButtonWrap>
           </ModalContent>
         </ModalApproveAction>
-      )}
+      )} */}
       <NoticesSearch onSubmit={handleSearch} />
       <Filters>
         <div>
@@ -222,7 +250,7 @@ export const NoticesPage = () => {
           </div>
         </div>
       </Filters>
-      <NoticeCategoryList filteredItems={filteredItems} setFilteredItems={setFilteredItems} onTrashModal={toggleModal} items={items} search={search}/>
+      <NoticeCategoryList filteredItems={filteredItems} setFilteredItems={setFilteredItems} items={items} search={search}/>
     </>
   );
 };
