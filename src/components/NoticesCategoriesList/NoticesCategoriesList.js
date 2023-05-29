@@ -5,11 +5,10 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getIsLoadNotices,
-  getNotices,
 } from 'Redux/notices/selector';
 import { selectUser } from "Redux/auth/selector";
 import { getFavoriteNotices, getNoticeByCategory } from 'Redux/notices/operation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { fetchNotices } from 'Redux/notices/operation';
 import { NoticeCategoryItemLoad } from 'components/NoticeCategoryItemLoad/NoticeCategoryItemLoad';
 
@@ -31,7 +30,7 @@ export const NoticeCategoryList = ({
   const idUser = useSelector(selectUser).id;
   const dispatch = useDispatch();
   const { categoryName } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const convertAgeToMonths = (age) => {
     switch (age) {
@@ -129,7 +128,7 @@ export const NoticeCategoryList = ({
           setFilteredItems(action.payload.data.notices)
         });
     }
-  }, [categoryName, search, dispatch, ages, genders, idUser]);
+  }, [categoryName, search, dispatch, ages, genders, idUser, searchParams, setFilteredItems]);
 
   const allOrFilterItems = () => {
     if (!isLoading && !filteredItems.length) {
