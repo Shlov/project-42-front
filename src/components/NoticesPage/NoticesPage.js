@@ -18,6 +18,7 @@ import {Filters} from './NoticesPage.styled';
 import { FilterItem } from 'components/NoticesFilters/NoticesFilter.styled';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import RemoveItem from '../../images/icons/cross-small-1.svg'
+import { Pagination } from 'components/Pagination/Pagination';
 
 const categories = [
   {
@@ -177,6 +178,7 @@ export const NoticesPage = () => {
         </div>
       </Filters>
       <NoticeCategoryList filteredItems={filteredItems} setFilteredItems={setFilteredItems} items={items} search={search} ages={ages} genders={genders} />
+      <Pagination/>
     </>
   );
 };
