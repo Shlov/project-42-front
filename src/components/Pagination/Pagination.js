@@ -7,6 +7,10 @@ export const Pagination = () => {
 
   const isDisabled = true
 
+  // const allPages = 5;
+
+
+
   return(
     <PaginationWrapper>
 
@@ -16,6 +20,13 @@ export const Pagination = () => {
           <use href={icon + "#chevron-down"}/>
         </SvgIcon>
       </PaginationKey>
+      {/* {
+        for (let allPages = 0; allPages < array.length; allPages++) {
+          const element = array[allPages];
+          
+        }
+
+      } */}
       <PaginationKey>
         1
       </PaginationKey>

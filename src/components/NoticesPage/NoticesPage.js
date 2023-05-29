@@ -20,10 +20,10 @@ import { FilterItem } from 'components/NoticesFilters/NoticesFilter.styled';
 // import icons from 'images/icons.svg';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import RemoveItem from '../../images/icons/cross-small-1.svg'
-import { deleteNotice } from 'Redux/notices/operation';
-import { selectUser } from 'Redux/auth/selector';
-import { toast } from 'react-hot-toast';
-import { getNotice } from 'Redux/notices/selector';
+// import { deleteNotice } from 'Redux/notices/operation';
+// import { selectUser } from 'Redux/auth/selector';
+// import { toast } from 'react-hot-toast';
+// import { getNotice } from 'Redux/notices/selector';
 
 const categories = [
   {
@@ -250,7 +250,7 @@ export const NoticesPage = () => {
           </div>
         </div>
       </Filters>
-      <NoticeCategoryList filteredItems={filteredItems} setFilteredItems={setFilteredItems} onTrashModal={toggleModal} items={items} search={search}/>
+      <NoticeCategoryList filteredItems={filteredItems} setFilteredItems={setFilteredItems} items={items} search={search}/>
     </>
   );
 };
