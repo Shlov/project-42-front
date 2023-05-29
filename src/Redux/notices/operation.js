@@ -123,9 +123,9 @@ export const updateFavorite = createAsyncThunk(
       if(isFavorite) {
         toast.success('Pet has been added to favorites!', {
           style: {
-            backgroundColor: '#fef9f9',
+            backgroundColor: `var(--cl-background)`,
             padding: '6px',
-            color: `'#111111'`,
+            color: `var(--cl-black)`,
           },
           icon: '💗',
         });
@@ -133,9 +133,9 @@ export const updateFavorite = createAsyncThunk(
       if(!isFavorite) {
         toast.success('Pet has been removed from favorites!', {
           style: {
-            backgroundColor: '#fef9f9',
+            backgroundColor: `var(--cl-background)`,
             padding: '6px',
-            color: `'#111111'`,
+            color: `var(--cl-black)`,
           },
           icon: '😿',
         });
@@ -157,3 +157,36 @@ export const updateFavorite = createAsyncThunk(
     }
   }
 );
+
+export const deleteNotice = createAsyncThunk(
+  'notices/deleteNotice',
+  async ( noticeId, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.token;
+      const responce = await axios.delete(`/notices/user/${noticeId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      toast.success(`${responce.message}`, {
+        style: {
+          backgroundColor: `var(--cl-background)`,
+          padding: '6px',
+          color: `var(--cl-black)`,
+        },
+        icon: '😸',
+      });
+      console.log(responce.data)
+      return responce;
+    } catch (error) {
+      if (error.response.status === 401) {
+        toast.error('Please authorization and try again 😸');
+      }
+      if(error.response.status === 404){
+        toast.error('Notice is not found 😸');
+      }
+      if (error.response.status === 500) {
+        toast.error('Server error. Please try later😸');
+      }
+      console.log(error)
+      return thunkAPI.rejectWithValue(error.message);
+    }  
+});
