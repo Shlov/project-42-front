@@ -11,7 +11,7 @@ import { userReg } from 'Redux/auth/operation';
 import { useState } from 'react';
 import { Navigate } from "react-router-dom";
 import { getConnect } from "Redux/auth/selector";
-import { Hearts } from 'react-loader-spinner';
+import { Loader } from 'components/Loader/Loader';
 import * as yup from 'yup';
 import {
   Box,
@@ -32,7 +32,6 @@ import {
   TextOkValidation,
   IconErrorValidateMail,
   IconErrorValidate,
-  LoaderStyle,
 } from './AuthFormRegister.styled';
 import icons from 'images/icons.svg';
 
@@ -70,20 +69,6 @@ export const eyeOpen = () => {
     <SVG width={24} height={24}>
       <use href={icons + '#eye-open'}></use>
     </SVG>
-  );
-};
-
-      const Loader = () => {
-  return (
-    <LoaderStyle>
-      <Hearts
-        color="orange"
-        strokeWidth="5"
-        animationDuration="1.5"
-        width="96"
-        visible={true}
-      />
-    </LoaderStyle>
   );
 };
 
