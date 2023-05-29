@@ -24,13 +24,16 @@ export const userReg = createAsyncThunk(
       setAuthHeader(response.data.token);
       return response.data;
     } catch (e) {
-      console.log(e.message);
-      if (e.message === 'Request failed with status code 409') {
-        toast.error('This email is registered, please go to login!');
+      if (e.message === 'Request failed with status code 401') {
+        toast.error('Email or password is incorrect!');
       } else if (e.message === 'Network Error') {
         toast.error('Network Error, please check the connect');
       } else if (e.message === 'Request failed with status code 500') {
         toast.error('The server encountered an unexpected error that prevented it from fulfilling the request');
+      } else if (e.message === 'Request failed with status code 409') {
+        toast.error('Already in use')
+      } else if (e.message === 'Request failed with status code 400') {
+        toast.error('Error, something went wrong')
       }
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -51,6 +54,10 @@ export const userLogin = createAsyncThunk(
         toast.error('Network Error, please check the connect');
       } else if (e.message === 'Request failed with status code 500') {
         toast.error('The server encountered an unexpected error that prevented it from fulfilling the request');
+      } else if (e.message === 'Request failed with status code 409') {
+        toast.error('Already in use')
+      } else if (e.message === 'Request failed with status code 400') {
+        toast.error('Error, something went wrong')
       }
       return thunkAPI.rejectWithValue(e.message);
     }

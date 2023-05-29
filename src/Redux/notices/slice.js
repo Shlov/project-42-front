@@ -29,7 +29,6 @@ const noticesInitialState = {
   error: '',
   favorites: [],
   isResponseSuccessful: false,
-  isFavorite: false,
 };
 
 const noticesSlice = createSlice({
@@ -69,13 +68,14 @@ const noticesSlice = createSlice({
     [addNotice.rejected]: handleRejected,
   },
   [getFavoriteNotices.fulfilled](state, action) {
-    console.log(action);
-    state.favorites = action.payload.data.notices;
+    state.items = action.payload.data.notices;
   },
+  [updateFavorite.pending]:handlePending,
   [updateFavorite.fulfilled](state, action){
-    console.log(action);
-    state.isFavorite = action.payload
-  }
+    state.favorites = action.payload.notice.favorite
+    console.log(state.favorites)
+  },
+  [updateFavorite.pending]:handleRejected,
 });
 
 export const noticesReducer = noticesSlice.reducer;

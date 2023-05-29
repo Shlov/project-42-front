@@ -85,27 +85,26 @@ export const ModalNotice = ({ onClose, noticeId }) => {
     sex,
     comments,
     price,
+    // favorite, 
   } = useSelector(getNotice);
   const isLoading = useSelector(getIsLoadNotice);
-
+  
   const inUsersFavorites = useSelector(selectFavorites);
-  console.log(inUsersFavorites);
+  // console.log(inUsersFavorites);
 
   const userId = useSelector(selectUser).id
-  console.log(userId)
 
-  // const userId = '646f0e3366cea3f192faca83'
+  const favorite = !inUsersFavorites.includes(userId)
+  // console.log(typeof favorite.toString())
+  // console.log(favorite)
 
-  const isFavorite = inUsersFavorites.includes(userId)
-  console.log(isFavorite)
+  const handleFavorite = () => {
+    dispatch(updateFavorite({noticeId, favorite}));
+  };
 
   useEffect(() => {
     dispatch(fetchNotice(noticeId));
   }, [dispatch, noticeId]);
-
-  const handleFavorite = () => {
-        dispatch(updateFavorite({noticeId, userId}));
-  };
 
   return (
     <>
