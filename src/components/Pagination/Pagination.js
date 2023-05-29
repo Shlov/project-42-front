@@ -5,9 +5,9 @@ import icon from '../../images/icons.svg';
 
 export const Pagination = () => {
 
-  const isDisabled = true
+  const isDisabled = false
 
-  const allPages = 5;
+  const allPages = 8;
   const start = 1;
   const thisPage = 2;
   const array = Array.from({ length: allPages }, (_, index) => index + start);
@@ -40,11 +40,23 @@ export const Pagination = () => {
     } 
     // else if () {
       
-    // } else {
-
-    // }
-
-
+    // } 
+    else {
+      return array.map(paginationKey => {
+        if (paginationKey === thisPage) {
+          return  (
+            <PaginationKeyA disabled key={paginationKey} onClick={() => handlePageTransition(paginationKey)}>
+              {paginationKey}
+            </PaginationKeyA>)
+        } else {
+          return (
+            <PaginationKey key={paginationKey} onClick={() => handlePageTransition(paginationKey)}>
+              {paginationKey}
+            </PaginationKey>)
+        }
+      }
+      );
+    }
   };
 
   return(

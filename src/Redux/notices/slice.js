@@ -26,7 +26,7 @@ const noticesInitialState = {
   isLoadNotice: false,
   category: 'sell',
   filter: { query: '', gender: '', age: '' },
-  pagination: { page: null },
+  pagination: {},
   error: '',
   favorites: [],
   isResponseSuccessful: false,
@@ -42,6 +42,7 @@ const noticesSlice = createSlice({
       state.isLoadNotices = false;
       state.error = null;
       state.items = action.payload.data.notices;
+      state.pagination = action.payload.data.pagination;
     },
     [fetchNotices.rejected]: handleRejected,
     [fetchNotice.pending](state) {
@@ -59,6 +60,7 @@ const noticesSlice = createSlice({
       state.noticesByCategory = action.payload.message ? [] : action.payload.data.notices;
       state.isLoadNotices = false;
       state.error = null;
+      state.pagination = action.payload.data.pagination;
     },
     [addNotice.pending]: handlePending,
     [addNotice.fulfilled](state, action) {
@@ -78,6 +80,14 @@ const noticesSlice = createSlice({
       state.error = '';
       state.favorites = action.payload.data.notice.favorite;
       state.item.favorite = action.payload.data.notice.favorite;
+      state.items = state.items.map(item => {
+        if (item.id !== action.meta.arg.noticeId) {
+          return item
+        } else {
+          return {...item, favorite: action.payload.data.notice.favorite}
+        }
+      })
+      console.log(action)
     },
     [updateFavorite.rejected](state, action) {
       state.error = action.payload;
