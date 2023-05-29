@@ -20,11 +20,12 @@ import {
 //Олексій
 // } from './UserPage.styled';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from 'Redux/auth/operation';
 
 import icons from 'images/icons.svg';
 import { Navigate } from 'react-router-dom';
+import { getConnect } from 'Redux/auth/selector';
 
 export const LogoutBtn = () => {
   //   toggleModal, яку потрібно передати компоненту ModalApproveAction для закриття вікна
@@ -38,8 +39,11 @@ export const LogoutBtn = () => {
   const handleAction = () => {
     // console.log('Передаємо екшн');
     dispatch(logOut());
-  <Navigate to='/' replace/>
 };
+const isConnect = useSelector(getConnect);
+if (!isConnect) {
+  return (< Navigate to = "/" replace />)
+}
 
   return (
     <>

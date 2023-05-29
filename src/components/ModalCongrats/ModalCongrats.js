@@ -21,7 +21,7 @@ export const ModalCongrats = () => {
   return (
     <>
 
-      {isOpenModal && (
+      {!isOpenModal && (
         <ModalApproveAction onClose={toggleModal}> 
           <ModalContent>
             <TitleModal>Congrats!</TitleModal>

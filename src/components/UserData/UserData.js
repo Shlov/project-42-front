@@ -9,6 +9,8 @@ import { updateUser } from 'Redux/auth/operation';
 import icons from 'images/icons.svg';
 import { LogoutBtn } from 'components/Logout/Logout';
 import { PetsData } from 'components/PetsData/PetsData';
+import { ModalCongrats } from 'components/ModalCongrats/ModalCongrats';
+
 
 import {
   MainContainer,
@@ -19,10 +21,11 @@ import {
   InputContainer,
   Label,
   InputAvatar,
+  StyledErrorMessage,
   BtnText,
   BtnPhoto,
   ImgContainer,
-  SVG,
+  SvgIcon,
   SVGBtn,
   DIV,
   ImgCon,
@@ -30,7 +33,6 @@ import {
   ImgAvatar,
   BtnEdit,
 } from './UserData.styled';
-import { ModalCongrats } from 'components/ModalCongrats/ModalCongrats';
 
 const schema = yup.object().shape({
   name: yup.string().min(3).max(16, 'Length must be less then 15').required(),
@@ -51,9 +53,9 @@ const schema = yup.object().shape({
 const Camera = () => {
   return (
     <BtnPhoto>
-      <SVG>
+      <SvgIcon>
         <use href={icons + '#camera'} />
-      </SVG>
+      </SvgIcon>
       <BtnText>Edit photo</BtnText>
     </BtnPhoto>
   );
@@ -62,16 +64,23 @@ const Camera = () => {
 const CheckBlue = () => {
   return (
     <BtnPhoto>
-      <SVG>
+      <SvgIcon>
         <use href={icons + '#check'} />
-      </SVG>
+      </SvgIcon>
       <BtnText>Confirm</BtnText>
     </BtnPhoto>
   );
 };
 
 export const UserData = () => {
-  const isNewUser = useSelector(selectorNewUser);
+  const newUser = useSelector(selectorNewUser);
+
+  const [isNewUser, setIsNewUser] = useState(newUser);
+
+  const handleCongratsOut = () => {
+    setIsNewUser(false);
+  };
+
  
   const dispatch = useDispatch();
   const [toggleIconPass, setToggleIconPass] = useState(Camera);
@@ -127,7 +136,9 @@ const formData = new FormData();
 
   return (
     <MainContainer>
-    {isNewUser && <ModalCongrats />}
+      {isNewUser && (
+        <div onClick={handleCongratsOut}><ModalCongrats /></div>
+      ) }
     <Box>
       <TitleCard>My information:</TitleCard>
       <Formik
@@ -175,7 +186,7 @@ const formData = new FormData();
               >
                 {toggleIconPass}
                 <InputAvatar
-                  id="imgUrl"
+                  id="avatar"
                   type="file"
                   name="avatar"
                   onChange={handleChangeAvatar}
@@ -184,23 +195,33 @@ const formData = new FormData();
               </label>
             </ImgCon>
             <div>
-              <DIV>
+              <DIV htmlFor="name">
                 <Label>Name: </Label>
                 {isEditingName ? (
                   <InputContainer
                     type="text"
                     name="name"
+                    id="name"
                     value={values.name}
                     onChange={handleChange}
+                    errors={errors.name}
                   />
+                  
                 ) : (
-                  <InputContainer type="text" name="name" value={values.name} />
+                  <InputContainer 
+                  type="text" 
+                  name="name" 
+                  id="name" 
+                  value={values.name} 
+                  errors={errors.name}
+                   />
                 )}
                 {isEditingName ? (
                   <BtnCheck
                     type="submit"
-                    onClick={handleChange}
+                    onClick={() => setIsEditingName(false)}
                     onSubmit={handleSubmit}
+  
                   >
                     <SVGBtn>
                       <use href={icons + '#check'} />
@@ -213,19 +234,23 @@ const formData = new FormData();
                     </BtnEdit>
                   </BtnCheck>
                 )}
+                 {(errors.name) && (null)}
+                {!errors.name && values.name && (null)}
               </DIV>
 
-              <DIV>
+              <DIV htmlFor="email">
                 <Label>Email: </Label>
                 {isEditingEmail ? (
                   <InputContainer
                     type="email"
                     name="email"
+                    id="email"
                     value={values.email}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                 ) : (
-                  <InputContainer type="email" name="email" value={values.email} />
+                  <InputContainer type="email" name="email" id="email" value={values.email} onBlur={handleBlur} />
                 )}
                 {isEditingEmail ? (
                   <BtnCheck
@@ -244,23 +269,28 @@ const formData = new FormData();
                     </BtnEdit>
                   </BtnCheck>
                 )}
+                 <StyledErrorMessage name="email" component="div"/>
               </DIV>
 
-              <DIV>
+              <DIV htmlFor="birthday">
                 <Label>Birthday: </Label>
                 {isEditingBirthday ? (
                   <InputContainer
                     type="date"
                     name="birthday"
+                    id="birthday"
                     value={values.birthday}
                     onChange={handleChange}
                     dateFormat="dd.MM.yyyy"
+                    onBlur={handleBlur}
                   />
                 ) : (
                   <InputContainer
                     type="date"
                     name="birthday"
+                    id="birthday"
                     value={values.birthday}
+                    onBlur={handleBlur}
                   />
                 )}
                 {isEditingBirthday ? (
@@ -280,25 +310,29 @@ const formData = new FormData();
                     </BtnEdit>
                   </BtnCheck>
                 )}
+                 <StyledErrorMessage name="birthday" component="div"/>
               </DIV>
-              <DIV>
+              <DIV htmlFor="phone">
                 <Label>Phone: </Label>
                 {isEditingPhone ? (
                   <InputContainer
                     type="tel"
                     name="phone"
+                    id="phone"
                     value={values.phone}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   
                   />
                 ) : (
-                  <InputContainer type="tel" name="phone" value={values.phone} placeholder="+380"/>
+                  <InputContainer type="tel" name="phone"  id="phone" value={values.phone} placeholder="+380"/>
                 )}
                 {isEditingPhone ? (
                   <BtnCheck
                     type="submit"
                     onClick={() => setIsEditingPhone(false)}
                     onSubmit={handleSubmit}
+                    onBlur={handleBlur}
                   >
                     <SVGBtn>
                       <use href={icons + '#check'} />
@@ -311,25 +345,29 @@ const formData = new FormData();
                     </BtnEdit>
                   </BtnCheck>
                 )}
+                 <StyledErrorMessage name="phone" component="div"/>
               </DIV>
 
-              <DIV>
+              <DIV htmlFor="city">
                 <Label>City: </Label>
                 {isEditingCity ? (
                   <InputContainer
                     type="text"
                     name="city"
+                    id="city"
                     value={values.city}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                 ) : (
-                  <InputContainer type="text" name="city" value={values.city}   placeholder="Lviv"/>
+                  <InputContainer type="text" name="city" id="city" value={values.city}   placeholder="Lviv"/>
                 )}
                 {isEditingCity ? (
                   <BtnCheck
                     type="submit"
                     onClick={() => setIsEditingCity(false)}
                     onSubmit={handleSubmit}
+                    onBlur={handleBlur}
                   >
                     <SVGBtn>
                       <use href={icons + '#check'} />
@@ -342,6 +380,7 @@ const formData = new FormData();
                     </BtnEdit>
                   </BtnCheck>
                 )}
+                 <StyledErrorMessage name="city" component="div"/>
               </DIV>
 
               <LogoutBtn />
