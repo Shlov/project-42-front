@@ -24,7 +24,7 @@ import {
   ModalIcon,
 } from './PetsItem.styled';
 
-export const PetsItem = ({ item }) => {
+export const PetsItem = ({ item: {_id, name, imageURL, birthday, breed, comments} }) => {
   const dispatch = useDispatch()
   const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -33,7 +33,7 @@ export const PetsItem = ({ item }) => {
   };
 
   const handleDeletePet = () => {
-    dispatch(deletePet(item.id));
+    dispatch(deletePet(_id));
   };
   
   return (
@@ -44,7 +44,7 @@ export const PetsItem = ({ item }) => {
             <ModalTitle>Delete your pet?</ModalTitle>
             <ModalText>
               Are you sure want to delete a{' '}
-              <ModalItem>“{item.name}?”</ModalItem>
+              <ModalItem>“{name}?”</ModalItem>
               <br />
               You can`t undo this action.
             </ModalText>
@@ -63,7 +63,7 @@ export const PetsItem = ({ item }) => {
         </ModalApproveAction>
       )}
       <div>
-        <Photo src={item.avatarURL} alt={item.name} width="240" height="240" />
+        <Photo src={imageURL} alt={name} width="240" height="240" />
         <Btn type="button" onClick={toggleModal}>
           <Icon>
             <use href={icons + '#trash'} />
@@ -73,16 +73,16 @@ export const PetsItem = ({ item }) => {
 
       <Description>
         <Label>
-          Name: <Text>{item.name}</Text>
+          Name: <Text>{name}</Text>
         </Label>
         <Label>
-          Date of birth: <Text>{item.birthday}</Text>
+          Date of birth: <Text>{birthday}</Text>
         </Label>
         <Breed>
-          Breed: <Text>{item.breed}</Text>
+          Breed: <Text>{breed}</Text>
         </Breed>
         <LastLabel>
-          Comments: &nbsp;<LastText>{item.comments}</LastText>
+          Comments: &nbsp;<LastText>{comments}</LastText>
         </LastLabel>
       </Description>
     </Card>
@@ -91,8 +91,7 @@ export const PetsItem = ({ item }) => {
 
 PetsItem.propTypes = {
   item: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    photo: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     birthday: PropTypes.string.isRequired,
     breed: PropTypes.string.isRequired,
