@@ -60,11 +60,15 @@ export const userLogin = createAsyncThunk(
 
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
  
-
-    await axios.post('/user/logout');
-    
+    await axios.post('/auth/logout', { 
+      headers: { 
+        Authorization: `Bearer ${persistedToken}`, 
+      }});
    clearAuthHeader();
+ 
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
