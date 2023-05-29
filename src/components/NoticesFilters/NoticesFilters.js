@@ -13,7 +13,7 @@ export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, 
   const filters = {
     age: {
       name: 'age',
-      items: ['3-12 m', '1 year', '2 year']
+      items: ['3-12 m', '1 year', '2+ year']
     },
     gender: {
       name: 'gender',

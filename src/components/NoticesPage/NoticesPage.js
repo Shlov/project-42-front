@@ -7,7 +7,7 @@
 //   - елемент навігації Add pet - переадресовує авторизованого користувача на сторінку AddPetPage
 // Під час першого входу на сторінку користувача повинно переадресовувати на маршрут /notices/sell та рендеритися список оголошень з продажу
 import { useState, useEffect, useMemo } from 'react';
-import {useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 // import { getNoticeByCategory } from 'Redux/notices/operation';
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav'
@@ -39,7 +39,7 @@ const categories = [
     type: 'public',
     id: 3,
     name: 'category',
-    link: 'for-free',
+    link: 'in-good-hands',
   }
 ];
 
@@ -71,15 +71,15 @@ export const NoticesPage = () => {
   const [ages, setAges] = useState([])
   const [genders, setGenders] = useState([])
   const [openFilter, setOpenFilter] = useState(false)
-  const [search, setSearch] = useState('')
   const [activeButtons, setActiveButtons] = useState([...ages, ...genders])
   const { categoryName } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [search, setSearch] = useState(searchParams.get('title'))
 
   const categoryShelf = useMemo(() => ({
     sell: 'sell',
     'lost-found': 'lost/found',
-    'for-free': 'in good hands',
+    'in-good-hands': 'in good hands',
     'favorites-ads': 'favourite ads',
     'my-ads': 'my ads'
   }), []);
@@ -95,13 +95,13 @@ export const NoticesPage = () => {
     }
     if (ages.length) {
       const ageRanges = ages.reduce((ranges, age) => {
-        switch(age) {
+        switch (age) {
           case '3-12 m':
             return [...ranges, { start: 3, end: 12 }];
           case '1 year':
             return [...ranges, { start: 13, end: 24 }];
-          case '2 year':
-            return [...ranges, { start: 25, end: 36 }];
+          case '2+ year':
+            return [...ranges, { start: 25, end: Infinity }];
           default:
             return ranges;
         }
@@ -136,10 +136,10 @@ export const NoticesPage = () => {
 
   const handleSearch = (searchTerm) => {
     setSearch(searchTerm)
-    setSearchParams({ search: searchTerm });
-    searchTerm = searchTerm.toLowerCase();
-    const filteredItems = items.filter(item => item.title.toLowerCase().includes(searchTerm));
-    setFilteredItems(filteredItems);
+    setSearchParams({ title: searchTerm });
+    // searchTerm = searchTerm.toLowerCase();
+    // const filteredItems = items.filter(item => item.title.toLowerCase().includes(searchTerm));
+    // setFilteredItems(filteredItems);
   }
 
   const handleRemoveItem = (item) => {
@@ -163,7 +163,7 @@ export const NoticesPage = () => {
         </div>
         <div className='filters'>
           <FindFilter setAges={setAges} ages={ages} setGenders={setGenders} genders={genders} setOpenFilter={setOpenFilter} openFilter={openFilter} items={items} activeButtons={activeButtons} setActiveButtons={setActiveButtons} handleRemoveItem={handleRemoveItem} />
-          {!mobile && <AddPetButton/>}
+          {!mobile && <AddPetButton />}
           <div className='filters-items'>
             {(tablet || mobile) &&
               activeButtons.map((button, i) =>
@@ -176,7 +176,7 @@ export const NoticesPage = () => {
           </div>
         </div>
       </Filters>
-      <NoticeCategoryList filteredItems={filteredItems} setFilteredItems={setFilteredItems} items={items} search={search}/>
+      <NoticeCategoryList filteredItems={filteredItems} setFilteredItems={setFilteredItems} items={items} search={search} ages={ages} genders={genders} />
     </>
   );
 };
