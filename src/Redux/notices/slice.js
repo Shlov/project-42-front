@@ -56,8 +56,8 @@ const noticesSlice = createSlice({
     [fetchNotice.rejected]: handleRejected,
     [getNoticeByCategory.pending]: handlePending,
     [getNoticeByCategory.fulfilled](state, action) {
-      state.noticesByCategory = action.payload.data;
-      state.isLoading = false;
+      state.noticesByCategory = action.payload.message ? [] : action.payload.data.notices;
+      state.isLoadNotices = false;
       state.error = null;
     },
     [addNotice.pending]: handlePending,
@@ -68,7 +68,7 @@ const noticesSlice = createSlice({
     },
     [addNotice.rejected]: handleRejected,
     [getFavoriteNotices.fulfilled](state, action) {
-      state.items = action.payload.data.notices;
+      state.items = action.payload.message ? [] : action.payload.data.notices;;
     },
     [updateFavorite.pending](state){
       state.isLoadNotice = true;
@@ -76,7 +76,7 @@ const noticesSlice = createSlice({
     [updateFavorite.fulfilled](state, action) {
       state.isLoadNotice = false;
       state.error = '';
-      state.favorites = action.payload.data.notice.favorite;   
+      state.favorites = action.payload.data.notice.favorite;
       state.item.favorite = action.payload.data.notice.favorite;
     },
     [updateFavorite.rejected](state, action) {
@@ -96,7 +96,7 @@ const noticesSlice = createSlice({
       state.error = action.payload;
     }
   },
- 
+
 });
 
 export const noticesReducer = noticesSlice.reducer;

@@ -178,7 +178,7 @@ export const MoreInfoStepTextArea = styled(Field)`
     width: 395px;
 
     ${({ category }) =>
-      category === 'for-free' || category === 'lost/found'
+      category === 'in-good-hands' || category === 'lost/found'
         ? 'height: 182px'
         : ''}
   }
