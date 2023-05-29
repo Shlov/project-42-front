@@ -114,24 +114,45 @@ export const getFavoriteNotices = createAsyncThunk(
 
 export const updateFavorite = createAsyncThunk(
   'notices/updateFavorite',
-  async ({noticeId, isFavorite}, thunkAPI) => {
-    console.log(noticeId);
-    console.log(isFavorite)
+  async ({noticeId, favorite}, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.token;
-      const responce = await axios.patch(`/notices/user/favorite/${noticeId}?favorite=${isFavorite}`, {
-        // params: { favorite },
+      const responce = await axios.patch(`/notices/user/favorite/${noticeId}?favorite=${favorite}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log(responce);
-      return responce.data.notice.favorite;
+      if(favorite) {
+        toast.success('Pet has been added to favorites!', {
+          style: {
+            backgroundColor: '#fef9f9',
+            padding: '6px',
+            color: `'#111111'`,
+          },
+          icon: '💗',
+        });
+      }
+      if(!favorite) {
+        toast.success('Pet has been removed from favorites!', {
+          style: {
+            backgroundColor: '#fef9f9',
+            padding: '6px',
+            color: `'#111111'`,
+          },
+          icon: '😿',
+        });
+      }
+      console.log(responce.data);
+      return responce.data;
     } catch (error) {
       if (error.response.status === 401) {
-        toast.error('Please authorization and try again🙏');
+        toast.error('Please authorization and try again 😸');
+      }
+      if(error.response.status === 404){
+        toast.error('Notice is not found 😸');
       }
       if (error.response.status === 500) {
-        toast.error('Server error. Please try later🙏');
+        toast.error('Server error. Please try later😸');
       }
+      console.log(error)
       return thunkAPI.rejectWithValue(error.message);
     }
   }
