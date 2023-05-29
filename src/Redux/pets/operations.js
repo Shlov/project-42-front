@@ -2,7 +2,6 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
 
-// axios.defaults.baseURL = 'https://fourtwo-back.onrender.com/';
 
 export const fetchPets = createAsyncThunk(
   'pets/fetchPets',
@@ -14,10 +13,10 @@ export const fetchPets = createAsyncThunk(
           Authorization: `Bearer ${token}`,
         },
       });
-      toast.success('Here are your own pets');
+      toast.success('Here are your own pets list!');
       return response.data;
     } catch (error) {
-      toast.error('Something went wrong!!!');
+      toast.error('Something went wrong!');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -33,10 +32,11 @@ export const deletePet = createAsyncThunk(
           Authorization: `Bearer ${token}`,
         },
       });
-      toast.success('Your pet has been successfully removed')
+      toast.success('Pet card deleted!');
+
       return response.data;
     } catch (error) {
-      toast.error('Something went wrong. Try again');
+      toast.error('Something went wrong. Try again!');
       return thunkAPI.rejectWithValue(error.message);
     }
   }

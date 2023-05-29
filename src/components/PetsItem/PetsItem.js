@@ -24,8 +24,10 @@ import {
   ModalIcon,
 } from './PetsItem.styled';
 
-export const PetsItem = ({ item: {_id, name, imageURL, birthday, breed, comments} }) => {
-  const dispatch = useDispatch()
+export const PetsItem = ({
+  item: { _id, name, imageURL, birthday, breed, comments },
+}) => {
+  const dispatch = useDispatch();
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const toggleModal = () => {
@@ -34,8 +36,9 @@ export const PetsItem = ({ item: {_id, name, imageURL, birthday, breed, comments
 
   const handleDeletePet = () => {
     dispatch(deletePet(_id));
+    setIsOpenModal(false);
   };
-  
+
   return (
     <Card>
       {isOpenModal && (
@@ -43,8 +46,7 @@ export const PetsItem = ({ item: {_id, name, imageURL, birthday, breed, comments
           <ModalContainer>
             <ModalTitle>Delete your pet?</ModalTitle>
             <ModalText>
-              Are you sure want to delete a{' '}
-              <ModalItem>“{name}?”</ModalItem>
+              Are you sure want to delete a <ModalItem>“{name}?”</ModalItem>
               <br />
               You can`t undo this action.
             </ModalText>
@@ -96,5 +98,6 @@ PetsItem.propTypes = {
     birthday: PropTypes.string.isRequired,
     breed: PropTypes.string.isRequired,
     comments: PropTypes.string.isRequired,
+    imageURL: PropTypes.string.isRequired,
   }),
 };
