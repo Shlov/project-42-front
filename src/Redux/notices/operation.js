@@ -15,7 +15,7 @@ export const fetchNotices = createAsyncThunk(
           Authorization: `Bearer ${token}`,
         },
       });
-      toast.success('Notices done! 👏');
+      // toast.success('Notices done! 👏');
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -53,12 +53,17 @@ export const getNoticeByCategory = createAsyncThunk(
         return data;
       } else if (title !== '' && !categories) {
         const { data } = await axios.get(`/notices`, {
-          params: { title, minMonths, maxMonths },
+          params: { title, minMonths, maxMonths, sex },
+        });
+        return data;
+      } else if ((!title && !categories) && (sex !== null || (minMonths !== null && maxMonths !== null))) {
+        const { data } = await axios.get(`/notices`, {
+          params: { sex, minMonths, maxMonths },
         });
         return data;
       } else {
         const { data } = await axios.get(`/notices`, {
-          params: { categories, title, minMonths, maxMonths },
+          params: { categories, title, minMonths, maxMonths, sex },
         });
         return data;
       }
@@ -93,11 +98,11 @@ export const addNotice = createAsyncThunk(
 
 export const getFavoriteNotices = createAsyncThunk(
   'notices/user/favorite',
-  async ({ categories, title, sex, minMonths, maxMonths }, thunkAPI) => {
+  async ({ title, sex, minMonths, maxMonths }, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.token;
       const response = await axios.get('/notices/user/favorite', {
-        params: { categories, title, sex, minMonths, maxMonths },
+        params: { title, sex, minMonths, maxMonths },
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -185,5 +190,5 @@ export const deleteNotice = createAsyncThunk(
       }
       console.log(error)
       return thunkAPI.rejectWithValue(error.message);
-    }  
+    }
 });

@@ -10,12 +10,12 @@ import { selectUser } from "Redux/auth/selector";
 import { getFavoriteNotices, getNoticeByCategory } from 'Redux/notices/operation';
 import { useEffect } from 'react';
 import { fetchNotices } from 'Redux/notices/operation';
-import { NoticeCategoryItemLoad } from 'components/NoticeCategoryItemLoad/NoticeCategoryItemLoad';
+import { Loader } from 'components/Loader/Loader';
 
 export const categoryShelf = {
   sell: 'sell',
-  'lost/found': 'lost/found',
-  'in-good-hands': 'in-good-hands',
+  'lost-found': 'lost-found',
+  'in good hands': 'in good hands',
 };
 
 export const NoticeCategoryList = ({
@@ -35,11 +35,11 @@ export const NoticeCategoryList = ({
   const convertAgeToMonths = (age) => {
     switch (age) {
       case '3-12 m':
-        return { minMonths: 3, maxMonths: 12 };
+        return { minMonths: 3, maxMonths: 11 };
       case '1 year':
-        return { minMonths: 13, maxMonths: 24 };
+        return { minMonths: 12, maxMonths: 24 };
       case '2+ year':
-        return { minMonths: 25, maxMonths: Infinity };
+        return { minMonths: 24, maxMonths: Infinity };
       default:
         return { minMonths: null, maxMonths: null };
     }
@@ -48,7 +48,7 @@ export const NoticeCategoryList = ({
   useEffect(() => {
     let minMonths = null;
     let maxMonths = null;
-    let sex = ''
+    let sex = null;
 
     if (ages.length) {
       ages.forEach(age => {
@@ -70,7 +70,7 @@ export const NoticeCategoryList = ({
     if (idUser !== '' && categoryName && categoryName === 'favorites-ads') {
       console.log(idUser);
       try {
-        dispatch(getFavoriteNotices({ title: searchParams.get('title'), minMonths, maxMonths, sex, categories: categoryName }))
+        dispatch(getFavoriteNotices({ title: searchParams.get('title'), minMonths, maxMonths, sex }))
           .then((action) => {
             if (action.payload.message && action.payload.message === 'No data found') {
               setFilteredItems([])
@@ -81,10 +81,10 @@ export const NoticeCategoryList = ({
       } catch (err) {
         console.error(err);
       }
-    } else if (categoryName && !searchParams.get('title') && (idUser || !idUser)) {
+    } else if (categoryName && !searchParams.get('title') && (idUser === '' || idUser !== '')) {
       if (categoryName === categoryShelf[categoryName]) {
         try {
-          dispatch(getNoticeByCategory({ categories: categoryName, minMonths, maxMonths, sex }))
+          dispatch(getNoticeByCategory({ categories: categoryName !== 'lost-found' ? categoryName : 'lost/found', minMonths, maxMonths, sex }))
             .then((action) => {
               if (action.payload.message && action.payload.message === 'No data found') {
                 setFilteredItems([])
@@ -96,7 +96,7 @@ export const NoticeCategoryList = ({
           console.error(err);
         }
       }
-    } else if (!categoryName && searchParams.get('title') && (idUser || !idUser)) {
+    } else if (!categoryName && searchParams.get('title') && (idUser === '' || idUser !== '')) {
       try {
         dispatch(getNoticeByCategory({ title: searchParams.get('title'), minMonths, maxMonths, sex }))
           .then((action) => {
@@ -109,25 +109,38 @@ export const NoticeCategoryList = ({
       } catch (err) {
         console.error(err);
       }
-    } else if (categoryName && categoryName === categoryShelf[categoryName] && searchParams.get('title') && (idUser || !idUser)) {
-      try {
-        dispatch(getNoticeByCategory({ title: searchParams.get('title'), categories: categoryName, minMonths: minMonths, maxMonths, sex }))
+    } else if (!categoryName && !searchParams.get('title') && (!idUser || idUser !== '')) {
+        try {
+          dispatch(getNoticeByCategory({ sex, minMonths, maxMonths }))
+            .then((action) => {
+              if (action.payload.message && action.payload.message === 'No data found') {
+                setFilteredItems([])
+              } else {
+                setFilteredItems(action.payload.data.notices);
+              }
+            });
+        } catch (err) {
+          console.error(err);
+        }
+    } else if (categoryName && categoryName === categoryShelf[categoryName] && searchParams.get('title') && (idUser === '' || idUser !== '')) {
+        try {
+          dispatch(getNoticeByCategory({ title: searchParams.get('title'), categories: categoryName !== 'lost-found' ? categoryName : 'lost/found', minMonths: minMonths, maxMonths, sex }))
+            .then((action) => {
+              if (action.payload.message && action.payload.message === 'No data found') {
+                setFilteredItems([])
+              } else {
+                setFilteredItems(action.payload.data.notices);
+              }
+            });
+        } catch (err) {
+          console.error(err);
+        }
+      } else {
+        dispatch(fetchNotices())
           .then((action) => {
-            if (action.payload.message && action.payload.message === 'No data found') {
-              setFilteredItems([])
-            } else {
-              setFilteredItems(action.payload.data.notices);
-            }
+            setFilteredItems(action.payload.data.notices)
           });
-      } catch (err) {
-        console.error(err);
       }
-    } else {
-      dispatch(fetchNotices())
-        .then((action) => {
-          setFilteredItems(action.payload.data.notices)
-        });
-    }
   }, [categoryName, search, dispatch, ages, genders, idUser, searchParams, setFilteredItems]);
 
   const allOrFilterItems = () => {
@@ -142,21 +155,9 @@ export const NoticeCategoryList = ({
 
   return (
     <NoticesList>
-      {isLoading && <NoticeCategoryItemLoad />}
+      {isLoading && <Loader/>}
       {allOrFilterItems()}
     </NoticesList>
   );
 };
 
-// Наповнювач для карток
-// const arr = [1,1,1,1,1,1,1,1,1,1,1,1]
-// const item = {
-//   category: 'In good hands',
-//   img: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSgGi3YJI2iukoOZ3_fbYCyoiR4dYO8fIyIu_qpphSUf8GRAmFN",
-//   title: "Cute fox looking for a home",
-//   location: 'Kyiv',
-//   age: '1 year',
-//   sex: 'female',
-// }
-// const notices = arr.fill(item);
-//
