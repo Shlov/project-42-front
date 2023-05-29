@@ -47,13 +47,13 @@ const AddPetForm = () => {
       'your-pet': 'Add my pet',
       sell: 'Add pet for sell',
       'lost/found': 'Add lost or found pet',
-      'in-good-hands': 'Add pet for adoption',
+      'in good hands': 'Add pet for adoption',
     },
     3: {
       'your-pet': 'Add my pet',
       sell: 'Add pet for sell',
       'lost/found': 'Add lost or found pet',
-      'in-good-hands': 'Add pet for adoption',
+      'in good hands': 'Add pet for adoption',
     },
   };
 
@@ -97,7 +97,7 @@ const AddPetForm = () => {
 
     formData.append(
       'categories',
-      selectedCategory === 'in-good-hands' ? 'in good hands' : selectedCategory
+      selectedCategory === 'in good hands' ? 'in good hands' : selectedCategory
     );
     formData.append('title', values.title);
     formData.append('sex', values.sex);

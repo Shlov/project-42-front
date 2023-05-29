@@ -14,7 +14,7 @@ import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCat
 import { FindFilter } from 'components/NoticesFilters/NoticesFilters'
 import { NoticeCategoryList } from 'components/NoticesCategoriesList/NoticesCategoriesList';
 import AddPetButton from 'components/AddPetButton/AddPetButton'
-import {Filters} from './NoticesPage.styled';
+import { Filters } from './NoticesPage.styled';
 import { FilterItem } from 'components/NoticesFilters/NoticesFilter.styled';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import RemoveItem from '../../images/icons/cross-small-1.svg'
@@ -40,7 +40,7 @@ const categories = [
     type: 'public',
     id: 3,
     name: 'category',
-    link: 'in-good-hands',
+    link: 'in good hands',
   }
 ];
 
@@ -79,8 +79,8 @@ export const NoticesPage = () => {
 
   const categoryShelf = useMemo(() => ({
     sell: 'sell',
-    'lost-found': 'lost/found',
-    'in-good-hands': 'in good hands',
+    'lost/found': 'lost/found',
+    'in good hands': 'in good hands',
     'favorites-ads': 'favourite ads',
     'my-ads': 'my ads'
   }), []);
@@ -114,7 +114,8 @@ export const NoticesPage = () => {
       });
     }
     if (categoryName) {
-      const categoryValue = categoryShelf[categoryName];
+      console.log(categoryName);
+      const categoryValue = categoryName !== 'lost-found' ? categoryShelf[categoryName] : 'lost/found';
       newItems = newItems.filter(item => item.categories === categoryValue);
     }
     if (search) {
