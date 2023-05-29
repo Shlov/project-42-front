@@ -59,9 +59,9 @@ export const ModalNotice = ({ onClose, noticeId }) => {
       console.log("user disconnect") 
       toast.error('Please authorization and try again!', {
         style: {
-          backgroundColor: '#fef9f9',
+          backgroundColor: `var(--cl-background)`,
           padding: '6px',
-          color: `'#111111'`,
+          color: `var(--cl-black)`,
         },
         icon: '😸',
       });
