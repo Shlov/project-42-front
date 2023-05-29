@@ -121,7 +121,7 @@ export const updateFavorite = createAsyncThunk(
         headers: { Authorization: `Bearer ${token}` },
       });
       if(isFavorite) {
-        toast.success('Pet has been added to favorites!', {
+        toast.success('Pet added to favorites!', {
           style: {
             backgroundColor: `var(--cl-background)`,
             padding: '6px',
@@ -131,7 +131,7 @@ export const updateFavorite = createAsyncThunk(
         });
       }
       if(!isFavorite) {
-        toast.success('Pet has been removed from favorites!', {
+        toast.success('Pet removed from favorites!', {
           style: {
             backgroundColor: `var(--cl-background)`,
             padding: '6px',
@@ -166,7 +166,7 @@ export const deleteNotice = createAsyncThunk(
       const responce = await axios.delete(`/notices/user/${noticeId}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      toast.success(`${responce.message}`, {
+      toast.success('Message deleted successfully!', {
         style: {
           backgroundColor: `var(--cl-background)`,
           padding: '6px',
