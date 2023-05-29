@@ -1,5 +1,7 @@
 import { Field, ErrorMessage } from 'formik';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+import { Input } from '../Input/Input.styled';
+import { Error } from '../Error/Error.styled';
 
 export const MoreInfoStepContainer = styled.div`
   display: flex;
@@ -160,42 +162,6 @@ export const AvatarField = styled.input`
   overflow: hidden;
 `;
 
-export const MoreInfoStepLabel = styled.label`
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-
-  font-weight: 500;
-  font-size: 14px;
-  line-height: calc(19 / 14);
-  color: var(--cl-black);
-
-  @media screen and (min-width: 768px) {
-    gap: 8px;
-    font-size: 20px;
-    line-height: calc(26 / 20);
-  }
-`;
-
-export const Input = css`
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.5;
-  letter-spacing: 0.04em;
-  border-radius: 40px;
-  padding: 10px 16px;
-  color: var(--cl-gray);
-
-  border: 1px solid
-    ${props => (props.errors ? 'var(--cl-red)' : 'var(--cl-blue-link)')};
-  outline: var(--cl-blue-link);
-  outline: var(--cl-blue-link);
-
-  @media screen and (min-width: 768px) {
-    font-size: 16px;
-  }
-`;
-
 export const MoreInfoStepInput = styled(Field)`
   ${Input}
 `;
@@ -216,14 +182,6 @@ export const MoreInfoStepTextArea = styled(Field)`
         ? 'height: 182px'
         : ''}
   }
-`;
-
-export const Error = css`
-  color: var(--cl-red);
-  margin-top: 4px;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: calc(16 / 12);
 `;
 
 export const ErrorMessageContainer = styled(ErrorMessage)`

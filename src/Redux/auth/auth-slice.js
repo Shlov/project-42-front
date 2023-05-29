@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import {userReg, userLogin, refreshUser, logOut} from './operation'
+import {userReg, userLogin, refreshUser, logOut, updateUser} from './operation'
 
 
 export const authSlice = createSlice({
@@ -41,7 +41,12 @@ export const authSlice = createSlice({
         state.user = {};
         state.token = '';
         state.isConnect = false;
+        state.isNewUser = false;
+        state.isRefreshing = false;
       })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.user = { ...state.user, ...action.payload.result };
+    })
   },
 })
 
