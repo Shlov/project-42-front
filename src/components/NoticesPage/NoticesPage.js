@@ -29,6 +29,7 @@ import { FilterItem } from 'components/NoticesFilters/NoticesFilter.styled';
 import icons from 'images/icons.svg';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import RemoveItem from '../../images/icons/cross-small-1.svg'
+import { Pagination } from 'components/Pagination/Pagination';
 
 const categories = [
   {
@@ -223,6 +224,7 @@ export const NoticesPage = () => {
         </div>
       </Filters>
       <NoticeCategoryList filteredItems={filteredItems} setFilteredItems={setFilteredItems} onTrashModal={toggleModal} items={items} search={search}/>
+      <Pagination/>
     </>
   );
 };
