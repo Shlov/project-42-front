@@ -12,10 +12,11 @@ export const PetsList = () => {
   useEffect(() => {
     dispatch(fetchPets());
   }, [dispatch]);
+ 
 
   return (
     <List>
-      {pets.map(pet => (
+      {pets.map((pet) => (
         <li key={pet._id}>
           <PetsItem item={pet} />
         </li>
