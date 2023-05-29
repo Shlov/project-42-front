@@ -34,77 +34,47 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { fetchNotice, updateFavorite } from 'Redux/notices/operation';
-import { getIsLoadNotice, getNotice, selectFavorites } from 'Redux/notices/selector';
+import { getIsLoadNotice, getNotice, selectFavorites} from 'Redux/notices/selector';
 import { selectUser } from 'Redux/auth/selector';
+import { toast } from 'react-hot-toast';
 
 export const ModalNotice = ({ onClose, noticeId }) => {
+  const dispatch = useDispatch();
   const [withoutBlur, setWithoutBlur] = useState(0);
-  // const [isFavorite, setIsFavirite] = useState(false);
   // console.log(withoutBlur);
-
-  // const handleFavorite = () => {
-  //   setIsFavirite(isFavorite => !isFavorite);
-
-  //   if (!isFavorite) {
-  //     console.log('Favirite true');
-  //     console.log(isFavorite);
-  //     toast.success('Pet has been added to favorites!', {
-  //       style: {
-  //         backgroundColor: '#fef9f9',
-  //         padding: '6px',
-  //         color: `'#111111'`,
-  //       },
-  //       icon: '💗',
-  //     });
-  //   } else {
-  //     console.log('Favirite false');
-  //     console.log(isFavorite);
-  //     toast.success('Pet has been removed from favorites!', {
-  //       style: {
-  //         backgroundColor: '#fef9f9',
-  //         padding: '6px',
-  //         color: `'#111111'`,
-  //       },
-  //       icon: '😿',
-  //     });
-  //   }
-  // };
+  
+  const {imageURL, categories, name, birthday, breed, place, sex, comments, price} = useSelector(getNotice);
+  const isLoading = useSelector(getIsLoadNotice);
+  const inUsersFavorites = useSelector(selectFavorites);
+  const userId = useSelector(selectUser).id;
+  const isFavorite = !inUsersFavorites.includes(userId);
+  console.log(isFavorite)
 
   const handleBlurContacts = () => {
     setWithoutBlur(withoutBlur + 1);
   };
-
-  const dispatch = useDispatch();
-  const {
-    imageURL,
-    categories,
-    name,
-    birthday,
-    breed,
-    place,
-    sex,
-    comments,
-    price,
-    // favorite, 
-  } = useSelector(getNotice);
-  const isLoading = useSelector(getIsLoadNotice);
   
-  const inUsersFavorites = useSelector(selectFavorites);
-  // console.log(inUsersFavorites);
-
-  const userId = useSelector(selectUser).id
-
-  const favorite = !inUsersFavorites.includes(userId)
-  // console.log(typeof favorite.toString())
-  // console.log(favorite)
-
-  const handleFavorite = () => {
-    dispatch(updateFavorite({noticeId, favorite}));
+  const handleFavorite = () => {   
+    if(!userId) {
+      console.log("user disconnect") 
+      toast.error('Please authorization and try again!', {
+        style: {
+          backgroundColor: '#fef9f9',
+          padding: '6px',
+          color: `'#111111'`,
+        },
+        icon: '😸',
+      });
+      return;
+    }
+    
+    dispatch(updateFavorite({noticeId, isFavorite}));
   };
 
-  useEffect(() => {
+
+  useEffect(() => {    
     dispatch(fetchNotice(noticeId));
-  }, [dispatch, noticeId]);
+  }, [dispatch, noticeId, userId]);
 
   return (
     <>
@@ -177,14 +147,6 @@ export const ModalNotice = ({ onClose, noticeId }) => {
                 </ItemProp>
               </ListContact>
             </div>
-            {/* <CommentWrap>
-              <span>Comments:&nbsp;</span>
-              <span>
-                Rich would be the perfect addition to an active family that
-                loves to play and go on walks. I bet he would love having a
-                doggy playmate too!{' '}
-              </span>
-            </CommentWrap> */}
             {comments ? (
               <CommentWrap>
                 <span>Comments:&nbsp;</span>
@@ -193,8 +155,6 @@ export const ModalNotice = ({ onClose, noticeId }) => {
             ) : (
               <CommentWrap></CommentWrap>
             )}
-            {/* <PriceProp> <Price>Place:</Price>
-                  <Value>{price ? price : 'invaluable'}</Value></PriceProp> */}
             <ButtonWrapThumb>
               {price ? (
                 <PriceWrap price>
@@ -218,10 +178,10 @@ export const ModalNotice = ({ onClose, noticeId }) => {
                 </ContactBtn>
                 <Button
                   type="button"
-                  aria-label="Add to favorite"
+                  aria-label="favorite button"
                   onClick={handleFavorite}
                 >
-                  Add to
+                  {isFavorite ? "Add to" : "Del from"}
                   <HeartIcon>
                     <use href={icons + '#heart'}></use>
                   </HeartIcon>
