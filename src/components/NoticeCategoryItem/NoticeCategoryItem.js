@@ -16,10 +16,23 @@ import { Card, FavoriteBtn, DeleteBtn, CategoryTag, ImageWrapper, DescriptionWra
 import icon from '../../images/icons.svg';
 import { useState } from "react";
 import { ModalNotice } from "components/ModalNotice/ModalNotice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "Redux/auth/selector";
+// import { getConnect, selectUser } from "Redux/auth/selector";
+import { updateFavorite } from "Redux/notices/operation";
+import { toast } from "react-hot-toast";
 
 export const NoticeCategoryItem = ({onTrashModal, item}) => {
 
-  const active = false
+  const idUser = useSelector(selectUser).id;
+  // const isLogin = useSelector(getConnect);
+  const activeFavorite = item.favorite.includes(idUser);
+  const idNotice = item.id
+  const dispatch = useDispatch();
+
+  console.log('id', idUser)
+  console.log('item', item)
+  console.log('activeFavorite', activeFavorite)
 
   const agePet = (birthday) => {
     const nowDate = new Date().getTime();
@@ -36,6 +49,15 @@ export const NoticeCategoryItem = ({onTrashModal, item}) => {
       return `${Math.floor(differenceTime/31560192000)} year`
     };
   }
+
+  const handleFavorite = () => {
+
+    if (!idUser) {
+      toast.error('Please authorization and try again 😸');
+    }
+    const isFavorite = item.favorite.includes(idUser)
+    dispatch(updateFavorite({idNotice, isFavorite}));
+  };
 
   const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -75,8 +97,8 @@ export const NoticeCategoryItem = ({onTrashModal, item}) => {
               <p>{item.sex ? item.sex : 'sex'}</p>
             </TagItem>
           </TagList>
-          <FavoriteBtn onClick={()=> console.log('add to favorite')}>
-            <HeartIcon height="20" width="20" isActive={active} style={{fill: ""}}>
+          <FavoriteBtn onClick={()=> handleFavorite()}>
+            <HeartIcon height="20" width="20" isActive={activeFavorite} style={{fill: ""}}>
               <use href={icon + "#heart"}/>
             </HeartIcon>
           </FavoriteBtn>
