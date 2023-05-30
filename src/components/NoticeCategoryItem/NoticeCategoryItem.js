@@ -29,7 +29,7 @@ export const NoticeCategoryItem = ({item}) => {
   const idUser = useSelector(selectUser).id;
   const activeFavorite = item.favorite.includes(idUser);
   const noticeId = item.id
-  const favorite = !activeFavorite
+  const isFavorite = !activeFavorite
   const dispatch = useDispatch();
   const agePet = (birthday) => {
     const nowDate = new Date().getTime();
@@ -51,7 +51,7 @@ export const NoticeCategoryItem = ({item}) => {
     if (!idUser) {
       toast.error('Please authorization and try again 😸');
     }
-    dispatch(updateFavorite({noticeId, favorite}));
+    dispatch(updateFavorite({noticeId, isFavorite}));
   };
 
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -140,11 +140,11 @@ export const NoticeCategoryItem = ({item}) => {
               <use href={icon + "#heart"}/>
             </HeartIcon>
           </FavoriteBtn>
-          <DeleteBtn onClick={toggleTrash}>
+          {item.owner === idUser && <DeleteBtn onClick={toggleTrash}>
             <TrashIcon height="20" width="20" >
               <use href={icon + "#trash"}/>
             </TrashIcon>
-          </DeleteBtn>
+          </DeleteBtn>}
         </ImageWrapper>
 
         <DescriptionWrapper>

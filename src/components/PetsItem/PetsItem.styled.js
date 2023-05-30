@@ -20,7 +20,7 @@ export const Card = styled.div`
   }
 `;
 export const Photo = styled.img`
-   background-color: gray;
+  background-color: gray;
   margin-bottom: 20px;
   width: 240px;
   height: 240px;
@@ -105,7 +105,6 @@ export const Text = styled.span`
 
   @media screen and (min-width: 1280px) {
     font-size: 16px;
-    
   }
 `;
 export const LastText = styled.span`
@@ -202,7 +201,7 @@ export const Button = styled.button`
   align-items: center;
   gap: 8px;
   padding: 0;
-  width: 129px;
+  width: 120px;
   height: 40px;
   letter-spacing: 0.04em;
   font-weight: 700;
@@ -219,7 +218,10 @@ export const Button = styled.button`
   &:hover {
     background-color: var(--cl-blue-link);
     color: var(--cl-background);
-}
+  }
+  @media screen and (min-width: 768px) {
+    width: 129px;
+  }
 `;
 
 export const ModalIcon = styled.svg`
