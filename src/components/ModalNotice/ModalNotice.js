@@ -48,7 +48,6 @@ export const ModalNotice = ({ onClose, noticeId }) => {
   const inUsersFavorites = useSelector(selectFavorites);
   const userId = useSelector(selectUser).id;
   const isFavorite = !inUsersFavorites.includes(userId);
-  console.log(isFavorite)
 
   const handleBlurContacts = () => {
     setWithoutBlur(withoutBlur + 1);

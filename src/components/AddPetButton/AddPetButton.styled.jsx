@@ -18,7 +18,7 @@ export const Button = styled(NavLink)`
   border-radius: 40px;
   color: var(--cl-background);
   background-color: var(--cl-blue-link);
-  border-color var(--animat);
+  border-color: var(--animat);
 
   &:hover {
     background: var(--gr-blue);

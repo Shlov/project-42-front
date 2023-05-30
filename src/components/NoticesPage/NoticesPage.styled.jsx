@@ -55,30 +55,50 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   gap: 8px;
+
+  width: 256px;
+  height: 40px;
   padding: 0;
+
   font-weight: 700;
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.04em;
-  font-weight: 700;
 
   border: 2px solid var(--cl-blue-link);
   border-radius: 40px;
   color: var(--cl-blue-link);
-  background-color: var(--cl-almost-white);
-  width: 256px;
-  height: 40px;
+  background-color: transparent;
+
+  cursor: pointer;
+
+  transition: background var(--animat), background-color var(--animat);
+ 
+  &:hover,
+  &:active,
+  &:focus {
+    background: var(--gr-blue);
+    color: var(--cl-background);
+    border: var(--gr-blue);
+  }
+    
   @media (min-width: 768px) {
     width: 129px;
-  }
+  } 
+`;
 
-  transition: background-color var(--animat), color var(--animat);
+export const ButtonTrash = styled(Button)`
+  
+  border: 2px solid var(--animat);
+  color: var(--cl-background);
+  background-color: var(--cl-blue-link);
+
+  transition: none;
 
   &:hover,
   &:active,
   &:focus {
-    background-color: var(--cl-blue-link);
-    color: var(--cl-white);
+    background: var(--gr-blue);
   }
 `;
 
