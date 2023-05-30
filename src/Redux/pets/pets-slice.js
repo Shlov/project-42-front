@@ -27,6 +27,7 @@ const petsSlice = createSlice({
       state.pets = action.payload.result.pets;
       state.isLoading = false;
       state.error = '';
+      state.isResponseSuccessful = false;
     },
     [fetchPets.rejected]: handleRejected,
     [deletePet.pending]: handlePending,

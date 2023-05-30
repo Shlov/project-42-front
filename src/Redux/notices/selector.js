@@ -8,9 +8,7 @@ export const getIsLoadNotice = state => state.notices.isLoadNotice;
 
 export const selectNoticesByCategory = state => state.notices.noticesByCategory;
 
-export const selectFavorites = state => state.notices.favorites;
-
 export const getAddNoticeSuccessfulConnection = state =>
   state.notices.isResponseSuccessful;
 
-export const selectInFavoriteOfUsers = state => state.notices.item.favorite;
+// export const selectInFavoriteOfUsers = state => state.notices.item.favorite;

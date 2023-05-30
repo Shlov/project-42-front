@@ -27,7 +27,6 @@ const noticesInitialState = {
   filter: { query: '', gender: '', age: '' },
   pagination: {},
   error: '',
-  favorites: [],
   isResponseSuccessful: false,
 };
 
@@ -42,6 +41,7 @@ const noticesSlice = createSlice({
       state.error = null;
       state.items = action.payload.data.notices;
       state.pagination = action.payload.data.pagination;
+      state.isResponseSuccessful = false;
     },
     [fetchNotices.rejected]: handleRejected,
     [fetchNotice.pending](state) {
@@ -60,6 +60,7 @@ const noticesSlice = createSlice({
       state.isLoadNotices = false;
       state.error = null;
       state.pagination = action.payload.data.pagination;
+      state.isResponseSuccessful = false;
     },
     [addNotice.pending]: handlePending,
     [addNotice.fulfilled](state, action) {
