@@ -21,9 +21,16 @@ export const Wraper = styled.div`
 `;
 
 export const Title = styled.div`
-text-align: center;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: calc(1.375);
-    margin-bottom: 24px;
+  margin-bottom: 24px;
+
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.375;
+  letter-spacing: 0.03em;
+
+  @media screen and (min-width: 768px) {
+    font-size: 48px;
+    margin-bottom: 40px;
+  }
 `;
