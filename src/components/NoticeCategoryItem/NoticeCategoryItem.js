@@ -17,7 +17,7 @@ import icon from '../../images/icons.svg';
 import { useState } from "react";
 import { ModalNotice } from "components/ModalNotice/ModalNotice";
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
-import {  Button, ButtonWrap, DescrModal, ModalContent, TitleModal, Trash, Text } from '../NoticesPage/NoticesPage.styled';
+import {  Button, ButtonWrap, DescrModal, ModalContent, TitleModal, Trash, Text, ButtonTrash } from '../NoticesPage/NoticesPage.styled';
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "Redux/auth/selector";
 import { deleteNotice, updateFavorite } from "Redux/notices/operation";
@@ -166,12 +166,12 @@ export const NoticeCategoryItem = ({item}) => {
               <Button type="button" aria-label="cancel" onClick={toggleTrash}>
                 Cancel
               </Button>
-              <Button type="button" aria-label="delete" onClick={handleDeleteNotice}>
+              <ButtonTrash type="button" aria-label="delete" onClick={handleDeleteNotice}>
                 Yes
                 <Trash>
                   <use href={icons + '#trash'} />
                 </Trash>
-              </Button>
+              </ButtonTrash>
             </ButtonWrap>
           </ModalContent>
         </ModalApproveAction>

@@ -225,7 +225,7 @@ export const Button = styled.button`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 
   width: 256px;
   height: 40px;
@@ -243,12 +243,14 @@ export const Button = styled.button`
 
   cursor: pointer;
 
-  transition: background 500ms cubic-bezier(0.4, 0, 0.2, 1) 1000ms;
+  transition: background 500ms ease;
 
   &:hover,
   &:active,
   &:focus {
+    transition: background 500ms ease 1000ms;
     background: var(--gr-blue);
+    color: var(--cl-background);
   }
 
   @media (min-width: 768px) {
@@ -279,12 +281,12 @@ export const ContactBtn = styled.button`
 
   cursor: pointer;
 
-  /* transition: background var(--animat); */
-  transition: background 500ms cubic-bezier(0.4, 0, 0.2, 1) 1000ms;
+  transition: background var(--animat), color var(--animat);
 
   &:hover,
   &:active,
   &:focus {
+    transition: background var(--animat) 1000ms, color var(--animat);
     background: var(--gr-blue);
     color: var(--cl-background);
     border: none;

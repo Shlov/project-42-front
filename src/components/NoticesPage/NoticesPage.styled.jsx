@@ -55,30 +55,58 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   gap: 8px;
+
+  width: 256px;
+  height: 40px;
   padding: 0;
+
   font-weight: 700;
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.04em;
-  font-weight: 700;
 
   border: 2px solid var(--cl-blue-link);
   border-radius: 40px;
   color: var(--cl-blue-link);
   background-color: var(--cl-almost-white);
-  width: 256px;
-  height: 40px;
+
+  cursor: pointer;
+
+  transition: background var(--animat), color var(--animat);
+ 
+  &:hover,
+  &:active,
+  &:focus {
+    transition: background var(--animat) 1000ms, color var(--animat);
+    background: var(--gr-blue);
+    color: var(--cl-background);
+    border: none;
+  }
+    
+  @media (min-width: 768px) {
+    width: 129px;
+  } 
+`;
+
+export const ButtonTrash = styled(Button)`
+  
+  border: none;
+  border-radius: 40px;
+  color: var(--cl-background);
+  background: var(--cl-blue-link);
+  
   @media (min-width: 768px) {
     width: 129px;
   }
 
-  transition: background-color var(--animat), color var(--animat);
+  transition: background 500ms ease;
 
   &:hover,
   &:active,
   &:focus {
-    background-color: var(--cl-blue-link);
-    color: var(--cl-white);
+    transition: background 500ms ease 1000ms;
+    background: var(--gr-blue);
+    color: var(--cl-background);
   }
 `;
 
