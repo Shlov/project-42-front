@@ -3,15 +3,13 @@ import { NoticeCategoryItem } from 'components/NoticeCategoryItem/NoticeCategory
 import { NoticesList } from './NoticesCategoriesList.styled';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getIsLoadNotices, getPagination,
-} from 'Redux/notices/selector';
+import { getIsLoadNotices } from 'Redux/notices/selector';
 import { selectUser } from "Redux/auth/selector";
 import { getFavoriteNotices, getNoticeByCategory, getUserNotices } from 'Redux/notices/operation';
 import { useEffect } from 'react';
 import { fetchNotices } from 'Redux/notices/operation';
 import { Loader } from 'components/Loader/Loader';
-import { Pagination } from 'components/Pagination/Pagination';
+// import { Pagination } from 'components/Pagination/Pagination';
 
 export const categoryShelf = {
   all: 'all',

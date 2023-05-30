@@ -87,6 +87,7 @@ export const NoticesPage = () => {
   const [search, setSearch] = useState(searchParams.get('title'))
 
   const { limit, numberNotices, page} = useSelector(getPagination);
+    console.log('limit', limit, 'numberNotices' , numberNotices);
 
   const [futurePage, setFuturePage] = useState(1)
 
@@ -101,11 +102,6 @@ export const NoticesPage = () => {
       setFuturePage(nextPage) 
       console.log('Next',futurePage)
   }
-
-  // const handleFuturePage = (page) => {
-
-  // }
-
 
 
   const categoryShelf = useMemo(() => ({
