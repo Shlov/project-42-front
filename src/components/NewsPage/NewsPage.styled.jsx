@@ -1,4 +1,3 @@
-
 import styled from 'styled-components';
 
 export const Wraper = styled.div`
@@ -17,20 +16,5 @@ export const Wraper = styled.div`
   @media screen and (min-width: 1280px) {
     width: 1280px;
     padding: 0 16px;
-  }
-`;
-
-export const Title = styled.div`
-  margin-bottom: 24px;
-
-  text-align: center;
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 1.375;
-  letter-spacing: 0.03em;
-
-  @media screen and (min-width: 768px) {
-    font-size: 48px;
-    margin-bottom: 40px;
   }
 `;

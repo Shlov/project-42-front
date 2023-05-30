@@ -1,30 +1,30 @@
 import { useState } from 'react';
 import {
-    FriendsSection,
-    Title,
-    FriendsList,
-    Card,
-    CardTitle,
-    CardWrap,
-    CardImg,
-    CardList,
-    CardItem,
-    CardLabel,
-    CardAdress,
-    CardTimeModal,
-    ModalDay,
-} from './OurFriendsPage.styled'
+  FriendsSection,
+  FriendsList,
+  Card,
+  CardTitle,
+  CardWrap,
+  CardImg,
+  CardList,
+  CardItem,
+  CardLabel,
+  CardAdress,
+  CardTimeModal,
+  ModalDay,
+} from './OurFriendsPage.styled';
+import Heading from 'components/Heading/Heading';
 
 const FriendCard = ({ title, logo, time, address, email, phone, times }) => {
-  const [activeTime, setActiveTime] = useState(false)
+  const [activeTime, setActiveTime] = useState(false);
 
   const handleActiveTime = () => {
-    if(!activeTime) {
-      setActiveTime(true)
+    if (!activeTime) {
+      setActiveTime(true);
     } else {
-      setActiveTime(false)
+      setActiveTime(false);
     }
-  }
+  };
 
   return (
     <Card>
@@ -35,11 +35,13 @@ const FriendCard = ({ title, logo, time, address, email, phone, times }) => {
           <CardItem>
             <CardLabel>Time:</CardLabel>
             <br />
-            <div className='time' onClick={handleActiveTime}>{time}</div>
-            {activeTime ?
+            <div className="time" onClick={handleActiveTime}>
+              {time}
+            </div>
+            {activeTime ? (
               <CardTimeModal>
-                {times.map((item, i) =>
-                  <div key={i} className='card-time-wrapper'>
+                {times.map((item, i) => (
+                  <div key={i} className="card-time-wrapper">
                     <div>
                       <ModalDay>{item.day}</ModalDay>
                     </div>
@@ -47,32 +49,34 @@ const FriendCard = ({ title, logo, time, address, email, phone, times }) => {
                       <span>{item.time}</span>
                     </div>
                   </div>
-                )}
+                ))}
               </CardTimeModal>
-              : null
-            }
+            ) : null}
           </CardItem>
           <CardItem>
             <CardLabel>Address:</CardLabel>
             <br />
-            <CardAdress  className='address'>{address}</CardAdress >
+            <CardAdress className="address">{address}</CardAdress>
           </CardItem>
           <CardItem>
             <CardLabel>Email:</CardLabel>
             <br />
-            <a className='email' href={`mailto:${email}`}>{email}</a>
+            <a className="email" href={`mailto:${email}`}>
+              {email}
+            </a>
           </CardItem>
           <CardItem>
             <CardLabel>Phone:</CardLabel>
             <br />
-            <a className='phone' href={`tel:${phone}`}>{phone}</a>
+            <a className="phone" href={`tel:${phone}`}>
+              {phone}
+            </a>
           </CardItem>
         </CardList>
       </CardWrap>
     </Card>
-  )
+  );
 };
-
 
 const FriendsPage = () => {
   const friends = [
@@ -87,33 +91,33 @@ const FriendsPage = () => {
       times: [
         {
           day: 'MN',
-          time: '8:00-19:00'
+          time: '8:00-19:00',
         },
         {
           day: 'TU',
-          time: '8:00-19:00'
+          time: '8:00-19:00',
         },
         {
           day: 'WE',
-          time: '8:00-19:00'
+          time: '8:00-19:00',
         },
         {
           day: 'TH',
-          time: '8:00-19:00'
+          time: '8:00-19:00',
         },
         {
           day: 'FR',
-          time: '8:00-19:00'
+          time: '8:00-19:00',
         },
         {
           day: 'SA',
-          time: '8:00-19:00'
+          time: '8:00-19:00',
         },
         {
           day: 'SU',
-          time: '8:00-19:00'
+          time: '8:00-19:00',
         },
-      ]
+      ],
     },
     {
       id: 2,
@@ -126,33 +130,33 @@ const FriendsPage = () => {
       times: [
         {
           day: 'MN',
-          time: '8:00-20:00'
+          time: '8:00-20:00',
         },
         {
           day: 'TU',
-          time: '8:00-20:00'
+          time: '8:00-20:00',
         },
         {
           day: 'WE',
-          time: '8:00-20:00'
+          time: '8:00-20:00',
         },
         {
           day: 'TH',
-          time: '8:00-20:00'
+          time: '8:00-20:00',
         },
         {
           day: 'FR',
-          time: '8:00-20:00'
+          time: '8:00-20:00',
         },
         {
           day: 'SA',
-          time: '8:00-20:00'
+          time: '8:00-20:00',
         },
         {
           day: 'SU',
-          time: '8:00-20:00'
+          time: '8:00-20:00',
         },
-      ]
+      ],
     },
     {
       id: 3,
@@ -165,33 +169,33 @@ const FriendsPage = () => {
       times: [
         {
           day: 'MN',
-          time: 'day and night'
+          time: 'day and night',
         },
         {
           day: 'TU',
-          time: 'day and night'
+          time: 'day and night',
         },
         {
           day: 'WE',
-          time: 'day and night'
+          time: 'day and night',
         },
         {
           day: 'TH',
-          time: 'day and night'
+          time: 'day and night',
         },
         {
           day: 'FR',
-          time: 'day and night'
+          time: 'day and night',
         },
         {
           day: 'SA',
-          time: 'day and night'
+          time: 'day and night',
         },
         {
           day: 'SU',
-          time: 'day and night'
+          time: 'day and night',
         },
-      ]
+      ],
     },
     {
       id: 4,
@@ -204,33 +208,33 @@ const FriendsPage = () => {
       times: [
         {
           day: 'MN',
-          time: '9:00-19:00'
+          time: '9:00-19:00',
         },
         {
           day: 'TU',
-          time: '9:00-19:00'
+          time: '9:00-19:00',
         },
         {
           day: 'WE',
-          time: '9:00-19:00'
+          time: '9:00-19:00',
         },
         {
           day: 'TH',
-          time: '9:00-19:00'
+          time: '9:00-19:00',
         },
         {
           day: 'FR',
-          time: '9:00-19:00'
+          time: '9:00-19:00',
         },
         {
           day: 'SA',
-          time: '9:00-19:00'
+          time: '9:00-19:00',
         },
         {
           day: 'SU',
-          time: '9:00-19:00'
+          time: '9:00-19:00',
         },
-      ]
+      ],
     },
     {
       id: 5,
@@ -243,33 +247,33 @@ const FriendsPage = () => {
       times: [
         {
           day: 'MN',
-          time: 'day and night'
+          time: 'day and night',
         },
         {
           day: 'TU',
-          time: 'day and night'
+          time: 'day and night',
         },
         {
           day: 'WE',
-          time: 'day and night'
+          time: 'day and night',
         },
         {
           day: 'TH',
-          time: 'day and night'
+          time: 'day and night',
         },
         {
           day: 'FR',
-          time: 'day and night'
+          time: 'day and night',
         },
         {
           day: 'SA',
-          time: 'day and night'
+          time: 'day and night',
         },
         {
           day: 'SU',
-          time: 'day and night'
+          time: 'day and night',
         },
-      ]
+      ],
     },
     {
       id: 6,
@@ -282,33 +286,33 @@ const FriendsPage = () => {
       times: [
         {
           day: 'MN',
-          time: '11:00-16:00'
+          time: '11:00-16:00',
         },
         {
           day: 'TU',
-          time: '11:00-16:00'
+          time: '11:00-16:00',
         },
         {
           day: 'WE',
-          time: '11:00-16:00'
+          time: '11:00-16:00',
         },
         {
           day: 'TH',
-          time: '11:00-16:00'
+          time: '11:00-16:00',
         },
         {
           day: 'FR',
-          time: '11:00-16:00'
+          time: '11:00-16:00',
         },
         {
           day: 'SA',
-          time: '11:00-16:00'
+          time: '11:00-16:00',
         },
         {
           day: 'SU',
-          time: '11:00-16:00'
+          time: '11:00-16:00',
         },
-      ]
+      ],
     },
     {
       id: 7,
@@ -321,33 +325,33 @@ const FriendsPage = () => {
       times: [
         {
           day: 'MN',
-          time: 'day and night'
+          time: 'day and night',
         },
         {
           day: 'TU',
-          time: 'day and night'
+          time: 'day and night',
         },
         {
           day: 'WE',
-          time: 'day and night'
+          time: 'day and night',
         },
         {
           day: 'TH',
-          time: 'day and night'
+          time: 'day and night',
         },
         {
           day: 'FR',
-          time: 'day and night'
+          time: 'day and night',
         },
         {
           day: 'SA',
-          time: 'day and night'
+          time: 'day and night',
         },
         {
           day: 'SU',
-          time: 'day and night'
+          time: 'day and night',
         },
-      ]
+      ],
     },
     {
       id: 8,
@@ -360,33 +364,33 @@ const FriendsPage = () => {
       times: [
         {
           day: 'MN',
-          time: '9:00-17:00'
+          time: '9:00-17:00',
         },
         {
           day: 'TU',
-          time: '9:00-17:00'
+          time: '9:00-17:00',
         },
         {
           day: 'WE',
-          time: '9:00-17:00'
+          time: '9:00-17:00',
         },
         {
           day: 'TH',
-          time: '9:00-17:00'
+          time: '9:00-17:00',
         },
         {
           day: 'FR',
-          time: '9:00-17:00'
+          time: '9:00-17:00',
         },
         {
           day: 'SA',
-          time: '9:00-17:00'
+          time: '9:00-17:00',
         },
         {
           day: 'SU',
-          time: '9:00-17:00'
+          time: '9:00-17:00',
         },
-      ]
+      ],
     },
     {
       id: 9,
@@ -399,39 +403,39 @@ const FriendsPage = () => {
       times: [
         {
           day: 'MN',
-          time: '9:00-20:00'
+          time: '9:00-20:00',
         },
         {
           day: 'TU',
-          time: '9:00-20:00'
+          time: '9:00-20:00',
         },
         {
           day: 'WE',
-          time: '9:00-20:00'
+          time: '9:00-20:00',
         },
         {
           day: 'TH',
-          time: '9:00-20:00'
+          time: '9:00-20:00',
         },
         {
           day: 'FR',
-          time: '9:00-20:00'
+          time: '9:00-20:00',
         },
         {
           day: 'SA',
-          time: '9:00-20:00'
+          time: '9:00-20:00',
         },
         {
           day: 'SU',
-          time: '9:00-20:00'
+          time: '9:00-20:00',
         },
-      ]
+      ],
     },
   ];
 
   return (
     <FriendsSection>
-      <Title>Our friends</Title>
+      <Heading content="Our friends" />
       <FriendsList>
         {friends.map(friend => (
           <FriendCard

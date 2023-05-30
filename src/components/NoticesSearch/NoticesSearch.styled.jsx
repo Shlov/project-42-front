@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { ReactComponent as SearchIcon } from '../../images/icons/search.svg'
+import styled from 'styled-components';
+import { ReactComponent as SearchIcon } from '../../images/icons/search.svg';
 
 export const SearchWrapper = styled.div`
   width: 280px;
@@ -23,30 +23,7 @@ export const SearchWrapper = styled.div`
   @media screen and (min-width: 1280px) {
     width: 608px;
   }
-`
-export const SearchTitle = styled.h1`
- text-align: center;
- font-weight: 700;
- font-size: 24px;
- line-height: calc(33 / 24);
- margin-bottom: 24px;
- margin-top: 45px;
-
- @media (min-width: 768px) {
-   font-weight: 700;
-   font-size: 48px;
-   line-height: 66px;
-   margin-bottom: 40px;
-  }
-
-  @media (min-width: 1024px) {
-    font-size: 48px;
-    line-height: 66px;
-    margin-bottom: 60px;
-    margin-top: 70px;
-  }
-
-  `
+`;
 
 export const SearchInput = styled.input`
   border-radius: 20px;
@@ -60,7 +37,7 @@ export const SearchInput = styled.input`
     color: #888888;
     font-size: 20px;
   }
-`
+`;
 
 export const SearchButton = styled(SearchIcon)`
   border: none;
@@ -68,6 +45,6 @@ export const SearchButton = styled(SearchIcon)`
   height: 24px;
   cursor: pointer;
   position: absolute;
-  right: ${(props) => (props.search ? '60px' : '20px')};
+  right: ${props => (props.search ? '60px' : '20px')};
   top: 7px;
-`
+`;

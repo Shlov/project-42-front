@@ -6,9 +6,9 @@ import {
   SearchButton,
   SearchInput,
   SearchWrapper,
-  SearchTitle,
 } from './NoticesSearch.styled';
 import CleanInput from '../../images/icons/cross-small.svg';
+import Heading from 'components/Heading/Heading';
 
 const NoticesSearch = ({ onSubmit }) => {
   const [search, setSearch] = useState('');
@@ -52,7 +52,7 @@ const NoticesSearch = ({ onSubmit }) => {
 
   return (
     <div>
-      <SearchTitle>Find your favorite pet</SearchTitle>
+      <Heading content="Find your favorite pet" />
       <SearchWrapper>
         <SearchInput
           placeholder="Search"
