@@ -109,9 +109,9 @@ export const NoticeCategoryList = ({
           console.error(err);
         }
       }
-      else if(categoryName === 'all' && (minMonths || maxMonths || sex.length)) {
+      else if(categoryName === 'all' && (minMonths || maxMonths || sex.length || searchParams.get('title'))) {
         try {
-          dispatch(getNoticeByCategory({ minMonths, maxMonths, sex: `${sex.join(',')}` }))
+          dispatch(getNoticeByCategory({ minMonths, maxMonths, sex: `${sex.join(',')}`, title: searchParams.get('title') }))
             .then((action) => {
               if (action.payload.message && action.payload.message === 'No data found') {
                 setFilteredItems([])
