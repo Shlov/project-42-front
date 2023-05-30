@@ -107,24 +107,39 @@ export const CardList = styled.ul`
   `;
 
 export const CardItem = styled.li`
-    list-style: none;
-    font-size: 12px;
-    line-height: 16px;
-    color: var(--cl-black);
-    position: relative;
+  list-style: none;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--cl-black);
+  position: relative;
 
-    a{
-      text-decoration: none;
-      color: inherit;
-    }
+a{
+text-decoration: none;
+color: inherit;
+}
 
-    .time {
-      &:hover {
-        cursor: pointer;
-        color: var(--cl-blue-link);
-      }
-    }
-  `;
+.time, address {
+&:hover {
+  cursor: pointer;
+  color: var(--cl-blue-link);
+  text-decoration: none;
+}
+}
+
+.email {
+&:hover {
+  cursor: pointer;
+  color: var(--cl-blue-link);
+}
+}
+
+.phone {
+&:hover {
+  cursor: pointer;
+  color: var(--cl-blue-link);
+}
+}
+`;
 
 export const CardLabel = styled.span`
     font-weight: 600;

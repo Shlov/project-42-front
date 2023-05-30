@@ -40,17 +40,17 @@ const noticesSlice = createSlice({
     [fetchNotices.fulfilled](state, action) {
       state.isLoadNotices = false;
       state.error = null;
-      state.items = action.payload.data.notices;
-      state.pagination = action.payload.data.pagination;
+      state.items = action.payload.message ? [] : action.payload.data.notices;
+      state.pagination = action.payload.message ? {} : action.payload.data.pagination;
       state.isResponseSuccessful = false; },
     [fetchNotices.rejected]: handleRejected,
-    
+
     [getNoticeByCategory.pending]: handlePending,
     [getNoticeByCategory.fulfilled](state, action) {
       state.items = action.payload.message ? [] : action.payload.data.notices;
       state.isLoadNotices = false;
       state.error = null;
-      state.pagination = action.payload.data.pagination;
+      state.pagination = action.payload.message ? {} : action.payload.data.pagination;
       state.isResponseSuccessful = false; },
     [getNoticeByCategory.rejected]: handleRejected,
 
@@ -58,7 +58,7 @@ const noticesSlice = createSlice({
     [getFavoriteNotices.fulfilled](state, action) {
       state.isLoadNotices = false;
       state.error = null;
-      state.pagination = action.payload.data.pagination;
+      state.pagination = action.payload.message ? {} : action.payload.data.pagination;
       state.items = action.payload.message ? [] : action.payload.data.notices;},
     [getFavoriteNotices.rejected]: handleRejected,
 
@@ -66,8 +66,8 @@ const noticesSlice = createSlice({
     [getUserNotices.fulfilled](state, action) {
       state.isLoadNotices = false;
       state.error = null;
-      state.items = action.payload.data.notices;
-      state.pagination = action.payload.data.pagination; },
+      state.items = action.payload.message ? [] : action.payload.data.notices;
+      state.pagination = action.payload.message ? {} : action.payload.data.pagination; },
     [getUserNotices.rejected]: handleRejected,
 
         // Notice

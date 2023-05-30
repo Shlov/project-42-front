@@ -13,6 +13,7 @@ import { fetchNotices } from 'Redux/notices/operation';
 import { Loader } from 'components/Loader/Loader';
 
 export const categoryShelf = {
+  all: 'all',
   sell: 'sell',
   'lost-found': 'lost-found',
   'in good hands': 'in good hands',
@@ -29,7 +30,7 @@ export const NoticeCategoryList = ({
   const isLoading = useSelector(getIsLoadNotices);
   const idUser = useSelector(selectUser).id;
   const dispatch = useDispatch();
-  const { categoryName } = useParams();
+  const { categoryName = 'all' } = useParams();
   const [searchParams] = useSearchParams();
 
   const convertAgeToMonths = (age) => {
@@ -48,7 +49,7 @@ export const NoticeCategoryList = ({
   useEffect(() => {
     let minMonths = null;
     let maxMonths = null;
-    let sex = null;
+    let sex = [];
 
     if (ages.length) {
       ages.forEach(age => {
@@ -62,15 +63,13 @@ export const NoticeCategoryList = ({
     }
 
     if (genders.length) {
-      genders.forEach(gender => {
-        sex = gender
-      })
+      sex = genders
     }
 
     if (idUser !== '' && categoryName && categoryName === 'favorites-ads') {
       console.log(idUser);
       try {
-        dispatch(getFavoriteNotices({ title: searchParams.get('title'), minMonths, maxMonths, sex }))
+        dispatch(getFavoriteNotices({ title: searchParams.get('title'), minMonths, maxMonths, sex: `${sex.join(',')}` }))
           .then((action) => {
             if (action.payload.message && action.payload.message === 'No data found') {
               setFilteredItems([])
@@ -82,9 +81,37 @@ export const NoticeCategoryList = ({
         console.error(err);
       }
     } else if (categoryName && !searchParams.get('title') && (idUser === '' || idUser !== '')) {
-      if (categoryName === categoryShelf[categoryName]) {
+      if (categoryName === categoryShelf[categoryName] && categoryName !== 'all') {
         try {
-          dispatch(getNoticeByCategory({ categories: categoryName !== 'lost-found' ? categoryName : 'lost/found', minMonths, maxMonths, sex }))
+          dispatch(getNoticeByCategory({ categories: categoryName !== 'lost-found' ? categoryName : 'lost/found', minMonths, maxMonths, sex: `${sex.join(',')}` }))
+            .then((action) => {
+              if (action.payload.message && action.payload.message === 'No data found') {
+                setFilteredItems([])
+              } else {
+                setFilteredItems(action.payload.data.notices);
+              }
+            });
+        } catch (err) {
+          console.error(err);
+        }
+      }
+      else if(categoryName === 'all' && (!minMonths && !maxMonths && !sex.length)) {
+        try {
+          dispatch(fetchNotices())
+          .then((action) => {
+            if (action.payload.message && action.payload.message === 'No data found') {
+              setFilteredItems([])
+            } else {
+              setFilteredItems(action.payload.data.notices);
+            }
+          });
+        } catch (err) {
+          console.error(err);
+        }
+      }
+      else if(categoryName === 'all' && (minMonths || maxMonths || sex.length)) {
+        try {
+          dispatch(getNoticeByCategory({ minMonths, maxMonths, sex: `${sex.join(',')}` }))
             .then((action) => {
               if (action.payload.message && action.payload.message === 'No data found') {
                 setFilteredItems([])
@@ -98,7 +125,7 @@ export const NoticeCategoryList = ({
       }
     } else if (!categoryName && searchParams.get('title') && (idUser === '' || idUser !== '')) {
       try {
-        dispatch(getNoticeByCategory({ title: searchParams.get('title'), minMonths, maxMonths, sex }))
+        dispatch(getNoticeByCategory({ title: searchParams.get('title'), minMonths, maxMonths, sex: `${sex.join(',')}` }))
           .then((action) => {
             if (action.payload.message && action.payload.message === 'No data found') {
               setFilteredItems([])
@@ -111,7 +138,7 @@ export const NoticeCategoryList = ({
       }
     } else if (!categoryName && !searchParams.get('title') && (!idUser || idUser !== '')) {
         try {
-          dispatch(getNoticeByCategory({ sex, minMonths, maxMonths }))
+          dispatch(getNoticeByCategory({ sex: `${sex.join(',')}`, minMonths, maxMonths }))
             .then((action) => {
               if (action.payload.message && action.payload.message === 'No data found') {
                 setFilteredItems([])
@@ -124,7 +151,7 @@ export const NoticeCategoryList = ({
         }
     } else if (categoryName && categoryName === categoryShelf[categoryName] && searchParams.get('title') && (idUser === '' || idUser !== '')) {
         try {
-          dispatch(getNoticeByCategory({ title: searchParams.get('title'), categories: categoryName !== 'lost-found' ? categoryName : 'lost/found', minMonths: minMonths, maxMonths, sex }))
+          dispatch(getNoticeByCategory({ title: searchParams.get('title'), categories: categoryName !== 'lost-found' ? categoryName : 'lost/found', minMonths: minMonths, maxMonths, sex: `${sex.join(',')}` }))
             .then((action) => {
               if (action.payload.message && action.payload.message === 'No data found') {
                 setFilteredItems([])

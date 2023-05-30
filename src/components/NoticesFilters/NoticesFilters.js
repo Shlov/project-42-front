@@ -36,8 +36,8 @@ export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, 
   const handleGender = (event, genderText) => {
     if (event.target.checked) {
       if (!genders.includes(genderText)) {
-        setGenders([...genders, genderText]);
-        setActiveButtons([...activeButtons, genderText]); // Обновление состояния activeButtons
+        setGenders([genderText]);
+        setActiveButtons([genderText]); // Обновление состояния activeButtons
       }
     } else {
       setGenders(genders.filter(gender => gender !== genderText));
@@ -90,7 +90,7 @@ export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, 
               {filters.gender.items.map((item, i) =>
                 activeGenderButton ?
                   <label key={i} htmlFor={item}>
-                    <input type="checkbox" name={filters.gender.name} id={item} onChange={(event) => handleGender(event, item)} />
+                    <input type="radio" name={filters.gender.name} id={item} onChange={(event) => handleGender(event, item)} />
                     {genders.includes(item) ? <FiltersRound><use href={icons + '#check-round'} /></FiltersRound> : <FiltersRound><use href={icons + '#round'} /></FiltersRound>}
                     {item}
                   </label>

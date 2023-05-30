@@ -17,12 +17,28 @@ justify-content: space-between;
 
 export const Button = styled.label`
  margin-left: 12px;
- color: ${(props) => props.categoryPage.categoryName === props.category ? 'var(--cl-blue-light)' : 'var(--cl-blue-link)'};
+ color: ${(props) => {
+  if(props.categoryPage === props.category && props.categoryPage !== 'all') {
+    return 'var(--cl-blue-light)'
+  } else if(props.categoryPage === 'all' && props.category === '') {
+    return 'var(--cl-blue-light)'
+  } else {
+    return 'var(--cl-blue-link)'
+  }
+ }};
  font-size: 14px;
  font-weight: 500;
  width: 131px;
  height: 35px;
- background-color: ${(props) => props.categoryPage.categoryName === props.category ? 'var(--cl-blue-link)' : 'var(--cl-blue-light)'};
+ background-color: ${(props) => {
+  if(props.categoryPage === props.category && props.categoryPage !== 'all') {
+    return 'var(--cl-blue-link)'
+  } else if(props.categoryPage === 'all' && props.category === '') {
+    return 'var(--cl-blue-link)'
+  } else {
+    return 'var(--cl-blue-light)'
+  }
+ }};
  border-radius: 20px;
  padding: 8px 16px;
  cursor: pointer;

@@ -3,14 +3,14 @@ import { useSelector } from 'react-redux';
 import { Button, NavWrapper } from './NoticesCategoriesNav.styled';
 
 export const NoticesCategoriesNav = ({ categories, privateCategory }) => {
-  const categoryPage = useParams()
+  const { categoryName = 'all' } = useParams();
   const isConnect = useSelector(state => state.auth.isConnect)
 
   return (
     <NavWrapper>
       {categories.map((cat, i) => (
         <NavLink key={i} to={'/notices/' + cat.link}>
-          <Button key={i} categoryPage={categoryPage} category={cat.link}>
+          <Button key={i} categoryPage={categoryName} category={cat.link}>
             {cat.text}
           </Button>
         </NavLink>
@@ -18,7 +18,7 @@ export const NoticesCategoriesNav = ({ categories, privateCategory }) => {
       {isConnect &&
         privateCategory.map((cat, i) => (
           <NavLink key={i} to={'/notices/' + cat.link}>
-            <Button key={i} categoryPage={categoryPage} category={cat.link}>
+            <Button key={i} categoryPage={categoryName} category={cat.link}>
               {cat.text}
             </Button>
           </NavLink>

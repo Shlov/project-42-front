@@ -55,17 +55,17 @@ const FriendCard = ({ title, logo, time, address, email, phone, times }) => {
           <CardItem>
             <CardLabel>Address:</CardLabel>
             <br />
-            <CardAdress>{address}</CardAdress >
+            <CardAdress  className='address'>{address}</CardAdress >
           </CardItem>
           <CardItem>
             <CardLabel>Email:</CardLabel>
             <br />
-            <a href={`mailto:${email}`}>{email}</a>
+            <a className='email' href={`mailto:${email}`}>{email}</a>
           </CardItem>
           <CardItem>
             <CardLabel>Phone:</CardLabel>
             <br />
-            <a href={`tel:${phone}`}>{phone}</a>
+            <a className='phone' href={`tel:${phone}`}>{phone}</a>
           </CardItem>
         </CardList>
       </CardWrap>
