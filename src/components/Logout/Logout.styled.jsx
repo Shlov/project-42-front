@@ -106,7 +106,9 @@ export const Arrow = styled.svg`
   fill: transparent;
 `;
 export const ArrowBack = styled.svg`
-  stroke: var(--cl-blue-link);
+width: 24px;
+height: 24px;
+stroke: var(--cl-blue-link);
   fill: transparent;
 `;
 
@@ -114,16 +116,24 @@ export const ArrowBack = styled.svg`
 export const BtnLogout = styled.button`
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 12px;
 
   width: 98px;
   height: 30px;
 
   font-weight: 500;
-  font-family: 'Manrope';
   font-size: 16px;
-
+  cursor: pointer;
   border: none;
   background-color: transparent;
+
+  &:hover,
+  &:focus {
+    color: var(--cl-blue-link);
+    border: 1px solid var(--cl-blue-link);
+    border-radius: 40px;
+
+  
+  }
 `;

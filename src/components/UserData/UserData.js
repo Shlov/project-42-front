@@ -11,7 +11,6 @@ import { LogoutBtn } from 'components/Logout/Logout';
 import { PetsData } from 'components/PetsData/PetsData';
 import { ModalCongrats } from 'components/ModalCongrats/ModalCongrats';
 
-
 import {
   MainContainer,
   Box,
@@ -19,19 +18,15 @@ import {
   FormContainer,
   BtnCheck,
   InputContainer,
-  Label,
   InputAvatar,
   StyledErrorMessage,
-  StyledErrorMessageEmail,
-  StyledErrorMessagePhone,
-  StyledErrorMessageCity,
-  BtnText,
+  AvatarContainer,
+  InputWrraper,
   BtnPhoto,
   ImgContainer,
   SvgIcon,
   SVGBtn,
-  DIV,
-  ImgCon,
+  LabelContainer,
   Photosvg,
   ImgAvatar,
   BtnEdit,
@@ -52,29 +47,6 @@ const schema = yup.object().shape({
   city: yup.string().min(3).max(16, 'length must be less then 16').nullable(),
 });
 
-
-const Camera = () => {
-  return (
-    <BtnPhoto>
-      <SvgIcon>
-        <use href={icons + '#camera'} />
-      </SvgIcon>
-      <BtnText>Edit photo</BtnText>
-    </BtnPhoto>
-  );
-};
-
-const CheckBlue = () => {
-  return (
-    <BtnPhoto>
-      <SvgIcon>
-        <use href={icons + '#check'} />
-      </SvgIcon>
-      <BtnText>Confirm</BtnText>
-    </BtnPhoto>
-  );
-};
-
 export const UserData = () => {
   const newUser = useSelector(selectorNewUser);
 
@@ -84,12 +56,10 @@ export const UserData = () => {
     setIsNewUser(false);
   };
 
- 
   const dispatch = useDispatch();
-  const [toggleIconPass, setToggleIconPass] = useState(Camera);
 
   const user = useSelector(selectUser);
-  console.log(user);
+
   const avatarURL = user.avatarURL;
   const name = user.name;
   const email = user.email;
@@ -97,33 +67,35 @@ export const UserData = () => {
   const birthday = user.birthday;
   const city = user.city;
 
-
   const [userImage, setUserImage] = useState(avatarURL);
   const [avatar, setAvatar] = useState(avatarURL);
- 
-  const [isEditingName, setIsEditingName] = useState(false);
-  const [isEditingEmail, setIsEditingEmail] = useState(false);
-  const [isEditingBirthday, setIsEditingBirthday] = useState(false);
-  const [isEditingPhone, setIsEditingPhone] = useState(false);
-  const [isEditingCity, setIsEditingCity] = useState(false);
+
+  const [isEditingAvatar, setIsEditingAvatar] = useState(true);
+  const [isEditingName, setIsEditingName] = useState(true);
+  const [isEditingEmail, setIsEditingEmail] = useState(true);
+  const [isEditingBirthday, setIsEditingBirthday] = useState(true);
+  const [isEditingPhone, setIsEditingPhone] = useState(true);
+  const [isEditingCity, setIsEditingCity] = useState(true);
 
   const handleChangeAvatar = e => {
     const file = e.target.files[0];
     const objURL = URL.createObjectURL(file);
     setAvatar(objURL);
     setUserImage(file);
-};
-const formData = new FormData();
-  const handleSubmitInput = async (values) => {
+    setIsEditingAvatar(false);
+  };
+  const formData = new FormData();
+  const handleSubmitInput = async values => {
     if (userImage) {
       formData.append('avatarURL', userImage);
-  }
-    if(values.name){
+    }
+    if (values.name) {
       formData.append('name', values.name);
     }
- if(values.email){
-  formData.append('email', values.email);}
-    
+    if (values.email) {
+      formData.append('email', values.email);
+    }
+
     if (values.phone) {
       formData.append('phone', values.phone);
     }
@@ -136,291 +108,269 @@ const formData = new FormData();
     await dispatch(updateUser(formData));
   };
 
-
-
   return (
-    <MainContainer>
+  
+      <MainContainer>
       {isNewUser && (
         <div onClick={handleCongratsOut}><ModalCongrats /></div>
       ) }
-    <Box>
-      <TitleCard>My information:</TitleCard>
-      <Formik
-        enableReinitialize={true}
-        initialValues={{
-          avatarURL: avatarURL,
-          name: name,
-          email: email,
-          phone: phone,
-          birthday: birthday,
-          city: city,
-        }}
+        <Box>
+          <TitleCard>My information:</TitleCard>
+          <Formik
+            enableReinitialize={true}
+            initialValues={{
+              avatarURL: avatarURL,
+              name: name,
+              email: email,
+              phone: phone,
+              birthday: birthday,
+              city: city,
+            }}
+            validationSchema={schema}
+            onSubmit={handleSubmitInput}
+          >
+            {({ values, errors, handleSubmit, handleChange, handleBlur }) => (
+              <FormContainer autoComplete="off">
+                <AvatarContainer>
+                  <ImgContainer>
+                    {!avatar ? (
+                      <Photosvg>
+                        <use href={icons + '#photodefault'} />
+                      </Photosvg>
+                    ) : (
+                      <ImgAvatar src={avatar} alt="Photo user" />
+                    )}
+                  </ImgContainer>
+                  <label htmlFor="avatar">
+                    <InputAvatar
+                      id="avatar"
+                      type="file"
+                      name="avatar"
+                      onBlur={handleBlur}
+                      onChange={handleChangeAvatar}
+                      accept="image/*,.png,.jpg,.gif,.web"
+                    />
+                    {isEditingAvatar ? (
+                      <BtnPhoto
+                        type="submit"
+                        onClick={() => setIsEditingAvatar(false)}
+                        onSubmit={handleSubmit}
+                      >
+                        <SvgIcon>
+                          <use href={icons + '#camera'} />
+                        </SvgIcon>
+                        Edit photo
+                      </BtnPhoto>
+                    ) : (
+                      <BtnPhoto
+                        type="button"
+                        onClick={() => setIsEditingAvatar(true)}
+                      >
+                        <SvgIcon>
+                          <use href={icons + '#check'} />
+                        </SvgIcon>
+                        Confirm
+                      </BtnPhoto>
+                    )}
+                  </label>
+                </AvatarContainer>
 
-        validationSchema={schema}
-        onSubmit={handleSubmitInput}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleSubmit,
-          handleChange,
-          handleBlur,
-     
-        }) => (
-          <FormContainer autoComplete="off" >
-            <ImgCon htmlFor="avatar">
-              <ImgContainer>
-                {!avatar ? (
-                  <Photosvg>
-                    <use href={icons + '#photodefault'} />
-                  </Photosvg>
+                <div>
+                  <LabelContainer htmlFor="name">
+                    Name:
+                    <InputWrraper>
+                      <InputContainer
+                        type="text"
+                        name="name"
+                        id="name"
+                        value={values.name}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        errors={errors.name}
+                        disabled={!isEditingName ? false : true}
+                      />
+                      <StyledErrorMessage name="name" component="div" />
+                    </InputWrraper>
+                    {isEditingName ? (
+                      <BtnCheck
+                        type="submit"
+                        onClick={() => setIsEditingName(false)}
+                        onSubmit={handleSubmit}
+                      >
+                        <BtnEdit>
+                          <use href={icons + '#edit'} />
+                        </BtnEdit>
+                      </BtnCheck>
+                    ) : (
+                      <BtnCheck
+                        type="button"
+                        onClick={() => setIsEditingName(true)}
+                      >
+                        <SVGBtn>
+                          <use href={icons + '#check'} />
+                        </SVGBtn>
+                      </BtnCheck>
+                    )}
+                  </LabelContainer>
 
-                  
-                ) : (<ImgAvatar
-                  src={avatar}
-                  alt="Photo user"
-                />
-                  
-                )}
-              </ImgContainer>
+                  <LabelContainer htmlFor="email">
+                    Email:
+                    <div>
+                      <InputContainer
+                        type="email"
+                        name="email"
+                        id="email"
+                        value={values.email}
+                        errors={errors.email}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        disabled={!isEditingEmail ? false : true}
+                      />
+                      <StyledErrorMessage name="email" component="div" />
+                    </div>
+                    {isEditingEmail ? (
+                      <BtnCheck
+                        type="submit"
+                        onClick={() => setIsEditingEmail(false)}
+                        onSubmit={handleSubmit}
+                      >
+                        <BtnEdit>
+                          <use href={icons + '#edit'} />
+                        </BtnEdit>
+                      </BtnCheck>
+                    ) : (
+                      <BtnCheck
+                        type="button"
+                        onClick={() => setIsEditingEmail(true)}
+                      >
+                        <SVGBtn>
+                          <use href={icons + '#check'} />
+                        </SVGBtn>
+                      </BtnCheck>
+                    )}
+                  </LabelContainer>
 
-              <label
-                onClick={() => setToggleIconPass(CheckBlue)}
-                onSubmit={handleSubmit}
-              >
-                {toggleIconPass}
-                <InputAvatar
-                  id="avatar"
-                  type="file"
-                  name="avatar"
-                  onBlur={handleBlur}
-                  onChange={handleChangeAvatar}
-                  accept="image/*,.png,.jpg,.gif,.web"
-                />
-              </label>
-            </ImgCon>
-            <div>
-              <DIV htmlFor="name">
-                <Label>Name: </Label>
-                {isEditingName ? (
-                  <InputContainer
-                    type="text"
-                    name="name"
-                    id="name"
-                    value={values.name}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    errors={errors.name}
-                  />
-                ) : (
-                  <InputContainer 
-                  type="text" 
-                  name="name" 
-                  id="name" 
-                  value={values.name} 
-                  errors={errors.name}
-                  onBlur={handleBlur}
-                   />
-                )}
-                {isEditingName ? (
-                  <BtnCheck
-                    type="submit"
-                    onClick={() => setIsEditingName(false)}
-                    onSubmit={handleSubmit}
-                  >
-                    <SVGBtn>
-                      <use href={icons + '#check'} />
-                    </SVGBtn>
-                  </BtnCheck>
-                ) : (
-                  <BtnCheck  type="button" onClick={() => setIsEditingName(true)}>
-                    <BtnEdit>
-                      <use href={icons + '#edit'} />
-                    </BtnEdit>
-                  </BtnCheck>
-                )}
-            <StyledErrorMessage name="name" component="div"/>
-              </DIV>
+                  <LabelContainer htmlFor="birthday">
+                    Birthday:
+                    <div>
+                      <InputContainer
+                        type="date"
+                        name="birthday"
+                        id="birthday"
+                        value={values.birthday}
+                        errors={errors.birthday}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        disabled={!isEditingBirthday ? false : true}
+                      />
+                      <StyledErrorMessage name="birthday" component="div" />
+                    </div>
+                    {isEditingBirthday ? (
+                      <BtnCheck
+                        type="submit"
+                        onClick={() => setIsEditingBirthday(false)}
+                        onSubmit={handleSubmit}
+                      >
+                        <BtnEdit>
+                          <use href={icons + '#edit'} />
+                        </BtnEdit>
+                      </BtnCheck>
+                    ) : (
+                      <BtnCheck
+                        type="button"
+                        onClick={() => setIsEditingBirthday(true)}
+                      >
+                        <SVGBtn>
+                          <use href={icons + '#check'} />
+                        </SVGBtn>
+                      </BtnCheck>
+                    )}
+                  </LabelContainer>
 
-              <DIV htmlFor="email">
-                <Label>Email: </Label>
-                {isEditingEmail ? (
-                  <InputContainer
-                    type="email"
-                    name="email"
-                    id="email"
-                    value={values.email}
-                    errors={errors.email}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  /> 
-                ) : (
-                  <InputContainer 
-                  type="email" 
-                  name="email" 
-                  id="email" 
-                  value={values.email} 
-                  errors={errors.email}
-                  onBlur={handleBlur} 
+                  <LabelContainer htmlFor="phone">
+                    Phone:
+                    <div>
+                      <InputContainer
+                        type="tel"
+                        name="phone"
+                        id="phone"
+                        value={values.phone}
+                        errors={errors.phone}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        placeholder="+380000000000"
+                        disabled={!isEditingPhone ? false : true}
+                      />
+                      <StyledErrorMessage name="phone" component="div" />
+                    </div>
+                    {isEditingPhone ? (
+                      <BtnCheck
+                        type="submit"
+                        onClick={() => setIsEditingPhone(false)}
+                        onSubmit={handleSubmit}
+                      >
+                        <BtnEdit>
+                          <use href={icons + '#edit'} />
+                        </BtnEdit>
+                      </BtnCheck>
+                    ) : (
+                      <BtnCheck
+                        type="button"
+                        onClick={() => setIsEditingPhone(true)}
+                      >
+                        <SVGBtn>
+                          <use href={icons + '#check'} />
+                        </SVGBtn>
+                      </BtnCheck>
+                    )}
+                  </LabelContainer>
 
-                  />
-                )}
-                {isEditingEmail ? (
-                  <BtnCheck
-                    type="submit"
-                    onClick={() => setIsEditingEmail(false)}
-                    onSubmit={handleSubmit}
-                  >
-                    <SVGBtn>
-                      <use href={icons + '#check'} />
-                    </SVGBtn>
-                  </BtnCheck>
-                ) : (
-                  <BtnCheck  type="button" onClick={() => setIsEditingEmail(true)}>
-                    <BtnEdit>
-                      <use href={icons + '#edit'} />
-                    </BtnEdit>
-                  </BtnCheck>
-                )}
-                 <StyledErrorMessageEmail name="email" component="div"/>
-              </DIV>
+                  <LabelContainer htmlFor="city">
+                    City:
+                    <div>
+                      <InputContainer
+                        type="text"
+                        name="city"
+                        id="city"
+                        value={values.city}
+                        errors={errors.city}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        placeholder="Lviv"
+                        disabled={!isEditingCity ? false : true}
+                      />
+                      <StyledErrorMessage name="city" component="div" />
+                    </div>
+                    {isEditingCity ? (
+                      <BtnCheck
+                        type="submit"
+                        onClick={() => setIsEditingCity(false)}
+                      >
+                        <BtnEdit>
+                          <use href={icons + '#edit'} />
+                        </BtnEdit>
+                      </BtnCheck>
+                    ) : (
+                      <BtnCheck
+                        type="button"
+                        onClick={() => setIsEditingCity(true)}
+                        onSubmit={handleSubmit}
+                      >
+                        <SVGBtn>
+                          <use href={icons + '#check'} />
+                        </SVGBtn>
+                      </BtnCheck>
+                    )}
+                  </LabelContainer>
 
-              <DIV htmlFor="birthday">
-                <Label>Birthday: </Label>
-                {isEditingBirthday ? (
-                  <InputContainer
-                    type="date"
-                    name="birthday"
-                    id="birthday"
-                    value={values.birthday}
-                    errors={errors.birthday}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                ) : (
-                  <InputContainer
-                    type="date"
-                    name="birthday"
-                    id="birthday"
-                    value={values.birthday}
-                    errors={errors.birthday}
-              
-                    onBlur={handleBlur}
-                  />
-                )}
-                {isEditingBirthday ? (
-                  <BtnCheck
-                    type="submit"
-                    onClick={() => setIsEditingBirthday(false)}
-                    onSubmit={handleSubmit}
-                  >
-                    <SVGBtn>
-                      <use href={icons + '#check'} />
-                    </SVGBtn>
-                  </BtnCheck>
-                ) : (
-                  <BtnCheck type="button" onClick={() => setIsEditingBirthday(true)}>
-                    <BtnEdit>
-                      <use href={icons + '#edit'} />
-                    </BtnEdit>
-                  </BtnCheck>
-                )}
-              </DIV>
-              <DIV htmlFor="phone">
-                <Label>Phone: </Label>
-                {isEditingPhone ? (
-                  <InputContainer
-                    type="tel"
-                    name="phone"
-                    id="phone"
-                    value={values.phone}
-                    errors={errors.phone}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  
-                  />
-                ) : (
-                  <InputContainer 
-                  type="tel" 
-                  name="phone" 
-                   id="phone" 
-                   value={values.phone} 
-                   errors={errors.phone}
-                   placeholder="+380000000000"
-                   onBlur={handleBlur}
-                   />
-                
-                )}
-                {isEditingPhone ? (
-                  <BtnCheck
-                    type="submit"
-                    onClick={() => setIsEditingPhone(false)}
-                    onSubmit={handleSubmit}
-                  >
-                    <SVGBtn>
-                      <use href={icons + '#check'} />
-                    </SVGBtn>
-                  </BtnCheck>
-                ) : (
-                  <BtnCheck type="button" onClick={() => setIsEditingPhone(true)}>
-                    <BtnEdit>
-                      <use href={icons + '#edit'} />
-                    </BtnEdit>
-                  </BtnCheck>
-                )}
-                 <StyledErrorMessagePhone name="phone" component="div"/>
-              </DIV>
-
-              <DIV htmlFor="city">
-                <Label>City: </Label>
-                {isEditingCity ? (
-                  <InputContainer
-                    type="text"
-                    name="city"
-                    id="city"
-                    value={values.city}
-                    errors={errors.city}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                ) : (
-                  <InputContainer 
-                  type="text" 
-                  name="city" 
-                  id="city" 
-                  value={values.city} 
-                  errors={errors.city}
-                  onBlur={handleBlur}
-                  placeholder="Lviv"/>
-                )}
-                {isEditingCity ? (
-                  <BtnCheck
-                    type="submit"
-                    onClick={() => setIsEditingCity(false)}
-                    onSubmit={handleSubmit}
-                  >
-                    <SVGBtn>
-                      <use href={icons + '#check'} />
-                    </SVGBtn>
-                  </BtnCheck>
-                ) : (
-                  <BtnCheck type="button" onClick={() => setIsEditingCity(true)}>
-                    <BtnEdit>
-                      <use href={icons + '#edit'} />
-                    </BtnEdit>
-                  </BtnCheck>
-                )}
-                 <StyledErrorMessageCity name="city" component="div"/>
-              </DIV>
-
-              <LogoutBtn />
-            </div>
-          </FormContainer>
-        )}
-        </Formik>
-      </Box>
-      <PetsData/>
-    </MainContainer>
+                  <LogoutBtn />
+                </div>
+              </FormContainer>
+            )}
+          </Formik>
+        </Box>
+        <PetsData />
+      </MainContainer>
+      
   );
 };

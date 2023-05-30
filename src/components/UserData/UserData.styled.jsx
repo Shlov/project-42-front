@@ -40,7 +40,6 @@ export const TitleCard = styled.h2`
 `;
 
 export const FormContainer = styled(Form)`
-  position: relative;
   width: 280px;
   height: 517px;
   padding: 20px 8px 25px;
@@ -58,9 +57,9 @@ export const FormContainer = styled(Form)`
     height: 268px;
     padding: 20px 20px;
     display: flex;
+    gap: 71px;
     flex-direction: row-reverse;
     justify-content: flex-end;
-    gap: 71px;
   }
 
   @media screen and (min-width: 991px) {
@@ -75,24 +74,36 @@ export const FormContainer = styled(Form)`
   }
 `;
 
+export const AvatarContainer = styled.div`
+position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 21px;
+
+  @media screen and (min-width: 767px) {
+    margin-bottom: 0px;
+  }
+`;
+
 export const ImgContainer = styled.div`
-display: flex;
+  display: flex;
 
-align-items: center;
-justify-content: center;
+  align-items: center;
+  justify-content: center;
 
-width: 182px;
+  width: 182px;
   height: 182px;
   margin-bottom: 14px;
-
   border-radius: 40px;
 `;
 export const ImgAvatar = styled.img`
-height: 100%;
+  height: 100%;
   border-radius: 40px;
 `;
 export const SvgIcon = styled.svg`
-  margin-right: 8px;
+  margin-right: 4px;
   width: 24px;
   height: 24px;
   stroke: var(--cl-blue-link);
@@ -103,49 +114,73 @@ export const InputAvatar = styled(Field)`
   width: 96px;
   visibility: hidden;
 `;
-export const BtnPhoto = styled.div`
+export const BtnPhoto = styled.button`
   position: absolute;
-  display: flex;
+  left: 86px;
+  
+
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  width: 96px;
+  width: 100px;
   height: 28px;
   border: none;
   background-color: transparent;
-`;
 
-export const BtnText = styled.p`
   font-weight: 400;
   font-size: 12px;
   line-height: 22px;
-`;
-
-export const BtnCheck = styled.button`
-  position: absolute;
-  right: 15px;
-  border: none;
-  background-color: transparent;
 
   @media screen and (min-width: 767px) {
-    position: absolute;
-    right: 0px;
-    left: 0px;
+    left: 50px;
+  }
+
+  
+  @media screen and (min-width: 991px) {
+    left: 120px;
+  }
+
+`;
+
+export const LabelContainer = styled.label`
+position: relative;
+display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+  // margin: 12px auto;
+  margin-bottom: 12px;
+
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+
+  @media screen and (min-width: 767px) {
+    // margin: 8px auto;
+    margin-bottom: 8px;
+    width: 355px;
+    height: 32px;
   }
   @media screen and (min-width: 991px) {
-    position: absolute;
+    font-size: 18px;
+    line-height: 25px;
+  }
 
-    left: 315px;
   }
 `;
 
+export const InputWrraper = styled.div`
+  // position: relative;
+`;
 export const InputContainer = styled(Field)`
-  padding: 6px 12px;
+
+padding: 6px 12px;
   width: 190px;
   height: 28px;
 
   background-color: var(--cl-almost-white);
-  border: 1px solid #54adff;
+  border: 1px solid var(--cl-blue-link);
   border-radius: 20px;
   cursor: pointer;
 
@@ -168,127 +203,31 @@ export const InputContainer = styled(Field)`
   }
 `;
 
-export const Label = styled.label`
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 19px;
+export const BtnCheck = styled.button`
+  position: absolute;
+  right: 15px;
 
-  @media screen and (min-width: 991px) {
-    font-size: 18px;
-    line-height: 25px;
-  }
-`;
+  width: 24px;
+  height: 24px;
 
-export const DIV = styled.div`
-  display: flex;
+  border: none;
+  background-color: var(--cl-background);
 
-  align-items: center;
-  justify-content: space-between;
-  margin: 12px auto;
-
-  @media screen and (min-width: 767px) {
-    margin: 8px auto;
-    width: 355px;
-    height: 32px;
-  }
-  
-  }
 `;
 
 export const StyledErrorMessage = styled(ErrorMessage)`
-  position: absolute;
-  right: 30px;
-
-  bottom: 227px;
+position: absolute;
+top: 25px;
+right: 20px;
   font-weight: 400;
   font-size: 9px;
   line-height: 14px;
-  color: #da1414;
+  color: var(--cl-red);
 
   @media screen and (min-width: 767px) {
     position: absolute;
-    right: 50px;
-    bottom: 215px;
-    font-size: 10px;
-  }
-
-  @media screen and (min-width: 991px) {
-    position: absolute;
-    right: 50px;
-    bottom: 215px;
-    font-size: 10px;
-  }
-`;
-
-export const StyledErrorMessageEmail = styled(ErrorMessage)`
-  position: absolute;
-  right: 30px;
-  bottom: 187px;
-  font-weight: 400;
-  font-size: 9px;
-  line-height: 14px;
-  color: #da1414;
-
-  @media screen and (min-width: 767px) {
-    position: absolute;
-    right: 50px;
-    bottom: 215px;
-    font-size: 10px;
-  }
-
-  @media screen and (min-width: 991px) {
-    position: absolute;
-    right: 50px;
-    bottom: 175px;
-    font-size: 10px;
-  }
-`;
-
-
-export const StyledErrorMessagePhone = styled(ErrorMessage)`
-  position: absolute;
-  right: 25px;
-  bottom: 108px;
-  font-weight: 400;
-  font-size: 9px;
-  line-height: 14px;
-  color: #da1414;
-
-  @media screen and (min-width: 767px) {
-    position: absolute;
-    right: 50px;
-    bottom: 215px;
-
-  }
-
-  @media screen and (min-width: 991px) {
-    position: absolute;
-    right: 40px;
-    bottom: 93px;
-
-  }
-`;
-
-export const StyledErrorMessageCity = styled(ErrorMessage)`
-  position: absolute;
-  right: 25px;
-  bottom: 65px;
-  font-weight: 400;
-  font-size: 9px;
-  line-height: 14px;
-  color: #da1414;
-
-  @media screen and (min-width: 767px) {
-    position: absolute;
-    right: 50px;
-    bottom: 215px;
-  }
-
-  @media screen and (min-width: 991px) {
-    position: absolute;
-    right: 40px;
-    bottom: 44px;
-
+    top: 20px;
+    right: 20px;
   }
 `;
 
@@ -306,12 +245,7 @@ export const BtnEdit = styled.svg`
   fill: var(--cl-blue-link);
 `;
 
-export const ImgCon = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-`;
+
 export const Photosvg = styled.svg`
   width: 182px;
   height: 182px;
