@@ -11,3 +11,5 @@ export const selectNoticesByCategory = state => state.notices.noticesByCategory;
 export const getAddNoticeSuccessfulConnection = state =>
   state.notices.isResponseSuccessful;
 
+  export const getPagination = state => state.notices.pagination;
+

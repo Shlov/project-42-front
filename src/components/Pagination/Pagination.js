@@ -1,37 +1,46 @@
 import { PaginationWrapper, PaginationPanel, PaginationKey, PaginationKeyA, SvgIcon } from "./Pagination.styled";
 import icon from '../../images/icons.svg';
+import { useSelector } from "react-redux";
+import { getPagination } from "Redux/notices/selector";
 
 
 
-export const Pagination = () => {
+export const Pagination = ({calcNextPage, handleNextPage}) => {
+
+  const { limit, numberNotices, page} = useSelector(getPagination);
+
+  console.log('p',page, 'nN', numberNotices , 'l', limit)
+
 
   const isDisabled = false
 
-  const allPages = 4;
+  // const allPages = 4;
+  const allPages = Math.ceil(numberNotices/limit);
   const start = 1;
-  const thisPage = 1;
+  const thisPage = Number(page);
+  // const thisPage = 1;
   const array = Array.from({ length: allPages }, (_, index) => index + start);
-  // console.log( 'array' , array)
 
-  const handlePageNext = (page) => {
-    console.log(`go page ${page}`)
-  }
 
-  const handlePageTransition = (page) => {
-    console.log(`go page ${page}`)
-  }
+  // const handlePageNext = (page) => {
+  //   console.log(`go page ${page}`)
+  // }
+
+  // const handlePageTransition = (page) => {
+  //   console.log(`go page ${page}`)
+  // }
 
   const paginationMarkup = (allPages, thisPage) => {
     if (allPages < 6) {
       return array.map(paginationKey => {
         if (paginationKey === thisPage) {
           return  (
-            <PaginationKeyA disabled key={paginationKey} onClick={() => handlePageTransition(paginationKey)}>
+            <PaginationKeyA disabled key={paginationKey} onClick={() => handleNextPage(paginationKey)}>
               {paginationKey}
             </PaginationKeyA>)
         } else {
           return (
-            <PaginationKey key={paginationKey} onClick={() => handlePageTransition(paginationKey)}>
+            <PaginationKey key={paginationKey} onClick={() => handleNextPage(paginationKey)}>
               {paginationKey}
             </PaginationKey>)
         }
@@ -41,29 +50,29 @@ export const Pagination = () => {
     // else if () {
       
     // } 
-    else {
-      return array.map(paginationKey => {
-        if (paginationKey === thisPage) {
-          return  (
-            <PaginationKeyA disabled key={paginationKey} onClick={() => handlePageTransition(paginationKey)}>
-              {paginationKey}
-            </PaginationKeyA>)
-        } else {
-          return (
-            <PaginationKey key={paginationKey} onClick={() => handlePageTransition(paginationKey)}>
-              {paginationKey}
-            </PaginationKey>)
-        }
-      }
-      );
-    }
+    // else {
+    //   return array.map(paginationKey => {
+    //     if (paginationKey === thisPage) {
+    //       return  (
+    //         <PaginationKeyA disabled key={paginationKey} onClick={() => handleNextPage(paginationKey)}>
+    //           {paginationKey}
+    //         </PaginationKeyA>)
+    //     } else {
+    //       return (
+    //         <PaginationKey key={paginationKey} onClick={() => handleNextPage(paginationKey)}>
+    //           {paginationKey}
+    //         </PaginationKey>)
+    //     }
+    //   }
+    //   );
+    // }
   };
 
   return(
     <PaginationWrapper>
 
     <PaginationPanel>
-      <PaginationKey onClick={() => handlePageNext(-1)}>
+      <PaginationKey onClick={() => calcNextPage(-1)}>
         <SvgIcon>
           <use href={icon + "#chevron-down"}/>
         </SvgIcon>
@@ -72,7 +81,7 @@ export const Pagination = () => {
       {/* <PaginationKeyA isActive onClick={() => handlePageTransition('T')}>
               T
       </PaginationKeyA> */}
-      <PaginationKey disabledBtn={isDisabled} onClick={() => handlePageNext(+1)}>
+      <PaginationKey disabledBtn={isDisabled} onClick={() => calcNextPage(+1)}>
         <SvgIcon>
           <use href={icon + "#chevron-up"}/>
         </SvgIcon>

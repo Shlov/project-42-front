@@ -15,6 +15,7 @@ export const Button = css`
   align-items: center;
   gap: 8px;
   padding: 0;
+  margin-left: 12px;
   width: 129px;
   height: 40px;
   letter-spacing: 0.04em;

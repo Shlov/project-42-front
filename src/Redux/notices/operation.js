@@ -9,9 +9,12 @@ axios.defaults.baseURL = 'https://fourtwo-back.onrender.com/';
 
 export const fetchNotices = createAsyncThunk(
   'notices/all',
-  async (_, thunkAPI) => {
+  async (page, thunkAPI) => {
+    console.log('notices/all')
     try {
-      const response = await axios.get('/notices');
+      const response = await axios.get('/notices', {
+        params: { page: page ? page : 1 },
+      });
       // toast.success('Notices done! 👏');
       return response.data;
     } catch (error) {

@@ -19,9 +19,7 @@ import { FilterItem } from 'components/NoticesFilters/NoticesFilter.styled';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import RemoveItem from '../../images/icons/cross-small-1.svg'
 import { Pagination } from 'components/Pagination/Pagination';
-import {
-  getIsLoadNotices,
-} from 'Redux/notices/selector';
+import { getIsLoadNotices, getPagination } from 'Redux/notices/selector';
 
 const categories = [
   {
@@ -88,6 +86,28 @@ export const NoticesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [search, setSearch] = useState(searchParams.get('title'))
 
+  const { limit, numberNotices, page} = useSelector(getPagination);
+
+  const [futurePage, setFuturePage] = useState(1)
+
+  const calcNextPage = (calcPage) => {
+    console.log('do +-Next',futurePage)
+    setFuturePage(page + calcPage) 
+    console.log('+-Next',futurePage)
+  }
+
+  const handleNextPage = (nextPage) => {
+    console.log('do Next',futurePage)
+      setFuturePage(nextPage) 
+      console.log('Next',futurePage)
+  }
+
+  // const handleFuturePage = (page) => {
+
+  // }
+
+
+
   const categoryShelf = useMemo(() => ({
     all: 'all',
     sell: 'sell',
@@ -96,6 +116,7 @@ export const NoticesPage = () => {
     'favorites-ads': 'favourite ads',
     'my-ads': 'my ads'
   }), []);
+
 
   useEffect(() => {
     setSearch(searchParams.get('search') || '');
@@ -186,8 +207,8 @@ export const NoticesPage = () => {
           </div>
         </div>
       </Filters>
-      <NoticeCategoryList filteredItems={filteredItems} setFilteredItems={setFilteredItems} items={items} search={search} ages={ages} genders={genders} />
-      {filteredItems.length && !isLoading ? <Pagination/> : null}
+      <NoticeCategoryList filteredItems={filteredItems} setFilteredItems={setFilteredItems} items={items} search={search} ages={ages} genders={genders} futurePage={futurePage}/>
+      {filteredItems.length && !isLoading ? <Pagination calcNextPage={calcNextPage} handleNextPage={handleNextPage}/> : null}
     </>
   );
 };

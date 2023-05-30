@@ -4,13 +4,14 @@ import { NoticesList } from './NoticesCategoriesList.styled';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  getIsLoadNotices,
+  getIsLoadNotices, getPagination,
 } from 'Redux/notices/selector';
 import { selectUser } from "Redux/auth/selector";
 import { getFavoriteNotices, getNoticeByCategory } from 'Redux/notices/operation';
 import { useEffect } from 'react';
 import { fetchNotices } from 'Redux/notices/operation';
 import { Loader } from 'components/Loader/Loader';
+import { Pagination } from 'components/Pagination/Pagination';
 
 export const categoryShelf = {
   all: 'all',
@@ -25,13 +26,20 @@ export const NoticeCategoryList = ({
   filteredItems,
   setFilteredItems,
   ages,
-  genders
+  genders,
+  futurePage
 }) => {
   const isLoading = useSelector(getIsLoadNotices);
   const idUser = useSelector(selectUser).id;
   const dispatch = useDispatch();
   const { categoryName = 'all' } = useParams();
   const [searchParams] = useSearchParams();
+  
+
+  // const { limit, numberNotices, page} = useSelector(getPagination);
+  // console.log(page, 'p l' , limit)
+
+
 
   const convertAgeToMonths = (age) => {
     switch (age) {
@@ -97,7 +105,7 @@ export const NoticeCategoryList = ({
       }
       else if(categoryName === 'all' && (!minMonths && !maxMonths && !sex.length)) {
         try {
-          dispatch(fetchNotices())
+          dispatch(fetchNotices(futurePage))
           .then((action) => {
             if (action.payload.message && action.payload.message === 'No data found') {
               setFilteredItems([])
@@ -163,12 +171,12 @@ export const NoticeCategoryList = ({
           console.error(err);
         }
       } else {
-        dispatch(fetchNotices())
+        dispatch(fetchNotices(futurePage))
           .then((action) => {
             setFilteredItems(action.payload.data.notices)
           });
       }
-  }, [categoryName, search, dispatch, ages, genders, idUser, searchParams, setFilteredItems]);
+  }, [categoryName, search, dispatch, ages, genders, idUser, searchParams, setFilteredItems, futurePage]);
 
   const allOrFilterItems = () => {
     if (!isLoading && !filteredItems.length) {
@@ -181,10 +189,13 @@ export const NoticeCategoryList = ({
   };
 
   return (
-    <NoticesList>
-      {isLoading && <Loader/>}
-      {allOrFilterItems()}
-    </NoticesList>
+    <>
+      <NoticesList>
+        {isLoading && <Loader/>}
+        {allOrFilterItems()}
+      </NoticesList>
+      {/* {filteredItems.length && !isLoading ? <Pagination/> : null} */}
+    </>
   );
 };
 
