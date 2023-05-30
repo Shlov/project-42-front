@@ -87,20 +87,21 @@ export const NoticesPage = () => {
   const [search, setSearch] = useState(searchParams.get('title'))
 
   const { limit, numberNotices, page} = useSelector(getPagination);
-    console.log('limit', limit, 'numberNotices' , numberNotices);
-
-  const [futurePage, setFuturePage] = useState(1)
-
-  const calcNextPage = (calcPage) => {
-    console.log('do +-Next',futurePage)
-    setFuturePage(page + calcPage) 
-    console.log('+-Next',futurePage)
+    // console.log('limit', limit, 'numberNotices' , numberNotices);
+    
+    const [futurePage, setFuturePage] = useState(1)
+    
+    const calcNextPage = (calcPage) => {
+      const futurePage = Number(page) + calcPage;
+      const allPages = Math.ceil(numberNotices/limit);
+      if (futurePage > 0 && allPages >= futurePage) {
+      return setFuturePage(futurePage) 
+    }
+    setFuturePage(1)
   }
 
   const handleNextPage = (nextPage) => {
-    console.log('do Next',futurePage)
-      setFuturePage(nextPage) 
-      console.log('Next',futurePage)
+    setFuturePage(nextPage) 
   }
 
 
