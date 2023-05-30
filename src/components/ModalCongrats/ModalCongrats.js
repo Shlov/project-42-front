@@ -10,9 +10,11 @@ import {
   Button,
 } from './ModalCongrats.styled';
 
+
 export const ModalCongrats = () => {
     // toggleModal, яку потрібно передати компоненту ModalApproveAction для закриття вікна
   const [isOpenModal, setIsOpenModal] = useState(false);
+
 
   const toggleModal = () => {
     setIsOpenModal(isOpen => !isOpen);
@@ -20,8 +22,7 @@ export const ModalCongrats = () => {
 
   return (
     <>
-
-      {!isOpenModal && (
+      {!isOpenModal &&
         <ModalApproveAction onClose={toggleModal}> 
           <ModalContent>
             <TitleModal>Congrats!</TitleModal>
@@ -39,7 +40,7 @@ export const ModalCongrats = () => {
             </Button>
           </ModalContent>
         </ModalApproveAction>
-      )}
+      }
     </>
   );
 };
