@@ -78,7 +78,8 @@ const noticesSlice = createSlice({
       state.isLoadNotice = false;
       state.error = null;
       state.item = action.payload.data.notice;
-      state.favorites = action.payload.data.notice.favorite; },
+      // state.favorites = action.payload.data.notice.favorite;
+     },
     [fetchNotice.rejected]: handleRejected,
 
     [updateFavorite.pending](state){
@@ -86,7 +87,7 @@ const noticesSlice = createSlice({
     [updateFavorite.fulfilled](state, action) {
       state.isLoadNotice = false;
       state.error = '';
-      state.favorites = action.payload.data.notice.favorite;
+      // state.favorites = action.payload.data.notice.favorite;
       state.item.favorite = action.payload.data.notice.favorite;
       state.items = state.items.map(item => {
         if (item.id !== action.meta.arg.noticeId) {
