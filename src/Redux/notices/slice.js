@@ -7,6 +7,7 @@ import {
   getFavoriteNotices,
   updateFavorite,
   deleteNotice,
+  getUserNotices,
 } from './operation';
 
 const handlePending = state => {
@@ -33,48 +34,55 @@ const noticesInitialState = {
 const noticesSlice = createSlice({
   name: 'notices',
   initialState: noticesInitialState,
-
   extraReducers: {
+    // Notices
     [fetchNotices.pending]: handlePending,
     [fetchNotices.fulfilled](state, action) {
       state.isLoadNotices = false;
       state.error = null;
       state.items = action.payload.data.notices;
       state.pagination = action.payload.data.pagination;
-      state.isResponseSuccessful = false;
-    },
+      state.isResponseSuccessful = false; },
     [fetchNotices.rejected]: handleRejected,
-    [fetchNotice.pending](state) {
-      state.isLoadNotice = true;
-    },
-    [fetchNotice.fulfilled](state, action) {
-      state.isLoadNotice = false;
-      state.error = null;
-      state.item = action.payload.data.notice;
-      state.favorites = action.payload.data.notice.favorite;
-    },
-    [fetchNotice.rejected]: handleRejected,
+    
     [getNoticeByCategory.pending]: handlePending,
     [getNoticeByCategory.fulfilled](state, action) {
       state.items = action.payload.message ? [] : action.payload.data.notices;
       state.isLoadNotices = false;
       state.error = null;
       state.pagination = action.payload.data.pagination;
-      state.isResponseSuccessful = false;
-    },
-    [addNotice.pending]: handlePending,
-    [addNotice.fulfilled](state, action) {
-      state.isLoading = false;
-      state.error = '';
-      state.isResponseSuccessful = true;
-    },
-    [addNotice.rejected]: handleRejected,
+      state.isResponseSuccessful = false; },
+    [getNoticeByCategory.rejected]: handleRejected,
+
+    [getFavoriteNotices.pending]: handlePending,
     [getFavoriteNotices.fulfilled](state, action) {
-      state.items = action.payload.message ? [] : action.payload.data.notices;;
-    },
+      state.isLoadNotices = false;
+      state.error = null;
+      state.pagination = action.payload.data.pagination;
+      state.items = action.payload.message ? [] : action.payload.data.notices;},
+    [getFavoriteNotices.rejected]: handleRejected,
+
+    [getUserNotices.pending]: handlePending,
+    [getUserNotices.fulfilled](state, action) {
+      state.isLoadNotices = false;
+      state.error = null;
+      state.items = action.payload.data.notices;
+      state.pagination = action.payload.data.pagination; },
+    [getUserNotices.rejected]: handleRejected,
+
+        // Notice
+
+    [fetchNotice.pending](state) {
+      state.isLoadNotice = true; },
+    [fetchNotice.fulfilled](state, action) {
+      state.isLoadNotice = false;
+      state.error = null;
+      state.item = action.payload.data.notice;
+      state.favorites = action.payload.data.notice.favorite; },
+    [fetchNotice.rejected]: handleRejected,
+
     [updateFavorite.pending](state){
-      state.isLoadNotice = true;
-    },
+      state.isLoadNotice = true; },
     [updateFavorite.fulfilled](state, action) {
       state.isLoadNotice = false;
       state.error = '';
@@ -86,25 +94,27 @@ const noticesSlice = createSlice({
         } else {
           return {...item, favorite: action.payload.data.notice.favorite}
         }
-      })
-      console.log(action)
-    },
+      }) },
     [updateFavorite.rejected](state, action) {
-      state.error = action.payload;
-    },
+      state.error = action.payload; },
+
+    [addNotice.pending]: handlePending,
+    [addNotice.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = '';
+      state.isResponseSuccessful = true; },
+    [addNotice.rejected]: handleRejected,
+
     [deleteNotice.pending](state){
-      state.isLoadNotice = true;
-    },
+      state.isLoadNotice = true; },
     [deleteNotice.fulfilled](state, action){
       state.isLoadNotice = false;
       state.error = '';
       state.items = state.items.filter(
         item => item.id !== action.payload.data.notice.id
-      )
-    },
+      ) },
     [deleteNotice](state, action){
-      state.error = action.payload;
-    }
+      state.error = action.payload; },
   },
 
 });

@@ -5,6 +5,8 @@ import toast from 'react-hot-toast';
 
 axios.defaults.baseURL = 'https://fourtwo-back.onrender.com/';
 
+// Notices
+
 export const fetchNotices = createAsyncThunk(
   'notices/all',
   async (_, thunkAPI) => {
@@ -16,23 +18,6 @@ export const fetchNotices = createAsyncThunk(
         },
       });
       // toast.success('Notices done! 👏');
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const fetchNotice = createAsyncThunk(
-  'notices/one',
-  async (id, thunkAPI) => {
-    try {
-      const token = thunkAPI.getState().auth.token;
-      const response = await axios.get(`/notices/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -73,6 +58,61 @@ export const getNoticeByCategory = createAsyncThunk(
   }
 );
 
+export const getUserNotices = createAsyncThunk(
+  'notices/user',
+  async ({ title, sex, minMonths, maxMonths }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.token;
+      const response = await axios.get('/notices/user', {
+        params: { title, sex, minMonths, maxMonths },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    };
+  }
+);
+
+export const getFavoriteNotices = createAsyncThunk(
+  'notices/user/favorite',
+  async ({ title, sex, minMonths, maxMonths }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.token;
+      const response = await axios.get('/notices/user/favorite', {
+        params: { title, sex, minMonths, maxMonths },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+// Notice
+
+export const fetchNotice = createAsyncThunk(
+  'notices/one',
+  async (id, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.token;
+      const response = await axios.get(`/notices/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const addNotice = createAsyncThunk(
   'notices/addNotice',
   async ({ formData }, thunkAPI) => {
@@ -96,30 +136,12 @@ export const addNotice = createAsyncThunk(
   }
 );
 
-export const getFavoriteNotices = createAsyncThunk(
-  'notices/user/favorite',
-  async ({ title, sex, minMonths, maxMonths }, thunkAPI) => {
-    try {
-      const token = thunkAPI.getState().auth.token;
-      const response = await axios.get('/notices/user/favorite', {
-        params: { title, sex, minMonths, maxMonths },
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
 export const updateFavorite = createAsyncThunk(
   'notices/updateFavorite',
   async ({noticeId, isFavorite}, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.token;
-      const responce = await axios.patch(`/notices/user/favorite/${noticeId}?favorite=${isFavorite}`, {
+      const response = await axios.patch(`/notices/user/favorite/${noticeId}?favorite=${isFavorite}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if(isFavorite) {
@@ -142,8 +164,7 @@ export const updateFavorite = createAsyncThunk(
           icon: '😿',
         });
       }
-      // console.log(responce.data.data.notice.favorite);
-      return responce.data;
+      return response.data;
     } catch (error) {
       if (error.response.status === 401) {
         toast.error('Please authorization and try again 😸');
@@ -165,7 +186,7 @@ export const deleteNotice = createAsyncThunk(
   async ( noticeId, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.token;
-      const responce = await axios.delete(`/notices/user/${noticeId}`, {
+      const response = await axios.delete(`/notices/user/${noticeId}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       toast.success('Notice deleted successfully!', {
@@ -176,8 +197,7 @@ export const deleteNotice = createAsyncThunk(
         },
         icon: '😸',
       });
-      console.log(responce.data)
-      return responce;
+      return response;
     } catch (error) {
       if (error.response.status === 401) {
         toast.error('Please authorization and try again 😸');

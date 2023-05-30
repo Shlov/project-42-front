@@ -11,4 +11,3 @@ export const selectNoticesByCategory = state => state.notices.noticesByCategory;
 export const getAddNoticeSuccessfulConnection = state =>
   state.notices.isResponseSuccessful;
 
-// export const selectInFavoriteOfUsers = state => state.notices.item.favorite;
