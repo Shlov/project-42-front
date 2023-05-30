@@ -1,8 +1,8 @@
 // NewsPage (додаткове завдання)
-
+import { NewsData } from "components/NewsPage/NewsPage";
 const NewsPage = () => {
   return (
-    <h2>News</h2>
+    <NewsData/>
   );
 };
 
