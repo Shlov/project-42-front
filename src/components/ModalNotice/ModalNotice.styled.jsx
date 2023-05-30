@@ -204,7 +204,6 @@ export const ButtonWrapThumb = styled.div`
     justify-content: ${props => props.price ? "space-between" : "flex-end"};
  
     width: 617px;
-    /* padding-block-start: 70px; */
   }
 `;
 
@@ -236,21 +235,17 @@ export const Button = styled.button`
   font-size: 16px;
   line-height: 22px;
 
-  border: none;
+  border: 2px solid var(--animat);
   border-radius: 40px;
   color: var(--cl-background);
-  background: var(--cl-blue-link);
+  background-color: var(--cl-blue-link);
 
   cursor: pointer;
-
-  transition: background 500ms ease;
 
   &:hover,
   &:active,
   &:focus {
-    transition: background 500ms ease 1000ms;
     background: var(--gr-blue);
-    color: var(--cl-background);
   }
 
   @media (min-width: 768px) {
@@ -258,38 +253,19 @@ export const Button = styled.button`
   }
 `;
 
-export const ContactBtn = styled.button`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-
-  width: 256px;
-  height: 40px;
-  padding: 0;
-
-  letter-spacing: 0.04em;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 22px;
-
+export const ContactBtn = styled(Button)`
   border: 2px solid var(--cl-blue-link);
-  border-radius: 40px;
   color: var(--cl-blue-link);
-  background: transparent;
+  background-color: transparent;
 
-  cursor: pointer;
-
-  transition: background var(--animat), color var(--animat);
+  transition: background var(--animat), background-color var(--animat);
 
   &:hover,
   &:active,
   &:focus {
-    transition: background var(--animat) 1000ms, color var(--animat);
     background: var(--gr-blue);
     color: var(--cl-background);
-    border: none;
+    border: var(--gr-blue);
   }
 
   @media (min-width: 768px) {
@@ -300,6 +276,6 @@ export const ContactBtn = styled.button`
 export const HeartIcon = styled.svg`
   width: 24px;
   height: 24px;
-  stroke: var(--cl-background);
-  fill: var(--cl-blue-link);
+  stroke: currentColor;
+  fill: transparent;
 `;

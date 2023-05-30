@@ -68,19 +68,18 @@ export const Button = styled.button`
   border: 2px solid var(--cl-blue-link);
   border-radius: 40px;
   color: var(--cl-blue-link);
-  background-color: var(--cl-almost-white);
+  background-color: transparent;
 
   cursor: pointer;
 
-  transition: background var(--animat), color var(--animat);
+  transition: background var(--animat), background-color var(--animat);
  
   &:hover,
   &:active,
   &:focus {
-    transition: background var(--animat) 1000ms, color var(--animat);
     background: var(--gr-blue);
     color: var(--cl-background);
-    border: none;
+    border: var(--gr-blue);
   }
     
   @media (min-width: 768px) {
@@ -90,23 +89,16 @@ export const Button = styled.button`
 
 export const ButtonTrash = styled(Button)`
   
-  border: none;
-  border-radius: 40px;
+  border: 2px solid var(--animat);
   color: var(--cl-background);
-  background: var(--cl-blue-link);
-  
-  @media (min-width: 768px) {
-    width: 129px;
-  }
+  background-color: var(--cl-blue-link);
 
-  transition: background 500ms ease;
+  transition: none;
 
   &:hover,
   &:active,
   &:focus {
-    transition: background 500ms ease 1000ms;
     background: var(--gr-blue);
-    color: var(--cl-background);
   }
 `;
 

@@ -65,37 +65,35 @@ export const Button = styled.button`
   border-radius: 40px;
   color: var(--cl-blue-link);
   background: transparent;
+  
+  cursor: pointer;
 
   @media (min-width: 768px) {
     width: 129px;
   }
 
-  transition: background var(--animat);
+  transition: background var(--animat), background-color var(--animat);
 
   &:hover,
   &:active,
   &:focus {
     color: var(--cl-background);
     background: var(--gr-blue);
-    border: none;
-    transition: background var(--animat) 1000ms;
+    border: var(--gr-blue);
   }
 `;
 
 export const ButtonYes = styled(Button)`
-  border: none;
+  border: 2px solid var(--animat);
   color: var(--cl-background);
   background: var(--cl-blue-link);
 
-  cursor: pointer;
-
-  transition: background var(--animat);
+  transition: none;
 
   &:hover,
   &:active,
   &:focus {
     background: var(--gr-blue);
-    transition: background var(--animat) 1000ms;
   }
 `;
 
