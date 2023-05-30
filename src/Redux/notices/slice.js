@@ -19,7 +19,6 @@ const handleRejected = (state, action) => {
 };
 
 const noticesInitialState = {
-  noticesByCategory: [],
   items: [],
   item: {},
   isLoadNotices: false,
@@ -57,7 +56,7 @@ const noticesSlice = createSlice({
     [fetchNotice.rejected]: handleRejected,
     [getNoticeByCategory.pending]: handlePending,
     [getNoticeByCategory.fulfilled](state, action) {
-      state.noticesByCategory = action.payload.message ? [] : action.payload.data.notices;
+      state.items = action.payload.message ? [] : action.payload.data.notices;
       state.isLoadNotices = false;
       state.error = null;
       state.pagination = action.payload.data.pagination;

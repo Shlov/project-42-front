@@ -7,9 +7,9 @@ export const Pagination = () => {
 
   const isDisabled = false
 
-  const allPages = 8;
+  const allPages = 4;
   const start = 1;
-  const thisPage = 2;
+  const thisPage = 1;
   const array = Array.from({ length: allPages }, (_, index) => index + start);
   console.log( 'array' , array)
 
