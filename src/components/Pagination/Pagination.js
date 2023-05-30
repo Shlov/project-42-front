@@ -11,7 +11,7 @@ export const Pagination = () => {
   const start = 1;
   const thisPage = 1;
   const array = Array.from({ length: allPages }, (_, index) => index + start);
-  console.log( 'array' , array)
+  // console.log( 'array' , array)
 
   const handlePageNext = (page) => {
     console.log(`go page ${page}`)

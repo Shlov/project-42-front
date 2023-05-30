@@ -34,20 +34,17 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { fetchNotice, updateFavorite } from 'Redux/notices/operation';
-import { getIsLoadNotice, getNotice, selectFavorites} from 'Redux/notices/selector';
+import { getIsLoadNotice, getNotice } from 'Redux/notices/selector';
 import { selectUser } from 'Redux/auth/selector';
 import { toast } from 'react-hot-toast';
 
 export const ModalNotice = ({ onClose, noticeId }) => {
   const dispatch = useDispatch();
-  const [withoutBlur, setWithoutBlur] = useState(0);
-  // console.log(withoutBlur);
-  
-  const {imageURL, categories, name, birthday, breed, place, sex, comments, price} = useSelector(getNotice);
+  const [withoutBlur, setWithoutBlur] = useState(0);  
+  const {imageURL, categories, name, birthday, breed, place, sex, comments, price, favorite} = useSelector(getNotice);
   const isLoading = useSelector(getIsLoadNotice);
-  const inUsersFavorites = useSelector(selectFavorites);
   const userId = useSelector(selectUser).id;
-  const isFavorite = !inUsersFavorites.includes(userId);
+  const isFavorite = favorite.includes(userId)
 
   const handleBlurContacts = () => {
     setWithoutBlur(withoutBlur + 1);
@@ -66,7 +63,8 @@ export const ModalNotice = ({ onClose, noticeId }) => {
       });
       return;
     }
-    
+    const activeFavorite = favorite.includes(userId);
+    const isFavorite = !activeFavorite;
     dispatch(updateFavorite({noticeId, isFavorite}));
   };
 
@@ -180,7 +178,7 @@ export const ModalNotice = ({ onClose, noticeId }) => {
                   aria-label="favorite button"
                   onClick={handleFavorite}
                 >
-                  {isFavorite ? "Add to" : "Del from"}
+                  {isFavorite ? "Del from" : "Add to"}
                   <HeartIcon>
                     <use href={icons + '#heart'}></use>
                   </HeartIcon>
