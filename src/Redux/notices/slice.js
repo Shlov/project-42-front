@@ -21,7 +21,7 @@ const handleRejected = (state, action) => {
 
 const noticesInitialState = {
   items: [],
-  item: {},
+  item: {favorite: []},
   isLoadNotices: false,
   isLoadNotice: false,
   category: 'sell',
