@@ -110,7 +110,7 @@ export const ModalNotice = ({ onClose, noticeId }) => {
                   <SignProp>{birthday ? birthday : 'find'}</SignProp>
                 </ItemProp>
                 <ItemProp>
-                  <NameProp>NameBreed:</NameProp>
+                  <NameProp>Breed:</NameProp>
                   <SignProp>{breed ? breed : 'superior'}</SignProp>
                 </ItemProp>
                 <ItemProp>

@@ -60,7 +60,7 @@ export const FilterCSS = styled(Filter)`
       return 'var(--cl-background)'
     }
   }};
-  wirth: ${(props) => props.mobile ? '25px' : '21px'};
+  width: ${(props) => props.mobile ? '25px' : '21px'};
   height: ${(props) => props.mobile ? '38px' : '24px'};
   margin-left: ${(props) => props.mobile ? '0px' : '12px'};
   stroke: currentColor;
