@@ -65,6 +65,13 @@ export const NoticeCategoryItem = ({item}) => {
     setIsOpenModalTrash(isOpenModalTrash => !isOpenModalTrash);    
   };
 
+  const truncateWord = (word) => {
+    if (word.length > 6) {
+      return word.substring(0, 6) + "..";
+    }
+    return word;
+  }
+
   const handleDeleteNotice = () => {
     if(!idUser) {
       console.log("user disconnect") 
@@ -108,7 +115,7 @@ export const NoticeCategoryItem = ({item}) => {
               <SvgIcon height="20" width="20">
                 <use href={icon + "#location"}/>
               </SvgIcon>
-              <p>{item.place ? item.place : 'city'}</p>
+              <p>{item.place ? truncateWord(item.place) : 'city'}</p>
             </TagItem>
             <TagItem>
               <SvgIcon height="20" width="20">

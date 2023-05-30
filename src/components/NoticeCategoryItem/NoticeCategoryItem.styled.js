@@ -11,7 +11,7 @@ export const Card = styled.div`
   box-shadow: var(--shadow-default);
   border-radius: 0px 0px 40px 40px;
 
-  user-select: none;
+  /* user-select: none; */
 `
 
 export const ImageWrapper = styled.div`
