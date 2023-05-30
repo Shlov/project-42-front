@@ -26,7 +26,7 @@ export const ModalCongrats = () => {
         <ModalApproveAction onClose={toggleModal}> 
           <ModalContent>
             <TitleModal>Congrats!</TitleModal>
-            <DescrModal>You`re registration is success</DescrModal>
+            <DescrModal>Your registration is successful</DescrModal>
 
             <Button
               type="button"

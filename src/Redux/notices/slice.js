@@ -85,7 +85,7 @@ const noticesSlice = createSlice({
     [updateFavorite.fulfilled](state, action) {
       state.isLoadNotice = false;
       state.error = '';
-      state.favorites = action.payload.data.notice.favorite;
+      state.item.favorite = action.payload.data.notice.favorite;
       state.items = state.items.map(item => {
         if (item.id !== action.meta.arg.noticeId) {
           return item

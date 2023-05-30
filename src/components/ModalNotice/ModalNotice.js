@@ -37,6 +37,7 @@ import { fetchNotice, updateFavorite } from 'Redux/notices/operation';
 import { getIsLoadNotice, getNotice } from 'Redux/notices/selector';
 import { selectUser } from 'Redux/auth/selector';
 import { toast } from 'react-hot-toast';
+// import { NavLink } from 'react-router-dom';
 
 export const ModalNotice = ({ onClose, noticeId }) => {
   const dispatch = useDispatch();
@@ -45,6 +46,8 @@ export const ModalNotice = ({ onClose, noticeId }) => {
   const isLoading = useSelector(getIsLoadNotice);
   const userId = useSelector(selectUser).id;
   const isFavorite = favorite.includes(userId)
+
+  const {email, phone}= useSelector(selectUser)
 
   const handleBlurContacts = () => {
     setWithoutBlur(withoutBlur + 1);
@@ -107,7 +110,7 @@ export const ModalNotice = ({ onClose, noticeId }) => {
                   <SignProp>{birthday ? birthday : 'find'}</SignProp>
                 </ItemProp>
                 <ItemProp>
-                  <NameProp>NameBreed:</NameProp>
+                  <NameProp>Breed:</NameProp>
                   <SignProp>{breed ? breed : 'superior'}</SignProp>
                 </ItemProp>
                 <ItemProp>
@@ -123,22 +126,22 @@ export const ModalNotice = ({ onClose, noticeId }) => {
                 <ItemProp>
                   <NameProp>Email:</NameProp>
                   {!withoutBlur ? (
-                    <ContactBlur href="mailto:user@mail.com">
-                      user@mail.com
+                    <ContactBlur to={`mailto:${email}`}>
+                      {email}
                     </ContactBlur>
                   ) : (
-                    <Contact href="mailto:user@mail.com">user@mail.com</Contact>
+                    <Contact to={`mailto:${email}`}>{email}</Contact>
                   )}
                 </ItemProp>
                 <ItemProp>
                   <NameProp>Phone:</NameProp>
                   {!withoutBlur ? (
-                    <ContactBlur href="tel:+380971234567" aria-label="phone">
-                      +380971234567
+                    <ContactBlur to={`tel:${phone}`} aria-label="phone">
+                      {phone}
                     </ContactBlur>
                   ) : (
-                    <Contact href="tel:+380971234567" aria-label="phone">
-                      +380971234567
+                    <Contact to={`tel:${phone}`} aria-label="phone">
+                      {phone}
                     </Contact>
                   )}
                 </ItemProp>

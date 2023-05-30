@@ -7,7 +7,7 @@ import {
   getIsLoadNotices, getPagination,
 } from 'Redux/notices/selector';
 import { selectUser } from "Redux/auth/selector";
-import { getFavoriteNotices, getNoticeByCategory } from 'Redux/notices/operation';
+import { getFavoriteNotices, getNoticeByCategory, getUserNotices } from 'Redux/notices/operation';
 import { useEffect } from 'react';
 import { fetchNotices } from 'Redux/notices/operation';
 import { Loader } from 'components/Loader/Loader';
@@ -74,19 +74,34 @@ export const NoticeCategoryList = ({
       sex = genders
     }
 
-    if (idUser !== '' && categoryName && categoryName === 'favorites-ads') {
-      console.log(idUser);
-      try {
-        dispatch(getFavoriteNotices({ title: searchParams.get('title'), minMonths, maxMonths, sex: `${sex.join(',')}` }))
-          .then((action) => {
-            if (action.payload.message && action.payload.message === 'No data found') {
-              setFilteredItems([])
-            } else {
-              setFilteredItems(action.payload.data.notices);
-            }
-          });
-      } catch (err) {
-        console.error(err);
+    if (idUser !== '' && (categoryName === 'favorites-ads' || categoryName === 'my-ads')) {
+      if(categoryName === 'favorites-ads') {
+        try {
+          dispatch(getFavoriteNotices({ title: searchParams.get('title'), minMonths, maxMonths, sex: `${sex.join(',')}` }))
+            .then((action) => {
+              if (action.payload.message && action.payload.message === 'No data found') {
+                setFilteredItems([])
+              } else {
+                setFilteredItems(action.payload.data.notices);
+              }
+            });
+        } catch (err) {
+          console.error(err);
+        }
+      } else if(categoryName === 'my-ads') {
+        console.log(categoryName);
+        try {
+          dispatch(getUserNotices({ title: searchParams.get('title'), minMonths, maxMonths, sex: `${sex.join(',')}` }))
+            .then((action) => {
+              if (action.payload.message && action.payload.message === 'No data found') {
+                setFilteredItems([])
+              } else {
+                setFilteredItems(action.payload.data.notices);
+              }
+            });
+        } catch(err) {
+          console.error(err);
+        }
       }
     } else if (categoryName && !searchParams.get('title') && (idUser === '' || idUser !== '')) {
       if (categoryName === categoryShelf[categoryName] && categoryName !== 'all') {
