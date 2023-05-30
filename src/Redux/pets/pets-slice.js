@@ -27,11 +27,14 @@ const petsSlice = createSlice({
       state.pets = action.payload.result.pets;
       state.isLoading = false;
       state.error = '';
+      state.isResponseSuccessful = false;
     },
     [fetchPets.rejected]: handleRejected,
     [deletePet.pending]: handlePending,
     [deletePet.fulfilled](state, action) {
-      const index = state.pets.findIndex(item => item.id === action.payload);
+      const index = state.pets.findIndex(
+        item => item._id === action.payload.data.result._id
+      );
       state.pets.splice(index, 1);
       state.isLoading = false;
       state.error = '';

@@ -16,21 +16,21 @@ import { Card, FavoriteBtn, DeleteBtn, CategoryTag, ImageWrapper, DescriptionWra
 import icon from '../../images/icons.svg';
 import { useState } from "react";
 import { ModalNotice } from "components/ModalNotice/ModalNotice";
+import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
+import {  Button, ButtonWrap, DescrModal, ModalContent, TitleModal, Trash, Text, ButtonTrash } from '../NoticesPage/NoticesPage.styled';
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "Redux/auth/selector";
-// import { getConnect, selectUser } from "Redux/auth/selector";
-import { updateFavorite } from "Redux/notices/operation";
+import { deleteNotice, updateFavorite } from "Redux/notices/operation";
 import { toast } from "react-hot-toast";
+import icons from 'images/icons.svg';
 
-export const NoticeCategoryItem = ({onTrashModal, item}) => {
+export const NoticeCategoryItem = ({item}) => {
 
   const idUser = useSelector(selectUser).id;
-  // const isLogin = useSelector(getConnect);
   const activeFavorite = item.favorite.includes(idUser);
   const noticeId = item.id
-  const favorite = !activeFavorite
+  const isFavorite = !activeFavorite
   const dispatch = useDispatch();
-
   const agePet = (birthday) => {
     const nowDate = new Date().getTime();
     const [day, month, year] = birthday.split('.');
@@ -51,13 +51,56 @@ export const NoticeCategoryItem = ({onTrashModal, item}) => {
     if (!idUser) {
       toast.error('Please authorization and try again 😸');
     }
-    dispatch(updateFavorite({noticeId, favorite}));
+    dispatch(updateFavorite({noticeId, isFavorite}));
   };
 
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenModalTrash, setIsOpenModalTrash] = useState(false);
 
   const toggleModal = () => {
-    setIsOpenModal(isOpen => !isOpen);    
+    setIsOpenModal(isOpenModal => !isOpenModal);    
+  };
+
+  const toggleTrash = () => {
+    setIsOpenModalTrash(isOpenModalTrash => !isOpenModalTrash);    
+  };
+
+  const handleDeleteNotice = () => {
+    if(!idUser) {
+      console.log("user disconnect") 
+      toast.error('Please authorization and try again!', {
+        style: {
+          backgroundColor: `var(--cl-background)`,
+          padding: '6px',
+          color: `var(--cl-black)`,
+        },
+        icon: '😸',
+      });
+      return;
+    }
+
+    console.log("owner", item.owner)
+    console.log("owner", idUser)
+
+    if(item.owner !== idUser) {
+      console.log("owner", item.owner)
+      console.log("owner", idUser)
+      console.log("user doesn`t owner notice") 
+      toast.error('You aren`t the owner of this notice!', {
+        style: {
+          backgroundColor: `var(--cl-background)`,
+          padding: '6px',
+          color: `var(--cl-black)`,
+        },
+        icon: '😸',
+      });
+      toggleTrash();
+      return;
+    }
+
+    dispatch(deleteNotice(item.id))
+    toggleTrash();
+    console.log('Видаляємо notice');
   };
 
 
@@ -97,11 +140,11 @@ export const NoticeCategoryItem = ({onTrashModal, item}) => {
               <use href={icon + "#heart"}/>
             </HeartIcon>
           </FavoriteBtn>
-          <DeleteBtn onClick={onTrashModal}>
+          {item.owner === idUser && <DeleteBtn onClick={toggleTrash}>
             <TrashIcon height="20" width="20" >
               <use href={icon + "#trash"}/>
             </TrashIcon>
-          </DeleteBtn>
+          </DeleteBtn>}
         </ImageWrapper>
 
         <DescriptionWrapper>
@@ -109,6 +152,30 @@ export const NoticeCategoryItem = ({onTrashModal, item}) => {
           <MoreBtn onClick={toggleModal}>Learn more</MoreBtn>
         </DescriptionWrapper>
         {isOpenModal&& <ModalNotice onClose={toggleModal} notice={item} noticeId={item.id}/>}
+        {isOpenModalTrash && (
+        <ModalApproveAction onClose={toggleTrash} height="389px">
+          <ModalContent>
+            <TitleModal>Delete adverstiment?</TitleModal>
+            <DescrModal>
+              <Text>Are you sure you want to delete &nbsp;
+                <strong>“Cute dog looking for a home”?&nbsp;</strong>
+              </Text>
+              <p>You can`t undo this action.</p>
+            </DescrModal>
+            <ButtonWrap>
+              <Button type="button" aria-label="cancel" onClick={toggleTrash}>
+                Cancel
+              </Button>
+              <ButtonTrash type="button" aria-label="delete" onClick={handleDeleteNotice}>
+                Yes
+                <Trash>
+                  <use href={icons + '#trash'} />
+                </Trash>
+              </ButtonTrash>
+            </ButtonWrap>
+          </ModalContent>
+        </ModalApproveAction>
+      )}
       </Card>
     </>
   )

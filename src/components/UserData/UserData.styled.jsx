@@ -88,6 +88,7 @@ width: 182px;
   border-radius: 40px;
 `;
 export const ImgAvatar = styled.img`
+height: 100%;
   border-radius: 40px;
 `;
 export const SvgIcon = styled.svg`
@@ -158,6 +159,12 @@ export const InputContainer = styled(Field)`
     padding: 6px 12px;
     width: 255px;
     height: 32px;
+    cursor: pointer;
+    &: focus {
+      outline: none;
+    }
+    }
+
   }
 `;
 
@@ -190,13 +197,99 @@ export const DIV = styled.div`
 
 export const StyledErrorMessage = styled(ErrorMessage)`
   position: absolute;
-  right: 85px;
+  right: 30px;
 
-  bottom: 220px;
+  bottom: 227px;
   font-weight: 400;
-  font-size: 10px;
+  font-size: 9px;
   line-height: 14px;
   color: #da1414;
+
+  @media screen and (min-width: 767px) {
+    position: absolute;
+    right: 50px;
+    bottom: 215px;
+    font-size: 10px;
+  }
+
+  @media screen and (min-width: 991px) {
+    position: absolute;
+    right: 50px;
+    bottom: 215px;
+    font-size: 10px;
+  }
+`;
+
+export const StyledErrorMessageEmail = styled(ErrorMessage)`
+  position: absolute;
+  right: 30px;
+  bottom: 187px;
+  font-weight: 400;
+  font-size: 9px;
+  line-height: 14px;
+  color: #da1414;
+
+  @media screen and (min-width: 767px) {
+    position: absolute;
+    right: 50px;
+    bottom: 215px;
+    font-size: 10px;
+  }
+
+  @media screen and (min-width: 991px) {
+    position: absolute;
+    right: 50px;
+    bottom: 175px;
+    font-size: 10px;
+  }
+`;
+
+
+export const StyledErrorMessagePhone = styled(ErrorMessage)`
+  position: absolute;
+  right: 25px;
+  bottom: 108px;
+  font-weight: 400;
+  font-size: 9px;
+  line-height: 14px;
+  color: #da1414;
+
+  @media screen and (min-width: 767px) {
+    position: absolute;
+    right: 50px;
+    bottom: 215px;
+
+  }
+
+  @media screen and (min-width: 991px) {
+    position: absolute;
+    right: 40px;
+    bottom: 93px;
+
+  }
+`;
+
+export const StyledErrorMessageCity = styled(ErrorMessage)`
+  position: absolute;
+  right: 25px;
+  bottom: 65px;
+  font-weight: 400;
+  font-size: 9px;
+  line-height: 14px;
+  color: #da1414;
+
+  @media screen and (min-width: 767px) {
+    position: absolute;
+    right: 50px;
+    bottom: 215px;
+  }
+
+  @media screen and (min-width: 991px) {
+    position: absolute;
+    right: 40px;
+    bottom: 44px;
+
+  }
 `;
 
 export const SVGBtn = styled.svg`

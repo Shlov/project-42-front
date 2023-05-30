@@ -66,12 +66,12 @@ const CategoryStep = ({ onNext, onSelectCategory, selectedCategory }) => {
         <RadioButton
           type="radio"
           name="category"
-          value="for-free"
-          id="for-free"
-          checked={selectedCategory === 'for-free'}
+          value="in good hands"
+          id="in good hands"
+          checked={selectedCategory === 'in good hands'}
           onChange={handleCategoryChange}
         />
-        <CategoryStepLabel htmlFor="for-free">in good hands</CategoryStepLabel>
+        <CategoryStepLabel htmlFor="in good hands">in good hands</CategoryStepLabel>
         {!selectedCategory && nextClicked && (
           <ErrorMessage>Please choose a category</ErrorMessage>
         )}

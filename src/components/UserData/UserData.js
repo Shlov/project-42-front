@@ -22,6 +22,9 @@ import {
   Label,
   InputAvatar,
   StyledErrorMessage,
+  StyledErrorMessageEmail,
+  StyledErrorMessagePhone,
+  StyledErrorMessageCity,
   BtnText,
   BtnPhoto,
   ImgContainer,
@@ -35,18 +38,18 @@ import {
 } from './UserData.styled';
 
 const schema = yup.object().shape({
-  name: yup.string().min(3).max(16, 'Length must be less then 15').required(),
+  name: yup.string().min(3).max(16, 'length must be less then 15').required(),
   email: yup
     .string()
-    .matches(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/, 'Please enter a valid email')
-    .email('Invalid e-mail')
+    .matches(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/, 'please enter a valid email')
+    .email('invalid e-mail')
     .required(),
-  birthday: yup.date().nullable(),
+  birthday: yup.date('please enter a valid date 00.00.0000').nullable(),
   phone: yup
     .string()
-    .matches(/^\+380\d{9}$/, 'Enter your phone number in format +380')
+    .matches(/^\+380\d{9}$/, 'enter phone number in format +380')
     .nullable(),
-  city: yup.string().min(3).max(16, 'Length must be less then 16').nullable(),
+  city: yup.string().min(3).max(16, 'length must be less then 16').nullable(),
 });
 
 
@@ -97,6 +100,7 @@ export const UserData = () => {
 
   const [userImage, setUserImage] = useState(avatarURL);
   const [avatar, setAvatar] = useState(avatarURL);
+ 
   const [isEditingName, setIsEditingName] = useState(false);
   const [isEditingEmail, setIsEditingEmail] = useState(false);
   const [isEditingBirthday, setIsEditingBirthday] = useState(false);
@@ -157,11 +161,12 @@ const formData = new FormData();
       >
         {({
           values,
+          errors,
+          touched,
           handleSubmit,
           handleChange,
           handleBlur,
-          errors,
-          touched,
+     
         }) => (
           <FormContainer autoComplete="off" >
             <ImgCon htmlFor="avatar">
@@ -189,6 +194,7 @@ const formData = new FormData();
                   id="avatar"
                   type="file"
                   name="avatar"
+                  onBlur={handleBlur}
                   onChange={handleChangeAvatar}
                   accept="image/*,.png,.jpg,.gif,.web"
                 />
@@ -204,9 +210,9 @@ const formData = new FormData();
                     id="name"
                     value={values.name}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     errors={errors.name}
                   />
-                  
                 ) : (
                   <InputContainer 
                   type="text" 
@@ -214,6 +220,7 @@ const formData = new FormData();
                   id="name" 
                   value={values.name} 
                   errors={errors.name}
+                  onBlur={handleBlur}
                    />
                 )}
                 {isEditingName ? (
@@ -221,7 +228,6 @@ const formData = new FormData();
                     type="submit"
                     onClick={() => setIsEditingName(false)}
                     onSubmit={handleSubmit}
-  
                   >
                     <SVGBtn>
                       <use href={icons + '#check'} />
@@ -234,8 +240,7 @@ const formData = new FormData();
                     </BtnEdit>
                   </BtnCheck>
                 )}
-                 {(errors.name) && (null)}
-                {!errors.name && values.name && (null)}
+            <StyledErrorMessage name="name" component="div"/>
               </DIV>
 
               <DIV htmlFor="email">
@@ -246,11 +251,20 @@ const formData = new FormData();
                     name="email"
                     id="email"
                     value={values.email}
+                    errors={errors.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                  />
+                  /> 
                 ) : (
-                  <InputContainer type="email" name="email" id="email" value={values.email} onBlur={handleBlur} />
+                  <InputContainer 
+                  type="email" 
+                  name="email" 
+                  id="email" 
+                  value={values.email} 
+                  errors={errors.email}
+                  onBlur={handleBlur} 
+
+                  />
                 )}
                 {isEditingEmail ? (
                   <BtnCheck
@@ -269,7 +283,7 @@ const formData = new FormData();
                     </BtnEdit>
                   </BtnCheck>
                 )}
-                 <StyledErrorMessage name="email" component="div"/>
+                 <StyledErrorMessageEmail name="email" component="div"/>
               </DIV>
 
               <DIV htmlFor="birthday">
@@ -280,8 +294,8 @@ const formData = new FormData();
                     name="birthday"
                     id="birthday"
                     value={values.birthday}
+                    errors={errors.birthday}
                     onChange={handleChange}
-                    dateFormat="dd.MM.yyyy"
                     onBlur={handleBlur}
                   />
                 ) : (
@@ -290,6 +304,8 @@ const formData = new FormData();
                     name="birthday"
                     id="birthday"
                     value={values.birthday}
+                    errors={errors.birthday}
+              
                     onBlur={handleBlur}
                   />
                 )}
@@ -304,13 +320,12 @@ const formData = new FormData();
                     </SVGBtn>
                   </BtnCheck>
                 ) : (
-                  <BtnCheck  type="button" onClick={() => setIsEditingBirthday(true)}>
+                  <BtnCheck type="button" onClick={() => setIsEditingBirthday(true)}>
                     <BtnEdit>
                       <use href={icons + '#edit'} />
                     </BtnEdit>
                   </BtnCheck>
                 )}
-                 <StyledErrorMessage name="birthday" component="div"/>
               </DIV>
               <DIV htmlFor="phone">
                 <Label>Phone: </Label>
@@ -320,19 +335,28 @@ const formData = new FormData();
                     name="phone"
                     id="phone"
                     value={values.phone}
+                    errors={errors.phone}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   
                   />
                 ) : (
-                  <InputContainer type="tel" name="phone"  id="phone" value={values.phone} placeholder="+380"/>
+                  <InputContainer 
+                  type="tel" 
+                  name="phone" 
+                   id="phone" 
+                   value={values.phone} 
+                   errors={errors.phone}
+                   placeholder="+380000000000"
+                   onBlur={handleBlur}
+                   />
+                
                 )}
                 {isEditingPhone ? (
                   <BtnCheck
                     type="submit"
                     onClick={() => setIsEditingPhone(false)}
                     onSubmit={handleSubmit}
-                    onBlur={handleBlur}
                   >
                     <SVGBtn>
                       <use href={icons + '#check'} />
@@ -345,7 +369,7 @@ const formData = new FormData();
                     </BtnEdit>
                   </BtnCheck>
                 )}
-                 <StyledErrorMessage name="phone" component="div"/>
+                 <StyledErrorMessagePhone name="phone" component="div"/>
               </DIV>
 
               <DIV htmlFor="city">
@@ -356,18 +380,25 @@ const formData = new FormData();
                     name="city"
                     id="city"
                     value={values.city}
+                    errors={errors.city}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
                 ) : (
-                  <InputContainer type="text" name="city" id="city" value={values.city}   placeholder="Lviv"/>
+                  <InputContainer 
+                  type="text" 
+                  name="city" 
+                  id="city" 
+                  value={values.city} 
+                  errors={errors.city}
+                  onBlur={handleBlur}
+                  placeholder="Lviv"/>
                 )}
                 {isEditingCity ? (
                   <BtnCheck
                     type="submit"
                     onClick={() => setIsEditingCity(false)}
                     onSubmit={handleSubmit}
-                    onBlur={handleBlur}
                   >
                     <SVGBtn>
                       <use href={icons + '#check'} />
@@ -380,7 +411,7 @@ const formData = new FormData();
                     </BtnEdit>
                   </BtnCheck>
                 )}
-                 <StyledErrorMessage name="city" component="div"/>
+                 <StyledErrorMessageCity name="city" component="div"/>
               </DIV>
 
               <LogoutBtn />

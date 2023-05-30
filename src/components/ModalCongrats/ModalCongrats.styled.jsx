@@ -63,25 +63,23 @@ export const Button = styled.button`
   font-size: 16px;
   line-height: 22px;
 
-  border: none;
+  border: 2px solid var(--animat);
   border-radius: 40px;
   color: var(--cl-background);
   background: var(--cl-blue-link);
 
   cursor: pointer;
 
-  transition: background var(--animat);
-
   &:hover,
   &:active,
   &:focus {
     background: var(--gr-blue);
-    transition: background var(--animat) 1000ms;
   }
 `;
 
 export const PawPrint = styled.svg`
   width: 24px;
   height: 24px;
-  fill: currentColor;
+  stroke: currentColor;
+  fill: transparent;
 `;

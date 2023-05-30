@@ -6,11 +6,9 @@ import { useState } from 'react';
 import AddPetButton from 'components/AddPetButton/AddPetButton';
 
 export const PetsData = () => {
-  const [currentPage, setCurrentPage] = useState('');
   const [showPreviousPage, setShowPreviousPage] = useState(true);
 
-  const handleChangePage = page => {
-    setCurrentPage(page);
+  const handleChangePage = () => {
     setShowPreviousPage(false);
   };
 
@@ -20,11 +18,10 @@ export const PetsData = () => {
         <div>
           <Container>
             <Title>My Pets:</Title>
-            <Link
-              to="/add-pet"
-              onClick={() => handleChangePage(currentPage)}
-            ></Link>
-            <AddPetButton />
+
+            <AddPetButton onClick={handleChangePage}>
+              <Link to="/add-pet">add</Link>
+            </AddPetButton>
           </Container>
           <PetsList />
         </div>
