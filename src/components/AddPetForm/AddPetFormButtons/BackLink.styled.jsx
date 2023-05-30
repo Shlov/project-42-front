@@ -19,6 +19,7 @@ export const BackButton = css`
 
 export const StyledLink = styled(Link)`
   ${BackButton}
+  padding: 20px 0px;
 `;
 
 export const AddPetBackButton = styled.button`

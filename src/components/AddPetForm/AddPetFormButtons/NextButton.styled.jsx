@@ -18,12 +18,6 @@ export const NextButton = styled.button`
   border-radius: 40px;
 
   cursor: pointer;
-
-  &:disabled {
-    color: var(--cl-gray);
-    background-color: var(--cl-blue-light);
-    pointer-events: none;
-  }
 `;
 
 export const PawIcon = styled.svg`
