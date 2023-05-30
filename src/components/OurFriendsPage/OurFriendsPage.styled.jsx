@@ -8,29 +8,7 @@ export const FriendsSection = styled.div`
 
   @media (min-width: 991px) {
     width: 1230px;
-  margin: 0 auto;
-  }
-`;
-
-export const Title = styled.h1`
-  text-align: center;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: calc(33 / 24);
-  margin-bottom: 24px;
-  margin-top: 45px;
-
-  @media (min-width: 768px) {
-    font-size: 48px;
-    line-height: 66px;
-    margin-bottom: 40px;
-  }
-
-  @media (min-width: 1024px) {
-    font-size: 48px;
-    line-height: 66px;
-    margin-bottom: 60px;
-    margin-top: 70px;
+    margin: 0 auto;
   }
 `;
 
@@ -58,7 +36,7 @@ export const Card = styled.li`
   box-shadow: var(--shadow-default);
   border-radius: 40px;
 
-   @media (min-width: 768px) {
+  @media (min-width: 768px) {
     width: 312px;
     height: 243px;
   }
@@ -67,22 +45,22 @@ export const Card = styled.li`
     width: 371px;
     height: 255px;
   }
-  `;
+`;
 
 export const CardTitle = styled.h2`
-    font-weight: 700;
-    font-size: 20px;
-    text-align: center;
-    line-height: 27px;
-    color: #54adff;
-    margin-bottom: 16px;
-  `;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  line-height: 27px;
+  color: #54adff;
+  margin-bottom: 16px;
+`;
 
 export const CardWrap = styled.div`
-    width: 256px;
-    height: 207px;
-    display: flex;
-    gap: 16px;
+  width: 256px;
+  height: 207px;
+  display: flex;
+  gap: 16px;
 
   @media (min-width: 768px) {
     width: 312px;
@@ -93,18 +71,18 @@ export const CardWrap = styled.div`
     width: 371px;
     height: 255px;
   }
-  `;
+`;
 
 export const CardImg = styled.img`
-    width: 100px;
-    height: 68px;
+  width: 100px;
+  height: 68px;
 `;
 
 export const CardList = styled.ul`
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  `;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
 
 export const CardItem = styled.li`
   list-style: none;
@@ -113,78 +91,79 @@ export const CardItem = styled.li`
   color: var(--cl-black);
   position: relative;
 
-a{
-text-decoration: none;
-color: inherit;
-}
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 
-.time, address {
-&:hover {
-  cursor: pointer;
-  color: var(--cl-blue-link);
-  text-decoration: none;
-}
-}
+  .time,
+  address {
+    &:hover {
+      cursor: pointer;
+      color: var(--cl-blue-link);
+      text-decoration: none;
+    }
+  }
 
-.email {
-&:hover {
-  cursor: pointer;
-  color: var(--cl-blue-link);
-}
-}
+  .email {
+    &:hover {
+      cursor: pointer;
+      color: var(--cl-blue-link);
+    }
+  }
 
-.phone {
-&:hover {
-  cursor: pointer;
-  color: var(--cl-blue-link);
-}
-}
+  .phone {
+    &:hover {
+      cursor: pointer;
+      color: var(--cl-blue-link);
+    }
+  }
 `;
 
 export const CardLabel = styled.span`
-    font-weight: 600;
+  font-weight: 600;
 `;
 
 export const CardAdress = styled.address`
-    text-decoration: none;
-    font-style: unset;
-    &:hover {
+  text-decoration: none;
+  font-style: unset;
+  &:hover {
     text-decoration: underline;
-    }
+  }
 `;
 
 export const CardTimeModal = styled.div`
-    border-radius: 20px;
-    background: rgb(255, 255, 255);
-    box-shadow: var(--shadow-default);
-    padding: 19px;
-    position: absolute;
-    z-index: 10;
-    width: 140px;
+  border-radius: 20px;
+  background: rgb(255, 255, 255);
+  box-shadow: var(--shadow-default);
+  padding: 19px;
+  position: absolute;
+  z-index: 10;
+  width: 140px;
 
-    .card-time-wrapper {
-      display: flex;
-      justify-content: space-between;
+  .card-time-wrapper {
+    display: flex;
+    justify-content: space-between;
 
-      div {
-        margin: 0 10px;
-        &:last-child {
-          margin: 0;
-        }
-      }
-    }
-
-    span {
-      font-size: 12px;
-      font-weight: 700;
-      margin: 0 10px 0 0;
-
+    div {
+      margin: 0 10px;
       &:last-child {
-        margin: 0
+        margin: 0;
       }
     }
-`
+  }
+
+  span {
+    font-size: 12px;
+    font-weight: 700;
+    margin: 0 10px 0 0;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+`;
 
 export const ModalDay = styled.span`
-color: var(--cl-blue-link);
-`
+  color: var(--cl-blue-link);
+`;
