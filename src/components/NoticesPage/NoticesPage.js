@@ -19,8 +19,18 @@ import { FilterItem } from 'components/NoticesFilters/NoticesFilter.styled';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import RemoveItem from '../../images/icons/cross-small-1.svg'
 import { Pagination } from 'components/Pagination/Pagination';
+import {
+  getIsLoadNotices,
+} from 'Redux/notices/selector';
 
 const categories = [
+  {
+    text: 'all',
+    type: 'public',
+    id: 0,
+    name: 'category',
+    link: ''
+  },
   {
     text: 'sell',
     type: 'public',
@@ -64,7 +74,8 @@ const privateCategory = [
 export const NoticesPage = () => {
   const items = useSelector((state) => state.notices.items);
   const tablet = useSelector((state) => state.main.tablet);
-  const mobile = useSelector((state) => state.main.mobile)
+  const mobile = useSelector((state) => state.main.mobile);
+  const isLoading = useSelector(getIsLoadNotices);
   const location = useLocation();
   const [category, setCategory] = useState(location.pathname.split('/')[2])
   const [filteredItems, setFilteredItems] = useState(items)
@@ -78,6 +89,7 @@ export const NoticesPage = () => {
   const [search, setSearch] = useState(searchParams.get('title'))
 
   const categoryShelf = useMemo(() => ({
+    all: 'all',
     sell: 'sell',
     'lost/found': 'lost/found',
     'in good hands': 'in good hands',
@@ -114,7 +126,6 @@ export const NoticesPage = () => {
       });
     }
     if (categoryName) {
-      console.log(categoryName);
       const categoryValue = categoryName !== 'lost-found' ? categoryShelf[categoryName] : 'lost/found';
       newItems = newItems.filter(item => item.categories === categoryValue);
     }
@@ -139,9 +150,6 @@ export const NoticesPage = () => {
   const handleSearch = (searchTerm) => {
     setSearch(searchTerm)
     setSearchParams({ title: searchTerm });
-    // searchTerm = searchTerm.toLowerCase();
-    // const filteredItems = items.filter(item => item.title.toLowerCase().includes(searchTerm));
-    // setFilteredItems(filteredItems);
   }
 
   const handleRemoveItem = (item) => {
@@ -179,7 +187,7 @@ export const NoticesPage = () => {
         </div>
       </Filters>
       <NoticeCategoryList filteredItems={filteredItems} setFilteredItems={setFilteredItems} items={items} search={search} ages={ages} genders={genders} />
-      <Pagination/>
+      {filteredItems.length && !isLoading ? <Pagination/> : null}
     </>
   );
 };

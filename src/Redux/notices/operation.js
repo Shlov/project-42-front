@@ -11,12 +11,7 @@ export const fetchNotices = createAsyncThunk(
   'notices/all',
   async (_, thunkAPI) => {
     try {
-      const token = thunkAPI.getState().auth.token;
-      const response = await axios.get('/notices', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get('/notices');
       // toast.success('Notices done! 👏');
       return response.data;
     } catch (error) {
@@ -30,10 +25,9 @@ export const getNoticeByCategory = createAsyncThunk(
   async ({ categories, title, sex, minMonths, maxMonths }, thunkAPI) => {
     try {
       if (!title && categories) {
-        const token = thunkAPI.getState().auth.token;
         const { data } = await axios.get(`/notices`, {
           params: { categories, sex, minMonths, maxMonths },
-          headers: { Authorization: `Bearer ${token}` },
+          // headers: { Authorization: `Bearer ${token}` },
         });
         return data;
       } else if (title !== '' && !categories) {
@@ -41,7 +35,7 @@ export const getNoticeByCategory = createAsyncThunk(
           params: { title, minMonths, maxMonths, sex },
         });
         return data;
-      } else if ((!title && !categories) && (sex !== null || (minMonths !== null && maxMonths !== null))) {
+      } else if ((!title && !categories) && (sex || (minMonths !== null && maxMonths !== null))) {
         const { data } = await axios.get(`/notices`, {
           params: { sex, minMonths, maxMonths },
         });
