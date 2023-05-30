@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const ModalContent = styled.div`
   display: flex;
@@ -121,7 +122,7 @@ export const SignProp = styled.span`
   }
 `;
 
-export const Contact = styled.a`
+export const Contact = styled(NavLink)`
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
