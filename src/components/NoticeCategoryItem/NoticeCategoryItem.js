@@ -79,13 +79,7 @@ export const NoticeCategoryItem = ({item}) => {
       return;
     }
 
-    console.log("owner", item.owner)
-    console.log("owner", idUser)
-
     if(item.owner !== idUser) {
-      console.log("owner", item.owner)
-      console.log("owner", idUser)
-      console.log("user doesn`t owner notice") 
       toast.error('You aren`t the owner of this notice!', {
         style: {
           backgroundColor: `var(--cl-background)`,
@@ -97,7 +91,6 @@ export const NoticeCategoryItem = ({item}) => {
       toggleTrash();
       return;
     }
-
     dispatch(deleteNotice(item.id))
     toggleTrash();
     console.log('Видаляємо notice');

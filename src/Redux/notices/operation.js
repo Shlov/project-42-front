@@ -181,7 +181,7 @@ export const deleteNotice = createAsyncThunk(
       const token = thunkAPI.getState().auth.token;
       const response = await axios.delete(`/notices/user/${noticeId}`, {
         headers: { Authorization: `Bearer ${token}` },
-      })
+      });
       toast.success('Notice deleted successfully!', {
         style: {
           backgroundColor: `var(--cl-background)`,

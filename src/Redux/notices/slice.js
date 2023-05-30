@@ -105,14 +105,14 @@ const noticesSlice = createSlice({
       state.isResponseSuccessful = true; },
     [addNotice.rejected]: handleRejected,
 
-    [deleteNotice.pending](state, action){
-      state.isLoadNotice = true; 
-      state.items = state.items.filter(
-        item => item.id !== action.payload.data.notice.id) },
-    [deleteNotice.fulfilled](state){
+    [deleteNotice.pending](state){
+      state.isLoadNotice = true; },
+    [deleteNotice.fulfilled](state, action) {
       state.isLoadNotice = false;
+      state.items = state.items.filter(
+        item => item.id !== action.meta.arg)
       state.error = ''; },
-    [deleteNotice](state, action){
+    [deleteNotice.rejected](state, action){
       state.error = action.payload; },
   },
 
