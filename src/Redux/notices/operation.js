@@ -24,25 +24,24 @@ export const getNoticeByCategory = createAsyncThunk(
   'notices/getNoticesByCategory',
   async ({ categories, title, sex, minMonths, maxMonths }, thunkAPI) => {
     try {
-      if (!title && categories) {
+      if (!title && categories && categories !== 'all') {
         const { data } = await axios.get(`/notices`, {
           params: { categories, sex, minMonths, maxMonths },
-          // headers: { Authorization: `Bearer ${token}` },
         });
         return data;
-      } else if (title !== '' && !categories) {
+      } else if (title !== '' && (!categories || categories !== 'all')) {
         const { data } = await axios.get(`/notices`, {
           params: { title, minMonths, maxMonths, sex },
         });
         return data;
-      } else if ((!title && !categories) && (sex || (minMonths !== null && maxMonths !== null))) {
+      } else if ((!title && (!categories || categories !== 'all')) && (sex || (minMonths !== null && maxMonths !== null))) {
         const { data } = await axios.get(`/notices`, {
           params: { sex, minMonths, maxMonths },
         });
         return data;
-      } else {
+      } else if(title && categories === 'all') {
         const { data } = await axios.get(`/notices`, {
-          params: { categories, title, minMonths, maxMonths, sex },
+          params: { title, minMonths, maxMonths, sex },
         });
         return data;
       }
