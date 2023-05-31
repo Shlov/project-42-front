@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Form, Field} from 'formik';
+import { Form, Field } from 'formik';
 
 export const MainContainer = styled.div`
   padding: 20px;
@@ -75,7 +75,7 @@ export const FormContainer = styled(Form)`
 `;
 
 export const AvatarContainer = styled.div`
-position: relative;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -135,16 +135,14 @@ export const BtnPhoto = styled.button`
     left: 45px;
   }
 
-  
   @media screen and (min-width: 991px) {
     left: 120px;
   }
-
 `;
 
 export const LabelContainer = styled.label`
-position: relative;
-display: flex;
+  position: relative;
+  display: flex;
 
   align-items: center;
   justify-content: space-between;
@@ -165,13 +163,10 @@ display: flex;
     font-size: 18px;
     line-height: 25px;
   }
-
-  }
 `;
 
 export const InputContainer = styled(Field)`
-
-padding: 6px 12px;
+  padding: 6px 12px;
   width: 190px;
   height: 28px;
 
@@ -182,7 +177,7 @@ padding: 6px 12px;
 
   font-weight: 400;
   font-size: 12px;
-  &: focus {
+  &:focus {
     outline: none;
   }
 
@@ -191,11 +186,9 @@ padding: 6px 12px;
     width: 255px;
     height: 32px;
     cursor: pointer;
-    &: focus {
+    &:focus {
       outline: none;
     }
-    }
-
   }
 `;
 
@@ -204,15 +197,14 @@ export const BtnCheck = styled.button`
   right: 15px;
   padding: 0px 0px;
   cursor: pointer;
-border: none;
-width: 24px;
-height: 24px;
+  border: none;
+  width: 24px;
+  height: 24px;
   background-color: var(--cl-background);
-
 `;
 export const SvgBtn = styled.svg`
-width: 24px;
-height: 24px;
+  width: 24px;
+  height: 24px;
   stroke: var(--cl-green);
   fill: transparent;
 `;
@@ -225,7 +217,6 @@ export const BtnEdit = styled.svg`
   fill: var(--cl-blue-link);
 `;
 
-
 export const Photosvg = styled.svg`
   width: 182px;
   height: 182px;
@@ -233,9 +224,9 @@ export const Photosvg = styled.svg`
 `;
 
 export const StyledErrorMessage = styled.div`
-position: absolute;
-top: 25px;
-right: 20px;
+  position: absolute;
+  top: 25px;
+  right: 20px;
   font-weight: 400;
   font-size: 9px;
   line-height: 14px;

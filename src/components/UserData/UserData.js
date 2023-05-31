@@ -1,7 +1,7 @@
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectorNewUser, selectUser } from 'Redux/auth/selector';
 import { updateUser } from 'Redux/auth/operation';
@@ -51,6 +51,8 @@ export const UserData = () => {
 
   const [isNewUser, setIsNewUser] = useState(newUser);
 
+  const inputRef = useRef();
+
   const handleCongratsOut = () => {
     setIsNewUser(false);
   };
@@ -69,7 +71,7 @@ export const UserData = () => {
   const [userImage, setUserImage] = useState(avatarURL);
   const [avatar, setAvatar] = useState(avatarURL);
 
-  const [isEditingAvatar, setIsEditingAvatar] = useState(true);
+  const [isEditingAvatar, setIsEditingAvatar] = useState(false);
   const [isEditingName, setIsEditingName] = useState(true);
   const [isEditingEmail, setIsEditingEmail] = useState(true);
   const [isEditingBirthday, setIsEditingBirthday] = useState(true);
@@ -78,13 +80,16 @@ export const UserData = () => {
 
   const handleChangeAvatar = e => {
     const file = e.target.files[0];
-    const objURL = URL.createObjectURL(file);
-    setAvatar(objURL);
-    setUserImage(file);
-    setIsEditingAvatar(true);
+    if (file) {
+      const objURL = URL.createObjectURL(file);
+      setAvatar(objURL);
+      setUserImage(file);
+      setIsEditingAvatar(true);
+    }
   };
   const formData = new FormData();
-  const handleSubmitInput = async values => {
+
+  const handleSubmitInput = values => {
     if (userImage) {
       formData.append('avatarURL', userImage);
     }
@@ -104,7 +109,7 @@ export const UserData = () => {
     if (values.birthday) {
       formData.append('birthday', values.birthday);
     }
-    await dispatch(updateUser(formData));
+    dispatch(updateUser(formData));
   };
 
   return (
@@ -129,246 +134,259 @@ export const UserData = () => {
           validationSchema={schema}
           onSubmit={handleSubmitInput}
         >
-          {({ values, errors, touched, handleSubmit, handleChange, handleBlur }) => (
+          {({
+            values,
+            errors,
+            touched,
+            handleSubmit,
+            handleChange,
+            handleBlur,
+          }) => (
             <FormContainer autoComplete="off">
-            <AvatarContainer>
-              <ImgContainer>
-                {!avatar ? (
-                  <Photosvg>
-                    <use href={icons + '#photodefault'} />
-                  </Photosvg>
-                ) : (
-                  <ImgAvatar src={avatar} alt="Photo user" />
-                )}
-              </ImgContainer>
-              <label htmlFor="avatar">
-                <InputAvatar
-                  id="avatar"
-                  type="file"
-                  name="avatar"
-                  onBlur={handleBlur}
-                  onChange={handleChangeAvatar}
-                  accept="image/*,.png,.jpg,.gif,.web"
-                />
-                {isEditingAvatar ? (
-                  <BtnPhoto
-                    type="submit"
-                    onClick={() => setIsEditingAvatar(false)}                 
-                  >
-                    <SvgIcon>
-                      <use href={icons + '#camera'} />
-                    </SvgIcon>
-                    Edit photo
-                  </BtnPhoto>
-                ) : (
-                  <BtnPhoto
-                    type="button"
-                    onClick={() => setIsEditingAvatar(true)}
-                    onSubmit={handleSubmit}   
-                  >
-                    <SvgIcon>
-                      <use href={icons + '#check'} />
-                    </SvgIcon>
-                    Confirm
-                  </BtnPhoto>
-                )}
-              </label>
-            </AvatarContainer>
-
-            <div>
-              <LabelContainer htmlFor="name">
-                Name:
-                <div>
-                  <InputContainer
-                    type="text"
-                    name="name"
-                    id="name"
-                    value={values.name}
-                    onChange={handleChange}
+              <AvatarContainer>
+                <ImgContainer>
+                  {!avatar ? (
+                    <Photosvg>
+                      <use href={icons + '#photodefault'} />
+                    </Photosvg>
+                  ) : (
+                    <ImgAvatar src={avatar} alt="Photo user" />
+                  )}
+                </ImgContainer>
+                <label htmlFor="avatar">
+                  <InputAvatar
+                    id="avatar"
+                    type="file"
+                    name="avatar"
                     onBlur={handleBlur}
-                 
-                    disabled={!isEditingName ? false : true}
+                    onChange={handleChangeAvatar}
+                    accept="image/*,.png,.jpg,.gif,.web"
+                    innerRef={inputRef}
                   />
-                    {errors.name && touched.name ? (<StyledErrorMessage>{errors.name}</StyledErrorMessage>) : null}
-   
-                </div>
-                {isEditingName ? (
-                  <BtnCheck
-                    type="submit"
-                    onClick={() => setIsEditingName(false)}
-                   
-                  ><BtnEdit>
-                      <use href={icons + '#edit'} />
-                    </BtnEdit>
-                  </BtnCheck>
-                ) : (
-                  <BtnCheck
-                    type="button"
-                    onClick={() => setIsEditingName(true)}
-                    onSubmit={handleSubmit}
-                  ><SvgBtn>
-                      <use href={icons + '#check'} />
-                    </SvgBtn>
-                  </BtnCheck>
-                )}
-              </LabelContainer>
+                  {!isEditingAvatar ? (
+                    <BtnPhoto
+                      type="submit"
+                      onClick={() => {
+                        setIsEditingAvatar(true);
+                        inputRef.current.click();
+                      }}
+                    >
+                      <SvgIcon>
+                        <use href={icons + '#camera'} />
+                      </SvgIcon>
+                      Edit photo
+                    </BtnPhoto>
+                  ) : (
+                    <BtnPhoto
+                      type="button"
+                      onClick={() => setIsEditingAvatar(false)}
+                      onSubmit={handleSubmit}
+                    >
+                      <SvgIcon>
+                        <use href={icons + '#check'} />
+                      </SvgIcon>
+                      Confirm
+                    </BtnPhoto>
+                  )}
+                </label>
+              </AvatarContainer>
 
-              <LabelContainer htmlFor="email">
-                Email:
-                <div>
-                  <InputContainer
-                    type="email"
-                    name="email"
-                    id="email"
-                    value={values.email}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    disabled={!isEditingEmail ? false : true}
-                  />
-                    {errors.email && touched.email ? (<StyledErrorMessage>{errors.email}</StyledErrorMessage>) : null}
-        
-                </div>
-                {isEditingEmail ? (
-                  <BtnCheck
-                    type="submit"
-                    onClick={() => setIsEditingEmail(false)}
-                  >
-                    <BtnEdit>
-                      <use href={icons + '#edit'} />
-                    </BtnEdit>
-                  </BtnCheck>
-                ) : (
-                  <BtnCheck
-                    type="button"
-                    onClick={() => setIsEditingEmail(true)}
-                    onSubmit={handleSubmit}
-                  >
-                    <SvgBtn>
-                      <use href={icons + '#check'} />
-                    </SvgBtn>
-                  </BtnCheck>
-                )}
-              </LabelContainer>
+              <div>
+                <LabelContainer htmlFor="name">
+                  Name:
+                  <div>
+                    <InputContainer
+                      type="text"
+                      name="name"
+                      id="name"
+                      value={values.name}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      disabled={!isEditingName ? false : true}
+                    />
+                    {errors.name && touched.name ? (
+                      <StyledErrorMessage>{errors.name}</StyledErrorMessage>
+                    ) : null}
+                  </div>
+                  {isEditingName ? (
+                    <BtnCheck
+                      type="submit"
+                      onClick={() => setIsEditingName(false)}
+                    >
+                      <BtnEdit>
+                        <use href={icons + '#edit'} />
+                      </BtnEdit>
+                    </BtnCheck>
+                  ) : (
+                    <BtnCheck
+                      type="button"
+                      onClick={() => setIsEditingName(true)}
+                      onSubmit={handleSubmit}
+                    >
+                      <SvgBtn>
+                        <use href={icons + '#check'} />
+                      </SvgBtn>
+                    </BtnCheck>
+                  )}
+                </LabelContainer>
 
-              <LabelContainer htmlFor="birthday">
-                Birthday:
-                <div>
-                  <InputContainer
-                    type="date"
-                    name="birthday"
-                    id="birthday"
-                    value={values.birthday}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    disabled={!isEditingBirthday ? false : true}
-                  />
-                    {errors.birthday && touched.birthday ? (<StyledErrorMessage>{errors.birthday}</StyledErrorMessage>) : null}
-           
-                </div>
-                {isEditingBirthday ? (
-                  <BtnCheck
-                    type="submit"
-                    onClick={() => setIsEditingBirthday(false)}
-                  
-                  >
-                    <BtnEdit>
-                      <use href={icons + '#edit'} />
-                    </BtnEdit>
-                  </BtnCheck>
-                ) : (
-                  <BtnCheck
-                    type="button"
-                    onClick={() => setIsEditingBirthday(true)}
-                    onSubmit={handleSubmit}
-                  >
-                    <SvgBtn>
-                      <use href={icons + '#check'} />
-                    </SvgBtn>
-                  </BtnCheck>
-                )}
-              </LabelContainer>
+                <LabelContainer htmlFor="email">
+                  Email:
+                  <div>
+                    <InputContainer
+                      type="email"
+                      name="email"
+                      id="email"
+                      value={values.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      disabled={!isEditingEmail ? false : true}
+                    />
+                    {errors.email && touched.email ? (
+                      <StyledErrorMessage>{errors.email}</StyledErrorMessage>
+                    ) : null}
+                  </div>
+                  {isEditingEmail ? (
+                    <BtnCheck
+                      type="submit"
+                      onClick={() => setIsEditingEmail(false)}
+                    >
+                      <BtnEdit>
+                        <use href={icons + '#edit'} />
+                      </BtnEdit>
+                    </BtnCheck>
+                  ) : (
+                    <BtnCheck
+                      type="button"
+                      onClick={() => setIsEditingEmail(true)}
+                      onSubmit={handleSubmit}
+                    >
+                      <SvgBtn>
+                        <use href={icons + '#check'} />
+                      </SvgBtn>
+                    </BtnCheck>
+                  )}
+                </LabelContainer>
 
-              <LabelContainer htmlFor="phone">
-                Phone:
-                <div>
-                  <InputContainer
-                    type="tel"
-                    name="phone"
-                    id="phone"
-                    value={values.phone}
-         
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    placeholder="+380000000000"
-                    disabled={!isEditingPhone ? false : true}
-                  />
-                    {errors.phone && touched.phone ? (<StyledErrorMessage>{errors.phone}</StyledErrorMessage>) : null}
-             
-                </div>
-                {isEditingPhone ? (
-                  <BtnCheck
-                    type="submit"
-                    onClick={() => setIsEditingPhone(false)}
-                  
-                  >
-                    <BtnEdit>
-                      <use href={icons + '#edit'} />
-                    </BtnEdit>
-                  </BtnCheck>
-                ) : (
-                  <BtnCheck
-                    type="button"
-                    onClick={() => setIsEditingPhone(true)}
-                    onSubmit={handleSubmit}
-                  >
-                    <SvgBtn>
-                      <use href={icons + '#check'} />
-                    </SvgBtn>
-                  </BtnCheck>
-                )}
-              </LabelContainer>
+                <LabelContainer htmlFor="birthday">
+                  Birthday:
+                  <div>
+                    <InputContainer
+                      type="date"
+                      name="birthday"
+                      id="birthday"
+                      value={values.birthday}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      disabled={!isEditingBirthday ? false : true}
+                    />
+                    {errors.birthday && touched.birthday ? (
+                      <StyledErrorMessage>{errors.birthday}</StyledErrorMessage>
+                    ) : null}
+                  </div>
+                  {isEditingBirthday ? (
+                    <BtnCheck
+                      type="submit"
+                      onClick={() => setIsEditingBirthday(false)}
+                    >
+                      <BtnEdit>
+                        <use href={icons + '#edit'} />
+                      </BtnEdit>
+                    </BtnCheck>
+                  ) : (
+                    <BtnCheck
+                      type="button"
+                      onClick={() => setIsEditingBirthday(true)}
+                      onSubmit={handleSubmit}
+                    >
+                      <SvgBtn>
+                        <use href={icons + '#check'} />
+                      </SvgBtn>
+                    </BtnCheck>
+                  )}
+                </LabelContainer>
 
-              <LabelContainer htmlFor="city">
-                City:
-                <div>
-                  <InputContainer
-                    type="text"
-                    name="city"
-                    id="city"
-                    value={values.city}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    placeholder="Lviv"
-                    disabled={!isEditingCity ? false : true}
-                  />
-                  {errors.city && touched.city ? (<StyledErrorMessage>{errors.city}</StyledErrorMessage>) : null}
-           
-                </div>
-                {isEditingCity ? (
-                  <BtnCheck
-                    type="submit"
-                    onClick={() => setIsEditingCity(false)}
-                  >
-                    <BtnEdit>
-                      <use href={icons + '#edit'} />
-                    </BtnEdit>
-                  </BtnCheck>
-                ) : (
-                  <BtnCheck
-                    type="button"
-                    onClick={() => setIsEditingCity(true)}
-                    onSubmit={handleSubmit}
-                  >
-                    <SvgBtn>
-                      <use href={icons + '#check'} />
-                    </SvgBtn>
-                  </BtnCheck>
-                )}
-              </LabelContainer>
+                <LabelContainer htmlFor="phone">
+                  Phone:
+                  <div>
+                    <InputContainer
+                      type="tel"
+                      name="phone"
+                      id="phone"
+                      value={values.phone}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      placeholder="+380000000000"
+                      disabled={!isEditingPhone ? false : true}
+                    />
+                    {errors.phone && touched.phone ? (
+                      <StyledErrorMessage>{errors.phone}</StyledErrorMessage>
+                    ) : null}
+                  </div>
+                  {isEditingPhone ? (
+                    <BtnCheck
+                      type="submit"
+                      onClick={() => setIsEditingPhone(false)}
+                    >
+                      <BtnEdit>
+                        <use href={icons + '#edit'} />
+                      </BtnEdit>
+                    </BtnCheck>
+                  ) : (
+                    <BtnCheck
+                      type="button"
+                      onClick={() => setIsEditingPhone(true)}
+                      onSubmit={handleSubmit}
+                    >
+                      <SvgBtn>
+                        <use href={icons + '#check'} />
+                      </SvgBtn>
+                    </BtnCheck>
+                  )}
+                </LabelContainer>
 
-              <LogoutBtn />
-            </div>
-          </FormContainer>
+                <LabelContainer htmlFor="city">
+                  City:
+                  <div>
+                    <InputContainer
+                      type="text"
+                      name="city"
+                      id="city"
+                      value={values.city}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      placeholder="Lviv"
+                      disabled={!isEditingCity ? false : true}
+                    />
+                    {errors.city && touched.city ? (
+                      <StyledErrorMessage>{errors.city}</StyledErrorMessage>
+                    ) : null}
+                  </div>
+                  {isEditingCity ? (
+                    <BtnCheck
+                      type="submit"
+                      onClick={() => setIsEditingCity(false)}
+                    >
+                      <BtnEdit>
+                        <use href={icons + '#edit'} />
+                      </BtnEdit>
+                    </BtnCheck>
+                  ) : (
+                    <BtnCheck
+                      type="button"
+                      onClick={() => setIsEditingCity(true)}
+                      onSubmit={handleSubmit}
+                    >
+                      <SvgBtn>
+                        <use href={icons + '#check'} />
+                      </SvgBtn>
+                    </BtnCheck>
+                  )}
+                </LabelContainer>
+
+                <LogoutBtn />
+              </div>
+            </FormContainer>
           )}
         </Formik>
       </Box>
