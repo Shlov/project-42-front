@@ -10,7 +10,6 @@ axios.defaults.baseURL = 'https://fourtwo-back.onrender.com/';
 export const fetchNotices = createAsyncThunk(
   'notices/all',
   async (page, thunkAPI) => {
-    console.log('notices/all')
     try {
       const response = await axios.get('/notices', {
         params: { page: page ? page : 1 },
@@ -119,7 +118,7 @@ export const addNotice = createAsyncThunk(
         },
       });
       toast.success('Successfully added to notices');
-      console.log(response);
+      return response
     } catch (error) {
       if (error.response.status === 400) {
         toast.error('Notice creation error. Please try again🙏');
@@ -171,7 +170,7 @@ export const updateFavorite = createAsyncThunk(
       if (error.response.status === 500) {
         toast.error('Server error. Please try later😸');
       }
-      console.log(error)
+      // console.log(error)
       return thunkAPI.rejectWithValue(error.message);
     }
   }
