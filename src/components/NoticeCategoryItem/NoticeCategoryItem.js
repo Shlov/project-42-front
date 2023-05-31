@@ -130,7 +130,7 @@ export const NoticeCategoryItem = ({ item }) => {
   return (
     <>
       <Card>
-        <ImageWrapper onClick={toggleModal}>
+        <ImageWrapper>
           <Image
             alt="pet"
             src={
