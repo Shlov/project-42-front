@@ -29,11 +29,13 @@ export const userReg = createAsyncThunk(
       } else if (e.message === 'Network Error') {
         toast.error('Network Error, please check the connect');
       } else if (e.message === 'Request failed with status code 500') {
-        toast.error('The server encountered an unexpected error that prevented it from fulfilling the request');
+        toast.error(
+          'The server encountered an unexpected error that prevented it from fulfilling the request'
+        );
       } else if (e.message === 'Request failed with status code 409') {
-        toast.error('Already in use')
+        toast.error('Already in use');
       } else if (e.message === 'Request failed with status code 400') {
-        toast.error('Error, something went wrong')
+        toast.error('Error, something went wrong');
       }
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -53,29 +55,30 @@ export const userLogin = createAsyncThunk(
       } else if (e.message === 'Network Error') {
         toast.error('Network Error, please check the connect');
       } else if (e.message === 'Request failed with status code 500') {
-        toast.error('The server encountered an unexpected error that prevented it from fulfilling the request');
+        toast.error(
+          'The server encountered an unexpected error that prevented it from fulfilling the request'
+        );
       } else if (e.message === 'Request failed with status code 409') {
-        toast.error('Already in use')
+        toast.error('Already in use');
       } else if (e.message === 'Request failed with status code 400') {
-        toast.error('Error, something went wrong')
+        toast.error('Error, something went wrong');
       }
       return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
 
-
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
- 
-    await axios.post('/auth/logout', { 
-      headers: { 
-        Authorization: `Bearer ${persistedToken}`, 
-      }});
-   clearAuthHeader();
- 
+
+    await axios.post('/auth/logout', {
+      headers: {
+        Authorization: `Bearer ${persistedToken}`,
+      },
+    });
+    clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -125,7 +128,6 @@ export const updateUser = createAsyncThunk(
       setAuthHeader(persistedToken);
 
       const response = await axios.patch(`/user/update`, values);
-
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
