@@ -21,7 +21,7 @@ const handleRejected = (state, action) => {
 
 const noticesInitialState = {
   items: [],
-  item: {favorite: []},
+  item: {notice : {favorite: []}, user: {}},
   isLoadNotices: false,
   isLoadNotice: false,
   category: 'all',
@@ -77,7 +77,7 @@ const noticesSlice = createSlice({
     [fetchNotice.fulfilled](state, action) {
       state.isLoadNotice = false;
       state.error = null;
-      state.item = action.payload.data.notice; },
+      state.item = action.payload.data; },
     [fetchNotice.rejected]: handleRejected,
 
     [updateFavorite.pending](state){
@@ -85,7 +85,7 @@ const noticesSlice = createSlice({
     [updateFavorite.fulfilled](state, action) {
       state.isLoadNotice = false;
       state.error = '';
-      state.item.favorite = action.payload.data.notice.favorite;
+      state.item.notice.favorite = action.payload.data.notice.favorite;
       if (!action.meta.arg.isFavorite) {
         state.items = state.items.filter(item => item.id !== action.meta.arg.noticeId);
       } else {

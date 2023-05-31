@@ -101,7 +101,7 @@ export const fetchNotice = createAsyncThunk(
           Authorization: `Bearer ${token}`,
         },
       });
-      return response.data;
+      return response.data; 
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

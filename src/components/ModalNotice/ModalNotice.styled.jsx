@@ -65,6 +65,7 @@ export const CategoryTag = styled.p`
 
 export const TitleModal = styled.h4`
   width: 198px;
+  height: 66px;
 
   font-weight: 500;
   font-size: 24px;
@@ -75,6 +76,7 @@ export const TitleModal = styled.h4`
 
   @media (min-width: 768px) {
     width: 221px;
+    height: 66px;
     font-weight: 700;
     font-size: 28px;
     line-height: 38px;

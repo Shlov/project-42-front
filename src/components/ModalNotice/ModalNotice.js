@@ -37,29 +37,16 @@ import { fetchNotice, updateFavorite } from 'Redux/notices/operation';
 import { getIsLoadNotice, getNotice } from 'Redux/notices/selector';
 import { selectUser } from 'Redux/auth/selector';
 import { toast } from 'react-hot-toast';
-// import { NavLink } from 'react-router-dom';
+import {NoticeSkeleton} from 'components/Skeleton/NoticeSkeletonDesctop';
 
 export const ModalNotice = ({ onClose, noticeId }) => {
   const dispatch = useDispatch();
   const [withoutBlur, setWithoutBlur] = useState(0);
-  const {
-    imageURL,
-    title,
-    categories,
-    name,
-    birthday,
-    breed,
-    place,
-    sex,
-    comments,
-    price,
-    favorite,
-  } = useSelector(getNotice);
+  const {notice: {imageURL, title, categories, name, birthday, breed, place, sex, comments, price, favorite}, user :{email, phone}} = useSelector(getNotice)
   const isLoading = useSelector(getIsLoadNotice);
   const userId = useSelector(selectUser).id;
   const isFavorite = favorite.includes(userId);
 
-  const { email, phone } = useSelector(selectUser);
 
   const handleBlurContacts = () => {
     setWithoutBlur(withoutBlur + 1);
@@ -68,7 +55,7 @@ export const ModalNotice = ({ onClose, noticeId }) => {
   const handleFavorite = () => {
     if (!userId) {
       console.log('user disconnect');
-      toast.error('Please authorization and try again!', {
+      toast.error('Please authorize and try again!', {
         style: {
           backgroundColor: `var(--cl-background)`,
           padding: '6px',
@@ -91,7 +78,8 @@ export const ModalNotice = ({ onClose, noticeId }) => {
     <>
       <ModalApproveAction onClose={onClose} width>
         {isLoading ? (
-          <h3>Loading...</h3>
+          <NoticeSkeleton></NoticeSkeleton>
+          // <div style={{width:"681px", height:"500px"}}>Loading...</div>
         ) : (
           <ModalContent>
             <ImageWrapper>
@@ -179,7 +167,6 @@ export const ModalNotice = ({ onClose, noticeId }) => {
                 </PriceWrap>
               )}
               <ButtonWrap>
-                {/* <ContactBtn href="tel:+380971234567" aria-label="phone button"> */}
                 <ContactBtn
                   type="button"
                   aria-label="show contact button"
@@ -208,4 +195,5 @@ export const ModalNotice = ({ onClose, noticeId }) => {
 
 ModalNotice.propTypes = {
   onClose: PropTypes.func.isRequired,
+  noticeId: PropTypes.string.isRequired,
 };
