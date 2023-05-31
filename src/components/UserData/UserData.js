@@ -10,6 +10,7 @@ import icons from 'images/icons.svg';
 import { LogoutBtn } from 'components/Logout/Logout';
 import { PetsData } from 'components/PetsData/PetsData';
 import { ModalCongrats } from 'components/ModalCongrats/ModalCongrats';
+import { toast } from 'react-hot-toast';
 
 import {
   MainContainer,
@@ -110,6 +111,9 @@ export const UserData = () => {
       formData.append('birthday', values.birthday);
     }
     dispatch(updateUser(formData));
+
+    toast.success('Profile successfully updated 😸!');
+
   };
 
   return (
