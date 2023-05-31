@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Form, Field, ErrorMessage } from 'formik';
+import { Form, Field} from 'formik';
 
 export const MainContainer = styled.div`
   padding: 20px;
@@ -75,7 +75,7 @@ export const FormContainer = styled(Form)`
 `;
 
 export const AvatarContainer = styled.div`
-  position: relative;
+position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -111,13 +111,13 @@ export const SvgIcon = styled.svg`
 `;
 
 export const InputAvatar = styled(Field)`
-  width: 96px;
+  width: 150px;
   visibility: hidden;
 `;
 export const BtnPhoto = styled.button`
   position: absolute;
   left: 86px;
-
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -132,21 +132,23 @@ export const BtnPhoto = styled.button`
   line-height: 22px;
 
   @media screen and (min-width: 767px) {
-    left: 50px;
+    left: 45px;
   }
 
+  
   @media screen and (min-width: 991px) {
     left: 120px;
   }
+
 `;
 
 export const LabelContainer = styled.label`
-  position: relative;
-  display: flex;
+position: relative;
+display: flex;
 
   align-items: center;
   justify-content: space-between;
-  // margin: 12px auto;
+
   margin-bottom: 12px;
 
   font-weight: 600;
@@ -163,10 +165,13 @@ export const LabelContainer = styled.label`
     font-size: 18px;
     line-height: 25px;
   }
+
+  }
 `;
 
 export const InputContainer = styled(Field)`
-  padding: 6px 12px;
+
+padding: 6px 12px;
   width: 190px;
   height: 28px;
 
@@ -177,7 +182,7 @@ export const InputContainer = styled(Field)`
 
   font-weight: 400;
   font-size: 12px;
-  &:focus {
+  &: focus {
     outline: none;
   }
 
@@ -186,30 +191,51 @@ export const InputContainer = styled(Field)`
     width: 255px;
     height: 32px;
     cursor: pointer;
-    &:focus {
+    &: focus {
       outline: none;
     }
+    }
+
   }
 `;
 
 export const BtnCheck = styled.button`
   position: absolute;
   right: 15px;
+  padding: 0px 0px;
+  cursor: pointer;
+border: none;
+width: 24px;
+height: 24px;
+  background-color: var(--cl-background);
 
+`;
+export const SvgBtn = styled.svg`
+width: 24px;
+height: 24px;
+  stroke: var(--cl-green);
+  fill: transparent;
+`;
+
+export const BtnEdit = styled.svg`
   width: 24px;
   height: 24px;
 
-  display: flex;
-  justify-content: center;
-
-  border: none;
-  background-color: transparent;
+  stroke: var(--cl-blue-link);
+  fill: var(--cl-blue-link);
 `;
 
-export const StyledErrorMessage = styled(ErrorMessage)`
-  position: absolute;
-  top: 25px;
-  right: 20px;
+
+export const Photosvg = styled.svg`
+  width: 182px;
+  height: 182px;
+  fill: transparent;
+`;
+
+export const StyledErrorMessage = styled.div`
+position: absolute;
+top: 25px;
+right: 20px;
   font-weight: 400;
   font-size: 9px;
   line-height: 14px;
@@ -217,29 +243,7 @@ export const StyledErrorMessage = styled(ErrorMessage)`
 
   @media screen and (min-width: 767px) {
     position: absolute;
-    top: 20px;
+    top: 28px;
     right: 20px;
   }
-`;
-
-export const SVGBtn = styled.svg`
-  flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  stroke: var(--cl-green);
-  fill: transparent;
-`;
-
-export const BtnEdit = styled.svg`
-  flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  stroke: var(--cl-blue-link);
-  fill: var(--cl-blue-link);
-`;
-
-export const Photosvg = styled.svg`
-  width: 182px;
-  height: 182px;
-  fill: transparent;
 `;
