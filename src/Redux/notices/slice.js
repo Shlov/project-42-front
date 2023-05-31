@@ -86,13 +86,18 @@ const noticesSlice = createSlice({
       state.isLoadNotice = false;
       state.error = '';
       state.item.favorite = action.payload.data.notice.favorite;
-      state.items = state.items.map(item => {
-        if (item.id !== action.meta.arg.noticeId) {
-          return item
-        } else {
-          return {...item, favorite: action.payload.data.notice.favorite}
-        }
-      }) },
+      if (!action.meta.arg.isFavorite) {
+        state.items = state.items.filter(item => item.id !== action.meta.arg.noticeId);
+      } else {
+        state.items = state.items.map(item => {
+          if (item.id !== action.meta.arg.noticeId) {
+            return item
+          } else {
+            return {...item, favorite: action.payload.data.notice.favorite}
+          }
+        })
+      }
+    },
     [updateFavorite.rejected](state, action) {
       state.error = action.payload; },
 

@@ -1,11 +1,12 @@
 // Компонент рендерить список всіх оголошень відповідної категорії - NoticeCategoryItem, дані по яким отримує з бекенду
+import { toast } from 'react-hot-toast';
 import { NoticeCategoryItem } from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import { NoticesList } from './NoticesCategoriesList.styled';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getIsLoadNotices } from 'Redux/notices/selector';
+import { getIsLoadNotices, getNotices } from 'Redux/notices/selector';
 import { selectUser } from "Redux/auth/selector";
-import { getFavoriteNotices, getNoticeByCategory, getUserNotices } from 'Redux/notices/operation';
+import { getFavoriteNotices, getNoticeByCategory, getUserNotices, updateFavorite } from 'Redux/notices/operation';
 import { useEffect } from 'react';
 import { fetchNotices } from 'Redux/notices/operation';
 import { Loader } from 'components/Loader/Loader';
@@ -29,15 +30,25 @@ export const NoticeCategoryList = ({
 }) => {
   const isLoading = useSelector(getIsLoadNotices);
   const idUser = useSelector(selectUser).id;
+  const items = useSelector(getNotices)
   const dispatch = useDispatch();
   const { categoryName = 'all' } = useParams();
   const [searchParams] = useSearchParams();
-  
+
 
   // const { limit, numberNotices, page} = useSelector(getPagination);
   // console.log(page, 'p l' , limit)
 
+  const handleFavorite = (item, activeFavorite) => {
+    if (!idUser) {
+      toast.error('Please authorize and try again 😸');
+    }
+    dispatch(updateFavorite({ noticeId: item.id, isFavorite: activeFavorite }))
+  };
 
+  useEffect(() => {
+    setFilteredItems(() => items)
+  }, [items, filteredItems, setFilteredItems]);
 
   const convertAgeToMonths = (age) => {
     switch (age) {
@@ -196,7 +207,7 @@ export const NoticeCategoryList = ({
       return <p>Not found!</p>;
     } else if (!isLoading && filteredItems.length) {
       return filteredItems.map((notice, i) => (
-        <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal} />
+        <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal} handleFavorite={handleFavorite} />
       ));
     }
   };
