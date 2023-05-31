@@ -41,21 +41,33 @@ import { toast } from 'react-hot-toast';
 
 export const ModalNotice = ({ onClose, noticeId }) => {
   const dispatch = useDispatch();
-  const [withoutBlur, setWithoutBlur] = useState(0);  
-  const {imageURL, categories, name, birthday, breed, place, sex, comments, price, favorite} = useSelector(getNotice);
+  const [withoutBlur, setWithoutBlur] = useState(0);
+  const {
+    imageURL,
+    title,
+    categories,
+    name,
+    birthday,
+    breed,
+    place,
+    sex,
+    comments,
+    price,
+    favorite,
+  } = useSelector(getNotice);
   const isLoading = useSelector(getIsLoadNotice);
   const userId = useSelector(selectUser).id;
-  const isFavorite = favorite.includes(userId)
+  const isFavorite = favorite.includes(userId);
 
-  const {email, phone}= useSelector(selectUser)
+  const { email, phone } = useSelector(selectUser);
 
   const handleBlurContacts = () => {
     setWithoutBlur(withoutBlur + 1);
   };
-  
-  const handleFavorite = () => {   
-    if(!userId) {
-      console.log("user disconnect") 
+
+  const handleFavorite = () => {
+    if (!userId) {
+      console.log('user disconnect');
       toast.error('Please authorization and try again!', {
         style: {
           backgroundColor: `var(--cl-background)`,
@@ -68,11 +80,10 @@ export const ModalNotice = ({ onClose, noticeId }) => {
     }
     const activeFavorite = favorite.includes(userId);
     const isFavorite = !activeFavorite;
-    dispatch(updateFavorite({noticeId, isFavorite}));
+    dispatch(updateFavorite({ noticeId, isFavorite }));
   };
 
-
-  useEffect(() => {    
+  useEffect(() => {
     dispatch(fetchNotice(noticeId));
   }, [dispatch, noticeId, userId]);
 
@@ -98,7 +109,9 @@ export const ModalNotice = ({ onClose, noticeId }) => {
             </ImageWrapper>
             <div>
               <div>
-                <TitleModal>Cute pet looking for a home</TitleModal>
+                <TitleModal>
+                  {title ? title : 'Cute pet looking for a home'}
+                </TitleModal>
               </div>
               <ListProperty>
                 <ItemProp>
@@ -126,9 +139,7 @@ export const ModalNotice = ({ onClose, noticeId }) => {
                 <ItemProp>
                   <NameProp>Email:</NameProp>
                   {!withoutBlur ? (
-                    <ContactBlur to={`mailto:${email}`}>
-                      {email}
-                    </ContactBlur>
+                    <ContactBlur to={`mailto:${email}`}>{email}</ContactBlur>
                   ) : (
                     <Contact to={`mailto:${email}`}>{email}</Contact>
                   )}
@@ -181,7 +192,7 @@ export const ModalNotice = ({ onClose, noticeId }) => {
                   aria-label="favorite button"
                   onClick={handleFavorite}
                 >
-                  {isFavorite ? "Del from" : "Add to"}
+                  {isFavorite ? 'Del from' : 'Add to'}
                   <HeartIcon>
                     <use href={icons + '#heart'}></use>
                   </HeartIcon>

@@ -75,7 +75,7 @@ export const FormContainer = styled(Form)`
 `;
 
 export const AvatarContainer = styled.div`
-position: relative;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -117,7 +117,6 @@ export const InputAvatar = styled(Field)`
 export const BtnPhoto = styled.button`
   position: absolute;
   left: 86px;
-  
 
   display: inline-flex;
   align-items: center;
@@ -136,16 +135,14 @@ export const BtnPhoto = styled.button`
     left: 50px;
   }
 
-  
   @media screen and (min-width: 991px) {
     left: 120px;
   }
-
 `;
 
 export const LabelContainer = styled.label`
-position: relative;
-display: flex;
+  position: relative;
+  display: flex;
 
   align-items: center;
   justify-content: space-between;
@@ -166,16 +163,10 @@ display: flex;
     font-size: 18px;
     line-height: 25px;
   }
-
-  }
 `;
 
-export const InputWrraper = styled.div`
-  // position: relative;
-`;
 export const InputContainer = styled(Field)`
-
-padding: 6px 12px;
+  padding: 6px 12px;
   width: 190px;
   height: 28px;
 
@@ -186,7 +177,7 @@ padding: 6px 12px;
 
   font-weight: 400;
   font-size: 12px;
-  &: focus {
+  &:focus {
     outline: none;
   }
 
@@ -195,11 +186,9 @@ padding: 6px 12px;
     width: 255px;
     height: 32px;
     cursor: pointer;
-    &: focus {
+    &:focus {
       outline: none;
     }
-    }
-
   }
 `;
 
@@ -210,15 +199,17 @@ export const BtnCheck = styled.button`
   width: 24px;
   height: 24px;
 
-  border: none;
-  background-color: var(--cl-background);
+  display: flex;
+  justify-content: center;
 
+  border: none;
+  background-color: transparent;
 `;
 
 export const StyledErrorMessage = styled(ErrorMessage)`
-position: absolute;
-top: 25px;
-right: 20px;
+  position: absolute;
+  top: 25px;
+  right: 20px;
   font-weight: 400;
   font-size: 9px;
   line-height: 14px;
@@ -232,6 +223,7 @@ right: 20px;
 `;
 
 export const SVGBtn = styled.svg`
+  flex-shrink: 0;
   width: 24px;
   height: 24px;
   stroke: var(--cl-green);
@@ -239,12 +231,12 @@ export const SVGBtn = styled.svg`
 `;
 
 export const BtnEdit = styled.svg`
+  flex-shrink: 0;
   width: 24px;
   height: 24px;
   stroke: var(--cl-blue-link);
   fill: var(--cl-blue-link);
 `;
-
 
 export const Photosvg = styled.svg`
   width: 182px;
