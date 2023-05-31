@@ -43,14 +43,13 @@ import {
 } from '../NoticesPage/NoticesPage.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'Redux/auth/selector';
-import { deleteNotice, updateFavorite } from 'Redux/notices/operation';
+import { deleteNotice } from 'Redux/notices/operation';
 import { toast } from 'react-hot-toast';
 import icons from 'images/icons.svg';
 
-export const NoticeCategoryItem = ({ item }) => {
+export const NoticeCategoryItem = ({ item, handleFavorite }) => {
   const idUser = useSelector(selectUser).id;
   const activeFavorite = item.favorite.includes(idUser);
-  const noticeId = item.id;
   const isFavorite = !activeFavorite;
   const dispatch = useDispatch();
   const agePet = birthday => {
@@ -69,13 +68,6 @@ export const NoticeCategoryItem = ({ item }) => {
     } else {
       return `${Math.floor(differenceTime / 31560192000)} year`;
     }
-  };
-
-  const handleFavorite = () => {
-    if (!idUser) {
-      toast.error('Please authorize and try again 😸');
-    }
-    dispatch(updateFavorite({ noticeId, isFavorite }));
   };
 
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -168,7 +160,7 @@ export const NoticeCategoryItem = ({ item }) => {
               <p>{item.sex ? item.sex : 'sex'}</p>
             </TagItem>
           </TagList>
-          <FavoriteBtn onClick={() => handleFavorite()}>
+          <FavoriteBtn onClick={() => handleFavorite(item, isFavorite)}>
             <HeartIcon
               height="20"
               width="20"
