@@ -138,6 +138,7 @@ export const NoticeCategoryItem = ({ item }) => {
                 ? item.imageURL
                 : 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSgGi3YJI2iukoOZ3_fbYCyoiR4dYO8fIyIu_qpphSUf8GRAmFN'
             }
+            onClick={toggleModal}
           />
           <CategoryTag>
             {item.categories ? item.categories : 'categories'}
