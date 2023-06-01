@@ -10,7 +10,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import { userReg } from 'Redux/auth/operation';
 import { useState } from 'react';
 import { Navigate } from "react-router-dom";
-import { getConnect } from "Redux/auth/selector";
+import { getAuthLoading, getConnect } from "Redux/auth/selector";
 import { Loader } from 'components/Loader/Loader';
 import * as yup from 'yup';
 import {
@@ -77,11 +77,7 @@ export const RegForm = () => {
   const [typePass, setTypePass] = useState('password');
   const [toggleIconConfirm, setToggleIconConfirm] = useState(eyeCosed);
   const [typeCofirm, setTypeCofirm] = useState('password');
-    const [isLoad, setIsLoad] = useState();
-
-  const onLoader = e => {
-   setIsLoad( Loader)
-  }
+  const isLoad = useSelector(getAuthLoading);
 
   const togglePassInput = e => {
     if (typePass === 'password') {
@@ -246,7 +242,10 @@ export const RegForm = () => {
                   <Error component="div" name="confirmPassword" />
                 </Label>
               </Box>
-              <Button type="submit" onClick={onLoader}>{isLoad} Registration</Button>
+              <Button type="submit">
+                Registration
+              </Button>
+                {isLoad && <Loader/>}
               <Text>
                 Already have an account?
                 <Span>
