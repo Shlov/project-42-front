@@ -37,8 +37,8 @@ import { fetchNotice, updateFavorite } from 'Redux/notices/operation';
 import { getIsLoadNotice, getNotice } from 'Redux/notices/selector';
 import { selectUser } from 'Redux/auth/selector';
 import { toast } from 'react-hot-toast';
-import {NoticeSkeletonDesk} from 'components/Skeleton/NoticeDeskLoad';
-import { NoticeSkeletonMob } from 'components/Skeleton/NoticeSkeletonMob';
+import { NoticeSkeletonDesk } from 'components/Skeleton/NoticeDeskLoad';
+import { NoticeSkeletonMob } from 'components/Skeleton/NoticeMobLoad';
 
 export const ModalNotice = ({ onClose, noticeId }) => {
   const dispatch = useDispatch();
@@ -48,7 +48,6 @@ export const ModalNotice = ({ onClose, noticeId }) => {
   const userId = useSelector(selectUser).id;
   const isFavorite = favorite.includes(userId);
   const mobile = useSelector(state => state.main.mobile);
-  // const desktop = useSelector(state => state.main.desktop);
 
   const handleBlurContacts = () => {
     setWithoutBlur(withoutBlur + 1);
