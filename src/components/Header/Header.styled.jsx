@@ -8,7 +8,7 @@ export const HeaderContainer = styled.header`
   margin: 0 auto;
 
 @media (min-width: 991px) {
-    width: 1280px;
+    max-width: 1280px;
   }
 
 `;
@@ -53,10 +53,9 @@ export const HeaderTheme = styled.button`
 
   .icon {
     position: absolute;
-    width: 100%;
-    height: 100%;
     transition: opacity 0.5s, transform 0.5s;
-    top: 0;
+    top: 7px;
+    right: 10px;
     right: 10px;
   }
 

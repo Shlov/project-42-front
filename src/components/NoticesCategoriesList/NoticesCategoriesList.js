@@ -26,6 +26,7 @@ export const NoticeCategoryList = ({
   setFilteredItems,
   ages,
   genders,
+  filterHeight
 }) => {
   const isLoading = useSelector(getIsLoadNotices);
   const idUser = useSelector(selectUser).id;
@@ -33,7 +34,7 @@ export const NoticeCategoryList = ({
   const dispatch = useDispatch();
   const { categoryName = 'all' } = useParams();
   const [searchParams] = useSearchParams();
-  
+
   const futurePage = useSelector(getFuturePage)
   const array = Array.from({ length: 8 }, (_, index) => index + 1);
   // const { limit, numberNotices, page} = useSelector(getPagination);
@@ -71,7 +72,6 @@ export const NoticeCategoryList = ({
     if (ages.length) {
       ages.forEach(age => {
         const { minMonths: currentMinMonth, maxMonths: currentMaxMonth } = convertAgeToMonths(age);
-        console.log(currentMinMonth);
         if (currentMinMonth !== null && currentMaxMonth !== null) {
           minMonths = minMonths === null ? currentMinMonth : Math.min(minMonths, currentMinMonth);
           maxMonths = maxMonths === null ? currentMaxMonth : Math.max(maxMonths, currentMaxMonth);
@@ -215,7 +215,7 @@ export const NoticeCategoryList = ({
 
   return (
     <>
-      <NoticesList>
+      <NoticesList filterHeight={filterHeight}>
         {isLoading && <Loader/>}
         {isLoading && array.map(item => <NoticeCategoryItemLoad key={item}/>)}
         {allOrFilterItems()}

@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   width: 280px;
   box-shadow: var(--shadow-default);
   border-radius: 40px;
-  background-color: var(--cl-almost-white);
+  background-color: ${(props) => props.theme === 'day' ? 'var(--cl-background)' : '#111'};
   padding: 40px 12px;
 
   @media screen and (min-width: 768px) {
@@ -23,6 +23,7 @@ export const StyledForm = styled(Form)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: ${(props) => props.theme === 'day' ? 'var(--cl-background)' : '#111'};
 `;
 
 export const Box = styled.div`
@@ -53,7 +54,7 @@ export const Title = styled.h2`
   align-items: center;
   text-align: center;
   justify-content: center;
-  color: var(--cl-black);
+  color: ${(props) => props.theme === 'day' ? 'var(--cl-black)' : '#fff'};
 
   @media screen and (min-width: 768px) {
     font-weight: 500;

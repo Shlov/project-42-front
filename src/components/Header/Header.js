@@ -38,7 +38,7 @@ const Header = () => {
           {desktop ? <Nav /> : null}
         </HeaderNav>
         <HeaderUser>
-          <HeaderTheme onClick={handleChangeTheme} className={`icons ${theme}`}>
+          <HeaderTheme onClick={handleChangeTheme} className={`icons ${theme}`} isConnect={isConnect}>
             <img
               className={`icon ${theme === "night" ? "icon-hide" : "icon-show"}`}
               src={Sun}

@@ -72,6 +72,7 @@ export const LogForm = () => {
   const [toggleIconPass, setToggleIconPass] = useState(eyeCosed);
   const [typePass, setTypePass] = useState('password');
   const isLoad = useSelector(getAuthLoading);
+  const theme = useSelector(state => state.main.theme)
 
   const togglePassInput = e => {
     if (typePass === 'password') {
@@ -101,7 +102,7 @@ export const LogForm = () => {
   }
 
   return (
-    <Wrapper>
+    <Wrapper theme={theme}>
       <Formik
         initialValues={initialValue}
         validationSchema={yupLoginValidation}
@@ -109,8 +110,8 @@ export const LogForm = () => {
       >
         {props => {
           return (
-            <StyledForm>
-              <Title>Login</Title>
+            <StyledForm theme={theme}>
+              <Title theme={theme}>Login</Title>
               <Box>
                 <Label>
                   <Input

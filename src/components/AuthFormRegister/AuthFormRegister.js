@@ -77,7 +77,10 @@ export const RegForm = () => {
   const [typePass, setTypePass] = useState('password');
   const [toggleIconConfirm, setToggleIconConfirm] = useState(eyeCosed);
   const [typeCofirm, setTypeCofirm] = useState('password');
+
   const isLoad = useSelector(getAuthLoading);
+  const theme = useSelector(state => state.main.theme)
+
 
   const togglePassInput = e => {
     if (typePass === 'password') {
@@ -121,7 +124,7 @@ export const RegForm = () => {
   }
 
   return (
-    <Wrapper>
+    <Wrapper theme={theme}>
       <Formik
         initialValues={initialValue}
         validationSchema={yupRegValidation}
@@ -129,8 +132,8 @@ export const RegForm = () => {
       >
         {props => {
           return (
-            <StyledForm>
-              <Title>Registration</Title>
+            <StyledForm theme={theme}>
+              <Title theme={theme}>Registration</Title>
               <Box>
                 <Label>
                   <Input

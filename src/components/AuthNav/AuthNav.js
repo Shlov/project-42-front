@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 const AuthNav = ({ setActiveBridge }) => {
   const [isIconLoaded, setIsIconLoaded] = useState(false);
     const desktop = useSelector(state => state.main.desktop);
+    const theme = useSelector(state => state.main.theme)
 
   useEffect(() => {
     const iconImage = new Image();
@@ -35,7 +36,7 @@ const AuthNav = ({ setActiveBridge }) => {
         </ButtonLogin>
       </Link>
       <Link to="/register" onClick={handleCloseMenu}>
-        <ButtonRegister>Registration</ButtonRegister>
+        <ButtonRegister theme={theme}>Registration</ButtonRegister>
       </Link>
     </AuthNavCss>
   );

@@ -9,7 +9,9 @@ export const FilterWrapper = styled.div`
 
 export const Button = styled.button`
   color: ${(props) => {
-    if((props.mobile || !props.mobile) && !props.ages.length) {
+    if(props.mobile && !props.ages.length) {
+      return 'var(--cl-almost-white)'
+    } else if(!props.mobile && !props.ages.length) {
       return 'var(--cl-blue-link)'
     } else if(props.mobile && props.ages.length) {
       return 'var(--cl-blue-light)'
@@ -24,10 +26,12 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${(props) => {
+  background: ${(props) => {
     if(props.mobile && !props.ages.length) {
       return 'var(--cl-blue-light)'
-    } else if((props.mobile || !props.mobile) && props.ages.length) {
+    } else if(props.mobile && props.ages.length) {
+      return 'var(--gr-blue)'
+    } else if(!props.mobile && props.ages.length) {
       return 'var(--cl-blue-link)'
     } else if(!props.mobile && !props.ages.length && props.theme === 'day') {
       return 'var(--cl-almost-white)'
@@ -57,7 +61,7 @@ export const FilterCSS = styled(Filter)`
     if((props.mobile || !props.mobile) && !props.ages.length) {
       return 'var(--cl-blue-link)'
     } else if(props.mobile && props.ages.length) {
-      return 'var(--cl-blue-light)'
+      return '#fff'
     } else if(!props.mobile && props.ages.length) {
       return 'var(--cl-background)'
     }
@@ -72,7 +76,7 @@ export const FilterCSS = styled(Filter)`
 export const FilterSelect = styled.div`
   width: 152px;
   padding: 8px;
-  background-color: var(--cl-background);
+  background-color: ${(props) => props.theme === 'day' ? 'var(--cl-background)' : '#111'};
   color: var(--cl-blue-link);
   box-shadow: var(--shadow-default);
   border-radius: 20px;
@@ -159,6 +163,22 @@ export const FilterItem = styled.div`
   border-radius: 20px;
   display: flex;
   align-items: center;
+  min-width: 119px;
+  justify-content: space-between;
+
+  @media (max-width: 991px) {
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 768px) {
+    width: max-content;
+    height: 32px;
+    min-width: 0;
+    font-size: 12px;
+    margin-bottom: 10px;
+    margin-right: 0;
+    margin-left: 17px;
+  }
 
   &:last-child {
     margin-right: 0px;
