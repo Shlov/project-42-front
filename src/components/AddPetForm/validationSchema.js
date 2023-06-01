@@ -62,7 +62,7 @@ const validationSchema = object().shape({
     .required('Price is required'),
   comments: string()
     .min(8, 'Comments must be at least 8 characters')
-    .max(120, 'Comments must be at most 120 characters')
+    .max(300, 'Comments must be at most 300 characters')
     .required('Comments are required'),
 
   title: string()
