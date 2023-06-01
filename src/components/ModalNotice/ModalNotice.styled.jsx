@@ -136,6 +136,12 @@ export const Contact = styled(NavLink)`
     font-size: 16px;
     line-height: 22px;
   }
+
+  &:hover, 
+  &:active,
+  &:focus {
+    color: var(--cl-accent);
+  }
 `;
 
 export const ContactBlur = styled(Contact)`
