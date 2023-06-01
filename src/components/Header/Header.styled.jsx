@@ -23,6 +23,7 @@ export const HeaderUser = styled.div`
 `;
 
 export const MenuBurgerImg = styled.img`
+margin-top: 7px;
 
   @media screen and (min-width: 767px) {
     margin-left: 24px;
@@ -49,13 +50,13 @@ export const HeaderTheme = styled.button`
   img {
     width: 28px;
     height: 28px;
+    
   }
 
   .icon {
     position: absolute;
     transition: opacity 0.5s, transform 0.5s;
     top: 7px;
-    right: 10px;
     right: 10px;
   }
 

@@ -13,7 +13,7 @@ import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCat
 import { FindFilter } from 'components/NoticesFilters/NoticesFilters'
 import { NoticeCategoryList } from 'components/NoticesCategoriesList/NoticesCategoriesList';
 import AddPetButton from 'components/AddPetButton/AddPetButton'
-import { Filters } from './NoticesPage.styled';
+import { Filters, FiltersContainer } from './NoticesPage.styled';
 import { FilterItem } from 'components/NoticesFilters/NoticesFilter.styled';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import RemoveItem from '../../images/icons/cross-small-1.svg'
@@ -175,6 +175,7 @@ export const NoticesPage = () => {
   return (
     <>
       <NoticesSearch onSubmit={handleSearch} />
+      <FiltersContainer>
       <Filters>
         <div>
           <NoticesCategoriesNav categoriesArr={categoriesArr} setCategoriesArr={setCategoriesArr} categories={categories} category={category} setCategory={setCategory} privateCategory={privateCategory} />
@@ -193,7 +194,8 @@ export const NoticesPage = () => {
             }
           </div>
         </div>
-      </Filters>
+        </Filters>
+        </FiltersContainer>
       <NoticeCategoryList filterHeight={filterHeight} filteredItems={filteredItems} setFilteredItems={setFilteredItems} items={items} search={search} ages={ages} genders={genders}/>
       {filteredItems.length && !isLoading ? <Pagination /> : null}
     </>
