@@ -37,7 +37,8 @@ import { fetchNotice, updateFavorite } from 'Redux/notices/operation';
 import { getIsLoadNotice, getNotice } from 'Redux/notices/selector';
 import { selectUser } from 'Redux/auth/selector';
 import { toast } from 'react-hot-toast';
-import {NoticeSkeleton} from 'components/Skeleton/NoticeSkeletonDesctop';
+import { NoticeSkeletonDesk } from 'components/Skeleton/NoticeDeskLoad';
+import { NoticeSkeletonMob } from 'components/Skeleton/NoticeMobLoad';
 
 export const ModalNotice = ({ onClose, noticeId }) => {
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ export const ModalNotice = ({ onClose, noticeId }) => {
   const isLoading = useSelector(getIsLoadNotice);
   const userId = useSelector(selectUser).id;
   const isFavorite = favorite.includes(userId);
-
+  const mobile = useSelector(state => state.main.mobile);
 
   const handleBlurContacts = () => {
     setWithoutBlur(withoutBlur + 1);
@@ -78,8 +79,7 @@ export const ModalNotice = ({ onClose, noticeId }) => {
     <>
       <ModalApproveAction onClose={onClose} width>
         {isLoading ? (
-          <NoticeSkeleton></NoticeSkeleton>
-          // <div style={{width:"681px", height:"500px"}}>Loading...</div>
+        ( mobile ? <NoticeSkeletonMob></NoticeSkeletonMob> : <NoticeSkeletonDesk></NoticeSkeletonDesk>)
         ) : (
           <ModalContent>
             <ImageWrapper>

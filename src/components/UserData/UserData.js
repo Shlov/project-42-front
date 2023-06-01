@@ -42,7 +42,7 @@ const schema = yup.object().shape({
   phone: yup
     .string()
     .matches(/^\+380\d{9}$/, 'enter phone number in format +380')
-    .nullable(),
+    .required(),
   city: yup.string().min(3).max(16, 'length must be less then 16').nullable(),
 });
 
@@ -89,7 +89,7 @@ export const UserData = () => {
   };
   const formData = new FormData();
 
-  const handleSubmitInput = values => {
+  const handleSubmitInput = (values, props) => {
     if (userImage) {
       formData.append('avatarURL', userImage);
     }
@@ -134,14 +134,7 @@ export const UserData = () => {
           validationSchema={schema}
           onSubmit={handleSubmitInput}
         >
-          {({
-            values,
-            errors,
-            touched,
-            handleSubmit,
-            handleChange,
-            handleBlur,
-          }) => (
+          {props => (
             <FormContainer autoComplete="off">
               <AvatarContainer>
                 <ImgContainer>
@@ -158,7 +151,7 @@ export const UserData = () => {
                     id="avatar"
                     type="file"
                     name="avatar"
-                    onBlur={handleBlur}
+                    onBlur={props.handleBlur}
                     onChange={handleChangeAvatar}
                     accept="image/*,.png,.jpg,.gif,.web"
                     innerRef={inputRef}
@@ -180,7 +173,7 @@ export const UserData = () => {
                     <BtnPhoto
                       type="button"
                       onClick={() => setIsEditingAvatar(false)}
-                      onSubmit={handleSubmit}
+                      onSubmit={props.handleSubmit}
                     >
                       <SvgIcon>
                         <use href={icons + '#check'} />
@@ -199,13 +192,16 @@ export const UserData = () => {
                       type="text"
                       name="name"
                       id="name"
-                      value={values.name}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
+                      value={props.values.name}
+                      error={props.errors}
+                      onChange={props.handleChange}
+                      onBlur={props.handleBlur}
                       disabled={!isEditingName ? false : true}
                     />
-                    {errors.name && touched.name ? (
-                      <StyledErrorMessage>{errors.name}</StyledErrorMessage>
+                    {props.errors.name ? (
+                      <StyledErrorMessage>
+                        {props.errors.name}
+                      </StyledErrorMessage>
                     ) : null}
                   </div>
                   {isEditingName ? (
@@ -221,7 +217,7 @@ export const UserData = () => {
                     <BtnCheck
                       type="button"
                       onClick={() => setIsEditingName(true)}
-                      onSubmit={handleSubmit}
+                      onSubmit={props.handleSubmit}
                     >
                       <SvgBtn>
                         <use href={icons + '#check'} />
@@ -237,13 +233,16 @@ export const UserData = () => {
                       type="email"
                       name="email"
                       id="email"
-                      value={values.email}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
+                      value={props.values.email}
+                      error={props.errors}
+                      onChange={props.handleChange}
+                      onBlur={props.handleBlur}
                       disabled={!isEditingEmail ? false : true}
                     />
-                    {errors.email && touched.email ? (
-                      <StyledErrorMessage>{errors.email}</StyledErrorMessage>
+                    {props.errors.email ? (
+                      <StyledErrorMessage>
+                        {props.errors.email}
+                      </StyledErrorMessage>
                     ) : null}
                   </div>
                   {isEditingEmail ? (
@@ -259,7 +258,7 @@ export const UserData = () => {
                     <BtnCheck
                       type="button"
                       onClick={() => setIsEditingEmail(true)}
-                      onSubmit={handleSubmit}
+                      onSubmit={props.handleSubmit}
                     >
                       <SvgBtn>
                         <use href={icons + '#check'} />
@@ -275,13 +274,16 @@ export const UserData = () => {
                       type="date"
                       name="birthday"
                       id="birthday"
-                      value={values.birthday}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
+                      value={props.values.birthday}
+                      error={props.errors}
+                      onChange={props.handleChange}
+                      onBlur={props.handleBlur}
                       disabled={!isEditingBirthday ? false : true}
                     />
-                    {errors.birthday && touched.birthday ? (
-                      <StyledErrorMessage>{errors.birthday}</StyledErrorMessage>
+                    {props.errors.birthday ? (
+                      <StyledErrorMessage>
+                        {props.errors.birthday}
+                      </StyledErrorMessage>
                     ) : null}
                   </div>
                   {isEditingBirthday ? (
@@ -297,7 +299,7 @@ export const UserData = () => {
                     <BtnCheck
                       type="button"
                       onClick={() => setIsEditingBirthday(true)}
-                      onSubmit={handleSubmit}
+                      onSubmit={props.handleSubmit}
                     >
                       <SvgBtn>
                         <use href={icons + '#check'} />
@@ -313,14 +315,17 @@ export const UserData = () => {
                       type="tel"
                       name="phone"
                       id="phone"
-                      value={values.phone}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
+                      value={props.values.phone}
+                      error={props.errors}
+                      onChange={props.handleChange}
+                      onBlur={props.handleBlur}
                       placeholder="+380000000000"
                       disabled={!isEditingPhone ? false : true}
                     />
-                    {errors.phone && touched.phone ? (
-                      <StyledErrorMessage>{errors.phone}</StyledErrorMessage>
+                    {props.errors.phone ? (
+                      <StyledErrorMessage>
+                        {props.errors.phone}
+                      </StyledErrorMessage>
                     ) : null}
                   </div>
                   {isEditingPhone ? (
@@ -336,7 +341,7 @@ export const UserData = () => {
                     <BtnCheck
                       type="button"
                       onClick={() => setIsEditingPhone(true)}
-                      onSubmit={handleSubmit}
+                      onSubmit={props.handleSubmit}
                     >
                       <SvgBtn>
                         <use href={icons + '#check'} />
@@ -352,14 +357,17 @@ export const UserData = () => {
                       type="text"
                       name="city"
                       id="city"
-                      value={values.city}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
+                      value={props.values.city}
+                      error={props.errors}
+                      onChange={props.handleChange}
+                      onBlur={props.handleBlur}
                       placeholder="Lviv"
                       disabled={!isEditingCity ? false : true}
                     />
-                    {errors.city && touched.city ? (
-                      <StyledErrorMessage>{errors.city}</StyledErrorMessage>
+                    {props.errors.city ? (
+                      <StyledErrorMessage>
+                        {props.errors.city}
+                      </StyledErrorMessage>
                     ) : null}
                   </div>
                   {isEditingCity ? (
@@ -375,7 +383,7 @@ export const UserData = () => {
                     <BtnCheck
                       type="button"
                       onClick={() => setIsEditingCity(true)}
-                      onSubmit={handleSubmit}
+                      onSubmit={props.handleSubmit}
                     >
                       <SvgBtn>
                         <use href={icons + '#check'} />

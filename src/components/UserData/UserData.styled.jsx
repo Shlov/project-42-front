@@ -171,7 +171,17 @@ export const InputContainer = styled(Field)`
   height: 28px;
 
   background-color: var(--cl-almost-white);
-  border: 1px solid var(--cl-blue-link);
+  border: 1px solid
+  ${props => {
+    if (props.value) {
+      return 'var(--cl-blue-link)';
+    } else if (!props.value && props.error) {
+      return 'var(--cl-red)';
+    } else {
+     return 'var(--cl-blue-link)';
+    }
+  }};
+
   border-radius: 20px;
   cursor: pointer;
 
@@ -180,6 +190,7 @@ export const InputContainer = styled(Field)`
   &:focus {
     outline: none;
   }
+  
 
   @media screen and (min-width: 767px) {
     padding: 6px 12px;
@@ -223,7 +234,7 @@ export const Photosvg = styled.svg`
   fill: transparent;
 `;
 
-export const StyledErrorMessage = styled.div`
+export const StyledErrorMessage = styled.p`
   position: absolute;
   top: 25px;
   right: 20px;
@@ -234,7 +245,7 @@ export const StyledErrorMessage = styled.div`
 
   @media screen and (min-width: 767px) {
     position: absolute;
-    top: 28px;
+    top: 29px;
     right: 20px;
   }
 `;

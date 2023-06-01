@@ -9,7 +9,6 @@ export const ModalContent = styled.div`
   padding: 44px 12px 16px;
 
   font-style: normal;
-  color: var(--cl-black);
 
   @media (min-width: 768px) {
     gap: 24px;
@@ -67,7 +66,7 @@ export const TitleModal = styled.h4`
   width: 198px;
   height: 66px;
 
-  font-weight: 500;
+  font-weight: 700;
   font-size: 24px;
   line-height: 33px;
   letter-spacing: -0.01em;
@@ -75,9 +74,8 @@ export const TitleModal = styled.h4`
   margin-bottom: 20px;
 
   @media (min-width: 768px) {
-    width: 221px;
-    height: 66px;
-    font-weight: 700;
+    width: 321px;
+    height: 76px;
     font-size: 28px;
     line-height: 38px;
   }
@@ -137,6 +135,12 @@ export const Contact = styled(NavLink)`
   @media (min-width: 768px) {
     font-size: 16px;
     line-height: 22px;
+  }
+
+  &:hover, 
+  &:active,
+  &:focus {
+    color: var(--cl-accent);
   }
 `;
 
