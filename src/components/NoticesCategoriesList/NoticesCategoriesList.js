@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import { fetchNotices } from 'Redux/notices/operation';
 import { Loader } from 'components/Loader/Loader';
 import { NoticeCategoryItemLoad } from 'components/NoticeCategoryItemLoad/NoticeCategoryItemLoad';
+import { NoticeNotFound } from 'components/NoticNotFound/NoticNotFound';
 // import { Pagination } from 'components/Pagination/Pagination';
 
 export const categoryShelf = {
@@ -206,7 +207,7 @@ export const NoticeCategoryList = ({
 
   const allOrFilterItems = () => {
     if (!isLoading && !filteredItems.length) {
-      return <p>Not found!</p>;
+      return <NoticeNotFound/>;
     } else if (!isLoading && filteredItems.length) {
       return filteredItems.map((notice, i) => (
         <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal} handleFavorite={handleFavorite} />
