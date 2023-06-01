@@ -10,6 +10,7 @@ import { getFavoriteNotices, getNoticeByCategory, getUserNotices, updateFavorite
 import { useEffect } from 'react';
 import { fetchNotices } from 'Redux/notices/operation';
 import { Loader } from 'components/Loader/Loader';
+import { NoticeCategoryItemLoad } from 'components/NoticeCategoryItemLoad/NoticeCategoryItemLoad';
 // import { Pagination } from 'components/Pagination/Pagination';
 
 export const categoryShelf = {
@@ -35,6 +36,7 @@ export const NoticeCategoryList = ({
   const { categoryName = 'all' } = useParams();
   const [searchParams] = useSearchParams();
 
+  const array = Array.from({ length: 8 }, (_, index) => index + 1);
 
   // const { limit, numberNotices, page} = useSelector(getPagination);
   // console.log(page, 'p l' , limit)
@@ -216,6 +218,7 @@ export const NoticeCategoryList = ({
     <>
       <NoticesList>
         {isLoading && <Loader/>}
+        {isLoading && array.map(_ => <NoticeCategoryItemLoad/>)}
         {allOrFilterItems()}
       </NoticesList>
       {/* {filteredItems.length && !isLoading ? <Pagination/> : null} */}

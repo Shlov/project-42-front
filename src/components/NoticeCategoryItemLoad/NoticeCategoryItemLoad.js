@@ -1,15 +1,25 @@
 // Картка нотіси завантаження
 
-import icon from '../../images/icons.svg';
-import { Card, FavoriteBtn,  CategoryTag, ImageWrapper, DescriptionWrapper, Title, TagItem, TagList, MoreBtn, SvgIcon, HeartIcon} from "./NoticeCategoryItemLoad.styled";
+import { NoticeLoadDesk, NoticeLoadMob, NoticeLoadTab } from 'components/Skeleton/NoticeItemLoad';
+// import icon from '../../images/icons.svg';
+// import { Card, FavoriteBtn,  CategoryTag, ImageWrapper, DescriptionWrapper, Title, TagItem, TagList, MoreBtn, SvgIcon, HeartIcon} from "./NoticeCategoryItemLoad.styled";
+import { Card } from "./NoticeCategoryItemLoad.styled";
+import { useSelector } from 'react-redux';
 
 export const NoticeCategoryItemLoad = ({onTrashModal, item}) => {
+
+  const desktop = useSelector(state => state.main.desktop);
+  const tablet = useSelector(state => state.main.tablet);
+  const mobile = useSelector(state => state.main.mobile);
 
   return(
     <>
       <Card>
-        <ImageWrapper>
-          {/* <Image alt="pet" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSgGi3YJI2iukoOZ3_fbYCyoiR4dYO8fIyIu_qpphSUf8GRAmFN"/> */}
+        {mobile && <NoticeLoadMob/>}
+        {desktop && <NoticeLoadDesk/>}
+        {tablet && <NoticeLoadTab/>}
+        {/* <ImageWrapper>
+          <Image alt="pet" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSgGi3YJI2iukoOZ3_fbYCyoiR4dYO8fIyIu_qpphSUf8GRAmFN"/>
           <CategoryTag>'categories'</CategoryTag>
           <TagList>
             <TagItem>
@@ -40,7 +50,7 @@ export const NoticeCategoryItemLoad = ({onTrashModal, item}) => {
         <DescriptionWrapper>
           <Title>'Cute fox looking for a home'</Title>
           <MoreBtn>Learn more</MoreBtn>
-        </DescriptionWrapper>
+        </DescriptionWrapper> */}
       </Card>
     </>
   )
