@@ -2,7 +2,15 @@ import styled from 'styled-components';
 
 export const NavWrapper = styled.div`
  display: flex;
-justify-content: space-between;
+// justify-content: space-between;
+justify-content: start;
+max-width: 100%;
+flex-wrap: wrap;
+
+a {
+  margin-bottom: 18px;
+  padding: 10px 0;
+}
 
 @media (max-width: 991px) {
   max-width: 319px;
@@ -11,6 +19,12 @@ justify-content: space-between;
 
   a {
     margin: 10px 0px 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  a {
+    margin: 2px 0 2px;
   }
 }
 `

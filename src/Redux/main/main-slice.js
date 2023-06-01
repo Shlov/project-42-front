@@ -5,7 +5,8 @@ export const mainSlice = createSlice({
   initialState: {
     desktop: true,
     tablet: false,
-    mobile: false
+    mobile: false,
+    theme: 'day'
   },
   reducers: {
     setDesktop: (state, action) => {
@@ -16,10 +17,13 @@ export const mainSlice = createSlice({
     },
     setMobile: (state, action) => {
       state.mobile = action.payload
+    },
+    setTheme: (state, action) => {
+      state.theme = action.payload
     }
   }
 })
 
-export const { setDesktop, setTablet, setMobile } = mainSlice.actions
+export const { setDesktop, setTablet, setMobile, setTheme } = mainSlice.actions
 
 export default mainSlice.reducer

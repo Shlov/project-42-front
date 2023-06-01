@@ -29,6 +29,7 @@ import { getIsLoading } from 'Redux/pets/selectors';
 const MoreInfoStep = ({ onBack, selectedCategory, handleSubmit }) => {
   const { values, setTouched, touched, errors, setFieldValue } =
     useFormikContext();
+  const theme = useSelector(state => state.main.theme);
   const [doneClicked, setDoneClicked] = useState(false); // State variable to track Next button click
   const isAddNoticeLoading = useSelector(getIsLoadNotices);
   const isAddPetLoading = useSelector(getIsLoading);
@@ -105,7 +106,7 @@ const MoreInfoStep = ({ onBack, selectedCategory, handleSubmit }) => {
           {/* Fields are for all categories except  the category 'your-pet' */}
           {selectedCategory !== 'your-pet' && (
             <div>
-              <SexFieldTitle>The sex</SexFieldTitle>
+              <SexFieldTitle theme={theme}>The sex</SexFieldTitle>
               <SexRadioButtonsWrapper>
                 <RadioButton
                   id="female"
@@ -139,7 +140,7 @@ const MoreInfoStep = ({ onBack, selectedCategory, handleSubmit }) => {
               )}
             </div>
           )}
-          <AvatarLabel selectedCategory={selectedCategory}>
+          <AvatarLabel selectedCategory={selectedCategory} theme={theme}>
             Load the pet’s image:
             <AvatarWrapper>
               {!values.avatar ? (
@@ -168,7 +169,7 @@ const MoreInfoStep = ({ onBack, selectedCategory, handleSubmit }) => {
         <LocationPriceCommentFieldWrapper>
           {selectedCategory !== 'your-pet' && (
             <div>
-              <Label>
+              <Label theme={theme}>
                 Location
                 <MoreInfoStepInput
                   type="text"
@@ -184,7 +185,7 @@ const MoreInfoStep = ({ onBack, selectedCategory, handleSubmit }) => {
           {/* Field "price" is only for the "sell" category */}
           {selectedCategory === 'sell' && (
             <div>
-              <Label>
+              <Label theme={theme}>
                 Price
                 <MoreInfoStepInput
                   type="number"
@@ -200,7 +201,7 @@ const MoreInfoStep = ({ onBack, selectedCategory, handleSubmit }) => {
 
           {/* Field "comments" for additional comments */}
           <div>
-            <Label>
+            <Label theme={theme}>
               Comments
               <MoreInfoStepTextArea
                 name="comments"

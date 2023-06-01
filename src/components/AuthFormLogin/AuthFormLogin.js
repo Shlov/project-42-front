@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userLogin } from 'Redux/auth/operation';
 import { Navigate } from 'react-router-dom';
-import { getConnect } from 'Redux/auth/selector';
+import { getAuthLoading, getConnect } from 'Redux/auth/selector';
 import { Loader } from 'components/Loader/Loader';
 import icons from 'images/icons.svg';
 import * as yup from 'yup';
@@ -71,11 +71,8 @@ const eyeOpen = () => {
 export const LogForm = () => {
   const [toggleIconPass, setToggleIconPass] = useState(eyeCosed);
   const [typePass, setTypePass] = useState('password');
-  const [isLoad, setIsLoad] = useState();
-
-  const onLoader = e => {
-    setIsLoad(Loader);
-  };
+  const isLoad = useSelector(getAuthLoading);
+  const theme = useSelector(state => state.main.theme)
 
   const togglePassInput = e => {
     if (typePass === 'password') {
@@ -105,7 +102,7 @@ export const LogForm = () => {
   }
 
   return (
-    <Wrapper>
+    <Wrapper theme={theme}>
       <Formik
         initialValues={initialValue}
         validationSchema={yupLoginValidation}
@@ -113,8 +110,8 @@ export const LogForm = () => {
       >
         {props => {
           return (
-            <StyledForm>
-              <Title>Login</Title>
+            <StyledForm theme={theme}>
+              <Title theme={theme}>Login</Title>
               <Box>
                 <Label>
                   <Input
@@ -188,11 +185,10 @@ export const LogForm = () => {
                   <Error component="div" name="password" />
                 </Label>
               </Box>
-
-              <Button type="submit" onClick={onLoader}>
-                {isLoad}
+              <Button type="submit">
                 Login
               </Button>
+                {isLoad && <Loader/>}
               <Text>
                 Already have an account?
                 <Span>

@@ -27,6 +27,8 @@ import {
 const AddPetButton = () => {
   const location = useLocation();
   const isLoggedIn = useSelector(getConnect);
+  const mobile = useSelector((state) => state.main.mobile)
+  const theme = useSelector((state) => state.main.theme)
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const toggleModal = () => {
@@ -40,19 +42,21 @@ const AddPetButton = () => {
   return (
     <>
       {isLoggedIn ? (
-        <Link to={`/add-pet`} state={{ from: location }}>
-          Add Pet
-          <AddIcon>
+        <Link to={`/add-pet`} state={{ from: location }} mobile={mobile} theme={theme}>
+          {!mobile && 'Add Pet'}
+          <AddIcon mobile={mobile}>
             <use href={icons + '#plus-small'} />
           </AddIcon>
+          {mobile && 'Add Pet'}
         </Link>
       ) : (
         <>
-          <AddButton type="button" onClick={handleUnauthorizedClick}>
-            Add Pet
-            <AddIcon>
+          <AddButton type="button" onClick={handleUnauthorizedClick} mobile={mobile} theme={theme}>
+            {!mobile && 'Add Pet'}
+            <AddIcon mobile={mobile}>
               <use href={icons + '#plus-small'} />
             </AddIcon>
+            {mobile && 'Add Pet'}
           </AddButton>
           {isOpenModal && (
             <ModalApproveAction onClose={toggleModal}>

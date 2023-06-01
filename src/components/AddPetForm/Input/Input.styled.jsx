@@ -7,7 +7,8 @@ export const Label = styled.label`
   font-weight: 500;
   font-size: 14px;
   line-height: calc(19 / 14);
-  color: var(--cl-black);
+  color: ${props =>
+    props.theme === 'day' ? 'var(--cl-black)' : 'var(--cl-white)'};
 
   @media screen and (min-width: 768px) {
     gap: 8px;
@@ -24,6 +25,8 @@ export const Input = css`
   border-radius: 40px;
   padding: 10px 16px;
   color: var(--cl-gray);
+
+  background-color: transparent;
 
   border: 1px solid
     ${props => (props.errors ? 'var(--cl-red)' : 'var(--cl-blue-link)')};

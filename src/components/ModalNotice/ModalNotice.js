@@ -46,6 +46,7 @@ export const ModalNotice = ({ onClose, noticeId }) => {
   const {notice: {imageURL, title, categories, name, birthday, breed, place, sex, comments, price, favorite}, user :{email, phone}} = useSelector(getNotice)
   const isLoading = useSelector(getIsLoadNotice);
   const userId = useSelector(selectUser).id;
+  const theme = useSelector(state => state.main.theme)
   const isFavorite = favorite.includes(userId);
   const mobile = useSelector(state => state.main.mobile);
 
@@ -97,35 +98,35 @@ export const ModalNotice = ({ onClose, noticeId }) => {
             </ImageWrapper>
             <div>
               <div>
-                <TitleModal>
+                <TitleModal theme={theme}>
                   {title ? title : 'Cute pet looking for a home'}
                 </TitleModal>
               </div>
               <ListProperty>
                 <ItemProp>
-                  <NameProp>Name:</NameProp>
-                  <SignProp>{name ? name : 'Pet'}</SignProp>
+                  <NameProp theme={theme}>Name:</NameProp>
+                  <SignProp theme={theme}>{name ? name : 'Pet'}</SignProp>
                 </ItemProp>
                 <ItemProp>
-                  <NameProp>Birthday:</NameProp>
-                  <SignProp>{birthday ? birthday : 'find'}</SignProp>
+                  <NameProp theme={theme}>Birthday:</NameProp>
+                  <SignProp theme={theme}>{birthday ? birthday : 'find'}</SignProp>
                 </ItemProp>
                 <ItemProp>
-                  <NameProp>Breed:</NameProp>
-                  <SignProp>{breed ? breed : 'superior'}</SignProp>
+                  <NameProp theme={theme}>Breed:</NameProp>
+                  <SignProp theme={theme}>{breed ? breed : 'superior'}</SignProp>
                 </ItemProp>
                 <ItemProp>
-                  <NameProp>Place:</NameProp>
-                  <SignProp>{place ? place : 'find'}</SignProp>
+                  <NameProp theme={theme}>Place:</NameProp>
+                  <SignProp theme={theme}>{place ? place : 'find'}</SignProp>
                 </ItemProp>
                 <ItemProp>
-                  <NameProp>The sex:</NameProp>
-                  <SignProp>{sex ? sex : 'sex'}</SignProp>
+                  <NameProp theme={theme}>The sex:</NameProp>
+                  <SignProp theme={theme}>{sex ? sex : 'sex'}</SignProp>
                 </ItemProp>
               </ListProperty>
               <ListContact>
                 <ItemProp>
-                  <NameProp>Email:</NameProp>
+                  <NameProp theme={theme}>Email:</NameProp>
                   {!withoutBlur ? (
                     <ContactBlur to={`mailto:${email}`}>{email}</ContactBlur>
                   ) : (
@@ -147,7 +148,7 @@ export const ModalNotice = ({ onClose, noticeId }) => {
               </ListContact>
             </div>
             {comments ? (
-              <CommentWrap>
+              <CommentWrap theme={theme}>
                 <span>Comments:&nbsp;</span>
                 <span>{comments}</span>
               </CommentWrap>
@@ -157,8 +158,8 @@ export const ModalNotice = ({ onClose, noticeId }) => {
             <ButtonWrapThumb>
               {price ? (
                 <PriceWrap price>
-                  <Price>Price:</Price>
-                  <PriceValue>{price}</PriceValue>
+                  <Price theme={theme}>Price:</Price>
+                  <PriceValue theme={theme}>{price}</PriceValue>
                 </PriceWrap>
               ) : (
                 <PriceWrap>

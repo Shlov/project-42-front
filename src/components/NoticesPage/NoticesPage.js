@@ -9,17 +9,16 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useSelector } from "react-redux";
 import { useLocation, useParams, useSearchParams } from 'react-router-dom';
-// import { getNoticeByCategory } from 'Redux/notices/operation';
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav'
 import { FindFilter } from 'components/NoticesFilters/NoticesFilters'
 import { NoticeCategoryList } from 'components/NoticesCategoriesList/NoticesCategoriesList';
 import AddPetButton from 'components/AddPetButton/AddPetButton'
-import { Filters } from './NoticesPage.styled';
+import { Filters, FiltersContainer } from './NoticesPage.styled';
 import { FilterItem } from 'components/NoticesFilters/NoticesFilter.styled';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import RemoveItem from '../../images/icons/cross-small-1.svg'
 import { Pagination } from 'components/Pagination/Pagination';
-import { getIsLoadNotices, getPagination } from 'Redux/notices/selector';
+import { getIsLoadNotices } from 'Redux/notices/selector';
 
 const categories = [
   {
@@ -85,25 +84,7 @@ export const NoticesPage = () => {
   const { categoryName } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const [search, setSearch] = useState(searchParams.get('title'))
-
-  const { limit, numberNotices, page} = useSelector(getPagination);
-    // console.log('limit', limit, 'numberNotices' , numberNotices);
-    
-    const [futurePage, setFuturePage] = useState(1)
-    
-    const calcNextPage = (calcPage) => {
-      const futurePage = Number(page) + calcPage;
-      const allPages = Math.ceil(numberNotices/limit);
-      if (futurePage > 0 && allPages >= futurePage) {
-      return setFuturePage(futurePage) 
-    }
-    setFuturePage(1)
-  }
-
-  const handleNextPage = (nextPage) => {
-    setFuturePage(nextPage) 
-  }
-
+  const [filterHeight, setFilterHeight] = useState(0)
 
   const categoryShelf = useMemo(() => ({
     all: 'all',
@@ -153,6 +134,15 @@ export const NoticesPage = () => {
     setFilteredItems(newItems)
   }, [search, genders, ages, category, categoryShelf, categoryName, items]);
 
+  useEffect(() => {
+    const element = document.querySelector('.filters-items');
+    if (element) {
+      const height = element.getBoundingClientRect().height;
+      setFilterHeight(height);
+      console.log(height);
+    }
+  }, [activeButtons]);
+
   const agePet = (birthday) => {
     const nowDate = new Date();
     const [day, month, year] = birthday.split('.');
@@ -185,13 +175,14 @@ export const NoticesPage = () => {
   return (
     <>
       <NoticesSearch onSubmit={handleSearch} />
+      <FiltersContainer>
       <Filters>
         <div>
           <NoticesCategoriesNav categoriesArr={categoriesArr} setCategoriesArr={setCategoriesArr} categories={categories} category={category} setCategory={setCategory} privateCategory={privateCategory} />
         </div>
         <div className='filters'>
           <FindFilter setAges={setAges} ages={ages} setGenders={setGenders} genders={genders} setOpenFilter={setOpenFilter} openFilter={openFilter} items={items} activeButtons={activeButtons} setActiveButtons={setActiveButtons} handleRemoveItem={handleRemoveItem} />
-          {!mobile && <AddPetButton />}
+          <AddPetButton />
           <div className='filters-items'>
             {(tablet || mobile) &&
               activeButtons.map((button, i) =>
@@ -203,9 +194,10 @@ export const NoticesPage = () => {
             }
           </div>
         </div>
-      </Filters>
-      <NoticeCategoryList filteredItems={filteredItems} setFilteredItems={setFilteredItems} items={items} search={search} ages={ages} genders={genders} futurePage={futurePage}/>
-      {filteredItems.length && !isLoading ? <Pagination calcNextPage={calcNextPage} handleNextPage={handleNextPage}/> : null}
+        </Filters>
+        </FiltersContainer>
+      <NoticeCategoryList filterHeight={filterHeight} filteredItems={filteredItems} setFilteredItems={setFilteredItems} items={items} search={search} ages={ages} genders={genders}/>
+      {filteredItems.length && !isLoading ? <Pagination /> : null}
     </>
   );
 };

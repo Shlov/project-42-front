@@ -48,6 +48,7 @@ const schema = yup.object().shape({
 
 export const UserData = () => {
   const newUser = useSelector(selectorNewUser);
+  const theme = useSelector(state => state.main.theme)
 
   const [isNewUser, setIsNewUser] = useState(newUser);
 
@@ -135,7 +136,7 @@ export const UserData = () => {
           onSubmit={handleSubmitInput}
         >
           {props => (
-            <FormContainer autoComplete="off">
+            <FormContainer autoComplete="off" theme={theme}>
               <AvatarContainer>
                 <ImgContainer>
                   {!avatar ? (

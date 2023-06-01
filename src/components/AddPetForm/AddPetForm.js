@@ -19,6 +19,7 @@ import {
 
 const AddPetForm = () => {
   const dispatch = useDispatch();
+  const theme = useSelector(state => state.main.theme);
   const isAddNoticeResponseSuccessful = useSelector(
     getAddNoticeSuccessfulConnection
   );
@@ -150,7 +151,7 @@ const AddPetForm = () => {
   };
 
   return (
-    <FormContainer step={step}>
+    <FormContainer step={step} theme={theme}>
       <FormTitle>{dynamicTitle}</FormTitle>
       <Stepper>
         {steps.map((name, index) => (
@@ -160,8 +161,8 @@ const AddPetForm = () => {
               step === index + 1
                 ? 'active'
                 : completedSteps.includes(index + 1)
-                  ? 'completed'
-                  : ''
+                ? 'completed'
+                : ''
             }
           >
             {name}

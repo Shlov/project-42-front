@@ -12,7 +12,7 @@ import {
   TitleModal,
   BtnLogout,
   ArrowBack,
-  
+
   //Олексій
   ButtonYes,
 } from './Logout.styled';
@@ -31,6 +31,7 @@ export const LogoutBtn = () => {
   //   toggleModal, яку потрібно передати компоненту ModalApproveAction для закриття вікна
   const [isOpenModal, setIsOpenModal] = useState(false);
   const dispatch = useDispatch();
+  const theme = useSelector(state => state.main.theme)
 
   const toggleModal = () => {
     setIsOpenModal(isOpen => !isOpen);
@@ -50,7 +51,7 @@ if (!isConnect) {
       {isOpenModal && (
         <ModalApproveAction onClose={toggleModal} >
           <ModalContent>
-            <TitleModal>Already leaving?</TitleModal>
+            <TitleModal theme={theme}>Already leaving?</TitleModal>
             <ButtonWrap>
               <Button type="button" aria-label="cancel" onClick={toggleModal}>
                 Cancel
@@ -66,8 +67,8 @@ if (!isConnect) {
         </ModalApproveAction>
       )}
 
-      <BtnLogout type="button" onClick={toggleModal}>
-      <ArrowBack><use href={icons + '#logout'}/></ArrowBack>
+      <BtnLogout type="button" onClick={toggleModal} theme={theme}>
+        <ArrowBack><use href={icons + '#logout'}/></ArrowBack>
         LogOut
       </BtnLogout>
     </>

@@ -9,6 +9,7 @@ import { SharedLayout } from './SharedLayout/SharedLayout';
 import '../index.css';
 import { selectIsRefreshing } from 'Redux/auth/selector';
 import { refreshUser } from 'Redux/auth/operation';
+import bgMD from '../images/bg/bg@1x_md.png'
 // import { PrivateRoute } from './PrivateRoute';
 // import { RestrictedRoute } from './RestrictedRoute';
 
@@ -25,10 +26,7 @@ const NotFound = lazy(() => import('../pages/NotFound'));
 export const App = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const dispatch = useDispatch();
-  // const desktop = useSelector(state => state.main.desktop);
-  // const tablet = useSelector(state => state.main.tablet);
-  // const mobile = useSelector(state => state.main.mobile);
-  // const isConnect = useSelector(state => state.auth.isConnect);
+  const theme = useSelector(state => state.main.theme)
 
   useEffect(() => {
     const handleResize = event => {
@@ -45,6 +43,12 @@ export const App = () => {
     dispatch(setTablet(width > 768 && width < 991));
     dispatch(setMobile(width < 768));
   }, [width, dispatch]);
+
+  useEffect(() => {
+    document.body.style.backgroundColor = theme === 'day' ? '#fdf7f2' : '#111111'
+    document.body.style.backgroundImage = `url(${bgMD})`
+    document.body.style.color = theme === 'day' ? '#000000' : '#ffffff';
+  }, [theme])
 
   const isRefreshing = useSelector(selectIsRefreshing);
 
