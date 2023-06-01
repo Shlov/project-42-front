@@ -27,6 +27,11 @@ export const PersonalDetailsField = styled.div`
 
 export const PersonalDetailsStepInput = styled(Field)`
   ${Input}
+
+  &::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
 `;
 
 export const ErrorMessageContainer = styled(ErrorMessage)`

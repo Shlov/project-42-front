@@ -6,7 +6,7 @@ const birthdayRegexp =
 
 // Custom Yup test for birthday field
 const validateBirthday = value => {
-  const birthday = new Date(value.replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1'));
+  const birthday = new Date(value.replace(/(\d+).(\d+).(\d+)/, '$2/$3/$1'));
   const parsed = Date.parse(birthday);
   const today = Date.now();
   const diff = today - parsed;

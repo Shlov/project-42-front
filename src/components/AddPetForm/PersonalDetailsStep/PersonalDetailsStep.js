@@ -104,7 +104,7 @@ const PersonalDetailsStep = ({ onBack, onNext, selectedCategory }) => {
           <Label theme={theme}>
             Date of birth
             <PersonalDetailsStepInput
-              type="text"
+              type="date"
               name="date"
               placeholder="02.11.2014"
               errors={touched.date && errors.date}
