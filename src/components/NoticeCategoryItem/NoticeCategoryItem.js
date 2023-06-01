@@ -49,6 +49,7 @@ import icons from 'images/icons.svg';
 
 export const NoticeCategoryItem = ({ item, handleFavorite }) => {
   const idUser = useSelector(selectUser).id;
+  const theme = useSelector(state => state.main.theme)
   const activeFavorite = item.favorite.includes(idUser);
   const isFavorite = !activeFavorite;
   const dispatch = useDispatch();
@@ -121,7 +122,7 @@ export const NoticeCategoryItem = ({ item, handleFavorite }) => {
 
   return (
     <>
-      <Card>
+      <Card theme={theme}>
         <ImageWrapper>
           <Image
             alt="pet"
@@ -132,23 +133,23 @@ export const NoticeCategoryItem = ({ item, handleFavorite }) => {
             }
             onClick={toggleModal}
           />
-          <CategoryTag>
+          <CategoryTag theme={theme}>
             {item.categories ? item.categories : 'categories'}
           </CategoryTag>
           <TagList>
-            <TagItem>
+            <TagItem theme={theme}>
               <SvgIcon height="20" width="20">
                 <use href={icon + '#location'} />
               </SvgIcon>
               <p>{item.place ? truncateWord(item.place) : 'city'}</p>
             </TagItem>
-            <TagItem>
+            <TagItem theme={theme}>
               <SvgIcon height="20" width="20">
                 <use href={icon + '#clock'} />
               </SvgIcon>
               <p>{item.birthday ? agePet(item.birthday) : 'age'}</p>
             </TagItem>
-            <TagItem>
+            <TagItem theme={theme}>
               {item.sex === 'female' ? (
                 <SvgIcon height="20" width="20" sex={item.sex}>
                   <use href={icon + '#female'} />

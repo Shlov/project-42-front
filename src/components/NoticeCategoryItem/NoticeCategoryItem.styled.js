@@ -10,7 +10,7 @@ export const Card = styled.div`
     width: 288px;
   }
   height: 456px;
-  background: var(--cl-almost-white);
+  background: ${(props) => props.theme === 'day' ? 'var(--cl-almost-white)' : '#111'};
   box-shadow: var(--shadow-default);
   border-radius: 0px 0px 40px 40px;
 
@@ -141,7 +141,7 @@ export const MoreBtn = styled.button`
     color: var(--cl-blue-light);
   }
   :active {
-    
+
   }
 `
 
@@ -176,6 +176,7 @@ export const CategoryTag = styled.p`
   display: flex;
   align-items: center;
   text-align: center;
+  color: ${(props) => props.theme === 'day' ? '#111' : '#111'}
 `
 
 export const Image = styled.img`
@@ -213,5 +214,6 @@ export const TagItem = styled.li`
   line-height: calc(16 / 12);
   background-color: var(--cl-blue-light);
   border-radius: 16px;
+  color: #111;
 `
 

@@ -9,6 +9,7 @@ export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, 
   const mobile = useSelector(state => state.main.mobile)
   const tablet = useSelector(state => state.main.tablet)
   const desktop = useSelector(state => state.main.desktop)
+  const theme = useSelector(state => state.main.theme)
   const  dispatch = useDispatch();
   const [activeAgeButton, setActiveAgeButton] = useState(false)
   const [activeGenderButton, setActiveGenderButton] = useState(false)
@@ -63,7 +64,7 @@ export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, 
           </FilterItem>
         )
       }
-      <Button onClick={handleOpenFilter} mobile={mobile} ages={ages}>
+      <Button onClick={handleOpenFilter} mobile={mobile} ages={ages} theme={theme}>
         {!mobile && 'Filter'}
         <FilterCSS width="21" height="24" mobile={mobile} ages={ages}/>
       </Button>

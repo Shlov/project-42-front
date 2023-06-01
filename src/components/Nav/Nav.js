@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 const Nav = ({ setActiveBridge }) => {
 
   const desktop = useSelector(state => state.main.desktop);
+  const theme = useSelector(state => state.main.theme)
 
   const handleCloseMenu = () => {
     if(!desktop) {
@@ -29,7 +30,7 @@ const Nav = ({ setActiveBridge }) => {
 
   return (
     <NavWrap>
-    <NavLinks>
+    <NavLinks theme={theme}>
       {links.map((link, i) =>
         <NavLink key={i} to={link.link} className="nav" onClick={handleCloseMenu}>{link.text}</NavLink>
       )}

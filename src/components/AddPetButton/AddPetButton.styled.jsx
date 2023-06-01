@@ -6,6 +6,11 @@ export const AddIcon = styled.svg`
   height: 24px;
   stroke: var(--cl-background);
   fill: transparent;
+  ${(props) => props.mobile ? `
+    width: inherit;
+    position: relative;
+    right: 2.5px;
+  ` : ''}
 `;
 
 export const Button = css`
@@ -28,11 +33,22 @@ export const Button = css`
   background-color: var(--cl-blue-link);
 
   transition: background-color var(--animat), border-color var(--animat);
-
+  ${(props) => props.mobile ? `
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    border-radius: 50px;
+    width: 80px;
+    margin: 0 !important;
+    z-index: 10;
+    height: 80px;
+    right: 20px;
+    gap: 0;
+  ` : ''}
   &:hover,
   &:focus {
     color: var(--cl-blue-link);
-    background-color: var(--cl-almost-white);
+    background-color: ${(props) => props.theme === 'day' ? 'var(--cl-almost-white)' : 'transparent'};
 
     svg {
       stroke: var(--cl-blue-link);
@@ -42,6 +58,13 @@ export const Button = css`
 
 export const Link = styled(NavLink)`
   ${Button}
+  ${(props) => props.mobile ? `
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  ` : ''}
 `;
 
 export const AddButton = styled.button`

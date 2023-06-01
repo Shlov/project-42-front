@@ -26,7 +26,7 @@ export const Item = styled.li`
   width: 100%;
   position: relative;
   border-radius: 20px;
-  background-color: #FDF7F2;
+  background-color: ${(props) => props.theme === 'day' ? '#FDF7F2' : '111'};
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   &::before {
     content: '';

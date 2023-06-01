@@ -11,7 +11,7 @@ margin-right: 160px;
 
 export const NavLinks = styled.div`
   .nav {
-    color: var(--cl-black);
+    color: ${(props) => props.theme === 'day' ? 'var(--cl-black)' : '#fff'};
     text-decoration: none;
     font-family: 'Manrope';
     font-weight: 700;
