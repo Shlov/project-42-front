@@ -109,6 +109,10 @@ export const Trash = styled.svg`
   fill: transparent;
 `;
 
+export const FiltersContainer = styled.div`
+max-width: 1260px;
+margin: 0 auto;
+`
 export const Filters = styled.div`
   display: flex;
   justify-content: space-between;
@@ -122,7 +126,7 @@ export const Filters = styled.div`
   }
 
   @media (min-width: 991px) {
-    width: 1235px;
+    width: 100%;
     margin: 0 auto 42px;
   }
 
