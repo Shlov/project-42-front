@@ -13,7 +13,7 @@ export const fetchPets = createAsyncThunk(
           Authorization: `Bearer ${token}`,
         },
       });
-      toast.success('Here are your own pets list!');
+      toast.success('Here is your own pets list!');
       return response.data;
     } catch (error) {
       toast.error('Something went wrong!');

@@ -6,11 +6,11 @@
 
 //  Після реєстрації користувач повинен бути переадресований на сторінку UserPage з одночасним відкриттям модального вікна-вітання ModalCongrats. Якщо з бекенда було отримано помилку реєстрації - користувачу необхідно вивести  відповідну інформацію і вигляді нотіфікації
 import { Formik } from 'formik';
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { userReg } from 'Redux/auth/operation';
 import { useState } from 'react';
-import { Navigate } from "react-router-dom";
-import { getAuthLoading, getConnect } from "Redux/auth/selector";
+import { Navigate } from 'react-router-dom';
+import { getAuthLoading, getConnect } from 'Redux/auth/selector';
 import { Loader } from 'components/Loader/Loader';
 import * as yup from 'yup';
 import {
@@ -79,8 +79,7 @@ export const RegForm = () => {
   const [typeCofirm, setTypeCofirm] = useState('password');
 
   const isLoad = useSelector(getAuthLoading);
-  const theme = useSelector(state => state.main.theme)
-
+  const theme = useSelector(state => state.main.theme);
 
   const togglePassInput = e => {
     if (typePass === 'password') {
@@ -118,9 +117,9 @@ export const RegForm = () => {
     props.resetForm();
   };
 
-      const isConnect = useSelector(getConnect);
+  const isConnect = useSelector(getConnect);
   if (isConnect) {
-    return (< Navigate to = "/user" replace />)
+    return <Navigate to="/user" replace />;
   }
 
   return (
@@ -240,15 +239,13 @@ export const RegForm = () => {
                     value={props.values.confirmPassword}
                     error={props.errors.confirmPassword}
                   >
-                    Ponfirm password is secure
+                    Confirmation password is secure
                   </TextOkValidation>
                   <Error component="div" name="confirmPassword" />
                 </Label>
               </Box>
-              <Button type="submit">
-                Registration
-              </Button>
-                {isLoad && <Loader/>}
+              <Button type="submit">Registration</Button>
+              {isLoad && <Loader />}
               <Text>
                 Already have an account?
                 <Span>
