@@ -29,8 +29,10 @@ export const Button = styled.button`
       return 'var(--cl-blue-light)'
     } else if((props.mobile || !props.mobile) && props.ages.length) {
       return 'var(--cl-blue-link)'
-    } else if(!props.mobile && !props.ages.length) {
+    } else if(!props.mobile && !props.ages.length && props.theme === 'day') {
       return 'var(--cl-almost-white)'
+    } else if(!props.mobile && props.theme !== 'day') {
+      return 'transparent'
     }
   }};
   border: ${(props) => props.mobile ? 'none' : '2px solid rgb(84, 173, 255)'};
@@ -70,7 +72,7 @@ export const FilterCSS = styled(Filter)`
 export const FilterSelect = styled.div`
   width: 152px;
   padding: 8px;
-  background-color: var(--cl-background);
+  background-color: ${(props) => props.theme === 'day' ? 'var(--cl-background)' : '#111'};
   color: var(--cl-blue-link);
   box-shadow: var(--shadow-default);
   border-radius: 20px;

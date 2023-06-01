@@ -22,8 +22,8 @@ export const Modal = styled.div`
   max-height: 590px; //найменша висота телефону
   overflow-y: auto;
   overflow-x: hidden;
-  
-  background-color: var(--cl-almost-white);
+
+  background-color: ${(props) => props.theme === 'day' ? 'var(--cl-almost-white)' : '#111'};
   box-shadow: var(--shadow-default);
   border-radius: 20px;
 
@@ -44,7 +44,7 @@ export const Button = styled.button`
 
   padding: 0;
 
-  background-color: var(--cl-almost-white);
+  background-color: ${(props) => props.theme === 'day' ? 'var(--cl-almost-white)' : '#111'};
   color: var(--cl-blue-link);
   border: none;
 

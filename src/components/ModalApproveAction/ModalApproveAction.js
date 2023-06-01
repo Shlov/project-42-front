@@ -5,10 +5,12 @@
 
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Button, CloseIcon, Content, Modal, Overlay } from './ModalApproveAction.styled';
 import icons from 'images/icons.svg';
 
 export const ModalApproveAction = ({ children, onClose, width}) => {
+  const theme = useSelector(state => state.main.theme)
   //   пропс onClose це функція toggleModal,
   //   яку потрібно передати компоненту ModalApproveAction
   //   toggleModal - змінює стейт isOpen
@@ -38,8 +40,8 @@ export const ModalApproveAction = ({ children, onClose, width}) => {
   return (
     <>
       <Overlay onClick={onBackdropClose}>
-        <Modal width={width ? width="true" : undefined }>
-          <Button type="button" apia-label="close" onClick={onClose}>
+        <Modal width={width ? width="true" : undefined } theme={theme}>
+          <Button type="button" apia-label="close" onClick={onClose} theme={theme}>
             <CloseIcon>
               <use href={icons + '#cross-small'} />
             </CloseIcon>

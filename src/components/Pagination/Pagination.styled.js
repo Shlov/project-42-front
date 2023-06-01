@@ -17,7 +17,7 @@ export const PaginationPanel = styled.div`
   justify-content: center;
   gap: 8px;
 
-  background-color: var(--cl-background);
+  background-color: ${(props) => props.theme === 'day' ? 'var(--cl-background)' :  '#111'};
   box-shadow: var(--shadow-default);
   border-radius: 45px;
 
@@ -41,10 +41,9 @@ export const PaginationKey = styled.button`
   font-size: 16px;
   line-height: 15px;
   text-align: center;
-
-  background-color: var(--cl-background);
+  background-color: ${(props) => (props.theme === 'day' ? 'var(--cl-background)' : '#111')};
   color: var(--cl-blue-light);
-  fill: var(--cl-background);
+  fill: ${(props) => props.theme === 'day' ? 'var(--cl-background)' : '#111'};
   stroke: ${props => (props.disabledBtn ? 'var(--cl-gray)' : 'var(--cl-blue-link)')};
 
   &:hover {
@@ -53,7 +52,7 @@ export const PaginationKey = styled.button`
     fill: ${props => (props.disabledBtn ? 'var(--cl-background)' : 'var(--cl-blue-link)')};
     stroke: ${props => (props.disabledBtn ? 'var(--cl-gray)' : 'var(--cl-background)')};
     border: ${props => (props.disabledBtn ? '1px solid var(--cl-gray)' : 'none')} ;
-    }
+  }
 `
 
 export const PaginationKeyA = styled.button`

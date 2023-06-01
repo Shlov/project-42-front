@@ -14,9 +14,11 @@ import {
   ModalDay,
 } from './OurFriendsPage.styled';
 import Heading from 'components/Heading/Heading';
+import { useSelector } from 'react-redux';
 
 const FriendCard = ({ title, logo, time, address, email, phone, times }) => {
   const [activeTime, setActiveTime] = useState(false);
+  const theme = useSelector(state => state.main.theme)
 
   const handleActiveTime = () => {
     if (!activeTime) {
@@ -27,19 +29,19 @@ const FriendCard = ({ title, logo, time, address, email, phone, times }) => {
   };
 
   return (
-    <Card>
-      <CardTitle>{title}</CardTitle>
+    <Card theme={theme}>
+      <CardTitle theme={theme}>{title}</CardTitle>
       <CardWrap>
         <CardImg src={logo} alt={`${title} logo`} />
         <CardList>
-          <CardItem>
-            <CardLabel>Time:</CardLabel>
+          <CardItem theme={theme}>
+            <CardLabel theme={theme}>Time:</CardLabel>
             <br />
             <div className="time" onClick={handleActiveTime}>
               {time}
             </div>
             {activeTime ? (
-              <CardTimeModal>
+              <CardTimeModal theme={theme}>
                 {times.map((item, i) => (
                   <div key={i} className="card-time-wrapper">
                     <div>
@@ -53,20 +55,20 @@ const FriendCard = ({ title, logo, time, address, email, phone, times }) => {
               </CardTimeModal>
             ) : null}
           </CardItem>
-          <CardItem>
-            <CardLabel>Address:</CardLabel>
+          <CardItem theme={theme}>
+            <CardLabel theme={theme}>Address:</CardLabel>
             <br />
             <CardAdress className="address">{address}</CardAdress>
           </CardItem>
-          <CardItem>
-            <CardLabel>Email:</CardLabel>
+          <CardItem theme={theme}>
+            <CardLabel theme={theme}>Email:</CardLabel>
             <br />
             <a className="email" href={`mailto:${email}`}>
               {email}
             </a>
           </CardItem>
-          <CardItem>
-            <CardLabel>Phone:</CardLabel>
+          <CardItem theme={theme}>
+            <CardLabel theme={theme}>Phone:</CardLabel>
             <br />
             <a className="phone" href={`tel:${phone}`}>
               {phone}

@@ -72,6 +72,7 @@ export const TitleModal = styled.h4`
   letter-spacing: -0.01em;
 
   margin-bottom: 20px;
+  color: ${(props) => props.theme === 'day' ? '#111' : '#fff'};
 
   @media (min-width: 768px) {
     width: 321px;
@@ -103,6 +104,7 @@ export const NameProp = styled.span`
   font-weight: 600;
   font-size: 14px;
   line-height: 19px;
+  color: ${(props) => props.theme === 'day' ? '#111' : '#fff'};
 
   @media (min-width: 768px) {
     width: 121px;
@@ -115,6 +117,7 @@ export const SignProp = styled.span`
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
+  color: ${(props) => props.theme === 'day' ? '#111' : '#fff'};
 
   @media (min-width: 768px) {
     font-size: 16px;
@@ -155,6 +158,7 @@ export const CommentWrap = styled.div`
   font-size: 14px;
   line-height: 19px;
   letter-spacing: 0.04em;
+  color: ${(props) => props.theme === 'day' ? '#111' : '#fff'};
 
 
 
@@ -187,6 +191,7 @@ export const Price = styled.span`
 font-weight: 600;
 font-size: 14px;
 line-height: 19px;
+color: ${(props) => props.theme === 'day' ? '#111' : '#fff'};
 
 @media (min-width: 768px) {
   width: 45px;
@@ -198,6 +203,7 @@ export const PriceValue = styled.span`
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
+  color: ${(props) => props.theme === 'day' ? '#111' : '#fff'};
 
   @media (min-width: 768px) {
     font-size: 18px;
@@ -206,10 +212,10 @@ export const PriceValue = styled.span`
 `
 
 export const ButtonWrapThumb = styled.div`
-  @media (min-width: 768px) {   
+  @media (min-width: 768px) {
     display: flex;
     justify-content: ${props => props.price ? "space-between" : "flex-end"};
- 
+
     width: 617px;
   }
 `;
@@ -236,7 +242,7 @@ export const Button = styled.button`
   width: 256px;
   height: 40px;
   padding: 0;
-  
+
   letter-spacing: 0.04em;
   font-weight: 700;
   font-size: 16px;

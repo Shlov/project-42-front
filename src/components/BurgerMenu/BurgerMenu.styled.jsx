@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const MobileMenuContainer = styled.div`
 overflow-x: hidden;
-background-color: var(--cl-background);
+background-color: ${(props) => props.theme === 'day' ? 'var(--cl-background)' : '#111'};
 height: 100vh;
 width: 100%;
 position: fixed;

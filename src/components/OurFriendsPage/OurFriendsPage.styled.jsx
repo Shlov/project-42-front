@@ -32,7 +32,7 @@ export const FriendsList = styled.ul`
 
 export const Card = styled.li`
   padding: 16px 12px;
-  background: var(--cl-almost-white);
+  background: ${(props) => props.theme === 'day' ? 'var(--cl-almost-white)' : '#111'};
   box-shadow: var(--shadow-default);
   border-radius: 40px;
 
@@ -52,7 +52,7 @@ export const CardTitle = styled.h2`
   font-size: 20px;
   text-align: center;
   line-height: 27px;
-  color: #54adff;
+  color: ${(props) => props.theme === 'day' ? '#54adff' : '#fff'};
   margin-bottom: 16px;
 `;
 
@@ -93,11 +93,12 @@ export const CardItem = styled.li`
 
   a {
     text-decoration: none;
-    color: inherit;
+    color: ${(props) => props.theme === 'day' ? '#54adff' : '#fff'};
   }
 
   .time,
-  address {
+  .address {
+    color: ${(props) => props.theme === 'day' ? '#111' : '#fff'};
     &:hover {
       cursor: pointer;
       color: var(--cl-blue-link);
@@ -106,6 +107,7 @@ export const CardItem = styled.li`
   }
 
   .email {
+    color: ${(props) => props.theme === 'day' ? '#111' : '#fff'};
     &:hover {
       cursor: pointer;
       color: var(--cl-blue-link);
@@ -113,6 +115,7 @@ export const CardItem = styled.li`
   }
 
   .phone {
+    color: ${(props) => props.theme === 'day' ? '#111' : '#fff'};
     &:hover {
       cursor: pointer;
       color: var(--cl-blue-link);
@@ -122,6 +125,7 @@ export const CardItem = styled.li`
 
 export const CardLabel = styled.span`
   font-weight: 600;
+  color: ${(props) => props.theme === 'day' ? '#54adff' : '#fff'}
 `;
 
 export const CardAdress = styled.address`
@@ -134,12 +138,13 @@ export const CardAdress = styled.address`
 
 export const CardTimeModal = styled.div`
   border-radius: 20px;
-  background: rgb(255, 255, 255);
+  background: ${(props) => props.theme === 'day' ? 'rgb(255, 255, 255)' : '#111'};
   box-shadow: var(--shadow-default);
   padding: 19px;
   position: absolute;
   z-index: 10;
   width: 140px;
+  color: ${(props) => props.theme === 'day' ? '#111' : '#fff'};
 
   .card-time-wrapper {
     display: flex;

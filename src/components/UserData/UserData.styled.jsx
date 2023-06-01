@@ -44,7 +44,7 @@ export const FormContainer = styled(Form)`
   height: 517px;
   padding: 20px 8px 25px;
 
-  background-color: var(--cl-almost-white);
+  background-color: ${(props) => props.theme === 'day' ? 'var(--cl-almost-white)' : '#111'};
 
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 20px;
