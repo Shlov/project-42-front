@@ -17,7 +17,15 @@ export const NextButton = styled.button`
   color: var(--cl-background);
   border-radius: 40px;
 
+  transition: transform var(--animat), box-shadow var(--animat);
+
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+    transform: translateX(0.25em);
+  }
 `;
 
 export const PawIcon = styled.svg`

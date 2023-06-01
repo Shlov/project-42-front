@@ -1,5 +1,6 @@
 import { useFormikContext } from 'formik';
 import { useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import AddPetFormNextButton from 'components/AddPetForm/AddPetFormButtons/AddPetFormNextButton';
 import BackLink from '../AddPetFormButtons/BackLink';
 import { Label } from '../Input/Input.styled';
@@ -13,7 +14,7 @@ import { AddPetFormButtonWrapper } from 'components/AddPetForm/AddPetFormButtons
 
 const PersonalDetailsStep = ({ onBack, onNext, selectedCategory }) => {
   const { values, setTouched, touched, errors } = useFormikContext();
-
+  const theme = useSelector(state => state.main.theme);
   // Function to validate form fields. UseCallback is used to memoize the validateFields function
   const validateFields = useCallback(() => {
     let formErrors = {};
@@ -71,7 +72,7 @@ const PersonalDetailsStep = ({ onBack, onNext, selectedCategory }) => {
         {/* Field "title" is only for the "sell" and "lost" categories */}
         {selectedCategory !== 'your-pet' && (
           <PersonalDetailsField>
-            <Label>
+            <Label theme={theme}>
               Title of add
               <PersonalDetailsStepInput
                 type="text"
@@ -87,7 +88,7 @@ const PersonalDetailsStep = ({ onBack, onNext, selectedCategory }) => {
 
         {/* Input field for capturing the name of the pet */}
         <PersonalDetailsField>
-          <Label>
+          <Label theme={theme}>
             Pet’s name
             <PersonalDetailsStepInput
               type="text"
@@ -100,12 +101,12 @@ const PersonalDetailsStep = ({ onBack, onNext, selectedCategory }) => {
         </PersonalDetailsField>
         {/* Input field for capturing the date of birth of the pet */}
         <PersonalDetailsField>
-          <Label>
+          <Label theme={theme}>
             Date of birth
             <PersonalDetailsStepInput
               type="text"
               name="date"
-              placeholder="Type date of birth"
+              placeholder="02.11.2014"
               errors={touched.date && errors.date}
             />
           </Label>
@@ -113,7 +114,7 @@ const PersonalDetailsStep = ({ onBack, onNext, selectedCategory }) => {
         </PersonalDetailsField>
         {/* Input field for capturing the breed of the pet */}
         <PersonalDetailsField>
-          <Label>
+          <Label theme={theme}>
             Breed
             <PersonalDetailsStepInput
               type="text"

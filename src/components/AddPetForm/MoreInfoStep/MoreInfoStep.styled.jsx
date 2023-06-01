@@ -46,7 +46,8 @@ export const SexFieldTitle = styled.p`
   font-size: 14px;
   line-height: calc(19 / 14);
   margin-bottom: 8px;
-  color: var(--cl-black);
+  color: ${props =>
+    props.theme === 'day' ? 'var(--cl-black)' : 'var(--cl-white)'};
 
   @media screen and (min-width: 768px) {
     font-size: 20px;
@@ -112,7 +113,8 @@ export const AvatarLabel = styled.label`
   font-weight: 500;
   font-size: 14px;
   line-height: calc(19 / 14);
-  color: var(--cl-black);
+  color: ${props =>
+    props.theme === 'day' ? 'var(--cl-black)' : 'var(--cl-white)'};
 
   display: flex;
   flex-direction: row;

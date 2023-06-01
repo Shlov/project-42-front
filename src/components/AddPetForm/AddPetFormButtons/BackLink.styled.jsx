@@ -15,6 +15,14 @@ export const BackButton = css`
   font-size: 16px;
   line-height: calc(22 / 16);
   height: 22px;
+
+  transition: transform var(--animat), box-shadow var(--animat);
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+    transform: translateX(-0.25em);
+  }
 `;
 
 export const StyledLink = styled(Link)`
@@ -24,4 +32,6 @@ export const StyledLink = styled(Link)`
 
 export const AddPetBackButton = styled.button`
   ${BackButton}
+
+  cursor: pointer;
 `;
