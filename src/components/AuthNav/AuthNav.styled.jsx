@@ -54,7 +54,7 @@ export const ButtonRegister = styled.button`
   padding: 8px 20px;
   color: var(--cl-yellow);
   width: 165px;
-  background-color: var(--cl-background);
+  background-color: ${(props) => props.theme === 'day' ? 'var(--cl-background)' : 'transparent'};
   border: 2px solid var(--cl-yellow);
   border-radius: 40px;
   transition: background-color 250ms ease-in-out, color 250ms ease-in-out;

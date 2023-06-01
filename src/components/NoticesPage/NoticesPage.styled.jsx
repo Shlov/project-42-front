@@ -73,7 +73,7 @@ export const Button = styled.button`
   cursor: pointer;
 
   transition: background var(--animat), background-color var(--animat);
- 
+
   &:hover,
   &:active,
   &:focus {
@@ -81,14 +81,14 @@ export const Button = styled.button`
     color: var(--cl-background);
     border: var(--gr-blue);
   }
-    
+
   @media (min-width: 768px) {
     width: 129px;
-  } 
+  }
 `;
 
 export const ButtonTrash = styled(Button)`
-  
+
   border: 2px solid var(--animat);
   color: var(--cl-background);
   background-color: var(--cl-blue-link);
@@ -112,7 +112,7 @@ export const Trash = styled.svg`
 export const Filters = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
   width: 320px;
    margin: 0 auto 40px;
 
@@ -128,6 +128,24 @@ export const Filters = styled.div`
 
   .filters {
     display: flex;
+    position: relative;
+
+    .filters-items {
+      position: absolute;
+      right: 0;
+      top: 90px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: end;
+
+      @media (max-width: 991px) {
+        width: 500px;
+      }
+
+      @media (max-width: 768px) {
+        width: 320px;
+      }
+    }
 
     & > a {
       margin-left: 12px;

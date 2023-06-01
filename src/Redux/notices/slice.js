@@ -93,10 +93,10 @@ const noticesSlice = createSlice({
       state.item = action.payload.data; },
     [fetchNotice.rejected]: handleRejected,
 
-    [updateFavorite.pending](state){
-      state.isLoadNotice = true; },
+    // [updateFavorite.pending](state){
+    //   state.isLoadNotice = true; },
     [updateFavorite.fulfilled](state, action) {
-      state.isLoadNotice = false;
+      // state.isLoadNotice = false;
       state.error = '';
       state.item.notice.favorite = action.payload.data.notice.favorite;
       if (!action.meta.arg.isFavorite) {

@@ -27,6 +27,7 @@ const AddPetForm = () => {
   const [step, setStep] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [completedSteps, setCompletedSteps] = useState([]);
+  const theme = useSelector(state => state.main.theme)
 
   const formValues = {
     category: selectedCategory,

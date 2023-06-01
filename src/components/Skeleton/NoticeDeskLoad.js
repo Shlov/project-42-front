@@ -5,8 +5,8 @@ export const NoticeSkeletonDesk = props => (
     width={681}
     height={540}
     viewBox="0 0 681 540"
-    backgroundColor="#f5f5f5"
-    foregroundColor="#dbdbdb"
+    backgroundColor="var(--cl-blue-light)"
+    foregroundColor="var(--cl-blue-link)" 
     {...props}
   >   
     <rect x="55" y="42" rx="16" ry="16" width="274" height="216" />   {/*photo*/}
