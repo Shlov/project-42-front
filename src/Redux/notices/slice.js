@@ -29,11 +29,24 @@ const noticesInitialState = {
   pagination: {},
   error: '',
   isResponseSuccessful: false,
+  futurePage: 1,
 };
 
 const noticesSlice = createSlice({
   name: 'notices',
   initialState: noticesInitialState,
+  reducers:{
+    updateFuturePage: {
+      reducer(state, action) {
+        state.futurePage = action.payload;
+      },
+      prepare(page) {
+        return {
+          payload: page,
+        };
+      },
+    },
+  },
   extraReducers: {
     // Notices
     [fetchNotices.pending]: handlePending,
@@ -42,7 +55,7 @@ const noticesSlice = createSlice({
       state.error = null;
       state.items = action.payload.message ? [] : action.payload.data.notices;
       state.pagination = action.payload.message ? {} : action.payload.data.pagination;
-      state.isResponseSuccessful = false; },
+      state.isResponseSuccessful = false;},
     [fetchNotices.rejected]: handleRejected,
 
     [getNoticeByCategory.pending]: handlePending,
@@ -51,7 +64,7 @@ const noticesSlice = createSlice({
       state.isLoadNotices = false;
       state.error = null;
       state.pagination = action.payload.message ? {} : action.payload.data.pagination;
-      state.isResponseSuccessful = false; },
+      state.isResponseSuccessful = false;},
     [getNoticeByCategory.rejected]: handleRejected,
 
     [getFavoriteNotices.pending]: handlePending,
@@ -67,7 +80,7 @@ const noticesSlice = createSlice({
       state.isLoadNotices = false;
       state.error = null;
       state.items = action.payload.message ? [] : action.payload.data.notices;
-      state.pagination = action.payload.message ? {} : action.payload.data.pagination; },
+      state.pagination = action.payload.message ? {} : action.payload.data.pagination;},
     [getUserNotices.rejected]: handleRejected,
 
         // Notice
@@ -120,4 +133,5 @@ const noticesSlice = createSlice({
   },
 });
 
+export const {updateFuturePage} = noticesSlice.actions;
 export const noticesReducer = noticesSlice.reducer;

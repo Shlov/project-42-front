@@ -19,7 +19,8 @@ import { FilterItem } from 'components/NoticesFilters/NoticesFilter.styled';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import RemoveItem from '../../images/icons/cross-small-1.svg'
 import { Pagination } from 'components/Pagination/Pagination';
-import { getIsLoadNotices, getPagination } from 'Redux/notices/selector';
+import { getIsLoadNotices } from 'Redux/notices/selector';
+// import { updateFuturePage } from 'Redux/notices/slice';
 
 const categories = [
   {
@@ -85,25 +86,6 @@ export const NoticesPage = () => {
   const { categoryName } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const [search, setSearch] = useState(searchParams.get('title'))
-
-  const { limit, numberNotices, page} = useSelector(getPagination);
-    // console.log('limit', limit, 'numberNotices' , numberNotices);
-    
-    const [futurePage, setFuturePage] = useState(1)
-    
-    const calcNextPage = (calcPage) => {
-      const futurePage = Number(page) + calcPage;
-      const allPages = Math.ceil(numberNotices/limit);
-      if (futurePage > 0 && allPages >= futurePage) {
-      return setFuturePage(futurePage) 
-    }
-    setFuturePage(1)
-  }
-
-  const handleNextPage = (nextPage) => {
-    setFuturePage(nextPage) 
-  }
-
 
   const categoryShelf = useMemo(() => ({
     all: 'all',
@@ -190,7 +172,7 @@ export const NoticesPage = () => {
           <NoticesCategoriesNav categoriesArr={categoriesArr} setCategoriesArr={setCategoriesArr} categories={categories} category={category} setCategory={setCategory} privateCategory={privateCategory} />
         </div>
         <div className='filters'>
-          <FindFilter setAges={setAges} ages={ages} setGenders={setGenders} genders={genders} setOpenFilter={setOpenFilter} openFilter={openFilter} items={items} activeButtons={activeButtons} setActiveButtons={setActiveButtons} handleRemoveItem={handleRemoveItem} />
+          <FindFilter setAges={setAges} ages={ages} setGenders={setGenders} genders={genders} setOpenFilter={setOpenFilter} openFilter={openFilter} items={items} activeButtons={activeButtons} setActiveButtons={setActiveButtons} handleRemoveItem={handleRemoveItem}  />
           {!mobile && <AddPetButton />}
           <div className='filters-items'>
             {(tablet || mobile) &&
@@ -204,8 +186,8 @@ export const NoticesPage = () => {
           </div>
         </div>
       </Filters>
-      <NoticeCategoryList filteredItems={filteredItems} setFilteredItems={setFilteredItems} items={items} search={search} ages={ages} genders={genders} futurePage={futurePage}/>
-      {filteredItems.length && !isLoading ? <Pagination calcNextPage={calcNextPage} handleNextPage={handleNextPage}/> : null}
+      <NoticeCategoryList filteredItems={filteredItems} setFilteredItems={setFilteredItems} items={items} search={search} ages={ages} genders={genders}/>
+      {filteredItems.length && !isLoading ? <Pagination /> : null}
     </>
   );
 };

@@ -1,14 +1,27 @@
 import { PaginationWrapper, PaginationPanel, PaginationKey, PaginationKeyA, SvgIcon } from "./Pagination.styled";
 import icon from '../../images/icons.svg';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getPagination } from "Redux/notices/selector";
+import { updateFuturePage } from "Redux/notices/slice";
 
+export const Pagination = () => {
 
-
-export const Pagination = ({calcNextPage, handleNextPage}) => {
-
+  const  dispatch = useDispatch();
   const { limit, numberNotices, page} = useSelector(getPagination);
   // console.log('p',page, 'nN', numberNotices , 'l', limit)
+  
+  const calcNextPage = (calcPage) => {
+    const futurePage = Number(page) + calcPage;
+    const allPages = Math.ceil(numberNotices/limit);
+    if (futurePage > 0 && allPages >= futurePage) {
+      return dispatch(updateFuturePage(futurePage));
+    }
+    dispatch(updateFuturePage(1))
+  }
+
+  const handleNextPage = (nextPage) => {
+    dispatch(updateFuturePage(nextPage));
+  }
 
   const allPages = Math.ceil(numberNotices/limit);
   const start = 1;

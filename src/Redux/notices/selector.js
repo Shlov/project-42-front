@@ -13,3 +13,5 @@ export const getAddNoticeSuccessfulConnection = state =>
 
   export const getPagination = state => state.notices.pagination;
 
+  export const getFuturePage = state => state.notices.futurePage;
+

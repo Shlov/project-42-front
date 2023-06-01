@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import { Button, FilterCSS, FilterSelect, FilterSelectTitle, FiltersButton, FiltersChevron, FiltersRound, FilterWrapper, FilterItem } from './NoticesFilter.styled'
 import icons from 'images/icons.svg';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import RemoveItem from '../../images/icons/cross-small-1.svg'
+import { updateFuturePage } from 'Redux/notices/slice';
 
 export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, openFilter, setActiveButtons, activeButtons, handleRemoveItem }) => {
   const mobile = useSelector(state => state.main.mobile)
   const tablet = useSelector(state => state.main.tablet)
   const desktop = useSelector(state => state.main.desktop)
+  const  dispatch = useDispatch();
   const [activeAgeButton, setActiveAgeButton] = useState(false)
   const [activeGenderButton, setActiveGenderButton] = useState(false)
   const filters = {
@@ -49,6 +51,8 @@ export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, 
     setOpenFilter(!openFilter)
   }
 
+  // onClick={() => dispatch(updateFuturePage(1))}
+
   return (
     <FilterWrapper desktop={desktop} mobile={mobile} tablet={tablet}>
       {desktop &&
@@ -68,7 +72,7 @@ export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, 
         <FilterSelect>
           <FilterSelectTitle>Filter</FilterSelectTitle>
           <FiltersButton>
-            <div onClick={() => setActiveAgeButton(!activeAgeButton)} style={{marginBottom: activeAgeButton ? '16px' : '0px'}}>
+            <div onClick={() => {setActiveAgeButton(!activeAgeButton); dispatch(updateFuturePage(1))}} style={{marginBottom: activeAgeButton ? '16px' : '0px'}}>
               {activeAgeButton ? <FiltersChevron><use href={icons + '#chevron-up'} /></FiltersChevron> : <FiltersChevron><use href={icons + '#chevron-down'} /></FiltersChevron>}
               <p>By age</p>
             </div>
@@ -83,7 +87,7 @@ export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, 
               )}
           </FiltersButton>
           <FiltersButton>
-            <div onClick={() => setActiveGenderButton(!activeGenderButton)} style={{marginBottom: activeGenderButton ? '16px' : '0px'}}>
+            <div onClick={() => {setActiveGenderButton(!activeGenderButton); dispatch(updateFuturePage(1))}} style={{marginBottom: activeGenderButton ? '16px' : '0px'}}>
               {activeGenderButton ? <FiltersChevron><use href={icons + '#chevron-up'} /></FiltersChevron> : <FiltersChevron><use href={icons + '#chevron-down'} /></FiltersChevron>}
               <p>By gender</p>
             </div>
