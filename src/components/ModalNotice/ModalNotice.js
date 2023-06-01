@@ -37,7 +37,7 @@ import { fetchNotice, updateFavorite } from 'Redux/notices/operation';
 import { getIsLoadNotice, getNotice } from 'Redux/notices/selector';
 import { selectUser } from 'Redux/auth/selector';
 import { toast } from 'react-hot-toast';
-import {NoticeSkeletonDesk} from 'components/Skeleton/NoticeSkeletonDesk';
+import {NoticeSkeletonDesk} from 'components/Skeleton/NoticeDeskLoad';
 import { NoticeSkeletonMob } from 'components/Skeleton/NoticeSkeletonMob';
 
 export const ModalNotice = ({ onClose, noticeId }) => {
