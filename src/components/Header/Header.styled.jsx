@@ -53,9 +53,9 @@ export const HeaderTheme = styled.button`
 
   .icon {
     position: absolute;
-    width: 100%;
     transition: opacity 0.5s, transform 0.5s;
-    top: 0;
+    top: ${(props) => props.isConnect ? '-2px' : '3px'};
+    right: 10px;
     right: 10px;
   }
 
