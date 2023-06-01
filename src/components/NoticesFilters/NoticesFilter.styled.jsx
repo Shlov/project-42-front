@@ -72,7 +72,7 @@ export const FilterCSS = styled(Filter)`
 export const FilterSelect = styled.div`
   width: 152px;
   padding: 8px;
-  background-color: var(--cl-background);
+  background-color: ${(props) => props.theme === 'day' ? 'var(--cl-background)' : '#111'};
   color: var(--cl-blue-link);
   box-shadow: var(--shadow-default);
   border-radius: 20px;

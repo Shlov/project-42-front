@@ -10,9 +10,10 @@ const BurgerMenu = ({ active, setActiveBridge }) => {
 
   const mobile = useSelector(state => state.main.mobile);
   const isConnect = useSelector(state => state.auth.isConnect);
+  const theme = useSelector(state => state.main.theme)
 
   return (
-    <MobileMenuContainer className='mobile-menu' style={{top: active ? '0px' : '-200%'}}>
+    <MobileMenuContainer className='mobile-menu' style={{top: active ? '0px' : '-200%'}} theme={theme}>
       <MobileMenuHeader>
         <Logo />
         <CloseIconImg src={CloseIcon} alt="" onClick={() => setActiveBridge(false)} />

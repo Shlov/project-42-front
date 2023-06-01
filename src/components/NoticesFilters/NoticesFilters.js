@@ -70,7 +70,7 @@ export const FindFilter = ({ setAges, ages, genders, setGenders, setOpenFilter, 
       </Button>
 
       {openFilter ?
-        <FilterSelect>
+        <FilterSelect theme={theme}>
           <FilterSelectTitle>Filter</FilterSelectTitle>
           <FiltersButton>
             <div onClick={() => {setActiveAgeButton(!activeAgeButton); dispatch(updateFuturePage(1))}} style={{marginBottom: activeAgeButton ? '16px' : '0px'}}>
