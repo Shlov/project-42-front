@@ -54,7 +54,6 @@ export const HeaderTheme = styled.button`
   .icon {
     position: absolute;
     width: 100%;
-    height: 100%;
     transition: opacity 0.5s, transform 0.5s;
     top: 0;
     right: 10px;
