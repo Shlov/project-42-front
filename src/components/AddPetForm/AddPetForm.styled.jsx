@@ -7,7 +7,8 @@ export const FormContainer = styled.div`
   width: 280px;
   min-height: 496px;
   padding: 20px 8px 17px;
-  background-color: var(--cl-almost-white);
+  background-color: ${props =>
+    props.theme === 'day' ? 'var(--cl-almost-white)' : 'var(--cl-black)'};
   box-shadow: var(--shadow-default);
   border-radius: 40px;
 
