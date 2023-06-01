@@ -9,7 +9,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useSelector } from "react-redux";
 import { useLocation, useParams, useSearchParams } from 'react-router-dom';
-// import { getNoticeByCategory } from 'Redux/notices/operation';
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav'
 import { FindFilter } from 'components/NoticesFilters/NoticesFilters'
 import { NoticeCategoryList } from 'components/NoticesCategoriesList/NoticesCategoriesList';
@@ -20,7 +19,6 @@ import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import RemoveItem from '../../images/icons/cross-small-1.svg'
 import { Pagination } from 'components/Pagination/Pagination';
 import { getIsLoadNotices } from 'Redux/notices/selector';
-// import { updateFuturePage } from 'Redux/notices/slice';
 
 const categories = [
   {
@@ -86,6 +84,7 @@ export const NoticesPage = () => {
   const { categoryName } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const [search, setSearch] = useState(searchParams.get('title'))
+  const [filterHeight, setFilterHeight] = useState(0)
 
   const categoryShelf = useMemo(() => ({
     all: 'all',
@@ -134,6 +133,15 @@ export const NoticesPage = () => {
     }
     setFilteredItems(newItems)
   }, [search, genders, ages, category, categoryShelf, categoryName, items]);
+
+  useEffect(() => {
+    const element = document.querySelector('.filters-items');
+    if (element) {
+      const height = element.getBoundingClientRect().height;
+      setFilterHeight(height);
+      console.log(height);
+    }
+  }, [activeButtons]);
 
   const agePet = (birthday) => {
     const nowDate = new Date();
@@ -186,7 +194,7 @@ export const NoticesPage = () => {
           </div>
         </div>
       </Filters>
-      <NoticeCategoryList filteredItems={filteredItems} setFilteredItems={setFilteredItems} items={items} search={search} ages={ages} genders={genders}/>
+      <NoticeCategoryList filterHeight={filterHeight} filteredItems={filteredItems} setFilteredItems={setFilteredItems} items={items} search={search} ages={ages} genders={genders}/>
       {filteredItems.length && !isLoading ? <Pagination /> : null}
     </>
   );

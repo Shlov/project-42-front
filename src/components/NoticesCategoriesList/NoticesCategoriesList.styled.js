@@ -16,4 +16,13 @@ export const NoticesList = styled.div`
   }
   margin-left: auto;
   margin-right: auto;
+  margin-top: ${(props) => {
+    if(props.filterHeight > 50) {
+      return '95px'
+    } else if (props.filterHeight > 30 && props.filterHeight < 50) {
+      return '60px'
+    } else {
+      return '0'
+    }
+  }};
 `

@@ -23,6 +23,7 @@ export const TitleModal = styled.h4`
   font-weight: 500;
 
   padding-bottom: 48px;
+  color: ${(props) => props.theme === 'day' ? '#111' : '#fff'};
 
   @media (min-width: 768px) {
     font-weight: 700;
@@ -65,7 +66,7 @@ export const Button = styled.button`
   border-radius: 40px;
   color: var(--cl-blue-link);
   background: transparent;
-  
+
   cursor: pointer;
 
   @media (min-width: 768px) {
@@ -125,6 +126,7 @@ export const BtnLogout = styled.button`
   cursor: pointer;
   border: none;
   background-color: transparent;
+  color: ${(props) => props.theme === 'day' ? '#111' : '#fff'};
 
   &:hover,
   &:focus {
@@ -132,6 +134,6 @@ export const BtnLogout = styled.button`
     border: 1px solid var(--cl-blue-link);
     border-radius: 40px;
 
-  
+
   }
 `;
