@@ -164,6 +164,7 @@ export const UserData = () => {
                         setIsEditingAvatar(true);
                         inputRef.current.click();
                       }}
+                      theme={theme}
                     >
                       <SvgIcon>
                         <use href={icons + '#camera'} />
@@ -175,6 +176,7 @@ export const UserData = () => {
                       type="button"
                       onClick={() => setIsEditingAvatar(false)}
                       onSubmit={props.handleSubmit}
+                      theme={theme}
                     >
                       <SvgIcon>
                         <use href={icons + '#check'} />
@@ -198,6 +200,8 @@ export const UserData = () => {
                       onChange={props.handleChange}
                       onBlur={props.handleBlur}
                       disabled={!isEditingName ? false : true}
+                      theme={theme}
+                
                     />
                     {props.errors.name ? (
                       <StyledErrorMessage>
@@ -239,6 +243,7 @@ export const UserData = () => {
                       onChange={props.handleChange}
                       onBlur={props.handleBlur}
                       disabled={!isEditingEmail ? false : true}
+                      theme={theme}
                     />
                     {props.errors.email ? (
                       <StyledErrorMessage>
@@ -280,6 +285,7 @@ export const UserData = () => {
                       onChange={props.handleChange}
                       onBlur={props.handleBlur}
                       disabled={!isEditingBirthday ? false : true}
+                      theme={theme}
                     />
                     {props.errors.birthday ? (
                       <StyledErrorMessage>
@@ -322,6 +328,7 @@ export const UserData = () => {
                       onBlur={props.handleBlur}
                       placeholder="+380000000000"
                       disabled={!isEditingPhone ? false : true}
+                      theme={theme}
                     />
                     {props.errors.phone ? (
                       <StyledErrorMessage>
@@ -364,6 +371,7 @@ export const UserData = () => {
                       onBlur={props.handleBlur}
                       placeholder="Lviv"
                       disabled={!isEditingCity ? false : true}
+                      theme={theme}
                     />
                     {props.errors.city ? (
                       <StyledErrorMessage>
