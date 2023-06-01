@@ -12,20 +12,35 @@ export const authSlice = createSlice({
   isConnect: false,
   isRefreshing: false,
   isNewUser: false,
+  isLoading: false,
   },
   extraReducers: builder => {
     builder
+      .addCase(userReg.pending, (state) => {
+        state.isLoading = true;
+      })
       .addCase(userReg.fulfilled, (state, action) => {
         state.user = action.payload.result;
         state.token = action.payload.token;
         state.isConnect = true;
         state.isNewUser = true;
+        state.isLoading = false;
+      })
+      .addCase(userReg.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(userLogin.pending, (state) => {
+        state.isLoading = true;
       })
       .addCase(userLogin.fulfilled, (state, action) => {
         state.user = action.payload.result;
         state.token = action.payload.token;
         state.isConnect = true;
+        state.isLoading = false;
       }) 
+      .addCase(userLogin.rejected, (state) => {
+        state.isLoading = false;
+      })
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
       })
