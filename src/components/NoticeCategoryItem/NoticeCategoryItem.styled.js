@@ -6,6 +6,9 @@ export const Card = styled.div`
   @media (min-width:768px) and (max-width:1279px) {
     width: 336px;
   }
+  @media (min-width:1280px) {
+    width: 288px;
+  }
   height: 456px;
   background: var(--cl-almost-white);
   box-shadow: var(--shadow-default);
@@ -31,6 +34,7 @@ export const Title = styled.h3`
   font-weight: 700;
   font-size: 24px;
   line-height: calc(33 / 24);
+  margin-right: auto;
   margin-bottom: auto;
 `
 
@@ -178,6 +182,9 @@ export const Image = styled.img`
   width: 280px;
   @media (min-width:768px) and (max-width:1279px) {
     width: 336px;
+  }
+  @media (min-width:1280px) {
+    width: 288px;
   }
   height: 288px;
 `

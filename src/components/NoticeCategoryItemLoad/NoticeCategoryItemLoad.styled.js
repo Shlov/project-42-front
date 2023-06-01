@@ -14,6 +14,9 @@ export const Card = styled.div`
   @media (min-width:768px) and (max-width:1279px) {
     width: 336px;
   }
+  @media (min-width:1280px) {
+    width: 288px;
+  }
   height: 456px;
   background: var(--cl-almost-white);
   box-shadow: var(--shadow-default);
