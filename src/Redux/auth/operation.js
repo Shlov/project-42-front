@@ -105,7 +105,9 @@ export const currentUser = createAsyncThunk(
       // If there is a token, add it to the HTTP header and perform the request
       setAuthHeader(persistedToken);
       const response = await axios.get('/user/current');
+      toast.success('Successfully updated your pets');
       return response.data;
+ 
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -128,8 +130,15 @@ export const updateUser = createAsyncThunk(
       setAuthHeader(persistedToken);
 
       const response = await axios.patch(`/user/update`, values);
+      toast.success('Profile successfully updated!')
       return response.data;
     } catch (error) {
+      if (error.response.status === 400) {
+        toast.error('Editing error. Please try again🙏');
+      }
+      if (error.response.status === 500) {
+        toast.error('Server error. Please try later🙏');
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }
