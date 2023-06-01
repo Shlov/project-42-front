@@ -9,30 +9,27 @@ export const NoticeSkeletonDesk = props => (
     foregroundColor="var(--cl-blue-link)" 
     {...props}
   >   
-    <rect x="55" y="42" rx="16" ry="16" width="274" height="216" />   {/*photo*/}
-    <rect x="376" y="41" rx="3" ry="3" width="251" height="50" />     {/*title*/}
-    <rect x="376" y="113" rx="3" ry="3" width="102" height="7" />     {/*name prop*/}
-    <rect x="518" y="113" rx="3" ry="3" width="102" height="7" />     {/*prop*/}
-    <rect x="376" y="137" rx="3" ry="3" width="102" height="7" />     {/*name prop*/}
-    <rect x="518" y="137" rx="3" ry="3" width="102" height="7" />     {/*prop*/}
-    <rect x="376" y="161" rx="3" ry="3" width="102" height="7" />     {/*name prop*/}
-    <rect x="518" y="161" rx="3" ry="3" width="102" height="7" />     {/*prop*/}
-    <rect x="376" y="185" rx="3" ry="3" width="102" height="7" />     {/*name prop*/}
-    <rect x="518" y="185" rx="3" ry="3" width="102" height="7" />     {/*prop*/}
-    <rect x="376" y="209" rx="3" ry="3" width="102" height="7" />     {/*name prop*/}
-    <rect x="518" y="209" rx="3" ry="3" width="102" height="7" />     {/*prop*/}
-    <rect x="376" y="233" rx="3" ry="3" width="102" height="7" />     {/*name prop*/}
-    <rect x="518" y="233" rx="3" ry="3" width="102" height="7" />     {/*prop*/}
-    <rect x="376" y="257" rx="3" ry="3" width="102" height="7" />     {/*name prop*/}
-    <rect x="518" y="257" rx="3" ry="3" width="102" height="7" />     {/*prop*/}
-    <rect x="55" y="300" rx="3" ry="3" width="565" height="7" />      {/*comments*/}
-    <rect x="55" y="325" rx="3" ry="3" width="565" height="7" />      {/*comments*/}
-    <rect x="55" y="350" rx="3" ry="3" width="265" height="7" />      {/*comments*/}
-    <rect x="55" y="475" rx="3" ry="3" width="40" height="7" />       {/*price*/}
-    <rect x="120" y="475" rx="3" ry="3" width="50" height="7" />      {/*price amount */}
-    <rect x="329" y="458" rx="30" ry="30" width="129" height="40" />  {/*button*/}
-    <rect x="488" y="458" rx="30" ry="30" width="129" height="40" />  {/*button*/}
-    
+
+    <rect x="32" y="32" rx="2" ry="2" width="262" height="298" /> 
+    <rect x="318" y="32" rx="0" ry="0" width="240" height="32" /> 
+    <rect x="318" y="69" rx="0" ry="0" width="170" height="32" /> 
+    <rect x="318" y="122" rx="0" ry="0" width="50" height="22" /> 
+    <rect x="440" y="122" rx="0" ry="0" width="50" height="22" /> 
+    <rect x="318" y="152" rx="0" ry="0" width="70" height="22" /> 
+    <rect x="440" y="152" rx="0" ry="0" width="70" height="22" /> 
+    <rect x="318" y="182" rx="0" ry="0" width="50" height="22" /> 
+    <rect x="400" y="182" rx="0" ry="0" width="50" height="22" /> 
+    <rect x="318" y="212" rx="0" ry="0" width="70" height="22" /> 
+    <rect x="440" y="212" rx="0" ry="0" width="70" height="22" /> 
+    <rect x="318" y="242" rx="0" ry="0" width="50" height="22" /> 
+    <rect x="440" y="242" rx="0" ry="0" width="50" height="22" /> 
+    <rect x="318" y="272" rx="0" ry="0" width="50" height="22" /> 
+    <rect x="440" y="272" rx="0" ry="0" width="50" height="22" /> 
+    <rect x="32" y="360" rx="0" ry="0" width="549" height="17" /> 
+    <rect x="32" y="386" rx="0" ry="0" width="549" height="17" />
+    <rect x="375" y="468" rx="20" ry="20" width="129" height="40" /> 
+    <rect x="516" y="468" rx="20" ry="20" width="129" height="40" /> 
+
   </ContentLoader>
 )
 
