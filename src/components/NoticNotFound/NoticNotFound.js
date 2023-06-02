@@ -1,9 +1,8 @@
 import React from 'react';
 import {
-  Span,
-  NotFoundTitle,
-  NotFoundPicture,
-  NotFoundImg,
+  NoticeNotFoundTitle,
+  NoticeNotFoundPicture,
+  NotFoundNoticeImg,
 } from './NoticNotFound.styled';
 
 import mobileNotFoundNotice1x from '../../images/noticeNotFound/sedCat@sm_1.jpg';
@@ -24,10 +23,10 @@ export const NoticeNotFound = () => {
   return (
     <>
       <diV>
-        <NotFoundTitle>
-          <Span>Ooops! </Span> You don't have any favorite pets yet :(
-        </NotFoundTitle>
-        <NotFoundPicture>
+        <NoticeNotFoundTitle>
+        Ooops! Not found notices! :(
+        </NoticeNotFoundTitle>
+        <NoticeNotFoundPicture>
           <source
             media="(min-width: 1280px)"
             srcSet={`${desktopNotFoundNotice1xwebp} 1x, ${desktopNotFoundNotice2xwebp} 2x`}
@@ -62,13 +61,13 @@ export const NoticeNotFound = () => {
             srcSet={`${mobileNotFoundNotice1x} 1x, ${mobileNotFoundNotice2x} 2x`}
             type="image/jpg"
           />
-          <NotFoundImg
+          <NotFoundNoticeImg
             src={mobileNotFoundNotice1x}
             alt="Sed cat"
             width="165"
             height="169"
           />
-        </NotFoundPicture>
+        </NoticeNotFoundPicture>
       </diV>
     </>
   );
