@@ -46,9 +46,6 @@ const noticesSlice = createSlice({
         };
       },
     },
-    setCategory: (state, action) => {
-      state.category = action.payload;
-    },
   },
   extraReducers: {
     // Notices
@@ -102,7 +99,7 @@ const noticesSlice = createSlice({
       // state.isLoadNotice = false;
       state.error = '';
       state.item.notice.favorite = action.payload.data.notice.favorite;
-      if (!action.meta.arg.isFavorite && state.category === 'favorites-ads') {
+      if (!action.meta.arg.isFavorite) {
         state.items = state.items.filter(item => item.id !== action.meta.arg.noticeId);
       } else {
         state.items = state.items.map(item => {
@@ -136,5 +133,5 @@ const noticesSlice = createSlice({
   },
 });
 
-export const {updateFuturePage, setCategory} = noticesSlice.actions;
+export const {updateFuturePage} = noticesSlice.actions;
 export const noticesReducer = noticesSlice.reducer;

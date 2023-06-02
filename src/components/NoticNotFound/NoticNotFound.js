@@ -23,7 +23,7 @@ import desktopNotFoundNotice2xwebp from '../../images/noticeNotFound/sedCat@lg_2
 export const NoticeNotFound = () => {
   return (
     <>
-      <div>
+      <diV>
         <NotFoundTitle>
           <Span>Ooops! </Span> You don't have any favorite pets yet :(
         </NotFoundTitle>
@@ -69,7 +69,7 @@ export const NoticeNotFound = () => {
             height="169"
           />
         </NotFoundPicture>
-      </div>
+      </diV>
     </>
   );
 };
