@@ -1,41 +1,22 @@
 import styled from 'styled-components';
 
 
-export const NotFoundContainer = styled.div`
-  padding: 50px 20px 0px 20px;
-  height: 100vh;
-  margin: 0 auto;
-  max-width: 1280px;
-
-  @media screen and (min-width: 768px) {
-    padding: 30px 32px 0px 32px;
-  }
-`;
-
-export const Span = styled.span`
-  display: block;
-
-  @media screen and (min-width: 768px) {
-    display: inline;
-  }
-`;
-
-export const NotFoundTitle = styled.h1`
+export const NoticeNotFoundTitle = styled.h1`
   margin: 0 auto;
   text-align: center;
   max-width: 280px;
   font-size: 24px;
-  line-height: 1.36;
+  font-weight: 600;
 
   @media screen and (min-width: 768px) {
     max-width: 100%;
-    font-weight: 600;
+
     font-size: 32px;
-    line-height: 1.3;
+
   }
 `;
 
-export const NotFoundPicture = styled.picture`
+export const NoticeNotFoundPicture = styled.picture`
   display: block;
   padding-top: 80px;
   padding-bottom: 60px;
@@ -49,7 +30,7 @@ export const NotFoundPicture = styled.picture`
   }
 `;
 
-export const NotFoundImg = styled.img`
+export const NotFoundNoticeImg = styled.img`
   width: 165px;
   margin: 0 auto;
 
