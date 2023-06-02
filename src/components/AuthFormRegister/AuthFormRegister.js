@@ -240,7 +240,7 @@ export const RegForm = () => {
                     value={props.values.confirmPassword}
                     error={props.errors.confirmPassword}
                   >
-                    Ponfirm password is secure
+                    Confirmation password is secure
                   </TextOkValidation>
                   <Error component="div" name="confirmPassword" />
                 </Label>
