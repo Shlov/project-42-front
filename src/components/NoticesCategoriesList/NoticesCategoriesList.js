@@ -85,82 +85,10 @@ export const NoticeCategoryList = ({
       sex = genders
     }
 
-    const timer = setTimeout(() => {
-      if (idUser !== '' && (categoryName === 'favorites-ads' || categoryName === 'my-ads')) {
-        if(categoryName === 'favorites-ads') {
-          try {
-            dispatch(getFavoriteNotices({ title: searchParams.get('title'), minMonths, maxMonths, sex: `${sex.join(',')}`, page: futurePage }))
-              .then((action) => {
-                if (action.payload.message && action.payload.message === 'No data found') {
-                  setFilteredItems([])
-                } else {
-                  setFilteredItems(action.payload.data.notices);
-                }
-              });
-          } catch (err) {
-            console.error(err);
-          }
-        } else if(categoryName === 'my-ads') {
-          console.log(categoryName);
-          try {
-            dispatch(getUserNotices({ title: searchParams.get('title'), minMonths, maxMonths, sex: `${sex.join(',')}`, page: futurePage }))
-              .then((action) => {
-                if (action.payload.message && action.payload.message === 'No data found') {
-                  setFilteredItems([])
-                } else {
-                  setFilteredItems(action.payload.data.notices);
-                }
-              });
-          } catch(err) {
-            console.error(err);
-          }
-        }
-      } else if (categoryName && !searchParams.get('title') && (idUser === '' || idUser !== '')) {
-        if (categoryName === categoryShelf[categoryName] && categoryName !== 'all') {
-          try {
-            dispatch(getNoticeByCategory({ categories: categoryName !== 'lost-found' ? categoryName : 'lost/found', minMonths, maxMonths, sex: `${sex.join(',')}`, page: futurePage }))
-              .then((action) => {
-                if (action.payload.message && action.payload.message === 'No data found') {
-                  setFilteredItems([])
-                } else {
-                  setFilteredItems(action.payload.data.notices);
-                }
-              });
-          } catch (err) {
-            console.error(err);
-          }
-        }
-        else if(categoryName === 'all' && (!minMonths && !maxMonths && !sex.length)) {
-          try {
-            dispatch(fetchNotices(futurePage))
-            .then((action) => {
-              if (action.payload.message && action.payload.message === 'No data found') {
-                setFilteredItems([])
-              } else {
-                setFilteredItems(action.payload.data.notices);
-              }
-            });
-          } catch (err) {
-            console.error(err);
-          }
-        }
-        else if(categoryName === 'all' && (minMonths || maxMonths || sex.length || searchParams.get('title'))) {
-          try {
-            dispatch(getNoticeByCategory({ minMonths, maxMonths, sex: `${sex.join(',')}`, title: searchParams.get('title'), page: futurePage }))
-              .then((action) => {
-                if (action.payload.message && action.payload.message === 'No data found') {
-                  setFilteredItems([])
-                } else {
-                  setFilteredItems(action.payload.data.notices);
-                }
-              });
-          } catch (err) {
-            console.error(err);
-          }
-        }
-      } else if (!categoryName && searchParams.get('title') && (idUser === '' || idUser !== '')) {
+    if (idUser !== '' && (categoryName === 'favorites-ads' || categoryName === 'my-ads')) {
+      if(categoryName === 'favorites-ads') {
         try {
-          dispatch(getNoticeByCategory({ title: searchParams.get('title'), minMonths, maxMonths, sex: `${sex.join(',')}`, page: futurePage }))
+          dispatch(getFavoriteNotices({ title: searchParams.get('title'), minMonths, maxMonths, sex: `${sex.join(',')}`, page: futurePage }))
             .then((action) => {
               if (action.payload.message && action.payload.message === 'No data found') {
                 setFilteredItems([])
@@ -171,20 +99,91 @@ export const NoticeCategoryList = ({
         } catch (err) {
           console.error(err);
         }
-      } else if (!categoryName && !searchParams.get('title') && (!idUser || idUser !== '')) {
-          try {
-            dispatch(getNoticeByCategory({ sex: `${sex.join(',')}`, minMonths, maxMonths, page: futurePage }))
-              .then((action) => {
-                if (action.payload.message && action.payload.message === 'No data found') {
-                  setFilteredItems([])
-                } else {
-                  setFilteredItems(action.payload.data.notices);
-                }
-              });
-          } catch (err) {
-            console.error(err);
-          }
-      } else if (categoryName && categoryName === categoryShelf[categoryName] && searchParams.get('title') && (idUser === '' || idUser !== '')) {
+      } else if(categoryName === 'my-ads') {
+        console.log(categoryName);
+        try {
+          dispatch(getUserNotices({ title: searchParams.get('title'), minMonths, maxMonths, sex: `${sex.join(',')}`, page: futurePage }))
+            .then((action) => {
+              if (action.payload.message && action.payload.message === 'No data found') {
+                setFilteredItems([])
+              } else {
+                setFilteredItems(action.payload.data.notices);
+              }
+            });
+        } catch(err) {
+          console.error(err);
+        }
+      }
+    } else if (categoryName && !searchParams.get('title') && (idUser === '' || idUser !== '')) {
+      if (categoryName === categoryShelf[categoryName] && categoryName !== 'all') {
+        try {
+          dispatch(getNoticeByCategory({ categories: categoryName !== 'lost-found' ? categoryName : 'lost/found', minMonths, maxMonths, sex: `${sex.join(',')}`, page: futurePage }))
+            .then((action) => {
+              if (action.payload.message && action.payload.message === 'No data found') {
+                setFilteredItems([])
+              } else {
+                setFilteredItems(action.payload.data.notices);
+              }
+            });
+        } catch (err) {
+          console.error(err);
+        }
+      }
+      else if(categoryName === 'all' && (!minMonths && !maxMonths && !sex.length)) {
+        try {
+          dispatch(fetchNotices(futurePage))
+          .then((action) => {
+            if (action.payload.message && action.payload.message === 'No data found') {
+              setFilteredItems([])
+            } else {
+              setFilteredItems(action.payload.data.notices);
+            }
+          });
+        } catch (err) {
+          console.error(err);
+        }
+      }
+      else if(categoryName === 'all' && (minMonths || maxMonths || sex.length || searchParams.get('title'))) {
+        try {
+          dispatch(getNoticeByCategory({ minMonths, maxMonths, sex: `${sex.join(',')}`, title: searchParams.get('title'), page: futurePage }))
+            .then((action) => {
+              if (action.payload.message && action.payload.message === 'No data found') {
+                setFilteredItems([])
+              } else {
+                setFilteredItems(action.payload.data.notices);
+              }
+            });
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    } else if (!categoryName && searchParams.get('title') && (idUser === '' || idUser !== '')) {
+      try {
+        dispatch(getNoticeByCategory({ title: searchParams.get('title'), minMonths, maxMonths, sex: `${sex.join(',')}`, page: futurePage }))
+          .then((action) => {
+            if (action.payload.message && action.payload.message === 'No data found') {
+              setFilteredItems([])
+            } else {
+              setFilteredItems(action.payload.data.notices);
+            }
+          });
+      } catch (err) {
+        console.error(err);
+      }
+    } else if (!categoryName && !searchParams.get('title') && (!idUser || idUser !== '')) {
+        try {
+          dispatch(getNoticeByCategory({ sex: `${sex.join(',')}`, minMonths, maxMonths, page: futurePage }))
+            .then((action) => {
+              if (action.payload.message && action.payload.message === 'No data found') {
+                setFilteredItems([])
+              } else {
+                setFilteredItems(action.payload.data.notices);
+              }
+            });
+        } catch (err) {
+          console.error(err);
+        }
+    } else if (categoryName && categoryName === categoryShelf[categoryName] && searchParams.get('title') && (idUser === '' || idUser !== '')) {
         try {
           dispatch(getNoticeByCategory({ title: searchParams.get('title'), categories: categoryName !== 'lost-found' ? categoryName : 'lost/found', minMonths: minMonths, maxMonths, sex: `${sex.join(',')}`, page: futurePage }))
             .then((action) => {
@@ -203,11 +202,6 @@ export const NoticeCategoryList = ({
             setFilteredItems(action.payload.data.notices)
           });
       }
-    }, 500);
-
-    return () => {
-      clearTimeout(timer);
-    };
   }, [categoryName, search, dispatch, ages, genders, idUser, searchParams, setFilteredItems, futurePage]);
 
   const allOrFilterItems = () => {
@@ -215,7 +209,7 @@ export const NoticeCategoryList = ({
       return <NoticeNotFound/>;
     } else if (!isLoading && filteredItems.length) {
       return filteredItems.map((notice, i) => (
-        <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal} handleFavorite={handleFavorite} setFilteredItems={setFilteredItems} />
+        <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal} handleFavorite={handleFavorite} />
       ));
     }
   };

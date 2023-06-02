@@ -39,10 +39,8 @@ import { selectUser } from 'Redux/auth/selector';
 import { toast } from 'react-hot-toast';
 import { NoticeSkeletonDesk } from 'components/Skeleton/NoticeDeskLoad';
 import { NoticeSkeletonMob } from 'components/Skeleton/NoticeMobLoad';
-import { useParams } from 'react-router-dom';
-import { setCategory } from 'Redux/notices/slice';
 
-export const ModalNotice = ({ onClose, noticeId, setIsOpenModal }) => {
+export const ModalNotice = ({ onClose, noticeId }) => {
   const dispatch = useDispatch();
   const [withoutBlur, setWithoutBlur] = useState(0);
   const {notice: {imageURL, title, categories, name, birthday, breed, place, sex, comments, price, favorite}, user :{email, phone}} = useSelector(getNotice)
@@ -51,7 +49,6 @@ export const ModalNotice = ({ onClose, noticeId, setIsOpenModal }) => {
   const theme = useSelector(state => state.main.theme)
   const isFavorite = favorite.includes(userId);
   const mobile = useSelector(state => state.main.mobile);
-  const { categoryName } = useParams()
 
   const handleBlurContacts = () => {
     setWithoutBlur(withoutBlur + 1);
@@ -72,19 +69,11 @@ export const ModalNotice = ({ onClose, noticeId, setIsOpenModal }) => {
     }
     const activeFavorite = favorite.includes(userId);
     const isFavorite = !activeFavorite;
-    dispatch(setCategory(categoryName))
-    dispatch(updateFavorite({ noticeId, isFavorite }))
-    .then(() => onClose())
+    dispatch(updateFavorite({ noticeId, isFavorite }));
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      dispatch(fetchNotice(noticeId));
-    }, 500);
-
-    return () => {
-      clearTimeout(timer);
-    };
+    dispatch(fetchNotice(noticeId));
   }, [dispatch, noticeId, userId]);
 
   return (
