@@ -12,8 +12,6 @@ import {
   TitleModal,
   BtnLogout,
   ArrowBack,
-
-  //Олексій
   ButtonYes,
 } from './Logout.styled';
 
