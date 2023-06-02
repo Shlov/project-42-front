@@ -211,7 +211,7 @@ export const BtnCheck = styled.button`
   border: none;
   width: 24px;
   height: 24px;
-  background-color: var(--cl-background);
+  background-color: transparent;
 `;
 export const SvgBtn = styled.svg`
   width: 24px;
