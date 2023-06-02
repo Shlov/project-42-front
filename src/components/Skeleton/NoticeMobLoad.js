@@ -5,8 +5,8 @@ export const NoticeSkeletonMob = props => (
     width={270}
     height={580}
     viewBox="0 0 280 580"
-    backgroundColor="#f5f5f5"
-    foregroundColor="#dbdbdb"
+    backgroundColor="var(--cl-blue-light)"
+    foregroundColor="var(--cl-blue-link)" 
     {...props}
   >   
     <rect x="24" y="33" rx="16" ry="16" width="240" height="230" />   {/*photo */}

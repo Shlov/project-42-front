@@ -46,11 +46,24 @@ const noticesSlice = createSlice({
         };
       },
     },
+    setCategory: {
+      reducer(state, action) {
+        state.category = action.payload;
+      },
+      prepare(nameCategory) {
+        return {
+          payload: nameCategory,
+        };
+      },
+    },
   },
   extraReducers: {
+
     // Notices
+    
     [fetchNotices.pending]: handlePending,
     [fetchNotices.fulfilled](state, action) {
+      state.category = 'all';
       state.isLoadNotices = false;
       state.error = null;
       state.items = action.payload.message ? [] : action.payload.data.notices;
@@ -60,6 +73,7 @@ const noticesSlice = createSlice({
 
     [getNoticeByCategory.pending]: handlePending,
     [getNoticeByCategory.fulfilled](state, action) {
+      state.category = 'cat';
       state.items = action.payload.message ? [] : action.payload.data.notices;
       state.isLoadNotices = false;
       state.error = null;
@@ -69,6 +83,8 @@ const noticesSlice = createSlice({
 
     [getFavoriteNotices.pending]: handlePending,
     [getFavoriteNotices.fulfilled](state, action) {
+      console.log(action)
+      state.category = 'favorites-ads';
       state.isLoadNotices = false;
       state.error = null;
       state.pagination = action.payload.message ? {} : action.payload.data.pagination;
@@ -77,6 +93,7 @@ const noticesSlice = createSlice({
 
     [getUserNotices.pending]: handlePending,
     [getUserNotices.fulfilled](state, action) {
+      state.category = 'my-ads';
       state.isLoadNotices = false;
       state.error = null;
       state.items = action.payload.message ? [] : action.payload.data.notices;
@@ -93,13 +110,10 @@ const noticesSlice = createSlice({
       state.item = action.payload.data; },
     [fetchNotice.rejected]: handleRejected,
 
-    // [updateFavorite.pending](state){
-    //   state.isLoadNotice = true; },
     [updateFavorite.fulfilled](state, action) {
-      // state.isLoadNotice = false;
       state.error = '';
       state.item.notice.favorite = action.payload.data.notice.favorite;
-      if (!action.meta.arg.isFavorite) {
+      if (!action.meta.arg.isFavorite && state.category === 'favorites-ads') {
         state.items = state.items.filter(item => item.id !== action.meta.arg.noticeId);
       } else {
         state.items = state.items.map(item => {
@@ -133,5 +147,5 @@ const noticesSlice = createSlice({
   },
 });
 
-export const {updateFuturePage} = noticesSlice.actions;
+export const {updateFuturePage, setCategory} = noticesSlice.actions;
 export const noticesReducer = noticesSlice.reducer;

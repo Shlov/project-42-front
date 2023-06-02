@@ -118,14 +118,14 @@ export const Filters = styled.div`
   justify-content: space-between;
   align-items: start;
   width: 320px;
-   margin: 0 auto 40px;
+  margin: 0 auto 40px;
 
-  @media (min-width: 767px) {
+  @media (min-width: 767px) and (max-width:1279px) {
     width: 730px;
     margin: 0 auto 40px;
   }
 
-  @media (min-width: 991px) {
+  @media (min-width: 1280px) {
     width: 100%;
     margin: 0 auto 42px;
   }
@@ -137,18 +137,19 @@ export const Filters = styled.div`
     .filters-items {
       position: absolute;
       right: 0;
-      top: 90px;
+      top: 56px;
       display: flex;
       flex-wrap: wrap;
       justify-content: end;
+      gap: 16px;
 
-      @media (max-width: 991px) {
+      /* @media (max-width: 991px) {
         width: 500px;
-      }
+      } */
 
-      @media (max-width: 768px) {
+      /* @media (max-width: 768px) {
         width: 320px;
-      }
+      } */
     }
 
     & > a {

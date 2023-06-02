@@ -5,6 +5,7 @@ export const FilterWrapper = styled.div`
   position: relative;
   display: ${(props) => props.tablet ? 'block' : 'flex'};
   align-items: center;
+  gap: 16px;
 `
 
 export const Button = styled.button`
@@ -154,10 +155,12 @@ export const FiltersRound = styled.svg`
 `
 
 export const FilterItem = styled.div`
+  /* outline: 1px solid red; */
   padding: 9px 16px;
   width: auto;
   color: var(--cl-blue-link);
-  margin-right: 17px;
+  /* margin-right: 17px; */
+  gap: 16px;
   background: var(--cl-almost-white);
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 20px;
@@ -167,7 +170,7 @@ export const FilterItem = styled.div`
   justify-content: space-between;
 
   @media (max-width: 991px) {
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
   }
 
   @media (max-width: 768px) {
@@ -175,17 +178,17 @@ export const FilterItem = styled.div`
     height: 32px;
     min-width: 0;
     font-size: 12px;
-    margin-bottom: 10px;
-    margin-right: 0;
-    margin-left: 17px;
+    /* margin-bottom: 10px; */
+    /* margin-right: 0; */
+    /* margin-left: 17px; */
   }
 
   &:last-child {
-    margin-right: 0px;
+    /* margin-right: 0px; */
   }
 
   p {
-    margin-right: 9px;
+    /* margin-right: 9px; */
   }
 
   img {

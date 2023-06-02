@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const NavWrap = styled.div`
-margin-right: 160px;
+margin-right: auto;
 
 @media (max-width: 991px){
   margin-right: 0;
@@ -38,7 +38,7 @@ export const NavLinks = styled.div`
   }
 
   @media (max-width: 991px) {
-    margin-top: 100px;
+    /* margin-top: 100px; */
 
     a {
       display: block;

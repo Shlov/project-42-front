@@ -209,7 +209,7 @@ export const NoticeCategoryList = ({
       return <NoticeNotFound/>;
     } else if (!isLoading && filteredItems.length) {
       return filteredItems.map((notice, i) => (
-        <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal} handleFavorite={handleFavorite} />
+        <NoticeCategoryItem key={i} item={notice} onTrashModal={onTrashModal} handleFavorite={handleFavorite} setFilteredItems={setFilteredItems}/>
       ));
     }
   };

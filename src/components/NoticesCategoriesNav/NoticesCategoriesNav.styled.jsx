@@ -1,50 +1,50 @@
 import styled from 'styled-components';
 
 export const NavWrapper = styled.div`
- display: flex;
-// justify-content: space-between;
-justify-content: start;
-max-width: 100%;
-flex-wrap: wrap;
-
-a {
-  margin-bottom: 18px;
-  padding: 10px 0;
-}
-
-@media (max-width: 991px) {
-  max-width: 319px;
-  flex-wrap: wrap;
+  display: flex;
+  // justify-content: space-between;
   justify-content: start;
+  width: 430px;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  @media (min-width: 767px) {
+    gap: 12px;
+  }
 
   a {
-    margin: 10px 0px 12px;
+    /* margin-bottom: 18px; */
+    padding: 10px 0;
+    @media (min-width: 767px) {
+      /* max-width: 319px; */
+      flex-wrap: wrap;
+      justify-content: start;
+    }
   }
-}
 
 @media (max-width: 768px) {
   a {
-    margin: 2px 0 2px;
+    /* margin: 2px 0 2px; */
   }
 }
 `
 
 export const Button = styled.label`
- margin-left: 12px;
- color: ${(props) => {
-  if(props.categoryPage === props.category && props.categoryPage !== 'all') {
-    return 'var(--cl-blue-light)'
-  } else if(props.categoryPage === 'all' && props.category === '') {
-    return 'var(--cl-blue-light)'
-  } else {
-    return 'var(--cl-blue-link)'
-  }
- }};
- font-size: 14px;
- font-weight: 500;
- width: 131px;
- height: 35px;
- background-color: ${(props) => {
+ /* margin-left: 12px; */
+  color: ${(props) => {
+    if(props.categoryPage === props.category && props.categoryPage !== 'all') {
+      return 'var(--cl-blue-light)'
+    } else if(props.categoryPage === 'all' && props.category === '') {
+      return 'var(--cl-blue-light)'
+    } else {
+      return 'var(--cl-blue-link)'
+    }
+  }};
+  font-size: 14px;
+  font-weight: 500;
+  width: 131px;
+  height: 35px;
+  background-color: ${(props) => {
   if(props.categoryPage === props.category && props.categoryPage !== 'all') {
     return 'var(--cl-blue-link)'
   } else if(props.categoryPage === 'all' && props.category === '') {

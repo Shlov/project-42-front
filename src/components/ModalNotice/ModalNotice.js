@@ -69,7 +69,7 @@ export const ModalNotice = ({ onClose, noticeId }) => {
     }
     const activeFavorite = favorite.includes(userId);
     const isFavorite = !activeFavorite;
-    dispatch(updateFavorite({ noticeId, isFavorite }));
+    dispatch(updateFavorite({ noticeId, isFavorite }))
   };
 
   useEffect(() => {
