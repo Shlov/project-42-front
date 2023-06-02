@@ -48,10 +48,10 @@ import { toast } from 'react-hot-toast';
 import icons from 'images/icons.svg';
 
 export const NoticeCategoryItem = ({ item, handleFavorite, setFilteredItems }) => {
-  const [card, setCard] = useState(item)
+  const [card] = useState(item)
   const idUser = useSelector(selectUser).id;
   const theme = useSelector(state => state.main.theme)
-  const itemCard = useSelector(state => state.notices.item)
+  // const itemCard = useSelector(state => state.notices.item)
   const activeFavorite = item.favorite.includes(idUser);
   const isFavorite = !activeFavorite;
   const dispatch = useDispatch();
