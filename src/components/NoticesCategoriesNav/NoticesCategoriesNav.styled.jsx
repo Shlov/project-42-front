@@ -4,13 +4,15 @@ export const NavWrapper = styled.div`
   display: flex;
   // justify-content: space-between;
   justify-content: start;
-  width: 430px;
   flex-wrap: wrap;
   gap: 8px;
-
+  outline: 1px solid teal;
+  width: 230px;
   @media (min-width: 767px) {
+    width: 360px;
     gap: 12px;
   }
+
 
   a {
     /* margin-bottom: 18px; */
@@ -22,7 +24,8 @@ export const NavWrapper = styled.div`
     }
   }
 
-@media (max-width: 768px) {
+@media (min-width: 1280px) {
+  width: 580px;
   a {
     /* margin: 2px 0 2px; */
   }

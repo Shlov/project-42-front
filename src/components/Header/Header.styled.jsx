@@ -6,13 +6,14 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
+  width: 320px;
 
-  @media (min-width: 767px) and (max-width:1279px) {
+  @media (min-width: 767px) and (max-width: 1279px) {
     width: 730px;
   }
 
-@media (min-width: 1280px) {
-    max-width: 1280px;
+  @media (min-width: 1280px) {
+    width: 1280px;
   }
 
 `;
