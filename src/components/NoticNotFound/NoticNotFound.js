@@ -24,7 +24,7 @@ export const NoticeNotFound = () => {
     <>
       <diV>
         <NoticeNotFoundTitle>
-        Ooops! No notices found! :(
+        Ooops! Not found notices! :(
         </NoticeNotFoundTitle>
         <NoticeNotFoundPicture>
           <source
