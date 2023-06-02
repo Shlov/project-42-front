@@ -127,7 +127,7 @@ export const BtnPhoto = styled.button`
   height: 28px;
   border: none;
   background-color: transparent;
-
+color: ${(props) => props.theme === 'day' ? '#111' : '#fff'};
   font-weight: 400;
   font-size: 12px;
   line-height: 22px;
@@ -171,18 +171,18 @@ export const InputContainer = styled(Field)`
   width: 190px;
   height: 28px;
 
-  background-color: var(--cl-almost-white);
-  border: solid
-    ${props => {
-      if (props.value) {
-        return '1px var(--cl-blue-link)';
-      } else if (!props.value && props.error) {
-        return '2px var(--cl-red)';
-      } else {
-        return 'var(--cl-blue-link)';
-      }
-    }};
-
+color: ${(props) => props.theme === 'day' ? '#111' : '#fff'};
+  background-color: ${(props) => props.theme === 'day' ? '#fff' : '#111'};
+  border: ${(props) => props.theme === 'day' ? '1px' : '3px'} solid
+  ${props => {
+    if (props.value) {
+      return 'var(--cl-blue-link)';
+    } else if (!props.value && props.error) {
+      return 'var(--cl-red)';
+    } else {
+     return 'var(--cl-blue-link)';
+    }
+  }};
   border-radius: 20px;
   cursor: pointer;
 
@@ -201,6 +201,7 @@ export const InputContainer = styled(Field)`
     padding: 6px 12px;
     width: 255px;
     height: 32px;
+
     cursor: pointer;
     &:focus {
       outline: none;
@@ -242,7 +243,7 @@ export const Photosvg = styled.svg`
 export const StyledErrorMessage = styled.p`
   position: absolute;
   top: 25px;
-  right: 20px;
+  left: 110px;
   font-weight: 400;
   font-size: 9px;
   line-height: 14px;
@@ -251,6 +252,6 @@ export const StyledErrorMessage = styled.p`
   @media screen and (min-width: 767px) {
     position: absolute;
     top: 29px;
-    right: 20px;
+    left: 110px;
   }
 `;
