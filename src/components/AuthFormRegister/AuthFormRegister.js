@@ -142,6 +142,7 @@ export const RegForm = () => {
                     name="email"
                     error={props.errors.email}
                     value={props.values.email}
+                    theme={theme}
                   />
                   <IconErrorValidateMail
                     value={props.values.email}
@@ -177,6 +178,7 @@ export const RegForm = () => {
                     type={typePass}
                     error={props.errors.password}
                     value={props.values.password}
+                    theme={theme}
                   />
                   <IconPas onClick={togglePassInput}>{toggleIconPass}</IconPas>
                   <IconErrorValidate
@@ -213,6 +215,7 @@ export const RegForm = () => {
                     type={typeCofirm}
                     value={props.values.confirmPassword}
                     error={props.errors.confirmPassword}
+                    theme={theme}
                   />
                   <IconPas onClick={toggleConfirmInput}>
                     {toggleIconConfirm}

@@ -72,7 +72,10 @@ export const Input = styled(Field)`
   font-size: 16px;
   padding: 12px 16px;
   width: 100%;
-  border: 1px solid
+  background-color: ${(props) => props.theme === 'day' ? '#fff' : '#111'};
+  color: ${(props) => props.theme === 'day' ? '#111' : '#fff'}; 
+
+  border: ${(props) => props.theme === 'day' ? '1px' : '3px'} solid
     ${props => {
       if (props.error) {
         return 'var(--cl-red)';
