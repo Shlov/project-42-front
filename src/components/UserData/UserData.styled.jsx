@@ -170,8 +170,9 @@ export const InputContainer = styled(Field)`
   width: 190px;
   height: 28px;
 
-  background-color: var(--cl-almost-white);
-  border: 1px solid
+  color: ${(props) => props.theme === 'day' ? '#111' : '#fff'};
+  background-color: ${(props) => props.theme === 'day' ? '#fff' : '#111'};
+  border: ${(props) => props.theme === 'day' ? '1px' : '3px'} solid
   ${props => {
     if (props.value) {
       return 'var(--cl-blue-link)';
@@ -181,7 +182,6 @@ export const InputContainer = styled(Field)`
      return 'var(--cl-blue-link)';
     }
   }};
-
   border-radius: 20px;
   cursor: pointer;
 
