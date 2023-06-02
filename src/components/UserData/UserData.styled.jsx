@@ -44,8 +44,7 @@ export const FormContainer = styled(Form)`
   height: 517px;
   padding: 20px 8px 25px;
 
-  background-color: ${props =>
-    props.theme === 'day' ? 'var(--cl-almost-white)' : '#111'};
+  background-color: ${(props) => props.theme === 'day' ? 'var(--cl-almost-white)' : '#111'};
 
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 20px;
@@ -172,16 +171,16 @@ export const InputContainer = styled(Field)`
   height: 28px;
 
   background-color: var(--cl-almost-white);
-  border: solid
-    ${props => {
-      if (props.value) {
-        return '1px var(--cl-blue-link)';
-      } else if (!props.value && props.error) {
-        return '2px var(--cl-red)';
-      } else {
-        return 'var(--cl-blue-link)';
-      }
-    }};
+  border: 1px solid
+  ${props => {
+    if (props.value) {
+      return 'var(--cl-blue-link)';
+    } else if (!props.value && props.error) {
+      return 'var(--cl-red)';
+    } else {
+     return 'var(--cl-blue-link)';
+    }
+  }};
 
   border-radius: 20px;
   cursor: pointer;
@@ -191,11 +190,7 @@ export const InputContainer = styled(Field)`
   &:focus {
     outline: none;
   }
-
-  &::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
-  }
+  
 
   @media screen and (min-width: 767px) {
     padding: 6px 12px;
@@ -216,7 +211,7 @@ export const BtnCheck = styled.button`
   border: none;
   width: 24px;
   height: 24px;
-  background-color: transparent;
+  background-color: var(--cl-background);
 `;
 export const SvgBtn = styled.svg`
   width: 24px;
