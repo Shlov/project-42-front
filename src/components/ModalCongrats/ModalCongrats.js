@@ -9,12 +9,13 @@ import {
   TitleModal,
   Button,
 } from './ModalCongrats.styled';
+import { useSelector } from 'react-redux';
 
 
 export const ModalCongrats = () => {
     // toggleModal, яку потрібно передати компоненту ModalApproveAction для закриття вікна
   const [isOpenModal, setIsOpenModal] = useState(false);
-
+  const theme = useSelector(state => state.main.theme)
 
   const toggleModal = () => {
     setIsOpenModal(isOpen => !isOpen);
@@ -25,8 +26,8 @@ export const ModalCongrats = () => {
       {!isOpenModal &&
         <ModalApproveAction onClose={toggleModal}> 
           <ModalContent>
-            <TitleModal>Congrats!</TitleModal>
-            <DescrModal>Your registration is successful</DescrModal>
+            <TitleModal theme={theme}>Congrats!</TitleModal>
+            <DescrModal theme={theme}>Your registration is successful</DescrModal>
 
             <Button
               type="button"

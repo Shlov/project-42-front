@@ -20,7 +20,7 @@ export const TitleModal = styled.h4`
   font-weight: 500;
   font-size: 24px;
   line-height: 33px;
-
+  color: ${(props) => props.theme === 'day' ? '#111' : '#fff'};
   padding: 0;
   margin-top: 0px;
   margin-bottom: 24px;
@@ -37,7 +37,7 @@ export const DescrModal = styled.p`
   font-size: 16px;
   line-height: 22px;
   text-align: center;
-
+  color: ${(props) => props.theme === 'day' ? '#111' : '#fff'};
   margin-bottom: 40px;
 
   @media (min-width: 768px) {

@@ -175,12 +175,12 @@ color: ${(props) => props.theme === 'day' ? '#111' : '#fff'};
   background-color: ${(props) => props.theme === 'day' ? '#fff' : '#111'};
   border: ${(props) => props.theme === 'day' ? '1px' : '3px'} solid
   ${props => {
-    if (props.value) {
-      return 'var(--cl-blue-link)';
-    } else if (!props.value && props.error) {
+    if(props.error) {
       return 'var(--cl-red)';
+    } else if (props.value && !props.error) {
+      return 'var(--cl-blue-link)';
     } else {
-     return 'var(--cl-blue-link)';
+      return 'var(--cl-blue-link)';
     }
   }};
   border-radius: 20px;
