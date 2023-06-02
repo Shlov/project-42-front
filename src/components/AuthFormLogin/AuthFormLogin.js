@@ -121,6 +121,7 @@ export const LogForm = () => {
                     name="email"
                     error={props.errors.email}
                     value={props.values.email}
+                    theme={theme}
                   />
                   <IconErrorValidateMail
                     value={props.values.email}
@@ -156,6 +157,7 @@ export const LogForm = () => {
                     type={typePass}
                     error={props.errors.password}
                     value={props.values.password}
+                    theme={theme}
                   />
                   <IconPas onClick={togglePassInput}>{toggleIconPass}</IconPas>
                   <IconErrorValidate
