@@ -196,18 +196,17 @@ export const UserData = () => {
                       name="name"
                       id="name"
                       value={props.values.name}
-                      error={props.errors}
+                      error={props.errors.name}
                       onChange={props.handleChange}
                       onBlur={props.handleBlur}
                       disabled={!isEditingName ? false : true}
                       theme={theme}
-                
                     />
-                    {props.errors.name ? (
+                    {props.errors.name && (
                       <StyledErrorMessage>
                         {props.errors.name}
                       </StyledErrorMessage>
-                    ) : null}
+                    )}
                   </div>
                   {isEditingName ? (
                     <BtnCheck
@@ -239,17 +238,17 @@ export const UserData = () => {
                       name="email"
                       id="email"
                       value={props.values.email}
-                      error={props.errors}
+                      error={props.errors.email}
                       onChange={props.handleChange}
                       onBlur={props.handleBlur}
                       disabled={!isEditingEmail ? false : true}
                       theme={theme}
                     />
-                    {props.errors.email ? (
+                    {props.errors.email && (
                       <StyledErrorMessage>
                         {props.errors.email}
                       </StyledErrorMessage>
-                    ) : null}
+                    )}
                   </div>
                   {isEditingEmail ? (
                     <BtnCheck
@@ -281,17 +280,17 @@ export const UserData = () => {
                       name="birthday"
                       id="birthday"
                       value={props.values.birthday}
-                      error={props.errors}
+                      error={props.errors.birthday}
                       onChange={props.handleChange}
                       onBlur={props.handleBlur}
                       disabled={!isEditingBirthday ? false : true}
                       theme={theme}
                     />
-                    {props.errors.birthday ? (
+                    {props.errors.birthday && (
                       <StyledErrorMessage>
                         {props.errors.birthday}
                       </StyledErrorMessage>
-                    ) : null}
+                    )}
                   </div>
                   {isEditingBirthday ? (
                     <BtnCheck
@@ -323,18 +322,18 @@ export const UserData = () => {
                       name="phone"
                       id="phone"
                       value={props.values.phone}
-                      error={props.errors}
+                      error={props.errors.phone}
                       onChange={props.handleChange}
                       onBlur={props.handleBlur}
                       placeholder="+380000000000"
                       disabled={!isEditingPhone ? false : true}
                       theme={theme}
                     />
-                    {props.errors.phone ? (
+                    {props.errors.phone && (
                       <StyledErrorMessage>
                         {props.errors.phone}
                       </StyledErrorMessage>
-                    ) : null}
+                    )}
                   </div>
                   {isEditingPhone ? (
                     <BtnCheck
@@ -366,18 +365,18 @@ export const UserData = () => {
                       name="city"
                       id="city"
                       value={props.values.city}
-                      error={props.errors}
+                      error={props.errors.city}
                       onChange={props.handleChange}
                       onBlur={props.handleBlur}
                       placeholder="Lviv"
                       disabled={!isEditingCity ? false : true}
                       theme={theme}
                     />
-                    {props.errors.city ? (
+                    {props.errors.city && (
                       <StyledErrorMessage>
                         {props.errors.city}
                       </StyledErrorMessage>
-                    ) : null}
+                    )}
                   </div>
                   {isEditingCity ? (
                     <BtnCheck
