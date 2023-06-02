@@ -53,7 +53,13 @@ export const App = () => {
   const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
-    dispatch(refreshUser());
+      const timer = setTimeout(() => {
+        dispatch(refreshUser());
+      }, 500);
+
+      return () => {
+        clearTimeout(timer);
+      };
   }, [dispatch]);
 
   return isRefreshing ? (

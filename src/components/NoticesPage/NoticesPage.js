@@ -139,7 +139,6 @@ export const NoticesPage = () => {
     if (element) {
       const height = element.getBoundingClientRect().height;
       setFilterHeight(height);
-      console.log(height);
     }
   }, [activeButtons]);
 

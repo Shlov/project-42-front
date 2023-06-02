@@ -44,8 +44,7 @@ export const FormContainer = styled(Form)`
   height: 517px;
   padding: 20px 8px 25px;
 
-  background-color: ${props =>
-    props.theme === 'day' ? 'var(--cl-almost-white)' : '#111'};
+  background-color: ${(props) => props.theme === 'day' ? 'var(--cl-almost-white)' : '#111'};
 
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 20px;
@@ -171,6 +170,7 @@ export const InputContainer = styled(Field)`
   width: 190px;
   height: 28px;
 
+
 color: ${(props) => props.theme === 'day' ? '#111' : '#fff'};
   background-color: ${(props) => props.theme === 'day' ? '#fff' : '#111'};
   border: ${(props) => props.theme === 'day' ? '1px' : '3px'} solid
@@ -191,11 +191,7 @@ color: ${(props) => props.theme === 'day' ? '#111' : '#fff'};
   &:focus {
     outline: none;
   }
-
-  &::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
-  }
+  
 
   @media screen and (min-width: 767px) {
     padding: 6px 12px;

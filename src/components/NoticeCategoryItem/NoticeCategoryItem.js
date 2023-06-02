@@ -47,9 +47,11 @@ import { deleteNotice } from 'Redux/notices/operation';
 import { toast } from 'react-hot-toast';
 import icons from 'images/icons.svg';
 
-export const NoticeCategoryItem = ({ item, handleFavorite }) => {
+export const NoticeCategoryItem = ({ item, handleFavorite, setFilteredItems }) => {
+  const [card] = useState(item)
   const idUser = useSelector(selectUser).id;
   const theme = useSelector(state => state.main.theme)
+  // const itemCard = useSelector(state => state.notices.item)
   const activeFavorite = item.favorite.includes(idUser);
   const isFavorite = !activeFavorite;
   const dispatch = useDispatch();
@@ -103,7 +105,7 @@ export const NoticeCategoryItem = ({ item, handleFavorite }) => {
       return;
     }
 
-    if (item.owner !== idUser) {
+    if (card.owner !== idUser) {
       toast.error("You don't own this notice to do that!", {
         style: {
           backgroundColor: `var(--cl-background)`,
@@ -115,7 +117,7 @@ export const NoticeCategoryItem = ({ item, handleFavorite }) => {
       toggleTrash();
       return;
     }
-    dispatch(deleteNotice(item.id));
+    dispatch(deleteNotice(card.id));
     toggleTrash();
     console.log('Видаляємо notice');
   };
@@ -127,42 +129,42 @@ export const NoticeCategoryItem = ({ item, handleFavorite }) => {
           <Image
             alt="pet"
             src={
-              item.imageURL
-                ? item.imageURL
+              card.imageURL
+                ? card.imageURL
                 : 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSgGi3YJI2iukoOZ3_fbYCyoiR4dYO8fIyIu_qpphSUf8GRAmFN'
             }
             onClick={toggleModal}
           />
           <CategoryTag theme={theme}>
-            {item.categories ? item.categories : 'categories'}
+            {card.categories ? card.categories : 'categories'}
           </CategoryTag>
           <TagList>
             <TagItem theme={theme}>
               <SvgIcon height="20" width="20">
                 <use href={icon + '#location'} />
               </SvgIcon>
-              <p>{item.place ? truncateWord(item.place) : 'city'}</p>
+              <p>{card.place ? truncateWord(card.place) : 'city'}</p>
             </TagItem>
             <TagItem theme={theme}>
               <SvgIcon height="20" width="20">
                 <use href={icon + '#clock'} />
               </SvgIcon>
-              <p>{item.birthday ? agePet(item.birthday) : 'age'}</p>
+              <p>{card.birthday ? agePet(card.birthday) : 'age'}</p>
             </TagItem>
             <TagItem theme={theme}>
-              {item.sex === 'female' ? (
-                <SvgIcon height="20" width="20" sex={item.sex}>
+              {card.sex === 'female' ? (
+                <SvgIcon height="20" width="20" sex={card.sex}>
                   <use href={icon + '#female'} />
                 </SvgIcon>
               ) : (
-                <SvgIcon height="20" width="20" sex={item.sex}>
+                <SvgIcon height="20" width="20" sex={card.sex}>
                   <use href={icon + '#male'} />
                 </SvgIcon>
               )}
-              <p>{item.sex ? item.sex : 'sex'}</p>
+              <p>{card.sex ? card.sex : 'sex'}</p>
             </TagItem>
           </TagList>
-          <FavoriteBtn onClick={() => handleFavorite(item, isFavorite)}>
+          <FavoriteBtn onClick={() => handleFavorite(card, isFavorite)}>
             <HeartIcon
               height="20"
               width="20"
@@ -172,7 +174,7 @@ export const NoticeCategoryItem = ({ item, handleFavorite }) => {
               <use href={icon + '#heart'} />
             </HeartIcon>
           </FavoriteBtn>
-          {item.owner === idUser && (
+          {card.owner === idUser && (
             <DeleteBtn onClick={toggleTrash}>
               <TrashIcon height="20" width="20">
                 <use href={icon + '#trash'} />
@@ -183,12 +185,12 @@ export const NoticeCategoryItem = ({ item, handleFavorite }) => {
 
         <DescriptionWrapper>
           <Title>
-            {item.title ? item.title : 'Cute fox looking for a home'}
+            {card.title ? card.title : 'Cute fox looking for a home'}
           </Title>
           <MoreBtn onClick={toggleModal}>Learn more</MoreBtn>
         </DescriptionWrapper>
         {isOpenModal && (
-          <ModalNotice onClose={toggleModal} notice={item} noticeId={item.id} />
+          <ModalNotice onClose={toggleModal} notice={card} noticeId={card.id} setIsOpenModal={setIsOpenModal} />
         )}
         {isOpenModalTrash && (
           <ModalApproveAction onClose={toggleTrash} height="389px">

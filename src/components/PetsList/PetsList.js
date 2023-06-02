@@ -10,9 +10,15 @@ export const PetsList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchPets());
+    const timer = setTimeout(() => {
+      dispatch(fetchPets());
+    }, 500);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [dispatch]);
- 
+
 
   return (
     <List>

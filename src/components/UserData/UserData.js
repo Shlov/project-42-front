@@ -48,7 +48,7 @@ const schema = yup.object().shape({
 
 export const UserData = () => {
   const newUser = useSelector(selectorNewUser);
-  const theme = useSelector(state => state.main.theme);
+  const theme = useSelector(state => state.main.theme)
 
   const [isNewUser, setIsNewUser] = useState(newUser);
 
