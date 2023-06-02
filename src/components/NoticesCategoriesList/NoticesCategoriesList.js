@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getFuturePage, getIsLoadNotices, getNotices } from 'Redux/notices/selector';
 import { selectUser } from "Redux/auth/selector";
 import { getFavoriteNotices, getNoticeByCategory, getUserNotices, updateFavorite } from 'Redux/notices/operation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { fetchNotices } from 'Redux/notices/operation';
 import { Loader } from 'components/Loader/Loader';
 import { NoticeCategoryItemLoad } from 'components/NoticeCategoryItemLoad/NoticeCategoryItemLoad';
