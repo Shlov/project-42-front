@@ -36,7 +36,6 @@ export const LogoutBtn = () => {
   };
 
   const handleAction = () => {
-    // console.log('Передаємо екшн');
     dispatch(logOut());
 };
 const isConnect = useSelector(getConnect);

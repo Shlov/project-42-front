@@ -6,7 +6,6 @@ export const NavWrapper = styled.div`
   justify-content: start;
   flex-wrap: wrap;
   gap: 8px;
-  outline: 1px solid teal;
   width: 230px;
   @media (min-width: 767px) {
     width: 360px;

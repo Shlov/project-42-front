@@ -40,7 +40,6 @@ export const NoticeCategoryList = ({
   const futurePage = useSelector(getFuturePage)
   const array = Array.from({ length: 8 }, (_, index) => index + 1);
   // const { limit, numberNotices, page} = useSelector(getPagination);
-  // console.log(page, 'p l' , limit)
 
   const handleFavorite = (item, activeFavorite) => {
     if (!idUser) {
@@ -100,7 +99,6 @@ export const NoticeCategoryList = ({
           console.error(err);
         }
       } else if(categoryName === 'my-ads') {
-        console.log(categoryName);
         try {
           dispatch(getUserNotices({ title: searchParams.get('title'), minMonths, maxMonths, sex: `${sex.join(',')}`, page: futurePage }))
             .then((action) => {

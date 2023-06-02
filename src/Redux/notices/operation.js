@@ -170,7 +170,6 @@ export const updateFavorite = createAsyncThunk(
       if (error.response.status === 500) {
         toast.error('Server error. Please try later😸');
       }
-      // console.log(error)
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -203,7 +202,6 @@ export const deleteNotice = createAsyncThunk(
       if (error.response.status === 500) {
         toast.error('Server error. Please try later😸');
       }
-      console.log(error)
       return thunkAPI.rejectWithValue(error.message);
     }
 });

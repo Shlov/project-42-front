@@ -91,7 +91,6 @@ export const NoticeCategoryItem = ({ item, handleFavorite }) => {
 
   const handleDeleteNotice = () => {
     if (!idUser) {
-      console.log('user disconnect');
       toast.error('Please authorize and try again!', {
         style: {
           backgroundColor: `var(--cl-background)`,
@@ -117,7 +116,6 @@ export const NoticeCategoryItem = ({ item, handleFavorite }) => {
     }
     dispatch(deleteNotice(item.id));
     toggleTrash();
-    console.log('Видаляємо notice');
   };
 
   return (

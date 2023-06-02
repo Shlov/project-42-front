@@ -83,7 +83,6 @@ const noticesSlice = createSlice({
 
     [getFavoriteNotices.pending]: handlePending,
     [getFavoriteNotices.fulfilled](state, action) {
-      console.log(action)
       state.category = 'favorites-ads';
       state.isLoadNotices = false;
       state.error = null;

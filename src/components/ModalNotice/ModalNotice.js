@@ -56,7 +56,6 @@ export const ModalNotice = ({ onClose, noticeId }) => {
 
   const handleFavorite = () => {
     if (!userId) {
-      console.log('user disconnect');
       toast.error('Please authorize and try again!', {
         style: {
           backgroundColor: `var(--cl-background)`,
