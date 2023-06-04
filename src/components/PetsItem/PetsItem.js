@@ -53,10 +53,10 @@ export const PetsItem = ({
               You can`t undo this action.
             </ModalText>
             <ModalButton>
-              <Button type="button" onClick={toggleModal}>
+              <Button type="button" onClick={toggleModal} theme={theme}>
                 Cancel
               </Button>
-              <Button type="button" onClick={handleDeletePet}>
+              <Button type="button" onClick={handleDeletePet} theme={theme}>
                 Yes
                 <ModalIcon>
                   <use href={icons + '#trash'} />

@@ -10,7 +10,7 @@ export const Card = styled.div`
     width: 288px;
   }
   height: 456px;
-  background: ${(props) => props.theme === 'day' ? 'var(--cl-almost-white)' : 'var(--cl-black)'};
+  background-color: ${(props) => props.theme === 'day' ? 'var(--cl-almost-white)' : 'var(--cl-black)'};
   box-shadow: var(--shadow-default);
   border-radius: 0px 0px 40px 40px;
 

@@ -158,7 +158,7 @@ export const Icon = styled.svg`
 
 export const ModalContainer = styled.div`
   padding: 60px 5px 60px 5px;
-  color: var(--cl-black);
+  /* color: var(--cl-black); */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -212,7 +212,7 @@ export const Button = styled.button`
   border: 2px solid var(--cl-blue-link);
   border-radius: 40px;
   color: var(--cl-blue-link);
-  background-color: var(--cl-background);
+  background-color: ${(props) => props.theme === 'day' ? 'var(--cl-background)' : 'var(--cl-black)'};
 
   transition: background-color var(--animat), color var(--animat),
     border-color var(--animat);
