@@ -49,7 +49,7 @@ import icons from 'images/icons.svg';
 
 export const NoticeCategoryItem = ({ item, handleFavorite }) => {
   const idUser = useSelector(selectUser).id;
-  const theme = useSelector(state => state.main.theme)
+  const theme = useSelector(state => state.main.theme);
   const activeFavorite = item.favorite.includes(idUser);
   const isFavorite = !activeFavorite;
   const dispatch = useDispatch();
@@ -191,8 +191,8 @@ export const NoticeCategoryItem = ({ item, handleFavorite }) => {
         {isOpenModalTrash && (
           <ModalApproveAction onClose={toggleTrash} height="389px">
             <ModalContent>
-              <TitleModal>Delete adverstiment?</TitleModal>
-              <DescrModal>
+              <TitleModal theme={theme}>Delete adverstiment?</TitleModal>
+              <DescrModal theme={theme}>
                 <Text>
                   Are you sure you want to delete &nbsp;
                   <strong>“Cute dog looking for a home”?&nbsp;</strong>

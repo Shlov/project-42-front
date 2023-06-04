@@ -9,17 +9,17 @@ export const ModalContent = styled.div`
   padding-bottom: 60px;
 
   font-style: normal;
-  color: var(--cl-black);
+  color:  ${(props) => props.theme === 'day' ? 'var(--cl-black)'  : 'var(--cl-almost-white)'};
 `;
 
 export const TitleModal = styled.h4`
   width: 240px;
-
   font-size: 24px;
   line-height: 33px;
   text-align: center;
   letter-spacing: 0.04em;
   padding-bottom: 14px;
+  color:  ${(props) => props.theme === 'day' ? 'var(--cl-black)'  : 'var(--cl-almost-white)'};
 
   @media (min-width: 768px) {
     width: 317px;
@@ -35,6 +35,7 @@ export const DescrModal = styled.div`
   line-height: 22px;
   text-align: center;
   margin-bottom: 48px;
+  color:  ${(props) => props.theme === 'day' ? 'var(--cl-black)'  : 'var(--cl-almost-white)'};
 `;
 
 export const ButtonWrap = styled.div`

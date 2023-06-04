@@ -44,8 +44,7 @@ export const FormContainer = styled(Form)`
   height: 517px;
   padding: 20px 8px 25px;
 
-  background-color: ${props =>
-    props.theme === 'day' ? 'var(--cl-almost-white)' : '#111'};
+  background-color: ${(props) => props.theme === 'day' ? 'var(--cl-almost-white)' : 'var(--cl-black)'};
 
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 20px;
@@ -127,7 +126,7 @@ export const BtnPhoto = styled.button`
   height: 28px;
   border: none;
   background-color: transparent;
-color: ${(props) => props.theme === 'day' ? '#111' : '#fff'};
+  color: ${(props) => props.theme === 'day' ? 'var(--cl-black)' : 'var(--cl-almost-white)'};
   font-weight: 400;
   font-size: 12px;
   line-height: 22px;
@@ -171,8 +170,8 @@ export const InputContainer = styled(Field)`
   width: 190px;
   height: 28px;
 
-color: ${(props) => props.theme === 'day' ? '#111' : '#fff'};
-  background-color: ${(props) => props.theme === 'day' ? '#fff' : '#111'};
+color: ${(props) => props.theme === 'day' ? 'var(--cl-black)' : 'var(--cl-almost-white)'};
+  background-color: ${(props) => props.theme === 'day' ? 'var(--cl-almost-white)' : 'var(--cl-black)'};
   border: ${(props) => props.theme === 'day' ? '1px' : '3px'} solid
   ${props => {
     if(props.error) {

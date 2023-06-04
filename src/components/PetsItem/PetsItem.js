@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
 import { deletePet } from 'Redux/pets/operations';
+import { useSelector } from 'react-redux';
 import icons from 'images/icons.svg';
 import {
   Card,
@@ -29,6 +30,7 @@ export const PetsItem = ({
 }) => {
   const dispatch = useDispatch();
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const theme = useSelector(state => state.main.theme);
 
   const toggleModal = () => {
     setIsOpenModal(isOpen => !isOpen);
@@ -40,7 +42,7 @@ export const PetsItem = ({
   };
 
   return (
-    <Card>
+    <Card theme={theme}>
       {isOpenModal && (
         <ModalApproveAction onClose={toggleModal}>
           <ModalContainer>
@@ -67,7 +69,7 @@ export const PetsItem = ({
       <div>
         <Photo src={imageURL} alt={name} width="240" height="240" />
         <Btn type="button" onClick={toggleModal}>
-          <Icon>
+          <Icon theme={theme}>
             <use href={icons + '#trash'} />
           </Icon>
         </Btn>

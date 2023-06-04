@@ -4,7 +4,8 @@ export const Card = styled.div`
   position: relative;
   padding: 16px 20px 40px 20px;
   width: 280px;
-  background-color: var(--cl-almost-white);
+  background-color: ${(props) => props.theme === 'day' ? 'var(--cl-almost-white)' : 'var(--cl-black)'};
+  color: ${(props) => props.theme === 'day' ? 'var(--cl-black)' : 'var(--cl-almost-white)'};
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 20px;
 
@@ -145,8 +146,9 @@ export const Icon = styled.svg`
   height: 24px;
   top: 0;
   right: 0;
+  background-color: ${(props) => props.theme === 'day' ? 'var(--cl-almost-white)' : 'var(--cl-black)'};
   stroke: var(--cl-blue-link);
-  fill: transparent;
+  fill: ${(props) => props.theme === 'day' ? 'var(--cl-almost-white)' : 'var(--cl-black)'};
 
   @media screen and (min-width: 768px) {
     top: 0;

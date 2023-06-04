@@ -10,7 +10,7 @@ export const Card = styled.div`
     width: 288px;
   }
   height: 456px;
-  background: ${(props) => props.theme === 'day' ? 'var(--cl-almost-white)' : '#111'};
+  background: ${(props) => props.theme === 'day' ? 'var(--cl-almost-white)' : 'var(--cl-black)'};
   box-shadow: var(--shadow-default);
   border-radius: 0px 0px 40px 40px;
 
@@ -176,7 +176,7 @@ export const CategoryTag = styled.p`
   display: flex;
   align-items: center;
   text-align: center;
-  color: ${(props) => props.theme === 'day' ? '#111' : '#111'}
+  color: var(--cl-black);
 `
 
 export const Image = styled.img`

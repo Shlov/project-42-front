@@ -11,10 +11,11 @@ export const NoticeCategoryItemLoad = ({onTrashModal, item}) => {
   const desktop = useSelector(state => state.main.desktop);
   const tablet = useSelector(state => state.main.tablet);
   const mobile = useSelector(state => state.main.mobile);
+  const theme = useSelector(state => state.main.theme);
 
   return(
     <>
-      <Card>
+      <Card theme={theme}>
         {mobile && <NoticeLoadMob/>}
         {desktop && <NoticeLoadDesk/>}
         {tablet && <NoticeLoadTab/>}
