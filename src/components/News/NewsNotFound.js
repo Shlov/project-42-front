@@ -1,14 +1,14 @@
-// import React from 'react';
+import React from 'react';
 
-// import { Section, Wrap,  Title } from './NewsNotFound.styled';
+import { Section, Wrap,  Title } from './NewsNotFound.styled';
 
-// export const NotFound = () => {
-//   return (
-//     <Section>
-//       <Title>{`Ooops:( Such news not found`}</Title>
-//       <Wrap>
+export const NotFound = () => {
+  return (
+    <Section>
+      <Title>{`Ooops:( Such news not found`}</Title>
+      <Wrap>
         
-//       </Wrap>
-//     </Section>
-//   );
-// };
+      </Wrap>
+    </Section>
+  );
+};
