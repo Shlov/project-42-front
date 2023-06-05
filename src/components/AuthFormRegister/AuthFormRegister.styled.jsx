@@ -121,17 +121,25 @@ export const Button = styled.button`
   font-weight: 400;
   font-size: 16px;
   width: 100%;
-  border: none;
+  /* border: none; */
+  border: 2px solid var(--gr-blue);;
   border-radius: 40px;
   height: 48px;
   cursor: pointer;
-  background: #54adff;
+  background: var(--cl-blue-link);
   margin-bottom: 24px;
   color: var(--cl-almost-white);
 
   @media screen and (min-width: 768px) {
     margin-bottom: 16px;
   }
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: var(--gr-blue);
+  }
+
 `;
 
 export const Text = styled.p`
@@ -149,6 +157,14 @@ export const Span = styled.span`
 export const Link = styled(NavLink)`
   color: var(--cl-blue-link);
   line-height: 16px;
+
+  transition: color var(--animat);
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: var(--cl-accent);
+  }
 `;
 
 export const IconPas = styled.span`
@@ -162,6 +178,12 @@ export const SVG = styled.svg`
   margin-left: 8px;
   fill: transparent;
   stroke: var(--cl-blue-link);
+
+  &:hover,
+  &:active,
+  &:focus {
+    stroke: var(--cl-yellow);
+  }
 `;
 
 export const IconOkValidate = styled.span`

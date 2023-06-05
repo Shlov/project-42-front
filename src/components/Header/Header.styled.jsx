@@ -52,6 +52,10 @@ export const HeaderTheme = styled.button`
   position: relative;
   width: 28px;
 
+  &:hover {
+    scale: 1.2;
+  }
+
   img {
     width: 28px;
     height: 28px;

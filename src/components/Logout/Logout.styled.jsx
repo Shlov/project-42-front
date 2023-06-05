@@ -78,14 +78,14 @@ export const Button = styled.button`
   &:hover,
   &:active,
   &:focus {
+    border: 2px solid var(--gr-blue);
     color: var(--cl-background);
     background: var(--gr-blue);
-    border: var(--gr-blue);
   }
 `;
 
 export const ButtonYes = styled(Button)`
-  border: 2px solid var(--animat);
+  border: 2px solid var(--gr-blue);
   color: var(--cl-background);
   background: var(--cl-blue-link);
 

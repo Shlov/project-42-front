@@ -138,6 +138,10 @@ export const Btn = styled.button`
     top: 20px;
     right: 20px;
   }
+
+  &:hover {
+    scale: 1.2;
+  }
 `;
 
 export const Icon = styled.svg`

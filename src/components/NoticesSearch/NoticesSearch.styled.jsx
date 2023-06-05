@@ -23,6 +23,10 @@ export const SearchWrapper = styled.div`
   @media screen and (min-width: 1280px) {
     width: 608px;
   }
+
+  &:hover {
+    box-shadow: var(--shadow-hover);
+  }
 `;
 
 export const SearchInput = styled.input`
@@ -37,6 +41,7 @@ export const SearchInput = styled.input`
     color: #888888;
     font-size: 20px;
   }
+  
 `;
 
 export const SearchButton = styled(SearchIcon)`
@@ -47,4 +52,10 @@ export const SearchButton = styled(SearchIcon)`
   position: absolute;
   right: ${props => (props.search ? '60px' : '20px')};
   top: 7px;
+
+  &:hover,
+  &:active,
+  &:focus {
+    scale: 1.1;
+  }
 `;

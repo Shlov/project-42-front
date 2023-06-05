@@ -181,7 +181,7 @@ export const NoticeCategoryItem = ({ item, handleFavorite }) => {
 
         <DescriptionWrapper>
           <Title>
-            {item.title ? item.title : 'Cute fox looking for a home'}
+            {item.title ? item.title : 'Cute pet looking for a home'}
           </Title>
           <MoreBtn onClick={toggleModal}>Learn more</MoreBtn>
         </DescriptionWrapper>
@@ -195,7 +195,7 @@ export const NoticeCategoryItem = ({ item, handleFavorite }) => {
               <DescrModal theme={theme}>
                 <Text>
                   Are you sure you want to delete &nbsp;
-                  <strong>“Cute dog looking for a home”?&nbsp;</strong>
+                  <strong>{item.title ? `"${item.title}"` : "Cute pet looking for a home"}?&nbsp;</strong>
                 </Text>
                 <p>You can`t undo this action.</p>
               </DescrModal>

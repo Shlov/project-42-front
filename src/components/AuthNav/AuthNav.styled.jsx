@@ -18,22 +18,23 @@ export const ButtonLogin = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   color: var(--cl-background);
   width: 165px;
   height: 40px;
   padding: 8px 20px;
   margin-left: 10px;
   background-color: var(--cl-yellow);
-  border: 2px solid transparent;
+  border: 2px solid var(--cl-yellow);
   border-radius: 40px;
   transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
   cursor: pointer;
 
   &:hover {
     color: var(--cl-yellow);
-    background: none;
-    background-color: current-color;
-    border: 2px solid var(--cl-yellow);
+    /* background: none; */
+    background-color: transparent;
+    /* border: 2px solid var(--cl-yellow); */
     box-shadow: var(--shadow-nav);
   }
 
@@ -62,7 +63,7 @@ export const ButtonRegister = styled.button`
 
   &:hover {
     color: var(--cl-background);
-    background: none;
+    /* background: none; */
     background-color: var(--cl-yellow);
     box-shadow: var(--shadow-nav);
   }
@@ -72,5 +73,5 @@ export const ButtonRegister = styled.button`
 
 export const PawCss = styled.svg`
   fill: currentColor;
-  margin-left: 8px;
+  /* margin-left: 8px; */
 `;
