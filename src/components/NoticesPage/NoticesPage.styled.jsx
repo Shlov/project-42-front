@@ -90,7 +90,7 @@ export const Button = styled.button`
 
 export const ButtonTrash = styled(Button)`
 
-  border: 2px solid var(--animat);
+  border: 2px solid var(--gr-blue);
   color: var(--cl-background);
   background-color: var(--cl-blue-link);
 

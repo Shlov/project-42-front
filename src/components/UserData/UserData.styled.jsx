@@ -138,6 +138,10 @@ export const BtnPhoto = styled.button`
   @media screen and (min-width: 991px) {
     left: 120px;
   }
+
+  &:hover {
+    color: var(--cl-accent);
+  }
 `;
 
 export const LabelContainer = styled.label`
@@ -223,6 +227,7 @@ export const SvgBtn = styled.svg`
   height: 24px;
   stroke: var(--cl-green);
   fill: transparent;
+  
 `;
 
 export const BtnEdit = styled.svg`
@@ -231,6 +236,7 @@ export const BtnEdit = styled.svg`
 
   stroke: var(--cl-blue-link);
   fill: var(--cl-blue-link);
+
 `;
 
 export const Photosvg = styled.svg`

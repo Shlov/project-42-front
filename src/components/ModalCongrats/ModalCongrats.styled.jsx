@@ -63,7 +63,7 @@ export const Button = styled.button`
   font-size: 16px;
   line-height: 22px;
 
-  border: 2px solid var(--animat);
+  border: 2px solid var(--gr-blue);
   border-radius: 40px;
   color: var(--cl-background);
   background: var(--cl-blue-link);
