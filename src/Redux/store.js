@@ -21,11 +21,18 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
+const themePersistConfig = {
+  key: 'theme',
+  storage,
+  whitelist: ['theme'],
+};
+
 const persistedAuthReducer = persistReducer(authPersistConfig, authSlice);
+const persistedThemeReducer = persistReducer(themePersistConfig, mainSlice);
 
 export const store = configureStore({
   reducer: {
-    main: mainSlice,
+    main: persistedThemeReducer,
     auth: persistedAuthReducer,
     notices: noticesReducer,
     pets: petsSlice
