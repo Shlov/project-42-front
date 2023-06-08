@@ -14,7 +14,7 @@ import { Search } from './Search';
 import { toast } from 'react-hot-toast';
 import Heading from 'components/Heading/Heading';
 import { NewsList } from '../../components/News/NewsList';
-import { Pagination } from '../Pagination/Pagination';
+import { Pagination } from '../Pagination/Pagination-news';
 import { NotFound } from 'components/News/NewsNotFound';
 import { Wraper } from './NewsPage.styled';
 import { useSearchParams } from 'react-router-dom';
@@ -111,6 +111,9 @@ export const NewsData = () => {
     const [isError, setIsError] = useState(false);
     const [totalPages, setTotalPages] = useState(0);
     const [searchParams, setSearchParams] = useSearchParams();
+
+    console.log('searchParams', searchParams)
+    console.log('useSearchParams', useSearchParams())
 
     const params = useMemo(
       () => Object.fromEntries([...searchParams]),
